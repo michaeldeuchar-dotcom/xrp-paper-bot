@@ -1,0 +1,80 @@
+name: paper-bot
+
+# PAPER (fake money) run only. No secrets are used or needed.
+on:
+  workflow_dispatch:
+    inputs:
+      chained:
+        description: "Started by the previous slice (skip the overlap check)"
+        default: "false"
+      run_seconds:
+        description: "How long this slice runs (seconds)"
+        default: "20400"
+  schedule:
+    - cron: "17 * * * *"   # hourly backup: starts a slice only if none is running or queued
+
+permissions:
+  contents: write   # save state to the `data` branch
+  actions: write    # start the next slice
+
+env:
+  END_AT: "2026-11-23T11:30:00-08:00"
+  TZ: America/Los_Angeles
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      go: ${{ steps.check.outputs.go }}
+    steps:
+      - id: check
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ "$(date +%s)" -ge "$(date -d "$END_AT" +%s)" ]; then echo "past end time"; echo "go=false" >> "$GITHUB_OUTPUT"; exit 0; fi
+          if [ "${{ inputs.chained }}" = "true" ]; then echo "go=true" >> "$GITHUB_OUTPUT"; exit 0; fi
+          others=$(gh api "repos/${{ github.repository }}/actions/workflows/paper-bot.yml/runs?per_page=30" \
+            --jq "[.workflow_runs[] | select(.id != ${{ github.run_id }}) | select(.status==\"in_progress\" or .status==\"queued\" or .status==\"waiting\" or .status==\"pending\")] | length")
+          echo "other active runs: $others"
+          if [ "$others" = "0" ]; then echo "go=true" >> "$GITHUB_OUTPUT"; else echo "go=false" >> "$GITHUB_OUTPUT"; fi
+
+  run:
+    needs: gate
+    if: needs.gate.outputs.go == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    concurrency:
+      group: xrp-paper-bot-slice
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q requests
+      - name: Check price feeds from this runner
+        run: |
+          for u in https://api.exchange.coinbase.com/products/XRP-USD/ticker https://api.coinbase.com/v2/prices/XRP-USD/spot \
+                   "https://api.kraken.com/0/public/Ticker?pair=XRPUSD" https://www.bitstamp.net/api/v2/ticker/xrpusd \
+                   "https://gamma-api.polymarket.com/events?slug=xrp-updown-5m-$(( $(date +%s) / 300 * 300 ))" \
+                   "https://gamma-api.polymarket.com/events?slug=xrp-updown-1h-$(( $(date +%s) / 3600 * 3600 ))" "https://clob.polymarket.com/time"; do
+            echo "$(curl -s -o /dev/null -m 10 -w '%{http_code}' "$u")  $u"
+          done
+      - name: Run paper bot slice
+        env:
+          RUN_SECONDS: ${{ inputs.run_seconds || '20400' }}
+        run: |
+          if [ -f STOP ]; then echo "STOP file committed on main; not running"; exit 0; fi
+          bash scripts/ci_run.sh
+      - name: Start next slice
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ -f STOP ]; then echo "STOP on main; chain ends"; exit 0; fi
+          if [ "$(date +%s)" -ge "$(date -d "$END_AT" +%s)" ]; then echo "end time reached; chain ends"; exit 0; fi
+          if git show origin/data:data/week1/FINISHED >/dev/null 2>&1; then echo "run finished; chain ends"; exit 0; fi
+          for i in 1 2 3; do gh workflow run paper-bot.yml --ref "${{ github.ref_name }}" -f chained=true && break; sleep 10; done
