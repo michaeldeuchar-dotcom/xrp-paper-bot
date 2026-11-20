@@ -396,7 +396,7 @@ def auto_decide(state, name, v, variants, *, p_up, books, secs_left, trend, spot
     leader = a.get("leader")
     if not pos or not leader or leader not in pos:
         return D("skip", "nobody_qualifies", f"No {tf} variant has {min_bets}+ settled bets and positive P&L ({scope}); sitting out.")
-    order = [leader] + sorted((n for n in pos if n != leader), key=lambda n: -pos[n][0])   # highest-ranked qualifier that wants to bet wins; one side per window
+    order = [leader]   # follow ONLY the current pick; if it doesn't bet this window, sit out (no fallback to other qualifiers)
     notes = []
     for rank, src in enumerate(order, 1):
         pnl, nb, _cost = pos[src]
@@ -418,12 +418,12 @@ def auto_decide(state, name, v, variants, *, p_up, books, secs_left, trend, spot
         cap = min(float(v.get("max_loss_per_bet", 5)), config.STAKE_HARD_MAX_USD)
         if notional + fee > cap + 1e-9:
             notes.append(f"#{rank} {src}: cost ${notional+fee:.2f} over ${cap:.0f} cap"); continue
-        eng = (f"Following #{rank} {src} ({scope} net ${pnl:+.2f} on {nb} settled bets; leader is {leader}): it would buy {dl.side} -- {dl.english} "
+        eng = (f"Following the pick {src} ({scope} net ${pnl:+.2f} on {nb} settled bets): it would buy {dl.side} -- {dl.english} "
                f"auto_pick size ${notional:.2f}+${fee:.2f} fee (flat $3 target incl. fee)." + (f" ({note})" if note else ""))
         return strategy.Decision(name, "buy", "ok", eng, side=dl.side, est_prob=dl.est_prob, model_p_up=p_up, market_p_up=dl.market_p_up,
                                  ask=ask, ask_size=book.best_ask_size, fee_ps=fps, edge=dl.edge, stake=st, shares=sh, notional=notional,
                                  fee=fee, total_cost=notional + fee, extra={"copied": src, "note": note})
-    return D("skip", "leader_idle", f"Leader {leader} ({scope} {pos[leader][0]:+.2f}) and the other qualifiers aren't betting this round" + (": " + "; ".join(notes) if notes else "") + ".")
+    return D("skip", "leader_idle", f"Current pick {leader} ({scope} {pos[leader][0]:+.2f}) isn't betting this round; sitting out" + (": " + "; ".join(notes) if notes else "") + ".")
 
 
 # ---------------------------------------------------------------- resolution

@@ -189,7 +189,7 @@
   },
   "auto_pick": {
     "enabled": true,
-    "desc": "AUTO PICK (5m): every round it ranks the other 5m variants by net fake P&L on bets settled in the last 6 hours (falls back to since-start if nobody qualifies in the window). A variant qualifies with 5+ settled bets and positive P&L. It follows the leader's bets (same side, same moment); if the leader isn't betting it follows the next-ranked qualifier, so it never takes both sides of a window. New leader must be best at 2 straight checks. Flat $3 target incl. fee (rounded up to the 5-share minimum, never above $5 total; hard max $10). Own separate fake account.",
+    "desc": "AUTO PICK (5m): every round it ranks the other 5m variants by net fake P&L on bets settled in the last 6 hours (falls back to since-start if nobody qualifies in the window). A variant qualifies with 5+ settled bets and positive P&L. It follows ONLY its current pick's bets (same side, same moment); if the pick doesn't bet in a window it sits out. New leader must be best at 2 straight checks. Flat $3 target incl. fee (rounded up to the 5-share minimum, never above $5 total; hard max $10). Own separate fake account.",
     "timeframe": "5m",
     "mode": "auto_pick",
     "score_hours": 6,
