@@ -221,3 +221,213 @@ ts_pt,variant,timeframe,window_start,secs_left,action,reason,side,est_prob,model
 2026-11-20 16:59:00 PT,auto_pick,5m,1795222500,59.4,skip,hour_filter,,,0.0000,,,,0.00,0.00,0.9081,0.9106,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 16:00 PT hour net $-3.15.
 2026-11-20 16:59:20 PT,control,5m,1795222500,39.4,skip,hour_filter,,,0.0000,,,,0.00,0.00,0.9082,0.9106,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 16:00 PT hour net $-4.96.
 2026-11-20 16:59:20 PT,auto_pick,5m,1795222500,39.4,skip,hour_filter,,,0.0000,,,,0.00,0.00,0.9082,0.9106,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 16:00 PT hour net $-3.15.
+2026-11-20 17:01:00 PT,control,5m,1795222800,239.4,skip,edge_small,Up,0.7671,0.7671,0.7300,0.7500,0.0040,0.00,0.00,0.9089,0.9081,Up at 75c: my estimate 77% beats price+fee by only 0.4c (need 3c).
+2026-11-20 17:01:00 PT,model_lead,5m,1795222800,239.4,skip,edge_small,Up,0.7486,0.7671,0.7300,0.7500,-0.0146,0.00,0.00,0.9089,0.9081,Up at 75c: my estimate 75% beats price+fee by only -1.5c (need 4c).
+2026-11-20 17:01:00 PT,trend_volume,5m,1795222800,239.4,skip,choppy,,,0.7671,0.7300,,,0.00,0.00,0.9089,0.9081,"Choppy: price went back and forth (straightness 0.00, need 0.15)."
+2026-11-20 17:01:00 PT,trend_down,5m,1795222800,239.4,skip,choppy,,,0.7671,0.7300,,,0.00,0.00,0.9089,0.9081,"Choppy: price went back and forth (straightness 0.00, need 0.12)."
+2026-11-20 17:01:00 PT,breakdown,5m,1795222800,239.4,skip,no_breakout,,,0.7671,0.7300,,,0.00,0.00,0.9089,0.9081,Price is inside its 30-min range ($0.9072-$0.9124); no breakout.
+2026-11-20 17:01:00 PT,auto_pick,5m,1795222800,239.4,skip,leader_idle,,,0.7671,,,,0.00,0.00,0.9089,0.9081,Current pick control (6h +25.42) isn't betting this round; sitting out: #1 control not betting (edge_small).
+2026-11-20 17:01:02 PT,control,5m,1795222800,237.4,buy,ok,Up,0.7519,0.7519,0.6400,0.6500,0.0860,5.00,7.50,0.9089,0.9081,"Buying $4.88 of Up: I put Up at 75%, price+fee is 66.6c, edge 8.6c."
+2026-11-20 17:01:02 PT,auto_pick,5m,1795222800,237.4,buy,ok,Up,0.7519,0.7519,0.6400,0.6500,0.0860,3.25,5.00,0.9089,0.9081,"Following the pick control (6h net $+25.42 on 45 settled bets): it would buy Up -- Buying $4.88 of Up: I put Up at 75%, price+fee is 66.6c, edge 8.6c. auto_pick size $3.25+$0.08 fee (flat $3 target incl. fee). (rounded $3.00 up to $3.25 for"
+2026-11-20 17:01:20 PT,model_lead,5m,1795222800,219.4,skip,edge_small,Down,0.7064,0.2873,0.3000,0.7100,-0.0181,0.00,0.00,0.9075,0.9081,Down at 71c: my estimate 71% beats price+fee by only -1.8c (need 4c).
+2026-11-20 17:01:20 PT,trend_volume,5m,1795222800,219.4,skip,choppy,,,0.2873,0.3000,,,0.00,0.00,0.9075,0.9081,"Choppy: price went back and forth (straightness 0.00, need 0.15)."
+2026-11-20 17:01:20 PT,trend_down,5m,1795222800,219.4,skip,choppy,,,0.2873,0.3000,,,0.00,0.00,0.9075,0.9081,"Choppy: price went back and forth (straightness 0.00, need 0.12)."
+2026-11-20 17:01:20 PT,breakdown,5m,1795222800,219.4,skip,no_breakout,,,0.2873,0.3000,,,0.00,0.00,0.9075,0.9081,Price is inside its 30-min range ($0.9072-$0.9124); no breakout.
+2026-11-20 17:01:40 PT,model_lead,5m,1795222800,199.4,skip,ask_band,Down,0.8628,0.1345,0.1400,0.8700,-0.0152,0.00,0.00,0.9069,0.9081,"Down costs 87c, outside this variant's 0.2-0.8 price range."
+2026-11-20 17:01:40 PT,trend_volume,5m,1795222800,199.4,skip,choppy,,,0.1345,0.1400,,,0.00,0.00,0.9069,0.9081,"Choppy: price went back and forth (straightness 0.01, need 0.15)."
+2026-11-20 17:01:40 PT,trend_down,5m,1795222800,199.4,skip,choppy,,,0.1345,0.1400,,,0.00,0.00,0.9069,0.9081,"Choppy: price went back and forth (straightness 0.01, need 0.12)."
+2026-11-20 17:01:40 PT,breakdown,5m,1795222800,199.4,skip,no_breakout,,,0.1345,0.1400,,,0.00,0.00,0.9069,0.9081,Price is inside its 30-min range ($0.9072-$0.9124); no breakout.
+2026-11-20 17:01:58 PT,down_ride,5m,1795222800,181.4,skip,timing,,,0.0707,0.0700,,,0.00,0.00,0.9066,0.9081,Only bets with 90-180s left; 181s left now.
+2026-11-20 17:02:00 PT,model_lead,5m,1795222800,179.4,skip,timing,,,0.0479,0.0600,,,0.00,0.00,0.9064,0.9081,Only bets with 180-240s left; 179s left now.
+2026-11-20 17:02:00 PT,trend_volume,5m,1795222800,179.4,skip,choppy,,,0.0479,0.0600,,,0.00,0.00,0.9064,0.9081,"Choppy: price went back and forth (straightness 0.01, need 0.15)."
+2026-11-20 17:02:00 PT,trend_down,5m,1795222800,179.4,skip,choppy,,,0.0479,0.0600,,,0.00,0.00,0.9064,0.9081,"Choppy: price went back and forth (straightness 0.01, need 0.12)."
+2026-11-20 17:02:00 PT,breakdown,5m,1795222800,179.4,skip,no_breakout,,,0.0479,0.0600,,,0.00,0.00,0.9064,0.9081,Price is inside its 30-min range ($0.9072-$0.9124); no breakout.
+2026-11-20 17:02:18 PT,down_ride,5m,1795222800,161.4,skip,ask_band,Down,0.9213,0.0574,0.1000,0.9200,-0.0039,0.00,0.00,0.9066,0.9081,"Down costs 92c, outside this variant's 0.5-0.9 price range."
+2026-11-20 17:02:20 PT,trend_volume,5m,1795222800,159.4,skip,choppy,,,0.0343,0.0850,,,0.00,0.00,0.9064,0.9081,"Choppy: price went back and forth (straightness 0.10, need 0.15)."
+2026-11-20 17:02:20 PT,trend_down,5m,1795222800,159.4,skip,choppy,,,0.0343,0.0850,,,0.00,0.00,0.9064,0.9081,"Choppy: price went back and forth (straightness 0.10, need 0.12)."
+2026-11-20 17:02:20 PT,breakdown,5m,1795222800,159.4,skip,ask_band,Down,0.9703,0.0343,0.0850,0.9300,0.0358,0.00,0.00,0.9064,0.9081,"Down costs 93c, outside this variant's 0.25-0.8 price range."
+2026-11-20 17:02:38 PT,down_ride,5m,1795222800,141.4,skip,no_ask,Down,0.9936,0.0027,0.0100,,,0.00,0.00,0.9057,0.9081,Nobody is selling Down right now.
+2026-11-20 17:02:40 PT,trend_volume,5m,1795222800,139.4,skip,choppy,,,0.0001,0.0100,,,0.00,0.00,0.9051,0.9081,"Choppy: price went back and forth (straightness 0.10, need 0.15)."
+2026-11-20 17:02:40 PT,trend_down,5m,1795222800,139.4,skip,choppy,,,0.0001,0.0100,,,0.00,0.00,0.9051,0.9081,"Choppy: price went back and forth (straightness 0.10, need 0.12)."
+2026-11-20 17:02:40 PT,breakdown,5m,1795222800,139.4,skip,no_ask,Down,0.9900,0.0001,0.0100,,,0.00,0.00,0.9051,0.9081,Nobody is selling Down right now.
+2026-11-20 17:02:58 PT,ride_favorite_80,5m,1795222800,121.4,skip,timing,,,0.0000,0.0100,,,0.00,0.00,0.9049,0.9081,Only bets with 60-120s left; 121s left now.
+2026-11-20 17:02:58 PT,down_ride,5m,1795222800,121.4,skip,no_ask,Down,0.9950,0.0000,0.0100,,,0.00,0.00,0.9049,0.9081,Nobody is selling Down right now.
+2026-11-20 17:03:00 PT,trend_volume,5m,1795222800,119.4,skip,choppy,,,0.0000,0.0100,,,0.00,0.00,0.9049,0.9081,"Choppy: price went back and forth (straightness 0.10, need 0.15)."
+2026-11-20 17:03:00 PT,trend_down,5m,1795222800,119.4,skip,choppy,,,0.0000,0.0100,,,0.00,0.00,0.9049,0.9081,"Choppy: price went back and forth (straightness 0.10, need 0.12)."
+2026-11-20 17:03:00 PT,breakdown,5m,1795222800,119.4,skip,no_ask,Down,0.9900,0.0000,0.0100,,,0.00,0.00,0.9049,0.9081,Nobody is selling Down right now.
+2026-11-20 17:03:18 PT,ride_favorite_80,5m,1795222800,101.4,skip,no_ask,Down,,0.0000,0.0100,,,0.00,0.00,0.9048,0.9081,Nobody is selling Down right now.
+2026-11-20 17:03:18 PT,down_ride,5m,1795222800,101.4,skip,no_ask,Down,0.9950,0.0000,0.0100,,,0.00,0.00,0.9048,0.9081,Nobody is selling Down right now.
+2026-11-20 17:03:20 PT,trend_volume,5m,1795222800,99.4,skip,weak_momentum,,,0.0000,0.0100,,,0.00,0.00,0.9048,0.9081,"The 60m move (-0.53%) too small to call a trend (z -0.9, need 1.0)."
+2026-11-20 17:03:20 PT,trend_down,5m,1795222800,99.4,skip,structure_conflict,,,0.0000,0.0100,,,0.00,0.00,0.9048,0.9081,Momentum says Down but price isn't making lower highs and lower lows (structure mixed).
+2026-11-20 17:03:20 PT,breakdown,5m,1795222800,99.4,skip,no_ask,Down,0.9900,0.0000,0.0100,,,0.00,0.00,0.9048,0.9081,Nobody is selling Down right now.
+2026-11-20 17:03:38 PT,ride_favorite_80,5m,1795222800,81.4,skip,ask_band,Down,,0.0001,0.0040,0.9980,,0.00,0.00,0.9057,0.9081,"Down costs 100c, outside this variant's 0.8-0.95 price range."
+2026-11-20 17:03:58 PT,ride_favorite_80,5m,1795222800,61.4,skip,no_ask,Down,,0.0000,0.0100,,,0.00,0.00,0.9057,0.9081,Nobody is selling Down right now.
+2026-11-20 17:06:00 PT,control,5m,1795223100,239.4,buy,ok,Down,0.5344,0.4656,0.5550,0.4500,0.0671,4.00,8.88,0.9051,0.9052,"Buying $4.00 of Down: I put Down at 53%, price+fee is 46.7c, edge 6.7c."
+2026-11-20 17:06:00 PT,model_lead,5m,1795223100,239.4,skip,lead_small,Up,0.5103,0.4656,0.5550,,,0.00,0.00,0.9051,0.9052,Lead gate: XRP is $-0.0001 past the price to beat our way (Up); need at least $0.0005 (0.055% of price).
+2026-11-20 17:06:00 PT,trend_volume,5m,1795223100,239.4,skip,choppy,,,0.4656,0.5550,,,0.00,0.00,0.9051,0.9052,"Choppy: price went back and forth (straightness 0.12, need 0.15)."
+2026-11-20 17:06:00 PT,trend_down,5m,1795223100,239.4,skip,weak_momentum,,,0.4656,0.5550,,,0.00,0.00,0.9051,0.9052,"The 60m move (-0.41%) too small to call a trend (z -0.7, need 0.8)."
+2026-11-20 17:06:00 PT,breakdown,5m,1795223100,239.4,skip,no_breakout,,,0.4656,0.5550,,,0.00,0.00,0.9051,0.9052,Price is inside its 30-min range ($0.9045-$0.9111); no breakout.
+2026-11-20 17:06:00 PT,auto_pick,5m,1795223100,239.4,buy,ok,Down,0.5344,0.4656,0.5550,0.4500,0.0671,3.00,6.41,0.9051,0.9052,"Following the pick control (6h net $+25.42 on 45 settled bets): it would buy Down -- Buying $4.00 of Down: I put Down at 53%, price+fee is 46.7c, edge 6.7c. auto_pick size $2.88+$0.11 fee (flat $3 target incl. fee)."
+2026-11-20 17:06:20 PT,model_lead,5m,1795223100,219.4,skip,lead_small,Up,0.6719,0.6488,0.6950,,,0.00,0.00,0.9056,0.9052,Lead gate: XRP is $+0.0004 past the price to beat our way (Up); need at least $0.0005 (0.055% of price).
+2026-11-20 17:06:20 PT,trend_volume,5m,1795223100,219.4,skip,choppy,,,0.6488,0.6950,,,0.00,0.00,0.9056,0.9052,"Choppy: price went back and forth (straightness 0.12, need 0.15)."
+2026-11-20 17:06:20 PT,trend_down,5m,1795223100,219.4,skip,weak_momentum,,,0.6488,0.6950,,,0.00,0.00,0.9056,0.9052,"The 60m move (-0.41%) too small to call a trend (z -0.7, need 0.8)."
+2026-11-20 17:06:20 PT,breakdown,5m,1795223100,219.4,skip,no_breakout,,,0.6488,0.6950,,,0.00,0.00,0.9056,0.9052,Price is inside its 30-min range ($0.9045-$0.9111); no breakout.
+2026-11-20 17:06:40 PT,model_lead,5m,1795223100,199.3,skip,edge_small,Up,0.7435,0.7520,0.7350,0.7500,-0.0196,0.00,0.00,0.9059,0.9052,Up at 75c: my estimate 74% beats price+fee by only -2.0c (need 4c).
+2026-11-20 17:06:40 PT,trend_volume,5m,1795223100,199.3,skip,choppy,,,0.7520,0.7350,,,0.00,0.00,0.9059,0.9052,"Choppy: price went back and forth (straightness 0.12, need 0.15)."
+2026-11-20 17:06:40 PT,trend_down,5m,1795223100,199.3,skip,weak_momentum,,,0.7520,0.7350,,,0.00,0.00,0.9059,0.9052,"The 60m move (-0.41%) too small to call a trend (z -0.7, need 0.8)."
+2026-11-20 17:06:40 PT,breakdown,5m,1795223100,199.3,skip,no_breakout,,,0.7520,0.7350,,,0.00,0.00,0.9059,0.9052,Price is inside its 30-min range ($0.9045-$0.9111); no breakout.
+2026-11-20 17:06:58 PT,down_ride,5m,1795223100,181.3,skip,timing,,,0.7322,0.7200,,,0.00,0.00,0.9058,0.9052,Only bets with 90-180s left; 181s left now.
+2026-11-20 17:07:00 PT,model_lead,5m,1795223100,179.3,skip,timing,,,0.7537,0.7150,,,0.00,0.00,0.9059,0.9052,Only bets with 180-240s left; 179s left now.
+2026-11-20 17:07:00 PT,trend_volume,5m,1795223100,179.3,skip,choppy,,,0.7537,0.7150,,,0.00,0.00,0.9059,0.9052,"Choppy: price went back and forth (straightness 0.12, need 0.15)."
+2026-11-20 17:07:00 PT,trend_down,5m,1795223100,179.3,skip,weak_momentum,,,0.7537,0.7150,,,0.00,0.00,0.9059,0.9052,"The 60m move (-0.41%) too small to call a trend (z -0.7, need 0.8)."
+2026-11-20 17:07:00 PT,breakdown,5m,1795223100,179.3,skip,no_breakout,,,0.7537,0.7150,,,0.00,0.00,0.9059,0.9052,Price is inside its 30-min range ($0.9045-$0.9111); no breakout.
+2026-11-20 17:07:18 PT,down_ride,5m,1795223100,161.3,skip,side_not_allowed,Up,0.6540,0.7181,0.5900,,,0.00,0.00,0.9058,0.9052,This variant only bets Down; the signal says Up.
+2026-11-20 17:07:20 PT,trend_volume,5m,1795223100,159.3,skip,choppy,,,0.6143,0.5450,,,0.00,0.00,0.9055,0.9052,"Choppy: price went back and forth (straightness 0.10, need 0.15)."
+2026-11-20 17:07:20 PT,trend_down,5m,1795223100,159.3,skip,choppy,,,0.6143,0.5450,,,0.00,0.00,0.9055,0.9052,"Choppy: price went back and forth (straightness 0.10, need 0.12)."
+2026-11-20 17:07:20 PT,breakdown,5m,1795223100,159.3,skip,no_breakout,,,0.6143,0.5450,,,0.00,0.00,0.9055,0.9052,Price is inside its 30-min range ($0.9045-$0.9111); no breakout.
+2026-11-20 17:07:38 PT,down_ride,5m,1795223100,141.3,skip,side_not_allowed,Up,0.6594,0.5687,0.7500,,,0.00,0.00,0.9053,0.9052,This variant only bets Down; the signal says Up.
+2026-11-20 17:07:40 PT,trend_volume,5m,1795223100,139.3,skip,choppy,,,0.5848,0.7900,,,0.00,0.00,0.9054,0.9052,"Choppy: price went back and forth (straightness 0.10, need 0.15)."
+2026-11-20 17:07:40 PT,trend_down,5m,1795223100,139.3,skip,choppy,,,0.5848,0.7900,,,0.00,0.00,0.9054,0.9052,"Choppy: price went back and forth (straightness 0.10, need 0.12)."
+2026-11-20 17:07:40 PT,breakdown,5m,1795223100,139.3,skip,no_breakout,,,0.5848,0.7900,,,0.00,0.00,0.9054,0.9052,Price is inside its 30-min range ($0.9045-$0.9111); no breakout.
+2026-11-20 17:07:58 PT,ride_favorite_80,5m,1795223100,121.3,skip,timing,,,0.5758,0.6050,,,0.00,0.00,0.9053,0.9052,Only bets with 60-120s left; 121s left now.
+2026-11-20 17:07:58 PT,down_ride,5m,1795223100,121.3,skip,side_not_allowed,Up,0.5904,0.5758,0.6050,,,0.00,0.00,0.9053,0.9052,This variant only bets Down; the signal says Up.
+2026-11-20 17:08:00 PT,trend_volume,5m,1795223100,119.3,skip,choppy,,,0.5766,0.5950,,,0.00,0.00,0.9053,0.9052,"Choppy: price went back and forth (straightness 0.10, need 0.15)."
+2026-11-20 17:08:00 PT,trend_down,5m,1795223100,119.3,skip,choppy,,,0.5766,0.5950,,,0.00,0.00,0.9053,0.9052,"Choppy: price went back and forth (straightness 0.10, need 0.12)."
+2026-11-20 17:08:00 PT,breakdown,5m,1795223100,119.3,skip,no_breakout,,,0.5766,0.5950,,,0.00,0.00,0.9053,0.9052,Price is inside its 30-min range ($0.9045-$0.9111); no breakout.
+2026-11-20 17:08:18 PT,ride_favorite_80,5m,1795223100,101.3,skip,ask_band,Down,,0.4552,0.4950,0.5100,,0.00,0.00,0.9051,0.9052,"Down costs 51c, outside this variant's 0.8-0.95 price range."
+2026-11-20 17:08:18 PT,down_ride,5m,1795223100,101.3,skip,lead_small,Down,0.5249,0.4552,0.4950,,,0.00,0.00,0.9051,0.9052,Lead gate: XRP is $+0.0001 past the price to beat our way (Down); need at least $0.0005 (0.055% of price).
+2026-11-20 17:08:20 PT,trend_volume,5m,1795223100,99.3,skip,choppy,,,0.3989,0.4650,,,0.00,0.00,0.9050,0.9052,"Choppy: price went back and forth (straightness 0.13, need 0.15)."
+2026-11-20 17:08:20 PT,trend_down,5m,1795223100,99.3,skip,weak_momentum,,,0.3989,0.4650,,,0.00,0.00,0.9050,0.9052,"The 60m move (-0.44%) too small to call a trend (z -0.7, need 0.8)."
+2026-11-20 17:08:20 PT,breakdown,5m,1795223100,99.3,skip,no_breakout,,,0.3989,0.4650,,,0.00,0.00,0.9050,0.9052,Price is inside its 30-min range ($0.9044-$0.9111); no breakout.
+2026-11-20 17:08:38 PT,ride_favorite_80,5m,1795223100,81.3,skip,ask_band,Down,,0.4997,0.4350,0.5700,,0.00,0.00,0.9052,0.9052,"Down costs 57c, outside this variant's 0.8-0.95 price range."
+2026-11-20 17:08:58 PT,ride_favorite_80,5m,1795223100,61.3,skip,ask_band,Down,,0.4410,0.3250,0.6800,,0.00,0.00,0.9051,0.9052,"Down costs 68c, outside this variant's 0.8-0.95 price range."
+2026-11-20 17:11:00 PT,control,5m,1795223400,239.3,skip,edge_small,Up,0.6729,0.6729,0.7050,0.7100,-0.0515,0.00,0.00,0.9062,0.9056,Up at 71c: my estimate 67% beats price+fee by only -5.2c (need 3c).
+2026-11-20 17:11:00 PT,model_lead,5m,1795223400,239.3,skip,edge_small,Up,0.6889,0.6729,0.7050,0.7100,-0.0355,0.00,0.00,0.9062,0.9056,Up at 71c: my estimate 69% beats price+fee by only -3.5c (need 4c).
+2026-11-20 17:11:00 PT,trend_volume,5m,1795223400,239.3,skip,choppy,,,0.6729,0.7050,,,0.00,0.00,0.9062,0.9056,"Choppy: price went back and forth (straightness 0.08, need 0.15)."
+2026-11-20 17:11:00 PT,trend_down,5m,1795223400,239.3,skip,choppy,,,0.6729,0.7050,,,0.00,0.00,0.9062,0.9056,"Choppy: price went back and forth (straightness 0.08, need 0.12)."
+2026-11-20 17:11:00 PT,breakdown,5m,1795223400,239.3,skip,no_breakout,,,0.6729,0.7050,,,0.00,0.00,0.9062,0.9056,Price is inside its 30-min range ($0.9044-$0.9111); no breakout.
+2026-11-20 17:11:00 PT,auto_pick,5m,1795223400,239.3,skip,leader_idle,,,0.6729,,,,0.00,0.00,0.9062,0.9056,Current pick control (6h +16.97) isn't betting this round; sitting out: #1 control not betting (edge_small).
+2026-11-20 17:11:20 PT,control,5m,1795223400,219.3,skip,hour_filter,,,0.8176,,,,0.00,0.00,0.9067,0.9056,Tweak 2 HOUR_FILTER: hour_filter: 10 past trades in the 17:00 PT hour net $-1.54.
+2026-11-20 17:11:20 PT,model_lead,5m,1795223400,219.3,skip,ask_band,Up,0.8413,0.8176,0.8650,0.8800,-0.0461,0.00,0.00,0.9067,0.9056,"Up costs 88c, outside this variant's 0.2-0.8 price range."
+2026-11-20 17:11:20 PT,trend_volume,5m,1795223400,219.3,skip,choppy,,,0.8176,0.8650,,,0.00,0.00,0.9067,0.9056,"Choppy: price went back and forth (straightness 0.08, need 0.15)."
+2026-11-20 17:11:20 PT,trend_down,5m,1795223400,219.3,skip,choppy,,,0.8176,0.8650,,,0.00,0.00,0.9067,0.9056,"Choppy: price went back and forth (straightness 0.08, need 0.12)."
+2026-11-20 17:11:20 PT,breakdown,5m,1795223400,219.3,skip,no_breakout,,,0.8176,0.8650,,,0.00,0.00,0.9067,0.9056,Price is inside its 30-min range ($0.9044-$0.9111); no breakout.
+2026-11-20 17:11:20 PT,auto_pick,5m,1795223400,219.3,skip,leader_idle,,,0.8176,,,,0.00,0.00,0.9067,0.9056,Current pick control (6h +16.97) isn't betting this round; sitting out: #1 control not betting (edge_small).
+2026-11-20 17:11:40 PT,control,5m,1795223400,199.3,skip,hour_filter,,,0.8959,,,,0.00,0.00,0.9070,0.9056,Tweak 2 HOUR_FILTER: hour_filter: 10 past trades in the 17:00 PT hour net $-1.54.
+2026-11-20 17:11:40 PT,model_lead,5m,1795223400,199.3,skip,ask_band,Up,0.8905,0.8959,0.8850,0.9000,-0.0158,0.00,0.00,0.9070,0.9056,"Up costs 90c, outside this variant's 0.2-0.8 price range."
+2026-11-20 17:11:40 PT,trend_volume,5m,1795223400,199.3,skip,choppy,,,0.8959,0.8850,,,0.00,0.00,0.9070,0.9056,"Choppy: price went back and forth (straightness 0.08, need 0.15)."
+2026-11-20 17:11:40 PT,trend_down,5m,1795223400,199.3,skip,choppy,,,0.8959,0.8850,,,0.00,0.00,0.9070,0.9056,"Choppy: price went back and forth (straightness 0.08, need 0.12)."
+2026-11-20 17:11:40 PT,breakdown,5m,1795223400,199.3,skip,no_breakout,,,0.8959,0.8850,,,0.00,0.00,0.9070,0.9056,Price is inside its 30-min range ($0.9044-$0.9111); no breakout.
+2026-11-20 17:11:40 PT,auto_pick,5m,1795223400,199.3,skip,leader_idle,,,0.8959,,,,0.00,0.00,0.9070,0.9056,Current pick control (6h +16.97) isn't betting this round; sitting out: #1 control not betting (edge_small).
+2026-11-20 17:11:58 PT,down_ride,5m,1795223400,181.3,skip,timing,,,0.9044,0.9300,,,0.00,0.00,0.9070,0.9056,Only bets with 90-180s left; 181s left now.
+2026-11-20 17:12:00 PT,control,5m,1795223400,179.3,skip,hour_filter,,,0.9175,,,,0.00,0.00,0.9071,0.9056,Tweak 2 HOUR_FILTER: hour_filter: 10 past trades in the 17:00 PT hour net $-1.54.
+2026-11-20 17:12:00 PT,model_lead,5m,1795223400,179.3,skip,timing,,,0.9175,0.9450,,,0.00,0.00,0.9071,0.9056,Only bets with 180-240s left; 179s left now.
+2026-11-20 17:12:00 PT,trend_volume,5m,1795223400,179.3,skip,choppy,,,0.9175,0.9450,,,0.00,0.00,0.9071,0.9056,"Choppy: price went back and forth (straightness 0.08, need 0.15)."
+2026-11-20 17:12:00 PT,trend_down,5m,1795223400,179.3,skip,choppy,,,0.9175,0.9450,,,0.00,0.00,0.9071,0.9056,"Choppy: price went back and forth (straightness 0.08, need 0.12)."
+2026-11-20 17:12:00 PT,breakdown,5m,1795223400,179.3,skip,no_breakout,,,0.9175,0.9450,,,0.00,0.00,0.9071,0.9056,Price is inside its 30-min range ($0.9044-$0.9111); no breakout.
+2026-11-20 17:12:00 PT,auto_pick,5m,1795223400,179.3,skip,leader_idle,,,0.9175,,,,0.00,0.00,0.9071,0.9056,Current pick control (6h +16.97) isn't betting this round; sitting out: #1 control not betting (edge_small).
+2026-11-20 17:12:18 PT,down_ride,5m,1795223400,161.3,skip,side_not_allowed,Up,0.9611,0.9672,0.9550,,,0.00,0.00,0.9074,0.9056,This variant only bets Down; the signal says Up.
+2026-11-20 17:12:20 PT,control,5m,1795223400,159.3,skip,hour_filter,,,0.9683,,,,0.00,0.00,0.9074,0.9056,Tweak 2 HOUR_FILTER: hour_filter: 10 past trades in the 17:00 PT hour net $-1.54.
+2026-11-20 17:12:20 PT,trend_volume,5m,1795223400,159.3,skip,choppy,,,0.9683,0.9550,,,0.00,0.00,0.9074,0.9056,"Choppy: price went back and forth (straightness 0.07, need 0.15)."
+2026-11-20 17:12:20 PT,trend_down,5m,1795223400,159.3,skip,choppy,,,0.9683,0.9550,,,0.00,0.00,0.9074,0.9056,"Choppy: price went back and forth (straightness 0.07, need 0.12)."
+2026-11-20 17:12:20 PT,breakdown,5m,1795223400,159.3,skip,no_breakout,,,0.9683,0.9550,,,0.00,0.00,0.9074,0.9056,Price is inside its 30-min range ($0.9044-$0.9111); no breakout.
+2026-11-20 17:12:20 PT,auto_pick,5m,1795223400,159.3,skip,leader_idle,,,0.9683,,,,0.00,0.00,0.9074,0.9056,Current pick control (6h +16.97) isn't betting this round; sitting out: #1 control not betting (ask_band).
+2026-11-20 17:12:38 PT,down_ride,5m,1795223400,141.3,skip,side_not_allowed,Up,0.9724,0.9798,0.9650,,,0.00,0.00,0.9075,0.9056,This variant only bets Down; the signal says Up.
+2026-11-20 17:12:40 PT,control,5m,1795223400,139.3,skip,hour_filter,,,0.9807,,,,0.00,0.00,0.9075,0.9056,Tweak 2 HOUR_FILTER: hour_filter: 10 past trades in the 17:00 PT hour net $-1.54.
+2026-11-20 17:12:40 PT,trend_volume,5m,1795223400,139.3,skip,choppy,,,0.9807,0.9700,,,0.00,0.00,0.9075,0.9056,"Choppy: price went back and forth (straightness 0.07, need 0.15)."
+2026-11-20 17:12:40 PT,trend_down,5m,1795223400,139.3,skip,choppy,,,0.9807,0.9700,,,0.00,0.00,0.9075,0.9056,"Choppy: price went back and forth (straightness 0.07, need 0.12)."
+2026-11-20 17:12:40 PT,breakdown,5m,1795223400,139.3,skip,no_breakout,,,0.9807,0.9700,,,0.00,0.00,0.9075,0.9056,Price is inside its 30-min range ($0.9044-$0.9111); no breakout.
+2026-11-20 17:12:40 PT,auto_pick,5m,1795223400,139.3,skip,leader_idle,,,0.9807,,,,0.00,0.00,0.9075,0.9056,Current pick control (6h +16.97) isn't betting this round; sitting out: #1 control not betting (ask_band).
+2026-11-20 17:12:58 PT,ride_favorite_80,5m,1795223400,121.3,skip,timing,,,0.9961,0.9850,,,0.00,0.00,0.9078,0.9056,Only bets with 60-120s left; 121s left now.
+2026-11-20 17:12:58 PT,down_ride,5m,1795223400,121.3,skip,side_not_allowed,Up,0.9906,0.9961,0.9850,,,0.00,0.00,0.9078,0.9056,This variant only bets Down; the signal says Up.
+2026-11-20 17:13:00 PT,control,5m,1795223400,119.3,skip,hour_filter,,,0.9965,,,,0.00,0.00,0.9078,0.9056,Tweak 2 HOUR_FILTER: hour_filter: 10 past trades in the 17:00 PT hour net $-1.54.
+2026-11-20 17:13:00 PT,trend_volume,5m,1795223400,119.3,skip,choppy,,,0.9965,0.9800,,,0.00,0.00,0.9078,0.9056,"Choppy: price went back and forth (straightness 0.07, need 0.15)."
+2026-11-20 17:13:00 PT,trend_down,5m,1795223400,119.3,skip,choppy,,,0.9965,0.9800,,,0.00,0.00,0.9078,0.9056,"Choppy: price went back and forth (straightness 0.07, need 0.12)."
+2026-11-20 17:13:00 PT,breakdown,5m,1795223400,119.3,skip,no_breakout,,,0.9965,0.9800,,,0.00,0.00,0.9078,0.9056,Price is inside its 30-min range ($0.9044-$0.9111); no breakout.
+2026-11-20 17:13:00 PT,auto_pick,5m,1795223400,119.3,skip,leader_idle,,,0.9965,,,,0.00,0.00,0.9078,0.9056,Current pick control (6h +16.97) isn't betting this round; sitting out: #1 control not betting (ask_band).
+2026-11-20 17:13:18 PT,ride_favorite_80,5m,1795223400,101.3,skip,no_ask,Up,,0.9981,0.9800,,,0.00,0.00,0.9077,0.9056,Nobody is selling Up right now.
+2026-11-20 17:13:18 PT,down_ride,5m,1795223400,101.3,skip,side_not_allowed,Up,0.9891,0.9981,0.9800,,,0.00,0.00,0.9077,0.9056,This variant only bets Down; the signal says Up.
+2026-11-20 17:13:20 PT,control,5m,1795223400,99.3,skip,hour_filter,,,0.9984,,,,0.00,0.00,0.9077,0.9056,Tweak 2 HOUR_FILTER: hour_filter: 10 past trades in the 17:00 PT hour net $-1.54.
+2026-11-20 17:13:20 PT,trend_volume,5m,1795223400,99.3,skip,choppy,,,0.9984,0.9800,,,0.00,0.00,0.9077,0.9056,"Choppy: price went back and forth (straightness 0.05, need 0.15)."
+2026-11-20 17:13:20 PT,trend_down,5m,1795223400,99.3,skip,choppy,,,0.9984,0.9800,,,0.00,0.00,0.9077,0.9056,"Choppy: price went back and forth (straightness 0.05, need 0.12)."
+2026-11-20 17:13:20 PT,breakdown,5m,1795223400,99.3,skip,no_breakout,,,0.9984,0.9800,,,0.00,0.00,0.9077,0.9056,Price is inside its 30-min range ($0.9044-$0.9111); no breakout.
+2026-11-20 17:13:20 PT,auto_pick,5m,1795223400,99.3,skip,leader_idle,,,0.9984,,,,0.00,0.00,0.9077,0.9056,Current pick control (6h +16.97) isn't betting this round; sitting out: #1 control not betting (no_ask).
+2026-11-20 17:13:38 PT,ride_favorite_80,5m,1795223400,81.3,skip,no_ask,Up,,0.9999,0.9900,,,0.00,0.00,0.9079,0.9056,Nobody is selling Up right now.
+2026-11-20 17:13:40 PT,control,5m,1795223400,79.3,skip,hour_filter,,,0.9999,,,,0.00,0.00,0.9078,0.9056,Tweak 2 HOUR_FILTER: hour_filter: 10 past trades in the 17:00 PT hour net $-1.54.
+2026-11-20 17:13:40 PT,auto_pick,5m,1795223400,79.3,skip,leader_idle,,,0.9999,,,,0.00,0.00,0.9078,0.9056,Current pick control (6h +16.97) isn't betting this round; sitting out: #1 control not betting (no_ask).
+2026-11-20 17:13:58 PT,ride_favorite_80,5m,1795223400,61.3,skip,no_ask,Up,,1.0000,0.9990,,,0.00,0.00,0.9082,0.9056,Nobody is selling Up right now.
+2026-11-20 17:14:00 PT,control,5m,1795223400,59.3,skip,hour_filter,,,1.0000,,,,0.00,0.00,0.9083,0.9056,Tweak 2 HOUR_FILTER: hour_filter: 10 past trades in the 17:00 PT hour net $-1.54.
+2026-11-20 17:14:00 PT,auto_pick,5m,1795223400,59.3,skip,leader_idle,,,1.0000,,,,0.00,0.00,0.9083,0.9056,Current pick control (6h +16.97) isn't betting this round; sitting out: #1 control not betting (no_ask).
+2026-11-20 17:14:20 PT,control,5m,1795223400,39.3,skip,hour_filter,,,1.0000,,,,0.00,0.00,0.9081,0.9056,Tweak 2 HOUR_FILTER: hour_filter: 10 past trades in the 17:00 PT hour net $-1.54.
+2026-11-20 17:14:20 PT,auto_pick,5m,1795223400,39.3,skip,leader_idle,,,1.0000,,,,0.00,0.00,0.9081,0.9056,Current pick control (6h +16.97) isn't betting this round; sitting out: #1 control not betting (no_ask).
+2026-11-20 17:14:58 PT,hourly_ride_down,1h,1795222800,2701.3,skip,timing,,,0.5172,0.5300,,,0.00,0.00,0.9083,0.9081,Only bets with 1800-2700s left; 2701s left now.
+2026-11-20 17:15:18 PT,hourly_ride_down,1h,1795222800,2681.3,skip,side_not_allowed,Up,0.5484,0.5318,0.5650,,,0.00,0.00,0.9084,0.9081,This variant only bets Down; the signal says Up.
+2026-11-20 17:15:38 PT,hourly_ride_down,1h,1795222800,2661.2,skip,side_not_allowed,Up,0.5480,0.5460,0.5500,,,0.00,0.00,0.9086,0.9081,This variant only bets Down; the signal says Up.
+2026-11-20 17:15:58 PT,hourly_ride_down,1h,1795222800,2641.2,skip,side_not_allowed,Up,0.5822,0.5895,0.5750,,,0.00,0.00,0.9091,0.9081,This variant only bets Down; the signal says Up.
+2026-11-20 17:16:00 PT,control,5m,1795223700,239.2,skip,hour_filter,,,0.7565,,,,0.00,0.00,0.9090,0.9082,Tweak 2 HOUR_FILTER: hour_filter: 10 past trades in the 17:00 PT hour net $-1.54.
+2026-11-20 17:16:00 PT,model_lead,5m,1795223700,239.2,skip,edge_small,Up,0.7333,0.7565,0.7100,0.7200,-0.0008,0.00,0.00,0.9090,0.9082,Up at 72c: my estimate 73% beats price+fee by only -0.1c (need 4c).
+2026-11-20 17:16:00 PT,trend_volume,5m,1795223700,239.2,skip,choppy,,,0.7565,0.7100,,,0.00,0.00,0.9090,0.9082,"Choppy: price went back and forth (straightness 0.01, need 0.15)."
+2026-11-20 17:16:00 PT,trend_down,5m,1795223700,239.2,skip,choppy,,,0.7565,0.7100,,,0.00,0.00,0.9090,0.9082,"Choppy: price went back and forth (straightness 0.01, need 0.12)."
+2026-11-20 17:16:00 PT,breakdown,5m,1795223700,239.2,skip,no_breakout,,,0.7565,0.7100,,,0.00,0.00,0.9090,0.9082,Price is inside its 30-min range ($0.9044-$0.9111); no breakout.
+2026-11-20 17:16:00 PT,auto_pick,5m,1795223700,239.2,skip,leader_idle,,,0.7565,,,,0.00,0.00,0.9090,0.9082,Current pick control (6h +10.53) isn't betting this round; sitting out: #1 control not betting (edge_small).
+2026-11-20 17:16:18 PT,hourly_ride_down,1h,1795222800,2621.2,skip,side_not_allowed,Up,0.5698,0.5745,0.5650,,,0.00,0.00,0.9089,0.9081,This variant only bets Down; the signal says Up.
+2026-11-20 17:16:20 PT,control,5m,1795223700,219.2,skip,hour_filter,,,0.7197,,,,0.00,0.00,0.9088,0.9082,Tweak 2 HOUR_FILTER: hour_filter: 10 past trades in the 17:00 PT hour net $-1.54.
+2026-11-20 17:16:20 PT,model_lead,5m,1795223700,219.2,skip,edge_small,Up,0.7049,0.7197,0.6900,0.7000,-0.0098,0.00,0.00,0.9088,0.9082,Up at 70c: my estimate 70% beats price+fee by only -1.0c (need 4c).
+2026-11-20 17:16:20 PT,trend_volume,5m,1795223700,219.2,skip,choppy,,,0.7197,0.6900,,,0.00,0.00,0.9088,0.9082,"Choppy: price went back and forth (straightness 0.01, need 0.15)."
+2026-11-20 17:16:20 PT,trend_down,5m,1795223700,219.2,skip,choppy,,,0.7197,0.6900,,,0.00,0.00,0.9088,0.9082,"Choppy: price went back and forth (straightness 0.01, need 0.12)."
+2026-11-20 17:16:20 PT,breakdown,5m,1795223700,219.2,skip,no_breakout,,,0.7197,0.6900,,,0.00,0.00,0.9088,0.9082,Price is inside its 30-min range ($0.9044-$0.9111); no breakout.
+2026-11-20 17:16:20 PT,auto_pick,5m,1795223700,219.2,skip,leader_idle,,,0.7197,,,,0.00,0.00,0.9088,0.9082,Current pick control (6h +10.53) isn't betting this round; sitting out: #1 control not betting (edge_small).
+2026-11-20 17:16:38 PT,hourly_ride_down,1h,1795222800,2601.2,skip,side_not_allowed,Up,0.6349,0.6447,0.6250,,,0.00,0.00,0.9097,0.9081,This variant only bets Down; the signal says Up.
+2026-11-20 17:16:40 PT,control,5m,1795223700,199.2,skip,hour_filter,,,0.8850,,,,0.00,0.00,0.9095,0.9082,Tweak 2 HOUR_FILTER: hour_filter: 10 past trades in the 17:00 PT hour net $-1.54.
+2026-11-20 17:16:40 PT,model_lead,5m,1795223700,199.2,skip,ask_band,Up,0.8525,0.8850,0.8200,0.8400,0.0031,0.00,0.00,0.9095,0.9082,"Up costs 84c, outside this variant's 0.2-0.8 price range."
+2026-11-20 17:16:40 PT,trend_volume,5m,1795223700,199.2,skip,choppy,,,0.8850,0.8200,,,0.00,0.00,0.9095,0.9082,"Choppy: price went back and forth (straightness 0.01, need 0.15)."
+2026-11-20 17:16:40 PT,trend_down,5m,1795223700,199.2,skip,choppy,,,0.8850,0.8200,,,0.00,0.00,0.9095,0.9082,"Choppy: price went back and forth (straightness 0.01, need 0.12)."
+2026-11-20 17:16:40 PT,breakdown,5m,1795223700,199.2,skip,no_breakout,,,0.8850,0.8200,,,0.00,0.00,0.9095,0.9082,Price is inside its 30-min range ($0.9044-$0.9111); no breakout.
+2026-11-20 17:16:40 PT,auto_pick,5m,1795223700,199.2,skip,leader_idle,,,0.8850,,,,0.00,0.00,0.9095,0.9082,Current pick control (6h +10.53) isn't betting this round; sitting out: #1 control not betting (min_shares).
+2026-11-20 17:16:58 PT,hourly_ride_down,1h,1795222800,2581.2,skip,side_not_allowed,Up,0.5952,0.5954,0.5950,,,0.00,0.00,0.9091,0.9081,This variant only bets Down; the signal says Up.
+2026-11-20 17:16:58 PT,down_ride,5m,1795223700,181.2,skip,timing,,,0.8193,0.8200,,,0.00,0.00,0.9091,0.9082,Only bets with 90-180s left; 181s left now.
+2026-11-20 17:17:00 PT,control,5m,1795223700,179.2,skip,hour_filter,,,0.8747,,,,0.00,0.00,0.9093,0.9082,Tweak 2 HOUR_FILTER: hour_filter: 10 past trades in the 17:00 PT hour net $-1.54.
+2026-11-20 17:17:00 PT,model_lead,5m,1795223700,179.2,skip,timing,,,0.8747,0.8600,,,0.00,0.00,0.9093,0.9082,Only bets with 180-240s left; 179s left now.
+2026-11-20 17:17:00 PT,trend_volume,5m,1795223700,179.2,skip,choppy,,,0.8747,0.8600,,,0.00,0.00,0.9093,0.9082,"Choppy: price went back and forth (straightness 0.01, need 0.15)."
+2026-11-20 17:17:00 PT,trend_down,5m,1795223700,179.2,skip,choppy,,,0.8747,0.8600,,,0.00,0.00,0.9093,0.9082,"Choppy: price went back and forth (straightness 0.01, need 0.12)."
+2026-11-20 17:17:00 PT,breakdown,5m,1795223700,179.2,skip,no_breakout,,,0.8747,0.8600,,,0.00,0.00,0.9093,0.9082,Price is inside its 30-min range ($0.9044-$0.9111); no breakout.
+2026-11-20 17:17:00 PT,auto_pick,5m,1795223700,179.2,skip,leader_idle,,,0.8747,,,,0.00,0.00,0.9093,0.9082,Current pick control (6h +10.53) isn't betting this round; sitting out: #1 control not betting (edge_small).
+2026-11-20 17:17:18 PT,hourly_ride_down,1h,1795222800,2561.2,skip,side_not_allowed,Up,0.6349,0.6297,0.6400,,,0.00,0.00,0.9095,0.9081,This variant only bets Down; the signal says Up.
+2026-11-20 17:17:18 PT,down_ride,5m,1795223700,161.2,skip,side_not_allowed,Up,0.9172,0.9144,0.9200,,,0.00,0.00,0.9095,0.9082,This variant only bets Down; the signal says Up.
+2026-11-20 17:17:20 PT,control,5m,1795223700,159.2,skip,hour_filter,,,0.9161,,,,0.00,0.00,0.9095,0.9082,Tweak 2 HOUR_FILTER: hour_filter: 10 past trades in the 17:00 PT hour net $-1.54.
+2026-11-20 17:17:20 PT,trend_volume,5m,1795223700,159.2,skip,choppy,,,0.9161,0.8950,,,0.00,0.00,0.9095,0.9082,"Choppy: price went back and forth (straightness 0.04, need 0.15)."
+2026-11-20 17:17:20 PT,trend_down,5m,1795223700,159.2,skip,choppy,,,0.9161,0.8950,,,0.00,0.00,0.9095,0.9082,"Choppy: price went back and forth (straightness 0.04, need 0.12)."
+2026-11-20 17:17:20 PT,breakdown,5m,1795223700,159.2,skip,no_breakout,,,0.9161,0.8950,,,0.00,0.00,0.9095,0.9082,Price is inside its 30-min range ($0.9044-$0.9111); no breakout.
+2026-11-20 17:17:20 PT,auto_pick,5m,1795223700,159.2,skip,leader_idle,,,0.9161,,,,0.00,0.00,0.9095,0.9082,Current pick control (6h +10.53) isn't betting this round; sitting out: #1 control not betting (edge_small).
+2026-11-20 17:17:38 PT,hourly_ride_down,1h,1795222800,2541.2,skip,side_not_allowed,Up,0.6084,0.6218,0.5950,,,0.00,0.00,0.9094,0.9081,This variant only bets Down; the signal says Up.
+2026-11-20 17:17:38 PT,down_ride,5m,1795223700,141.2,skip,side_not_allowed,Up,0.9007,0.9164,0.8850,,,0.00,0.00,0.9094,0.9082,This variant only bets Down; the signal says Up.
+2026-11-20 17:17:40 PT,control,5m,1795223700,139.2,skip,hour_filter,,,0.8980,,,,0.00,0.00,0.9093,0.9082,Tweak 2 HOUR_FILTER: hour_filter: 10 past trades in the 17:00 PT hour net $-1.54.
+2026-11-20 17:17:40 PT,trend_volume,5m,1795223700,139.2,skip,choppy,,,0.8980,0.8000,,,0.00,0.00,0.9093,0.9082,"Choppy: price went back and forth (straightness 0.04, need 0.15)."
+2026-11-20 17:17:40 PT,trend_down,5m,1795223700,139.2,skip,choppy,,,0.8980,0.8000,,,0.00,0.00,0.9093,0.9082,"Choppy: price went back and forth (straightness 0.04, need 0.12)."
+2026-11-20 17:17:40 PT,breakdown,5m,1795223700,139.2,skip,no_breakout,,,0.8980,0.8000,,,0.00,0.00,0.9093,0.9082,Price is inside its 30-min range ($0.9044-$0.9111); no breakout.
+2026-11-20 17:17:40 PT,auto_pick,5m,1795223700,139.2,skip,leader_idle,,,0.8980,,,,0.00,0.00,0.9093,0.9082,Current pick control (6h +10.53) isn't betting this round; sitting out: #1 control not betting (min_shares).
+2026-11-20 17:17:42 PT,auto_pick,5m,1795223700,137.2,buy,ok,Up,0.9059,0.9059,0.8100,0.8200,0.0756,4.10,5.00,0.9093,0.9082,"Following the pick control (6h net $+10.53 on 44 settled bets): it would buy Up -- Buying $4.94 of Up: I put Up at 91%, price+fee is 83.0c, edge 7.6c. auto_pick size $4.10+$0.05 fee (flat $3 target incl. fee). (rounded $3.00 up to $4.10 for"
+2026-11-20 17:17:58 PT,hourly_ride_down,1h,1795222800,2521.2,skip,side_not_allowed,Up,0.6392,0.6483,0.6300,,,0.00,0.00,0.9097,0.9081,This variant only bets Down; the signal says Up.
+2026-11-20 17:17:58 PT,ride_favorite_80,5m,1795223700,121.2,skip,timing,,,0.9703,0.9450,,,0.00,0.00,0.9097,0.9082,Only bets with 60-120s left; 121s left now.
+2026-11-20 17:17:58 PT,down_ride,5m,1795223700,121.2,skip,side_not_allowed,Up,0.9577,0.9703,0.9450,,,0.00,0.00,0.9097,0.9082,This variant only bets Down; the signal says Up.
+2026-11-20 17:18:00 PT,control,5m,1795223700,119.2,skip,hour_filter,,,0.9675,,,,0.00,0.00,0.9096,0.9082,Tweak 2 HOUR_FILTER: hour_filter: 10 past trades in the 17:00 PT hour net $-1.54.
+2026-11-20 17:18:00 PT,trend_volume,5m,1795223700,119.2,skip,choppy,,,0.9675,0.9450,,,0.00,0.00,0.9096,0.9082,"Choppy: price went back and forth (straightness 0.04, need 0.15)."
+2026-11-20 17:18:00 PT,trend_down,5m,1795223700,119.2,skip,choppy,,,0.9675,0.9450,,,0.00,0.00,0.9096,0.9082,"Choppy: price went back and forth (straightness 0.04, need 0.12)."
+2026-11-20 17:18:00 PT,breakdown,5m,1795223700,119.2,skip,no_breakout,,,0.9675,0.9450,,,0.00,0.00,0.9096,0.9082,Price is inside its 30-min range ($0.9044-$0.9111); no breakout.
+2026-11-20 17:18:18 PT,hourly_ride_down,1h,1795222800,2501.2,skip,side_not_allowed,Up,0.6747,0.6793,0.6700,,,0.00,0.00,0.9100,0.9081,This variant only bets Down; the signal says Up.
+2026-11-20 17:18:18 PT,ride_favorite_80,5m,1795223700,101.2,skip,no_ask,Up,,0.9957,0.9800,,,0.00,0.00,0.9100,0.9082,Nobody is selling Up right now.
+2026-11-20 17:18:18 PT,down_ride,5m,1795223700,101.2,skip,side_not_allowed,Up,0.9878,0.9957,0.9800,,,0.00,0.00,0.9100,0.9082,This variant only bets Down; the signal says Up.
+2026-11-20 17:18:20 PT,control,5m,1795223700,99.2,skip,hour_filter,,,0.9956,,,,0.00,0.00,0.9100,0.9082,Tweak 2 HOUR_FILTER: hour_filter: 10 past trades in the 17:00 PT hour net $-1.54.
+2026-11-20 17:18:20 PT,trend_volume,5m,1795223700,99.2,skip,choppy,,,0.9956,0.9800,,,0.00,0.00,0.9100,0.9082,"Choppy: price went back and forth (straightness 0.04, need 0.15)."
+2026-11-20 17:18:20 PT,trend_down,5m,1795223700,99.2,skip,choppy,,,0.9956,0.9800,,,0.00,0.00,0.9100,0.9082,"Choppy: price went back and forth (straightness 0.04, need 0.12)."
+2026-11-20 17:18:20 PT,breakdown,5m,1795223700,99.2,skip,no_breakout,,,0.9956,0.9800,,,0.00,0.00,0.9100,0.9082,Price is inside its 30-min range ($0.9044-$0.9111); no breakout.
+2026-11-20 17:18:38 PT,hourly_ride_down,1h,1795222800,2481.2,skip,side_not_allowed,Up,0.6698,0.6745,0.6650,,,0.00,0.00,0.9100,0.9081,This variant only bets Down; the signal says Up.
+2026-11-20 17:18:38 PT,ride_favorite_80,5m,1795223700,81.2,skip,no_ask,Up,,0.9986,0.9900,,,0.00,0.00,0.9100,0.9082,Nobody is selling Up right now.
+2026-11-20 17:18:40 PT,control,5m,1795223700,79.2,skip,hour_filter,,,0.9990,,,,0.00,0.00,0.9100,0.9082,Tweak 2 HOUR_FILTER: hour_filter: 10 past trades in the 17:00 PT hour net $-1.54.
+2026-11-20 17:18:58 PT,hourly_ride_down,1h,1795222800,2461.2,skip,side_not_allowed,Up,0.7002,0.6854,0.7150,,,0.00,0.00,0.9101,0.9081,This variant only bets Down; the signal says Up.
+2026-11-20 17:18:58 PT,ride_favorite_80,5m,1795223700,61.2,skip,no_ask,Up,,1.0000,0.9900,,,0.00,0.00,0.9101,0.9082,Nobody is selling Up right now.
+2026-11-20 17:19:00 PT,control,5m,1795223700,59.2,skip,hour_filter,,,1.0000,,,,0.00,0.00,0.9103,0.9082,Tweak 2 HOUR_FILTER: hour_filter: 10 past trades in the 17:00 PT hour net $-1.54.
+2026-11-20 17:19:18 PT,hourly_ride_down,1h,1795222800,2441.2,skip,side_not_allowed,Up,0.6993,0.7036,0.6950,,,0.00,0.00,0.9103,0.9081,This variant only bets Down; the signal says Up.
+2026-11-20 17:19:20 PT,control,5m,1795223700,39.2,skip,hour_filter,,,1.0000,,,,0.00,0.00,0.9102,0.9082,Tweak 2 HOUR_FILTER: hour_filter: 10 past trades in the 17:00 PT hour net $-1.54.
+2026-11-20 17:19:38 PT,hourly_ride_down,1h,1795222800,2421.2,skip,side_not_allowed,Up,0.7030,0.7110,0.6950,,,0.00,0.00,0.9104,0.9081,This variant only bets Down; the signal says Up.
+2026-11-20 17:19:58 PT,hourly_ride_down,1h,1795222800,2401.2,skip,side_not_allowed,Up,0.5266,0.7183,0.3350,,,0.00,0.00,0.9105,0.9081,This variant only bets Down; the signal says Up.
