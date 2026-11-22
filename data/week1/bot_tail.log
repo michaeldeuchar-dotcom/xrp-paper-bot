@@ -1,78 +1,3 @@
-2026-11-22 02:45:26 INFO START paper-only bot pid=2451 until=2026-11-23T11:30:00-08:00 variants=control,model_lead,ride_favorite_80,trend_volume,trend_down,breakdown,down_ride,hourly_ride_down,auto_pick hard_max=$10 toggles: SKIP_FIRST_MINUTE=True HOUR_FILTER=True(min 8) LOG_BET_REASONS=True
-2026-11-22 02:45:26 INFO REASON [all 5m] Skipping: Tweak 1 SKIP_FIRST_MINUTE is on and this window is in its first 60 seconds.
-2026-11-22 02:45:26 INFO HEARTBEAT pid=2451 cycles=1 spot=0.9316249999999999 open_bets=0 fills=0 spot_ok=1 spot_fail=0 errors=0
-2026-11-22 02:46:01 INFO TREND 5m window=1795344300 spot=0.9320 ptb=0.9317 60m +0.72% (z +0.8), 15m +0.01% (z +0.0), structure mixed (HH0 HL2 LH3 LL1), 5m -0.01%, spike 0.2x (4up/1dn of last 5 candles), vol up/down 1.95x, chop-eff 0.16, ann vol 89%, range 0.9314-0.9334 breakout vol up 0.0x / down 0.0x
-2026-11-22 02:46:01 INFO REASON [control] Not betting: Tweak 2 HOUR_FILTER: hour_filter: 9 past trades in the 2:00 PT hour net $-22.44.
-2026-11-22 02:46:01 INFO REASON [model_lead] Not betting: Lead gate: XRP is $+0.0003 past the price to beat our way (Up); need at least $0.0005 (0.055% of price).
-2026-11-22 02:46:01 INFO REASON [trend_volume] Not betting: The 60m move (+0.72%) too small to call a trend (z +0.8, need 1.0).
-2026-11-22 02:46:01 INFO REASON [trend_down] Not betting: The 60m move (+0.72%) too small to call a trend (z +0.8, need 0.8).
-2026-11-22 02:46:01 INFO REASON [breakdown] Not betting: Price is inside its 30-min range ($0.9314-$0.9334); no breakout.
-2026-11-22 02:46:01 INFO REASON [auto_pick] Not betting: Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 2:00 PT hour net $-4.45.
-2026-11-22 02:46:26 INFO HEARTBEAT pid=2451 cycles=31 spot=0.93222 open_bets=0 fills=0 spot_ok=31 spot_fail=0 errors=0
-2026-11-22 02:46:59 INFO REASON [down_ride] Not betting: Only bets with 90-180s left; 181s left now.
-2026-11-22 02:47:00 INFO REASON [model_lead] Not betting: Only bets with 180-240s left; 179s left now.
-2026-11-22 02:47:00 INFO REASON [down_ride] Not betting: This variant only bets Down; the signal says Up.
-2026-11-22 02:47:05 INFO REASON [trend_down] Not betting: The 60m trend says Up but the last 15m (-0.09%) disagree.
-2026-11-22 02:47:27 INFO HEARTBEAT pid=2451 cycles=61 spot=0.93227 open_bets=0 fills=0 spot_ok=61 spot_fail=0 errors=0
-2026-11-22 02:47:58 INFO REASON [ride_favorite_80] Not betting: Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 2:00 PT hour net $-5.49.
-2026-11-22 02:48:05 INFO REASON [trend_down] Not betting: Momentum says Up but price isn't making higher highs and higher lows (structure mixed).
-2026-11-22 02:48:29 INFO HEARTBEAT pid=2451 cycles=92 spot=0.932985 open_bets=0 fills=0 spot_ok=92 spot_fail=0 errors=0
-2026-11-22 02:48:30 INFO REASON [trend_volume] Not betting: Only bets with 90-240s left; 89s left now.
-2026-11-22 02:48:30 INFO REASON [trend_down] Not betting: Only bets with 90-240s left; 89s left now.
-2026-11-22 02:48:30 INFO REASON [breakdown] Not betting: Only bets with 90-240s left; 89s left now.
-2026-11-22 02:49:29 INFO HEARTBEAT pid=2451 cycles=122 spot=0.9332 open_bets=0 fills=0 spot_ok=122 spot_fail=0 errors=0
-2026-11-22 02:50:00 INFO REASON [all 5m] Skipping: Tweak 1 SKIP_FIRST_MINUTE is on and this window is in its first 60 seconds.
-2026-11-22 02:50:30 INFO HEARTBEAT pid=2451 cycles=153 spot=0.93252 open_bets=0 fills=0 spot_ok=153 spot_fail=0 errors=0
-2026-11-22 02:51:01 INFO TREND 5m window=1795344600 spot=0.9323 ptb=0.9332 60m +0.12% (z +0.1), 15m -0.10% (z -0.2), structure mixed (HH1 HL2 LH2 LL1), 5m +0.00%, spike 0.3x (3up/2dn of last 5 candles), vol up/down 1.69x, chop-eff 0.03, ann vol 77%, range 0.9313-0.9338 breakout vol up 0.0x / down 0.0x
-2026-11-22 02:51:01 INFO REASON [control] Not betting: Tweak 2 HOUR_FILTER: hour_filter: 9 past trades in the 2:00 PT hour net $-22.44.
-2026-11-22 02:51:01 INFO REASON [model_lead] Not betting: Down at 80c: my estimate 73% beats price+fee by only -7.6c (need 4c).
-2026-11-22 02:51:01 INFO REASON [trend_volume] Not betting: Choppy: price went back and forth (straightness 0.03, need 0.15).
-2026-11-22 02:51:01 INFO REASON [trend_down] Not betting: Choppy: price went back and forth (straightness 0.03, need 0.12).
-2026-11-22 02:51:01 INFO REASON [breakdown] Not betting: Price is inside its 30-min range ($0.9313-$0.9338); no breakout.
-2026-11-22 02:51:01 INFO REASON [auto_pick] Not betting: Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 2:00 PT hour net $-4.45.
-2026-11-22 02:51:03 INFO REASON [model_lead] Not betting: Down costs 83c, outside this variant's 0.2-0.8 price range.
-2026-11-22 02:51:31 INFO HEARTBEAT pid=2451 cycles=183 spot=0.932415 open_bets=0 fills=0 spot_ok=183 spot_fail=0 errors=0
-2026-11-22 02:51:58 INFO REASON [down_ride] Not betting: Only bets with 90-180s left; 181s left now.
-2026-11-22 02:52:01 INFO REASON [model_lead] Not betting: Only bets with 180-240s left; 179s left now.
-2026-11-22 02:52:01 INFO REASON [down_ride] Not betting: Down at 85c: my estimate 76% beats price+fee by only -9.8c (need 3c).
-2026-11-22 02:52:15 INFO REASON [down_ride] Not betting: Down costs 99c, outside this variant's 0.5-0.9 price range.
-2026-11-22 02:52:21 INFO REASON [down_ride] Not betting: Nobody is selling Down right now.
-2026-11-22 02:52:31 INFO HEARTBEAT pid=2451 cycles=213 spot=0.928695 open_bets=0 fills=0 spot_ok=213 spot_fail=0 errors=0
-2026-11-22 02:52:59 INFO REASON [ride_favorite_80] Not betting: Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 2:00 PT hour net $-5.49.
-2026-11-22 02:53:03 INFO REASON [breakdown] Not betting: Nobody is selling Down right now.
-2026-11-22 02:53:31 INFO REASON [trend_volume] Not betting: Only bets with 90-240s left; 89s left now.
-2026-11-22 02:53:31 INFO REASON [trend_down] Not betting: Only bets with 90-240s left; 89s left now.
-2026-11-22 02:53:31 INFO REASON [breakdown] Not betting: Only bets with 90-240s left; 89s left now.
-2026-11-22 02:53:31 INFO HEARTBEAT pid=2451 cycles=243 spot=0.92856 open_bets=0 fills=0 spot_ok=243 spot_fail=0 errors=0
-2026-11-22 02:54:31 INFO HEARTBEAT pid=2451 cycles=273 spot=0.9297249999999999 open_bets=0 fills=0 spot_ok=273 spot_fail=0 errors=0
-2026-11-22 02:55:00 INFO REASON [all 5m] Skipping: Tweak 1 SKIP_FIRST_MINUTE is on and this window is in its first 60 seconds.
-2026-11-22 02:55:32 INFO HEARTBEAT pid=2451 cycles=304 spot=0.93135 open_bets=0 fills=0 spot_ok=304 spot_fail=0 errors=0
-2026-11-22 02:56:01 INFO TREND 5m window=1795344900 spot=0.9313 ptb=0.9294 60m +0.12% (z +0.1), 15m -0.08% (z -0.2), structure down (HH1 HL1 LH2 LL2), 5m -0.06%, spike 4.6x (4up/1dn of last 5 candles), vol up/down 0.94x, chop-eff 0.03, ann vol 87%, range 0.9278-0.9338 breakout vol up 0.0x / down 0.0x
-2026-11-22 02:56:01 INFO REASON [control] Not betting: Tweak 2 HOUR_FILTER: hour_filter: 9 past trades in the 2:00 PT hour net $-22.44.
-2026-11-22 02:56:01 INFO REASON [model_lead] Not betting: Up costs 85c, outside this variant's 0.2-0.8 price range.
-2026-11-22 02:56:01 INFO REASON [trend_volume] Not betting: Choppy: price went back and forth (straightness 0.03, need 0.15).
-2026-11-22 02:56:01 INFO REASON [trend_down] Not betting: Choppy: price went back and forth (straightness 0.03, need 0.12).
-2026-11-22 02:56:01 INFO REASON [breakdown] Not betting: Price is inside its 30-min range ($0.9278-$0.9338); no breakout.
-2026-11-22 02:56:01 INFO REASON [auto_pick] Not betting: Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 2:00 PT hour net $-4.45.
-2026-11-22 02:56:03 INFO REASON [model_lead] Not betting: Up at 80c: my estimate 80% beats price+fee by only -1.2c (need 4c).
-2026-11-22 02:56:33 INFO HEARTBEAT pid=2451 cycles=334 spot=0.93041 open_bets=0 fills=0 spot_ok=334 spot_fail=0 errors=0
-2026-11-22 02:56:59 INFO REASON [down_ride] Not betting: Only bets with 90-180s left; 181s left now.
-2026-11-22 02:57:01 INFO REASON [model_lead] Not betting: Only bets with 180-240s left; 179s left now.
-2026-11-22 02:57:01 INFO REASON [down_ride] Not betting: This variant only bets Down; the signal says Up.
-2026-11-22 02:57:35 INFO HEARTBEAT pid=2451 cycles=365 spot=0.930415 open_bets=0 fills=0 spot_ok=365 spot_fail=0 errors=0
-2026-11-22 02:57:59 INFO REASON [ride_favorite_80] Not betting: Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 2:00 PT hour net $-5.49.
-2026-11-22 02:58:07 INFO REASON [trend_volume] Not betting: The 60m move (-0.71%) too small to call a trend (z -0.9, need 1.0).
-2026-11-22 02:58:07 INFO REASON [trend_down] Not betting: Down costs 9c, outside this variant's 0.25-0.8 price range.
-2026-11-22 02:58:31 INFO REASON [trend_volume] Not betting: Only bets with 90-240s left; 89s left now.
-2026-11-22 02:58:31 INFO REASON [trend_down] Not betting: Only bets with 90-240s left; 89s left now.
-2026-11-22 02:58:31 INFO REASON [breakdown] Not betting: Only bets with 90-240s left; 89s left now.
-2026-11-22 02:58:37 INFO HEARTBEAT pid=2451 cycles=396 spot=0.9309050000000001 open_bets=0 fills=0 spot_ok=396 spot_fail=0 errors=0
-2026-11-22 02:59:39 INFO HEARTBEAT pid=2451 cycles=427 spot=0.931235 open_bets=0 fills=0 spot_ok=427 spot_fail=0 errors=0
-2026-11-22 03:00:00 INFO REASON [all 5m] Skipping: Tweak 1 SKIP_FIRST_MINUTE is on and this window is in its first 60 seconds.
-2026-11-22 03:00:41 INFO HEARTBEAT pid=2451 cycles=458 spot=0.9309149999999999 open_bets=0 fills=0 spot_ok=458 spot_fail=0 errors=0
-2026-11-22 03:01:01 INFO TREND 5m window=1795345200 spot=0.9312 ptb=0.9311 60m -0.08% (z -0.1), 15m -0.06% (z -0.2), structure down (HH1 HL1 LH2 LL2), 5m +0.01%, spike 0.4x (3up/1dn of last 5 candles), vol up/down 0.58x, chop-eff 0.02, ann vol 62%, range 0.9278-0.9338 breakout vol up 0.0x / down 0.0x
-2026-11-22 03:01:01 INFO REASON [control] Not betting: Tweak 2 HOUR_FILTER: hour_filter: 9 past trades in the 3:00 PT hour net $-15.24.
-2026-11-22 03:01:01 INFO REASON [model_lead] Not betting: Lead gate: XRP is $+0.0001 past the price to beat our way (Up); need at least $0.0005 (0.055% of price).
 2026-11-22 03:01:01 INFO REASON [trend_volume] Not betting: Choppy: price went back and forth (straightness 0.02, need 0.15).
 2026-11-22 03:01:01 INFO REASON [trend_down] Not betting: Choppy: price went back and forth (straightness 0.02, need 0.12).
 2026-11-22 03:01:01 INFO REASON [breakdown] Not betting: Price is inside its 30-min range ($0.9278-$0.9338); no breakout.
@@ -374,3 +299,102 @@
 2026-11-22 04:05:01 INFO REASON [all 5m] Skipping: Tweak 1 SKIP_FIRST_MINUTE is on and this window is in its first 60 seconds.
 2026-11-22 04:05:17 INFO RESOLVED [trend_volume] W000909 Down outcome=Up LOST pnl=$-3.08 variant_total=$+25.41
 2026-11-22 04:05:17 INFO RESOLVED [trend_down] W000910 Down outcome=Up LOST pnl=$-3.08 variant_total=$+11.94
+2026-11-22 04:05:39 INFO HEARTBEAT pid=2451 cycles=2402 spot=0.927845 open_bets=0 fills=3 spot_ok=2402 spot_fail=0 errors=0
+2026-11-22 04:06:01 INFO TREND 5m window=1795349100 spot=0.9279 ptb=0.9279 60m -0.51% (z -1.3), 15m -0.09% (z -0.4), structure down (HH0 HL0 LH3 LL3), 5m +0.04%, spike 1.6x (4up/1dn of last 5 candles), vol up/down 0.75x, chop-eff 0.22, ann vol 36%, range 0.9264-0.9303 breakout vol up 0.0x / down 0.0x
+2026-11-22 04:06:01 INFO REASON [control] Not betting: Tweak 2 HOUR_FILTER: hour_filter: 9 past trades in the 4:00 PT hour net $-7.52.
+2026-11-22 04:06:01 INFO REASON [model_lead] Not betting: Lead gate: XRP is $+0.0000 past the price to beat our way (Down); need at least $0.0005 (0.055% of price).
+2026-11-22 04:06:01 INFO REASON [trend_volume] Not betting: Down at 61c: my estimate 59% beats price+fee by only -3.7c (need 3c).
+2026-11-22 04:06:01 INFO REASON [trend_down] Not betting: Down at 61c: my estimate 59% beats price+fee by only -3.7c (need 3c).
+2026-11-22 04:06:01 INFO REASON [breakdown] Not betting: Price is inside its 30-min range ($0.9264-$0.9303); no breakout.
+2026-11-22 04:06:01 INFO REASON [auto_pick] Not betting: Tweak 2 HOUR_FILTER: hour_filter: 10 past trades in the 4:00 PT hour net $-2.52.
+2026-11-22 04:06:39 INFO HEARTBEAT pid=2451 cycles=2432 spot=0.92785 open_bets=0 fills=3 spot_ok=2432 spot_fail=0 errors=0
+2026-11-22 04:06:57 INFO REASON [down_ride] Not betting: Only bets with 90-180s left; 183s left now.
+2026-11-22 04:07:01 INFO REASON [model_lead] Not betting: Only bets with 180-240s left; 179s left now.
+2026-11-22 04:07:01 INFO REASON [down_ride] Not betting: Lead gate: XRP is $-0.0000 past the price to beat our way (Down); need at least $0.0005 (0.055% of price).
+2026-11-22 04:07:03 INFO REASON [trend_volume] Not betting: Volume doesn't back the Down move: trend-direction candles average only 1.14x the volume of opposite ones (need 1.15x).
+2026-11-22 04:07:33 INFO REASON [trend_down] Not betting: Down costs 85c, outside this variant's 0.25-0.8 price range.
+2026-11-22 04:07:39 INFO HEARTBEAT pid=2451 cycles=2462 spot=0.927665 open_bets=0 fills=3 spot_ok=2462 spot_fail=0 errors=0
+2026-11-22 04:07:57 INFO REASON [ride_favorite_80] Not betting: Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 4:00 PT hour net $-0.56.
+2026-11-22 04:08:07 INFO PAPER FILL [trend_down] 5m W000911 Down $3.05 = 5.00 sh @ 0.61 (fee $0.083) 113s left
+2026-11-22 04:08:07 INFO REASON [trend_down] Buying $3.05 of Down: I put Down at 70%, price+fee is 62.7c, edge 7.1c; trend Down: 60m -0.55% (z -1.4), 15m -0.12%, lower highs/lows, volume 1.10x on trend candles, straightness 0.24. (rounded $3.00 up to $3.05 for the 5-share minimum)
+2026-11-22 04:08:11 INFO REASON [down_ride] Not betting: This variant only bets Down; the signal says Up.
+2026-11-22 04:08:31 INFO REASON [trend_volume] Not betting: Only bets with 90-240s left; 89s left now.
+2026-11-22 04:08:31 INFO REASON [breakdown] Not betting: Only bets with 90-240s left; 89s left now.
+2026-11-22 04:08:41 INFO HEARTBEAT pid=2451 cycles=2493 spot=0.92835 open_bets=1 fills=4 spot_ok=2493 spot_fail=0 errors=0
+2026-11-22 04:09:43 INFO HEARTBEAT pid=2451 cycles=2524 spot=0.9287000000000001 open_bets=1 fills=4 spot_ok=2524 spot_fail=0 errors=0
+2026-11-22 04:10:01 INFO REASON [all 5m] Skipping: Tweak 1 SKIP_FIRST_MINUTE is on and this window is in its first 60 seconds.
+2026-11-22 04:10:21 INFO RESOLVED [trend_down] W000911 Down outcome=Up LOST pnl=$-3.13 variant_total=$+8.80
+2026-11-22 04:10:43 INFO HEARTBEAT pid=2451 cycles=2554 spot=0.92972 open_bets=0 fills=4 spot_ok=2554 spot_fail=0 errors=0
+2026-11-22 04:11:01 INFO TREND 5m window=1795349400 spot=0.9302 ptb=0.9286 60m -0.27% (z -0.7), 15m +0.24% (z +1.2), structure down (HH1 HL0 LH2 LL3), 5m +0.27%, spike 1.4x (4up/1dn of last 5 candles), vol up/down 0.90x, chop-eff 0.11, ann vol 38%, range 0.9264-0.9294 breakout vol up 0.4x / down 0.0x
+2026-11-22 04:11:01 INFO REASON [control] Not betting: Tweak 2 HOUR_FILTER: hour_filter: 9 past trades in the 4:00 PT hour net $-7.52.
+2026-11-22 04:11:01 INFO REASON [model_lead] Not betting: Up costs 88c, outside this variant's 0.2-0.8 price range.
+2026-11-22 04:11:01 INFO REASON [trend_volume] Not betting: Choppy: price went back and forth (straightness 0.11, need 0.15).
+2026-11-22 04:11:01 INFO REASON [trend_down] Not betting: Choppy: price went back and forth (straightness 0.11, need 0.12).
+2026-11-22 04:11:01 INFO REASON [breakdown] Not betting: Broke above the 30-min high $0.9294 but volume only 0.4x normal (need 2.0x).
+2026-11-22 04:11:01 INFO REASON [auto_pick] Not betting: Tweak 2 HOUR_FILTER: hour_filter: 10 past trades in the 4:00 PT hour net $-2.52.
+2026-11-22 04:11:43 INFO HEARTBEAT pid=2451 cycles=2584 spot=0.9306 open_bets=0 fills=4 spot_ok=2584 spot_fail=0 errors=0
+2026-11-22 04:11:57 INFO REASON [down_ride] Not betting: Only bets with 90-180s left; 183s left now.
+2026-11-22 04:12:01 INFO REASON [model_lead] Not betting: Only bets with 180-240s left; 179s left now.
+2026-11-22 04:12:01 INFO REASON [down_ride] Not betting: This variant only bets Down; the signal says Up.
+2026-11-22 04:12:45 INFO HEARTBEAT pid=2451 cycles=2615 spot=0.9309149999999999 open_bets=0 fills=4 spot_ok=2615 spot_fail=0 errors=0
+2026-11-22 04:12:57 INFO REASON [ride_favorite_80] Not betting: Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 4:00 PT hour net $-0.56.
+2026-11-22 04:13:31 INFO REASON [trend_volume] Not betting: Only bets with 90-240s left; 89s left now.
+2026-11-22 04:13:31 INFO REASON [trend_down] Not betting: Only bets with 90-240s left; 89s left now.
+2026-11-22 04:13:31 INFO REASON [breakdown] Not betting: Only bets with 90-240s left; 89s left now.
+2026-11-22 04:13:45 INFO HEARTBEAT pid=2451 cycles=2645 spot=0.9299999999999999 open_bets=0 fills=4 spot_ok=2645 spot_fail=0 errors=0
+2026-11-22 04:14:47 INFO HEARTBEAT pid=2451 cycles=2676 spot=0.93006 open_bets=0 fills=4 spot_ok=2676 spot_fail=0 errors=0
+2026-11-22 04:14:57 INFO TREND 1h window=1795348800 spot=0.9300 ptb=0.9277 4h +1.58% (z +1.0), 75m -0.05% (z -0.1), structure mixed (HH1 HL2 LH2 LL1), 25m +0.17%, spike 0.8x (3up/2dn of last 5 candles), vol up/down 1.73x, chop-eff 0.20, ann vol 72%, range 0.9229-0.9374 breakout vol up 0.0x / down 0.0x
+2026-11-22 04:14:57 INFO REASON [hourly_ride_down] Not betting: Only bets with 1800-2700s left; 2703s left now.
+2026-11-22 04:15:01 INFO REASON [hourly_ride_down] Not betting: This variant only bets Down; the signal says Up.
+2026-11-22 04:15:01 INFO REASON [all 5m] Skipping: Tweak 1 SKIP_FIRST_MINUTE is on and this window is in its first 60 seconds.
+2026-11-22 04:15:47 INFO HEARTBEAT pid=2451 cycles=2706 spot=0.931575 open_bets=0 fills=4 spot_ok=2706 spot_fail=0 errors=0
+2026-11-22 04:16:02 INFO TREND 5m window=1795349700 spot=0.9313 ptb=0.9300 60m -0.04% (z -0.1), 15m +0.43% (z +2.0), structure down (HH1 HL1 LH2 LL2), 5m +0.11%, spike 3.9x (3up/2dn of last 5 candles), vol up/down 1.40x, chop-eff 0.02, ann vol 41%, range 0.9264-0.9312 breakout vol up 24.6x / down 0.0x
+2026-11-22 04:16:02 INFO REASON [control] Not betting: Tweak 2 HOUR_FILTER: hour_filter: 9 past trades in the 4:00 PT hour net $-7.52.
+2026-11-22 04:16:02 INFO REASON [model_lead] Not betting: Up at 78c: my estimate 81% beats price+fee by only 1.6c (need 4c).
+2026-11-22 04:16:02 INFO REASON [trend_volume] Not betting: Choppy: price went back and forth (straightness 0.02, need 0.15).
+2026-11-22 04:16:02 INFO REASON [trend_down] Not betting: Choppy: price went back and forth (straightness 0.02, need 0.12).
+2026-11-22 04:16:02 INFO REASON [breakdown] Not betting: This variant only bets Down; the signal says Up.
+2026-11-22 04:16:02 INFO REASON [auto_pick] Not betting: Tweak 2 HOUR_FILTER: hour_filter: 10 past trades in the 4:00 PT hour net $-2.52.
+2026-11-22 04:16:13 INFO REASON [model_lead] Not betting: $1.00 only buys 1.31 shares of Up at 76c; Polymarket's minimum is 5.
+2026-11-22 04:16:19 INFO REASON [model_lead] Not betting: Up costs 81c, outside this variant's 0.2-0.8 price range.
+2026-11-22 04:16:47 INFO HEARTBEAT pid=2451 cycles=2736 spot=0.931655 open_bets=0 fills=4 spot_ok=2736 spot_fail=0 errors=0
+2026-11-22 04:16:57 INFO REASON [down_ride] Not betting: Only bets with 90-180s left; 183s left now.
+2026-11-22 04:17:01 INFO REASON [model_lead] Not betting: Only bets with 180-240s left; 179s left now.
+2026-11-22 04:17:01 INFO REASON [down_ride] Not betting: This variant only bets Down; the signal says Up.
+2026-11-22 04:17:49 INFO HEARTBEAT pid=2451 cycles=2767 spot=0.9356450000000001 open_bets=0 fills=4 spot_ok=2767 spot_fail=0 errors=0
+2026-11-22 04:17:57 INFO REASON [ride_favorite_80] Not betting: Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 4:00 PT hour net $-0.56.
+2026-11-22 04:18:31 INFO REASON [trend_volume] Not betting: Only bets with 90-240s left; 89s left now.
+2026-11-22 04:18:31 INFO REASON [trend_down] Not betting: Only bets with 90-240s left; 89s left now.
+2026-11-22 04:18:31 INFO REASON [breakdown] Not betting: Only bets with 90-240s left; 89s left now.
+2026-11-22 04:18:51 INFO HEARTBEAT pid=2451 cycles=2798 spot=0.933395 open_bets=0 fills=4 spot_ok=2798 spot_fail=0 errors=0
+2026-11-22 04:19:53 INFO HEARTBEAT pid=2451 cycles=2829 spot=0.93239 open_bets=0 fills=4 spot_ok=2829 spot_fail=0 errors=0
+2026-11-22 04:20:01 INFO REASON [all 5m] Skipping: Tweak 1 SKIP_FIRST_MINUTE is on and this window is in its first 60 seconds.
+2026-11-22 04:20:53 INFO HEARTBEAT pid=2451 cycles=2859 spot=0.93239 open_bets=0 fills=4 spot_ok=2859 spot_fail=0 errors=0
+2026-11-22 04:21:01 INFO TREND 5m window=1795350000 spot=0.9324 ptb=0.9327 60m +0.10% (z +0.2), 15m +0.51% (z +2.1), structure mixed (HH1 HL1 LH2 LL2), 5m +0.13%, spike 2.3x (3up/2dn of last 5 candles), vol up/down 1.73x, chop-eff 0.03, ann vol 46%, range 0.9264-0.9362 breakout vol up 0.0x / down 0.0x
+2026-11-22 04:21:01 INFO REASON [control] Not betting: Tweak 2 HOUR_FILTER: hour_filter: 9 past trades in the 4:00 PT hour net $-7.52.
+2026-11-22 04:21:01 INFO REASON [model_lead] Not betting: Lead gate: XRP is $+0.0003 past the price to beat our way (Down); need at least $0.0005 (0.055% of price).
+2026-11-22 04:21:01 INFO REASON [trend_volume] Not betting: Choppy: price went back and forth (straightness 0.03, need 0.15).
+2026-11-22 04:21:01 INFO REASON [trend_down] Not betting: Choppy: price went back and forth (straightness 0.03, need 0.12).
+2026-11-22 04:21:01 INFO REASON [breakdown] Not betting: Price is inside its 30-min range ($0.9264-$0.9362); no breakout.
+2026-11-22 04:21:01 INFO REASON [auto_pick] Not betting: Tweak 2 HOUR_FILTER: hour_filter: 10 past trades in the 4:00 PT hour net $-2.52.
+2026-11-22 04:21:21 INFO REASON [model_lead] Not betting: Down at 63c: my estimate 66% beats price+fee by only 0.9c (need 4c).
+2026-11-22 04:21:53 INFO HEARTBEAT pid=2451 cycles=2889 spot=0.9321 open_bets=0 fills=4 spot_ok=2889 spot_fail=0 errors=0
+2026-11-22 04:21:57 INFO REASON [down_ride] Not betting: Only bets with 90-180s left; 183s left now.
+2026-11-22 04:22:01 INFO REASON [model_lead] Not betting: Only bets with 180-240s left; 179s left now.
+2026-11-22 04:22:01 INFO REASON [down_ride] Not betting: Down at 77c: my estimate 74% beats price+fee by only -4.4c (need 3c).
+2026-11-22 04:22:15 INFO REASON [down_ride] Not betting: Down costs 94c, outside this variant's 0.5-0.9 price range.
+2026-11-22 04:22:27 INFO REASON [down_ride] Not betting: Nobody is selling Down right now.
+2026-11-22 04:22:37 INFO REASON [hourly_ride_down] Not betting: Broader trend filter: the 4h move is +1.52%, not down.
+2026-11-22 04:22:55 INFO HEARTBEAT pid=2451 cycles=2920 spot=0.926245 open_bets=0 fills=4 spot_ok=2920 spot_fail=0 errors=0
+2026-11-22 04:22:57 INFO REASON [ride_favorite_80] Not betting: Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 4:00 PT hour net $-0.56.
+2026-11-22 04:23:07 INFO REASON [trend_volume] Not betting: The 60m move (-0.61%) too small to call a trend (z -0.8, need 1.0).
+2026-11-22 04:23:07 INFO REASON [trend_down] Not betting: The 60m move (-0.61%) too small to call a trend (z -0.8, need 0.8).
+2026-11-22 04:23:07 INFO REASON [breakdown] Not betting: Broke below $0.9264 but price bounced back to $0.9264.
+2026-11-22 04:23:23 INFO REASON [breakdown] Not betting: Nobody is selling Down right now.
+2026-11-22 04:23:31 INFO REASON [trend_volume] Not betting: Only bets with 90-240s left; 89s left now.
+2026-11-22 04:23:31 INFO REASON [trend_down] Not betting: Only bets with 90-240s left; 89s left now.
+2026-11-22 04:23:31 INFO REASON [breakdown] Not betting: Only bets with 90-240s left; 89s left now.
+2026-11-22 04:23:55 INFO HEARTBEAT pid=2451 cycles=2950 spot=0.9253 open_bets=0 fills=4 spot_ok=2950 spot_fail=0 errors=0
+2026-11-22 04:24:57 INFO HEARTBEAT pid=2451 cycles=2981 spot=0.9223250000000001 open_bets=0 fills=4 spot_ok=2981 spot_fail=0 errors=0
+2026-11-22 04:25:01 INFO REASON [all 5m] Skipping: Tweak 1 SKIP_FIRST_MINUTE is on and this window is in its first 60 seconds.
+2026-11-22 04:25:19 INFO REASON [hourly_ride_down] Not betting: Down costs 88c, outside this variant's 0.4-0.85 price range.
