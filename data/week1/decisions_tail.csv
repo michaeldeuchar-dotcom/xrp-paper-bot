@@ -462,3 +462,238 @@ ts_pt,variant,timeframe,window_start,secs_left,action,reason,side,est_prob,model
 2026-11-21 21:43:58 PT,ride_favorite_80,5m,1795326000,61.5,skip,hour_filter,,,0.5089,,,,0.00,0.00,0.9111,0.9111,Tweak 2 HOUR_FILTER: hour_filter: 17 past trades in the 21:00 PT hour net $-0.46.
 2026-11-21 21:44:00 PT,control,5m,1795326000,59.5,skip,hour_filter,,,0.5092,,,,0.00,0.00,0.9111,0.9111,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 21:00 PT hour net $-20.18.
 2026-11-21 21:44:20 PT,control,5m,1795326000,39.5,skip,hour_filter,,,0.5475,,,,0.00,0.00,0.9111,0.9111,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 21:00 PT hour net $-20.18.
+2026-11-21 21:46:00 PT,control,5m,1795326300,239.5,skip,hour_filter,,,0.6643,,,,0.00,0.00,0.9117,0.9111,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 21:00 PT hour net $-20.18.
+2026-11-21 21:46:00 PT,model_lead,5m,1795326300,239.5,skip,edge_small,Up,0.6171,0.6643,0.5700,0.5900,0.0102,0.00,0.00,0.9117,0.9111,Up at 59c: my estimate 62% beats price+fee by only 1.0c (need 4c).
+2026-11-21 21:46:00 PT,trend_volume,5m,1795326300,239.5,skip,edge_small,Down,0.4129,0.6643,0.5700,0.4500,-0.0545,0.00,0.00,0.9117,0.9111,Down at 45c: my estimate 41% beats price+fee by only -5.4c (need 3c).
+2026-11-21 21:46:00 PT,trend_down,5m,1795326300,239.5,skip,edge_small,Down,0.4129,0.6643,0.5700,0.4500,-0.0545,0.00,0.00,0.9117,0.9111,Down at 45c: my estimate 41% beats price+fee by only -5.4c (need 3c).
+2026-11-21 21:46:00 PT,breakdown,5m,1795326300,239.5,skip,no_breakout,,,0.6643,0.5700,,,0.00,0.00,0.9117,0.9111,Price is inside its 30-min range ($0.9099-$0.9154); no breakout.
+2026-11-21 21:46:00 PT,auto_pick,5m,1795326300,239.5,skip,leader_idle,,,0.6643,,,,0.00,0.00,0.9117,0.9111,Current pick trend_down (6h +19.73) isn't betting this round; sitting out: #1 trend_down not betting (edge_small).
+2026-11-21 21:46:20 PT,control,5m,1795326300,219.5,skip,hour_filter,,,0.7842,,,,0.00,0.00,0.9122,0.9111,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 21:00 PT hour net $-20.18.
+2026-11-21 21:46:20 PT,model_lead,5m,1795326300,219.5,skip,edge_small,Up,0.7671,0.7842,0.7500,0.7600,-0.0057,0.00,0.00,0.9122,0.9111,Up at 76c: my estimate 77% beats price+fee by only -0.6c (need 4c).
+2026-11-21 21:46:20 PT,trend_volume,5m,1795326300,219.5,skip,ask_band,Down,0.2629,0.7842,0.7500,0.2600,-0.0106,0.00,0.00,0.9122,0.9111,"Down costs 26c, outside this variant's 0.3-0.75 price range."
+2026-11-21 21:46:20 PT,trend_down,5m,1795326300,219.5,skip,edge_small,Down,0.2629,0.7842,0.7500,0.2600,-0.0106,0.00,0.00,0.9122,0.9111,Down at 26c: my estimate 26% beats price+fee by only -1.1c (need 3c).
+2026-11-21 21:46:20 PT,breakdown,5m,1795326300,219.5,skip,no_breakout,,,0.7842,0.7500,,,0.00,0.00,0.9122,0.9111,Price is inside its 30-min range ($0.9099-$0.9154); no breakout.
+2026-11-21 21:46:20 PT,auto_pick,5m,1795326300,219.5,skip,leader_idle,,,0.7842,,,,0.00,0.00,0.9122,0.9111,Current pick trend_down (6h +19.73) isn't betting this round; sitting out: #1 trend_down not betting (edge_small).
+2026-11-21 21:46:40 PT,control,5m,1795326300,199.5,skip,hour_filter,,,0.8825,,,,0.00,0.00,0.9126,0.9111,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 21:00 PT hour net $-20.18.
+2026-11-21 21:46:40 PT,model_lead,5m,1795326300,199.5,skip,ask_band,Up,0.8787,0.8825,0.8750,0.8900,-0.0181,0.00,0.00,0.9126,0.9111,"Up costs 89c, outside this variant's 0.2-0.8 price range."
+2026-11-21 21:46:40 PT,trend_volume,5m,1795326300,199.5,skip,ask_band,Down,0.1513,0.8825,0.8750,0.1400,0.0028,0.00,0.00,0.9126,0.9111,"Down costs 14c, outside this variant's 0.3-0.75 price range."
+2026-11-21 21:46:40 PT,trend_down,5m,1795326300,199.5,skip,ask_band,Down,0.1513,0.8825,0.8750,0.1400,0.0028,0.00,0.00,0.9126,0.9111,"Down costs 14c, outside this variant's 0.25-0.8 price range."
+2026-11-21 21:46:40 PT,breakdown,5m,1795326300,199.5,skip,no_breakout,,,0.8825,0.8750,,,0.00,0.00,0.9126,0.9111,Price is inside its 30-min range ($0.9099-$0.9154); no breakout.
+2026-11-21 21:46:40 PT,auto_pick,5m,1795326300,199.5,skip,leader_idle,,,0.8825,,,,0.00,0.00,0.9126,0.9111,Current pick trend_down (6h +19.73) isn't betting this round; sitting out: #1 trend_down not betting (ask_band).
+2026-11-21 21:46:58 PT,down_ride,5m,1795326300,181.5,skip,timing,,,0.8784,0.8500,,,0.00,0.00,0.9125,0.9111,Only bets with 90-180s left; 181s left now.
+2026-11-21 21:47:00 PT,control,5m,1795326300,179.5,skip,hour_filter,,,0.8800,,,,0.00,0.00,0.9125,0.9111,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 21:00 PT hour net $-20.18.
+2026-11-21 21:47:00 PT,model_lead,5m,1795326300,179.5,skip,timing,,,0.8800,0.8650,,,0.00,0.00,0.9125,0.9111,Only bets with 180-240s left; 179s left now.
+2026-11-21 21:47:00 PT,trend_volume,5m,1795326300,179.5,skip,ask_band,Down,0.1575,0.8800,0.8650,0.1500,-0.0014,0.00,0.00,0.9125,0.9111,"Down costs 15c, outside this variant's 0.3-0.75 price range."
+2026-11-21 21:47:00 PT,trend_down,5m,1795326300,179.5,skip,ask_band,Down,0.1575,0.8800,0.8650,0.1500,-0.0014,0.00,0.00,0.9125,0.9111,"Down costs 15c, outside this variant's 0.25-0.8 price range."
+2026-11-21 21:47:00 PT,breakdown,5m,1795326300,179.5,skip,no_breakout,,,0.8800,0.8650,,,0.00,0.00,0.9125,0.9111,Price is inside its 30-min range ($0.9099-$0.9154); no breakout.
+2026-11-21 21:47:00 PT,auto_pick,5m,1795326300,179.5,skip,leader_idle,,,0.8800,,,,0.00,0.00,0.9125,0.9111,Current pick trend_down (6h +19.73) isn't betting this round; sitting out: #1 trend_down not betting (ask_band).
+2026-11-21 21:47:18 PT,down_ride,5m,1795326300,161.5,skip,side_not_allowed,Up,0.8521,0.8792,0.8250,,,0.00,0.00,0.9124,0.9111,This variant only bets Down; the signal says Up.
+2026-11-21 21:47:20 PT,control,5m,1795326300,159.5,skip,hour_filter,,,0.8811,,,,0.00,0.00,0.9124,0.9111,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 21:00 PT hour net $-20.18.
+2026-11-21 21:47:20 PT,trend_volume,5m,1795326300,159.5,skip,ask_band,Down,0.1695,0.8811,0.8400,0.1700,-0.0104,0.00,0.00,0.9124,0.9111,"Down costs 17c, outside this variant's 0.3-0.75 price range."
+2026-11-21 21:47:20 PT,trend_down,5m,1795326300,159.5,skip,ask_band,Down,0.1695,0.8811,0.8400,0.1700,-0.0104,0.00,0.00,0.9124,0.9111,"Down costs 17c, outside this variant's 0.25-0.8 price range."
+2026-11-21 21:47:20 PT,breakdown,5m,1795326300,159.5,skip,no_breakout,,,0.8811,0.8400,,,0.00,0.00,0.9124,0.9111,Price is inside its 30-min range ($0.9099-$0.9153); no breakout.
+2026-11-21 21:47:20 PT,auto_pick,5m,1795326300,159.5,skip,leader_idle,,,0.8811,,,,0.00,0.00,0.9124,0.9111,Current pick trend_down (6h +19.73) isn't betting this round; sitting out: #1 trend_down not betting (ask_band).
+2026-11-21 21:47:38 PT,down_ride,5m,1795326300,141.4,skip,side_not_allowed,Up,0.8353,0.8856,0.7850,,,0.00,0.00,0.9123,0.9111,This variant only bets Down; the signal says Up.
+2026-11-21 21:47:40 PT,control,5m,1795326300,139.4,skip,hour_filter,,,0.8878,,,,0.00,0.00,0.9123,0.9111,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 21:00 PT hour net $-20.18.
+2026-11-21 21:47:40 PT,trend_volume,5m,1795326300,139.4,skip,ask_band,Down,0.1886,0.8878,0.7950,0.2200,-0.0434,0.00,0.00,0.9123,0.9111,"Down costs 22c, outside this variant's 0.3-0.75 price range."
+2026-11-21 21:47:40 PT,trend_down,5m,1795326300,139.4,skip,ask_band,Down,0.1886,0.8878,0.7950,0.2200,-0.0434,0.00,0.00,0.9123,0.9111,"Down costs 22c, outside this variant's 0.25-0.8 price range."
+2026-11-21 21:47:40 PT,breakdown,5m,1795326300,139.4,skip,no_breakout,,,0.8878,0.7950,,,0.00,0.00,0.9123,0.9111,Price is inside its 30-min range ($0.9099-$0.9153); no breakout.
+2026-11-21 21:47:40 PT,auto_pick,5m,1795326300,139.4,skip,leader_idle,,,0.8878,,,,0.00,0.00,0.9123,0.9111,Current pick trend_down (6h +19.73) isn't betting this round; sitting out: #1 trend_down not betting (ask_band).
+2026-11-21 21:47:58 PT,ride_favorite_80,5m,1795326300,121.4,skip,hour_filter,,,0.8836,,,,0.00,0.00,0.9122,0.9111,Tweak 2 HOUR_FILTER: hour_filter: 17 past trades in the 21:00 PT hour net $-0.46.
+2026-11-21 21:47:58 PT,down_ride,5m,1795326300,121.4,skip,side_not_allowed,Up,0.8268,0.8836,0.7700,,,0.00,0.00,0.9122,0.9111,This variant only bets Down; the signal says Up.
+2026-11-21 21:48:00 PT,control,5m,1795326300,119.4,skip,hour_filter,,,0.8453,,,,0.00,0.00,0.9121,0.9111,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 21:00 PT hour net $-20.18.
+2026-11-21 21:48:00 PT,trend_volume,5m,1795326300,119.4,skip,ask_band,Down,0.2149,0.8453,0.7850,0.2200,-0.0172,0.00,0.00,0.9121,0.9111,"Down costs 22c, outside this variant's 0.3-0.75 price range."
+2026-11-21 21:48:00 PT,trend_down,5m,1795326300,119.4,skip,ask_band,Down,0.2149,0.8453,0.7850,0.2200,-0.0172,0.00,0.00,0.9121,0.9111,"Down costs 22c, outside this variant's 0.25-0.8 price range."
+2026-11-21 21:48:00 PT,breakdown,5m,1795326300,119.4,skip,no_breakout,,,0.8453,0.7850,,,0.00,0.00,0.9121,0.9111,Price is inside its 30-min range ($0.9099-$0.9153); no breakout.
+2026-11-21 21:48:00 PT,auto_pick,5m,1795326300,119.4,skip,leader_idle,,,0.8453,,,,0.00,0.00,0.9121,0.9111,Current pick trend_down (6h +19.73) isn't betting this round; sitting out: #1 trend_down not betting (ask_band).
+2026-11-21 21:48:18 PT,ride_favorite_80,5m,1795326300,101.4,skip,hour_filter,,,0.8495,,,,0.00,0.00,0.9120,0.9111,Tweak 2 HOUR_FILTER: hour_filter: 17 past trades in the 21:00 PT hour net $-0.46.
+2026-11-21 21:48:18 PT,down_ride,5m,1795326300,101.4,skip,side_not_allowed,Up,0.8173,0.8495,0.7850,,,0.00,0.00,0.9120,0.9111,This variant only bets Down; the signal says Up.
+2026-11-21 21:48:20 PT,control,5m,1795326300,99.4,skip,hour_filter,,,0.8530,,,,0.00,0.00,0.9120,0.9111,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 21:00 PT hour net $-20.18.
+2026-11-21 21:48:20 PT,trend_volume,5m,1795326300,99.4,skip,ask_band,Down,0.1710,0.8530,0.8650,0.1400,0.0225,0.00,0.00,0.9120,0.9111,"Down costs 14c, outside this variant's 0.3-0.75 price range."
+2026-11-21 21:48:20 PT,trend_down,5m,1795326300,99.4,skip,ask_band,Down,0.1710,0.8530,0.8650,0.1400,0.0225,0.00,0.00,0.9120,0.9111,"Down costs 14c, outside this variant's 0.25-0.8 price range."
+2026-11-21 21:48:20 PT,breakdown,5m,1795326300,99.4,skip,no_breakout,,,0.8530,0.8650,,,0.00,0.00,0.9120,0.9111,Price is inside its 30-min range ($0.9099-$0.9153); no breakout.
+2026-11-21 21:48:20 PT,auto_pick,5m,1795326300,99.4,skip,leader_idle,,,0.8530,,,,0.00,0.00,0.9120,0.9111,Current pick trend_down (6h +19.73) isn't betting this round; sitting out: #1 trend_down not betting (ask_band).
+2026-11-21 21:48:38 PT,ride_favorite_80,5m,1795326300,81.4,skip,hour_filter,,,0.8659,,,,0.00,0.00,0.9119,0.9111,Tweak 2 HOUR_FILTER: hour_filter: 17 past trades in the 21:00 PT hour net $-0.46.
+2026-11-21 21:48:40 PT,control,5m,1795326300,79.4,skip,hour_filter,,,0.8692,,,,0.00,0.00,0.9119,0.9111,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 21:00 PT hour net $-20.18.
+2026-11-21 21:48:40 PT,auto_pick,5m,1795326300,79.4,skip,leader_idle,,,0.8692,,,,0.00,0.00,0.9119,0.9111,Current pick trend_down (6h +19.73) isn't betting this round; sitting out: #1 trend_down not betting (timing).
+2026-11-21 21:48:58 PT,ride_favorite_80,5m,1795326300,61.4,skip,hour_filter,,,0.9357,,,,0.00,0.00,0.9119,0.9111,Tweak 2 HOUR_FILTER: hour_filter: 17 past trades in the 21:00 PT hour net $-0.46.
+2026-11-21 21:49:00 PT,control,5m,1795326300,59.4,skip,hour_filter,,,0.9423,,,,0.00,0.00,0.9119,0.9111,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 21:00 PT hour net $-20.18.
+2026-11-21 21:49:00 PT,auto_pick,5m,1795326300,59.4,skip,leader_idle,,,0.9423,,,,0.00,0.00,0.9119,0.9111,Current pick trend_down (6h +19.73) isn't betting this round; sitting out: #1 trend_down not betting (timing).
+2026-11-21 21:49:20 PT,control,5m,1795326300,39.4,skip,hour_filter,,,0.9915,,,,0.00,0.00,0.9120,0.9111,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 21:00 PT hour net $-20.18.
+2026-11-21 21:49:20 PT,auto_pick,5m,1795326300,39.4,skip,leader_idle,,,0.9915,,,,0.00,0.00,0.9120,0.9111,Current pick trend_down (6h +19.73) isn't betting this round; sitting out: #1 trend_down not betting (timing).
+2026-11-21 21:51:00 PT,control,5m,1795326600,239.4,skip,hour_filter,,,0.9452,,,,0.00,0.00,0.9142,0.9121,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 21:00 PT hour net $-20.18.
+2026-11-21 21:51:00 PT,model_lead,5m,1795326600,239.4,skip,ask_band,Up,0.9401,0.9452,0.9350,0.9400,-0.0038,0.00,0.00,0.9142,0.9121,"Up costs 94c, outside this variant's 0.2-0.8 price range."
+2026-11-21 21:51:00 PT,trend_volume,5m,1795326600,239.4,skip,weak_momentum,,,0.9452,0.9350,,,0.00,0.00,0.9142,0.9121,"The 60m move (-0.59%) too small to call a trend (z -0.9, need 1.0)."
+2026-11-21 21:51:00 PT,trend_down,5m,1795326600,239.4,skip,momentum_conflict,,,0.9452,0.9350,,,0.00,0.00,0.9142,0.9121,The 60m trend says Down but the last 15m (+0.35%) disagree.
+2026-11-21 21:51:00 PT,breakdown,5m,1795326600,239.4,skip,no_breakout,,,0.9452,0.9350,,,0.00,0.00,0.9142,0.9121,Price is inside its 30-min range ($0.9099-$0.9145); no breakout.
+2026-11-21 21:51:00 PT,auto_pick,5m,1795326600,239.4,skip,leader_idle,,,0.9452,,,,0.00,0.00,0.9142,0.9121,Current pick trend_down (6h +17.80) isn't betting this round; sitting out: #1 trend_down not betting (momentum_conflict).
+2026-11-21 21:51:20 PT,control,5m,1795326600,219.4,skip,hour_filter,,,0.9629,,,,0.00,0.00,0.9143,0.9121,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 21:00 PT hour net $-20.18.
+2026-11-21 21:51:20 PT,model_lead,5m,1795326600,219.4,skip,ask_band,Up,0.9540,0.9629,0.9450,0.9500,0.0006,0.00,0.00,0.9143,0.9121,"Up costs 95c, outside this variant's 0.2-0.8 price range."
+2026-11-21 21:51:20 PT,trend_volume,5m,1795326600,219.4,skip,weak_momentum,,,0.9629,0.9450,,,0.00,0.00,0.9143,0.9121,"The 60m move (-0.59%) too small to call a trend (z -0.9, need 1.0)."
+2026-11-21 21:51:20 PT,trend_down,5m,1795326600,219.4,skip,momentum_conflict,,,0.9629,0.9450,,,0.00,0.00,0.9143,0.9121,The 60m trend says Down but the last 15m (+0.35%) disagree.
+2026-11-21 21:51:20 PT,breakdown,5m,1795326600,219.4,skip,no_breakout,,,0.9629,0.9450,,,0.00,0.00,0.9143,0.9121,Price is inside its 30-min range ($0.9099-$0.9145); no breakout.
+2026-11-21 21:51:20 PT,auto_pick,5m,1795326600,219.4,skip,leader_idle,,,0.9629,,,,0.00,0.00,0.9143,0.9121,Current pick trend_down (6h +17.80) isn't betting this round; sitting out: #1 trend_down not betting (momentum_conflict).
+2026-11-21 21:51:40 PT,control,5m,1795326600,199.4,skip,hour_filter,,,0.9642,,,,0.00,0.00,0.9142,0.9121,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 21:00 PT hour net $-20.18.
+2026-11-21 21:51:40 PT,model_lead,5m,1795326600,199.4,skip,ask_band,Up,0.9496,0.9642,0.9350,0.9400,0.0056,0.00,0.00,0.9142,0.9121,"Up costs 94c, outside this variant's 0.2-0.8 price range."
+2026-11-21 21:51:40 PT,trend_volume,5m,1795326600,199.4,skip,weak_momentum,,,0.9642,0.9350,,,0.00,0.00,0.9142,0.9121,"The 60m move (-0.59%) too small to call a trend (z -0.9, need 1.0)."
+2026-11-21 21:51:40 PT,trend_down,5m,1795326600,199.4,skip,momentum_conflict,,,0.9642,0.9350,,,0.00,0.00,0.9142,0.9121,The 60m trend says Down but the last 15m (+0.35%) disagree.
+2026-11-21 21:51:40 PT,breakdown,5m,1795326600,199.4,skip,no_breakout,,,0.9642,0.9350,,,0.00,0.00,0.9142,0.9121,Price is inside its 30-min range ($0.9099-$0.9145); no breakout.
+2026-11-21 21:51:40 PT,auto_pick,5m,1795326600,199.4,skip,leader_idle,,,0.9642,,,,0.00,0.00,0.9142,0.9121,Current pick trend_down (6h +17.80) isn't betting this round; sitting out: #1 trend_down not betting (momentum_conflict).
+2026-11-21 21:51:58 PT,down_ride,5m,1795326600,181.4,skip,timing,,,0.9702,0.9350,,,0.00,0.00,0.9142,0.9121,Only bets with 90-180s left; 181s left now.
+2026-11-21 21:52:00 PT,control,5m,1795326600,179.4,skip,hour_filter,,,0.9710,,,,0.00,0.00,0.9142,0.9121,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 21:00 PT hour net $-20.18.
+2026-11-21 21:52:00 PT,model_lead,5m,1795326600,179.4,skip,timing,,,0.9710,0.9450,,,0.00,0.00,0.9142,0.9121,Only bets with 180-240s left; 179s left now.
+2026-11-21 21:52:00 PT,trend_volume,5m,1795326600,179.4,skip,weak_momentum,,,0.9710,0.9450,,,0.00,0.00,0.9142,0.9121,"The 60m move (-0.59%) too small to call a trend (z -0.9, need 1.0)."
+2026-11-21 21:52:00 PT,trend_down,5m,1795326600,179.4,skip,momentum_conflict,,,0.9710,0.9450,,,0.00,0.00,0.9142,0.9121,The 60m trend says Down but the last 15m (+0.35%) disagree.
+2026-11-21 21:52:00 PT,breakdown,5m,1795326600,179.4,skip,no_breakout,,,0.9710,0.9450,,,0.00,0.00,0.9142,0.9121,Price is inside its 30-min range ($0.9099-$0.9145); no breakout.
+2026-11-21 21:52:00 PT,auto_pick,5m,1795326600,179.4,skip,leader_idle,,,0.9710,,,,0.00,0.00,0.9142,0.9121,Current pick trend_down (6h +17.80) isn't betting this round; sitting out: #1 trend_down not betting (momentum_conflict).
+2026-11-21 21:52:18 PT,down_ride,5m,1795326600,161.4,skip,side_not_allowed,Up,0.9335,0.9521,0.9150,,,0.00,0.00,0.9138,0.9121,This variant only bets Down; the signal says Up.
+2026-11-21 21:52:20 PT,control,5m,1795326600,159.4,skip,hour_filter,,,0.9534,,,,0.00,0.00,0.9138,0.9121,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 21:00 PT hour net $-20.18.
+2026-11-21 21:52:20 PT,trend_volume,5m,1795326600,159.4,skip,weak_momentum,,,0.9534,0.9100,,,0.00,0.00,0.9138,0.9121,"The 60m move (-0.58%) too small to call a trend (z -0.9, need 1.0)."
+2026-11-21 21:52:20 PT,trend_down,5m,1795326600,159.4,skip,momentum_conflict,,,0.9534,0.9100,,,0.00,0.00,0.9138,0.9121,The 60m trend says Down but the last 15m (+0.30%) disagree.
+2026-11-21 21:52:20 PT,breakdown,5m,1795326600,159.4,skip,no_breakout,,,0.9534,0.9100,,,0.00,0.00,0.9138,0.9121,Price is inside its 30-min range ($0.9099-$0.9145); no breakout.
+2026-11-21 21:52:20 PT,auto_pick,5m,1795326600,159.4,skip,leader_idle,,,0.9534,,,,0.00,0.00,0.9138,0.9121,Current pick trend_down (6h +17.80) isn't betting this round; sitting out: #1 trend_down not betting (momentum_conflict).
+2026-11-21 21:52:38 PT,down_ride,5m,1795326600,141.4,skip,side_not_allowed,Up,0.9478,0.9607,0.9350,,,0.00,0.00,0.9138,0.9121,This variant only bets Down; the signal says Up.
+2026-11-21 21:52:40 PT,control,5m,1795326600,139.4,skip,hour_filter,,,0.9661,,,,0.00,0.00,0.9138,0.9121,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 21:00 PT hour net $-20.18.
+2026-11-21 21:52:40 PT,trend_volume,5m,1795326600,139.4,skip,weak_momentum,,,0.9661,0.9500,,,0.00,0.00,0.9138,0.9121,"The 60m move (-0.58%) too small to call a trend (z -0.9, need 1.0)."
+2026-11-21 21:52:40 PT,trend_down,5m,1795326600,139.4,skip,momentum_conflict,,,0.9661,0.9500,,,0.00,0.00,0.9138,0.9121,The 60m trend says Down but the last 15m (+0.30%) disagree.
+2026-11-21 21:52:40 PT,breakdown,5m,1795326600,139.4,skip,no_breakout,,,0.9661,0.9500,,,0.00,0.00,0.9138,0.9121,Price is inside its 30-min range ($0.9099-$0.9145); no breakout.
+2026-11-21 21:52:40 PT,auto_pick,5m,1795326600,139.4,skip,leader_idle,,,0.9661,,,,0.00,0.00,0.9138,0.9121,Current pick trend_down (6h +17.80) isn't betting this round; sitting out: #1 trend_down not betting (momentum_conflict).
+2026-11-21 21:52:58 PT,ride_favorite_80,5m,1795326600,121.4,skip,hour_filter,,,0.9818,,,,0.00,0.00,0.9139,0.9121,Tweak 2 HOUR_FILTER: hour_filter: 17 past trades in the 21:00 PT hour net $-0.46.
+2026-11-21 21:52:58 PT,down_ride,5m,1795326600,121.4,skip,side_not_allowed,Up,0.9759,0.9818,0.9700,,,0.00,0.00,0.9139,0.9121,This variant only bets Down; the signal says Up.
+2026-11-21 21:53:00 PT,control,5m,1795326600,119.4,skip,hour_filter,,,0.9797,,,,0.00,0.00,0.9139,0.9121,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 21:00 PT hour net $-20.18.
+2026-11-21 21:53:00 PT,trend_volume,5m,1795326600,119.4,skip,weak_momentum,,,0.9797,0.9700,,,0.00,0.00,0.9139,0.9121,"The 60m move (-0.58%) too small to call a trend (z -0.9, need 1.0)."
+2026-11-21 21:53:00 PT,trend_down,5m,1795326600,119.4,skip,momentum_conflict,,,0.9797,0.9700,,,0.00,0.00,0.9139,0.9121,The 60m trend says Down but the last 15m (+0.30%) disagree.
+2026-11-21 21:53:00 PT,breakdown,5m,1795326600,119.4,skip,no_breakout,,,0.9797,0.9700,,,0.00,0.00,0.9139,0.9121,Price is inside its 30-min range ($0.9099-$0.9145); no breakout.
+2026-11-21 21:53:00 PT,auto_pick,5m,1795326600,119.4,skip,leader_idle,,,0.9797,,,,0.00,0.00,0.9139,0.9121,Current pick trend_down (6h +17.80) isn't betting this round; sitting out: #1 trend_down not betting (momentum_conflict).
+2026-11-21 21:53:18 PT,ride_favorite_80,5m,1795326600,101.4,skip,hour_filter,,,0.9905,,,,0.00,0.00,0.9139,0.9121,Tweak 2 HOUR_FILTER: hour_filter: 17 past trades in the 21:00 PT hour net $-0.46.
+2026-11-21 21:53:18 PT,down_ride,5m,1795326600,101.4,skip,side_not_allowed,Up,0.9828,0.9905,0.9750,,,0.00,0.00,0.9139,0.9121,This variant only bets Down; the signal says Up.
+2026-11-21 21:53:20 PT,control,5m,1795326600,99.4,skip,hour_filter,,,0.9857,,,,0.00,0.00,0.9138,0.9121,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 21:00 PT hour net $-20.18.
+2026-11-21 21:53:20 PT,trend_volume,5m,1795326600,99.4,skip,weak_momentum,,,0.9857,0.9800,,,0.00,0.00,0.9138,0.9121,"The 60m move (-0.59%) too small to call a trend (z -0.9, need 1.0)."
+2026-11-21 21:53:20 PT,trend_down,5m,1795326600,99.4,skip,momentum_conflict,,,0.9857,0.9800,,,0.00,0.00,0.9138,0.9121,The 60m trend says Down but the last 15m (+0.44%) disagree.
+2026-11-21 21:53:20 PT,breakdown,5m,1795326600,99.4,skip,no_breakout,,,0.9857,0.9800,,,0.00,0.00,0.9138,0.9121,Price is inside its 30-min range ($0.9099-$0.9161); no breakout.
+2026-11-21 21:53:20 PT,auto_pick,5m,1795326600,99.4,skip,leader_idle,,,0.9857,,,,0.00,0.00,0.9138,0.9121,Current pick trend_down (6h +17.80) isn't betting this round; sitting out: #1 trend_down not betting (momentum_conflict).
+2026-11-21 21:53:38 PT,ride_favorite_80,5m,1795326600,81.4,skip,hour_filter,,,0.9930,,,,0.00,0.00,0.9137,0.9121,Tweak 2 HOUR_FILTER: hour_filter: 17 past trades in the 21:00 PT hour net $-0.46.
+2026-11-21 21:53:40 PT,control,5m,1795326600,79.4,skip,hour_filter,,,0.9908,,,,0.00,0.00,0.9136,0.9121,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 21:00 PT hour net $-20.18.
+2026-11-21 21:53:40 PT,auto_pick,5m,1795326600,79.4,skip,leader_idle,,,0.9908,,,,0.00,0.00,0.9136,0.9121,Current pick trend_down (6h +17.80) isn't betting this round; sitting out: #1 trend_down not betting (timing).
+2026-11-21 21:53:58 PT,ride_favorite_80,5m,1795326600,61.3,skip,hour_filter,,,0.9994,,,,0.00,0.00,0.9138,0.9121,Tweak 2 HOUR_FILTER: hour_filter: 17 past trades in the 21:00 PT hour net $-0.46.
+2026-11-21 21:54:00 PT,control,5m,1795326600,59.3,skip,hour_filter,,,0.9997,,,,0.00,0.00,0.9138,0.9121,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 21:00 PT hour net $-20.18.
+2026-11-21 21:54:00 PT,auto_pick,5m,1795326600,59.3,skip,leader_idle,,,0.9997,,,,0.00,0.00,0.9138,0.9121,Current pick trend_down (6h +17.80) isn't betting this round; sitting out: #1 trend_down not betting (timing).
+2026-11-21 21:54:20 PT,control,5m,1795326600,39.3,skip,hour_filter,,,1.0000,,,,0.00,0.00,0.9138,0.9121,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 21:00 PT hour net $-20.18.
+2026-11-21 21:54:20 PT,auto_pick,5m,1795326600,39.3,skip,leader_idle,,,1.0000,,,,0.00,0.00,0.9138,0.9121,Current pick trend_down (6h +17.80) isn't betting this round; sitting out: #1 trend_down not betting (timing).
+2026-11-21 21:56:00 PT,control,5m,1795326900,239.3,skip,hour_filter,,,0.5025,,,,0.00,0.00,0.9138,0.9138,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 21:00 PT hour net $-20.18.
+2026-11-21 21:56:00 PT,model_lead,5m,1795326900,239.3,skip,lead_small,Up,0.5088,0.5025,0.5150,,,0.00,0.00,0.9138,0.9138,Lead gate: XRP is $+0.0000 past the price to beat our way (Up); need at least $0.0005 (0.055% of price).
+2026-11-21 21:56:00 PT,trend_volume,5m,1795326900,239.3,skip,momentum_conflict,,,0.5025,0.5150,,,0.00,0.00,0.9138,0.9138,The 60m trend says Down but the last 15m (+0.28%) disagree.
+2026-11-21 21:56:00 PT,trend_down,5m,1795326900,239.3,skip,momentum_conflict,,,0.5025,0.5150,,,0.00,0.00,0.9138,0.9138,The 60m trend says Down but the last 15m (+0.28%) disagree.
+2026-11-21 21:56:00 PT,breakdown,5m,1795326900,239.3,skip,no_breakout,,,0.5025,0.5150,,,0.00,0.00,0.9138,0.9138,Price is inside its 30-min range ($0.9099-$0.9161); no breakout.
+2026-11-21 21:56:00 PT,auto_pick,5m,1795326900,239.3,skip,leader_idle,,,0.5025,,,,0.00,0.00,0.9138,0.9138,Current pick trend_down (6h +17.80) isn't betting this round; sitting out: #1 trend_down not betting (momentum_conflict).
+2026-11-21 21:56:20 PT,control,5m,1795326900,219.3,skip,hour_filter,,,0.5765,,,,0.00,0.00,0.9141,0.9138,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 21:00 PT hour net $-20.18.
+2026-11-21 21:56:20 PT,model_lead,5m,1795326900,219.3,skip,lead_small,Up,0.6058,0.5765,0.6350,,,0.00,0.00,0.9141,0.9138,Lead gate: XRP is $+0.0002 past the price to beat our way (Up); need at least $0.0005 (0.055% of price).
+2026-11-21 21:56:20 PT,trend_volume,5m,1795326900,219.3,skip,momentum_conflict,,,0.5765,0.6350,,,0.00,0.00,0.9141,0.9138,The 60m trend says Down but the last 15m (+0.28%) disagree.
+2026-11-21 21:56:20 PT,trend_down,5m,1795326900,219.3,skip,momentum_conflict,,,0.5765,0.6350,,,0.00,0.00,0.9141,0.9138,The 60m trend says Down but the last 15m (+0.28%) disagree.
+2026-11-21 21:56:20 PT,breakdown,5m,1795326900,219.3,skip,no_breakout,,,0.5765,0.6350,,,0.00,0.00,0.9141,0.9138,Price is inside its 30-min range ($0.9099-$0.9161); no breakout.
+2026-11-21 21:56:20 PT,auto_pick,5m,1795326900,219.3,skip,leader_idle,,,0.5765,,,,0.00,0.00,0.9141,0.9138,Current pick trend_down (6h +17.80) isn't betting this round; sitting out: #1 trend_down not betting (momentum_conflict).
+2026-11-21 21:56:40 PT,control,5m,1795326900,199.3,skip,hour_filter,,,0.6422,,,,0.00,0.00,0.9143,0.9138,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 21:00 PT hour net $-20.18.
+2026-11-21 21:56:40 PT,model_lead,5m,1795326900,199.3,skip,lead_small,Up,0.6636,0.6422,0.6850,,,0.00,0.00,0.9143,0.9138,Lead gate: XRP is $+0.0004 past the price to beat our way (Up); need at least $0.0005 (0.055% of price).
+2026-11-21 21:56:40 PT,trend_volume,5m,1795326900,199.3,skip,momentum_conflict,,,0.6422,0.6850,,,0.00,0.00,0.9143,0.9138,The 60m trend says Down but the last 15m (+0.28%) disagree.
+2026-11-21 21:56:40 PT,trend_down,5m,1795326900,199.3,skip,momentum_conflict,,,0.6422,0.6850,,,0.00,0.00,0.9143,0.9138,The 60m trend says Down but the last 15m (+0.28%) disagree.
+2026-11-21 21:56:40 PT,breakdown,5m,1795326900,199.3,skip,no_breakout,,,0.6422,0.6850,,,0.00,0.00,0.9143,0.9138,Price is inside its 30-min range ($0.9099-$0.9161); no breakout.
+2026-11-21 21:56:40 PT,auto_pick,5m,1795326900,199.3,skip,leader_idle,,,0.6422,,,,0.00,0.00,0.9143,0.9138,Current pick trend_down (6h +17.80) isn't betting this round; sitting out: #1 trend_down not betting (momentum_conflict).
+2026-11-21 21:56:58 PT,down_ride,5m,1795326900,181.3,skip,timing,,,0.6723,0.6850,,,0.00,0.00,0.9143,0.9138,Only bets with 90-180s left; 181s left now.
+2026-11-21 21:57:00 PT,control,5m,1795326900,179.3,skip,hour_filter,,,0.6718,,,,0.00,0.00,0.9143,0.9138,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 21:00 PT hour net $-20.18.
+2026-11-21 21:57:00 PT,model_lead,5m,1795326900,179.3,skip,timing,,,0.6718,0.6100,,,0.00,0.00,0.9143,0.9138,Only bets with 180-240s left; 179s left now.
+2026-11-21 21:57:00 PT,trend_volume,5m,1795326900,179.3,skip,momentum_conflict,,,0.6718,0.6100,,,0.00,0.00,0.9143,0.9138,The 60m trend says Down but the last 15m (+0.28%) disagree.
+2026-11-21 21:57:00 PT,trend_down,5m,1795326900,179.3,skip,momentum_conflict,,,0.6718,0.6100,,,0.00,0.00,0.9143,0.9138,The 60m trend says Down but the last 15m (+0.28%) disagree.
+2026-11-21 21:57:00 PT,breakdown,5m,1795326900,179.3,skip,no_breakout,,,0.6718,0.6100,,,0.00,0.00,0.9143,0.9138,Price is inside its 30-min range ($0.9099-$0.9161); no breakout.
+2026-11-21 21:57:00 PT,auto_pick,5m,1795326900,179.3,skip,leader_idle,,,0.6718,,,,0.00,0.00,0.9143,0.9138,Current pick trend_down (6h +17.80) isn't betting this round; sitting out: #1 trend_down not betting (momentum_conflict).
+2026-11-21 21:57:18 PT,down_ride,5m,1795326900,161.3,skip,side_not_allowed,Up,0.6612,0.6973,0.6250,,,0.00,0.00,0.9144,0.9138,This variant only bets Down; the signal says Up.
+2026-11-21 21:57:20 PT,control,5m,1795326900,159.3,skip,hour_filter,,,0.6988,,,,0.00,0.00,0.9144,0.9138,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 21:00 PT hour net $-20.18.
+2026-11-21 21:57:20 PT,trend_volume,5m,1795326900,159.3,skip,weak_momentum,,,0.6988,0.6350,,,0.00,0.00,0.9144,0.9138,"The 60m move (-0.53%) too small to call a trend (z -0.9, need 1.0)."
+2026-11-21 21:57:20 PT,trend_down,5m,1795326900,159.3,skip,momentum_conflict,,,0.6988,0.6350,,,0.00,0.00,0.9144,0.9138,The 60m trend says Down but the last 15m (+0.28%) disagree.
+2026-11-21 21:57:20 PT,breakdown,5m,1795326900,159.3,skip,no_breakout,,,0.6988,0.6350,,,0.00,0.00,0.9144,0.9138,Price is inside its 30-min range ($0.9099-$0.9161); no breakout.
+2026-11-21 21:57:20 PT,auto_pick,5m,1795326900,159.3,skip,leader_idle,,,0.6988,,,,0.00,0.00,0.9144,0.9138,Current pick trend_down (6h +17.80) isn't betting this round; sitting out: #1 trend_down not betting (momentum_conflict).
+2026-11-21 21:57:38 PT,down_ride,5m,1795326900,141.3,skip,side_not_allowed,Up,0.7071,0.6792,0.7350,,,0.00,0.00,0.9143,0.9138,This variant only bets Down; the signal says Up.
+2026-11-21 21:57:40 PT,control,5m,1795326900,139.3,skip,hour_filter,,,0.7147,,,,0.00,0.00,0.9144,0.9138,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 21:00 PT hour net $-20.18.
+2026-11-21 21:57:40 PT,trend_volume,5m,1795326900,139.3,skip,weak_momentum,,,0.7147,0.7500,,,0.00,0.00,0.9144,0.9138,"The 60m move (-0.53%) too small to call a trend (z -0.9, need 1.0)."
+2026-11-21 21:57:40 PT,trend_down,5m,1795326900,139.3,skip,momentum_conflict,,,0.7147,0.7500,,,0.00,0.00,0.9144,0.9138,The 60m trend says Down but the last 15m (+0.28%) disagree.
+2026-11-21 21:57:40 PT,breakdown,5m,1795326900,139.3,skip,no_breakout,,,0.7147,0.7500,,,0.00,0.00,0.9144,0.9138,Price is inside its 30-min range ($0.9099-$0.9161); no breakout.
+2026-11-21 21:57:40 PT,auto_pick,5m,1795326900,139.3,skip,leader_idle,,,0.7147,,,,0.00,0.00,0.9144,0.9138,Current pick trend_down (6h +17.80) isn't betting this round; sitting out: #1 trend_down not betting (momentum_conflict).
+2026-11-21 21:57:58 PT,ride_favorite_80,5m,1795326900,121.3,skip,hour_filter,,,0.6768,,,,0.00,0.00,0.9142,0.9138,Tweak 2 HOUR_FILTER: hour_filter: 17 past trades in the 21:00 PT hour net $-0.46.
+2026-11-21 21:57:58 PT,down_ride,5m,1795326900,121.3,skip,side_not_allowed,Up,0.6909,0.6768,0.7050,,,0.00,0.00,0.9142,0.9138,This variant only bets Down; the signal says Up.
+2026-11-21 21:58:00 PT,control,5m,1795326900,119.3,skip,hour_filter,,,0.6786,,,,0.00,0.00,0.9142,0.9138,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 21:00 PT hour net $-20.18.
+2026-11-21 21:58:00 PT,trend_volume,5m,1795326900,119.3,skip,weak_momentum,,,0.6786,0.5800,,,0.00,0.00,0.9142,0.9138,"The 60m move (-0.53%) too small to call a trend (z -0.9, need 1.0)."
+2026-11-21 21:58:00 PT,trend_down,5m,1795326900,119.3,skip,momentum_conflict,,,0.6786,0.5800,,,0.00,0.00,0.9142,0.9138,The 60m trend says Down but the last 15m (+0.28%) disagree.
+2026-11-21 21:58:00 PT,breakdown,5m,1795326900,119.3,skip,no_breakout,,,0.6786,0.5800,,,0.00,0.00,0.9142,0.9138,Price is inside its 30-min range ($0.9099-$0.9161); no breakout.
+2026-11-21 21:58:00 PT,auto_pick,5m,1795326900,119.3,skip,leader_idle,,,0.6786,,,,0.00,0.00,0.9142,0.9138,Current pick trend_down (6h +17.80) isn't betting this round; sitting out: #1 trend_down not betting (momentum_conflict).
+2026-11-21 21:58:18 PT,ride_favorite_80,5m,1795326900,101.3,skip,hour_filter,,,0.4358,,,,0.00,0.00,0.9137,0.9138,Tweak 2 HOUR_FILTER: hour_filter: 17 past trades in the 21:00 PT hour net $-0.46.
+2026-11-21 21:58:18 PT,down_ride,5m,1795326900,101.3,skip,lead_small,Down,0.6171,0.4358,0.3300,,,0.00,0.00,0.9137,0.9138,Lead gate: XRP is $+0.0001 past the price to beat our way (Down); need at least $0.0005 (0.055% of price).
+2026-11-21 21:58:20 PT,control,5m,1795326900,99.3,skip,hour_filter,,,0.4349,,,,0.00,0.00,0.9137,0.9138,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 21:00 PT hour net $-20.18.
+2026-11-21 21:58:20 PT,trend_volume,5m,1795326900,99.3,skip,weak_momentum,,,0.4349,0.3850,,,0.00,0.00,0.9137,0.9138,"The 60m move (-0.57%) too small to call a trend (z -0.9, need 1.0)."
+2026-11-21 21:58:20 PT,trend_down,5m,1795326900,99.3,skip,momentum_conflict,,,0.4349,0.3850,,,0.00,0.00,0.9137,0.9138,The 60m trend says Down but the last 15m (+0.32%) disagree.
+2026-11-21 21:58:20 PT,breakdown,5m,1795326900,99.3,skip,no_breakout,,,0.4349,0.3850,,,0.00,0.00,0.9137,0.9138,Price is inside its 30-min range ($0.9099-$0.9161); no breakout.
+2026-11-21 21:58:20 PT,auto_pick,5m,1795326900,99.3,skip,leader_idle,,,0.4349,,,,0.00,0.00,0.9137,0.9138,Current pick trend_down (6h +17.80) isn't betting this round; sitting out: #1 trend_down not betting (momentum_conflict).
+2026-11-21 21:58:38 PT,ride_favorite_80,5m,1795326900,81.3,skip,hour_filter,,,0.4182,,,,0.00,0.00,0.9137,0.9138,Tweak 2 HOUR_FILTER: hour_filter: 17 past trades in the 21:00 PT hour net $-0.46.
+2026-11-21 21:58:40 PT,control,5m,1795326900,79.3,skip,hour_filter,,,0.4165,,,,0.00,0.00,0.9137,0.9138,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 21:00 PT hour net $-20.18.
+2026-11-21 21:58:40 PT,auto_pick,5m,1795326900,79.3,skip,leader_idle,,,0.4165,,,,0.00,0.00,0.9137,0.9138,Current pick trend_down (6h +17.80) isn't betting this round; sitting out: #1 trend_down not betting (timing).
+2026-11-21 21:58:58 PT,ride_favorite_80,5m,1795326900,61.3,skip,hour_filter,,,0.4213,,,,0.00,0.00,0.9137,0.9138,Tweak 2 HOUR_FILTER: hour_filter: 17 past trades in the 21:00 PT hour net $-0.46.
+2026-11-21 21:59:00 PT,control,5m,1795326900,59.3,skip,hour_filter,,,0.4107,,,,0.00,0.00,0.9137,0.9138,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 21:00 PT hour net $-20.18.
+2026-11-21 21:59:00 PT,auto_pick,5m,1795326900,59.3,skip,leader_idle,,,0.4107,,,,0.00,0.00,0.9137,0.9138,Current pick trend_down (6h +17.80) isn't betting this round; sitting out: #1 trend_down not betting (timing).
+2026-11-21 21:59:20 PT,control,5m,1795326900,39.3,skip,hour_filter,,,0.7841,,,,0.00,0.00,0.9142,0.9138,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 21:00 PT hour net $-20.18.
+2026-11-21 21:59:20 PT,auto_pick,5m,1795326900,39.3,skip,leader_idle,,,0.7841,,,,0.00,0.00,0.9142,0.9138,Current pick trend_down (6h +17.80) isn't betting this round; sitting out: #1 trend_down not betting (timing).
+2026-11-21 22:01:00 PT,control,5m,1795327200,239.2,skip,hour_filter,,,0.8698,,,,0.00,0.00,0.9156,0.9141,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 22:00 PT hour net $-2.08.
+2026-11-21 22:01:00 PT,model_lead,5m,1795327200,239.2,skip,ask_band,Up,0.8599,0.8698,0.8500,0.8600,-0.0085,0.00,0.00,0.9156,0.9141,"Up costs 86c, outside this variant's 0.2-0.8 price range."
+2026-11-21 22:01:00 PT,trend_volume,5m,1795327200,239.2,skip,choppy,,,0.8698,0.8500,,,0.00,0.00,0.9156,0.9141,"Choppy: price went back and forth (straightness 0.11, need 0.15)."
+2026-11-21 22:01:00 PT,trend_down,5m,1795327200,239.2,skip,choppy,,,0.8698,0.8500,,,0.00,0.00,0.9156,0.9141,"Choppy: price went back and forth (straightness 0.11, need 0.12)."
+2026-11-21 22:01:00 PT,breakdown,5m,1795327200,239.2,skip,no_breakout,,,0.8698,0.8500,,,0.00,0.00,0.9156,0.9141,Price is inside its 30-min range ($0.9099-$0.9161); no breakout.
+2026-11-21 22:01:00 PT,auto_pick,5m,1795327200,239.2,skip,hour_filter,,,0.8698,,,,0.00,0.00,0.9156,0.9141,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 22:00 PT hour net $-4.25.
+2026-11-21 22:01:20 PT,control,5m,1795327200,219.2,skip,hour_filter,,,0.8945,,,,0.00,0.00,0.9157,0.9141,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 22:00 PT hour net $-2.08.
+2026-11-21 22:01:20 PT,model_lead,5m,1795327200,219.2,skip,ask_band,Up,0.8972,0.8945,0.9000,0.9100,-0.0185,0.00,0.00,0.9157,0.9141,"Up costs 91c, outside this variant's 0.2-0.8 price range."
+2026-11-21 22:01:20 PT,trend_volume,5m,1795327200,219.2,skip,choppy,,,0.8945,0.9000,,,0.00,0.00,0.9157,0.9141,"Choppy: price went back and forth (straightness 0.11, need 0.15)."
+2026-11-21 22:01:20 PT,trend_down,5m,1795327200,219.2,skip,choppy,,,0.8945,0.9000,,,0.00,0.00,0.9157,0.9141,"Choppy: price went back and forth (straightness 0.11, need 0.12)."
+2026-11-21 22:01:20 PT,breakdown,5m,1795327200,219.2,skip,no_breakout,,,0.8945,0.9000,,,0.00,0.00,0.9157,0.9141,Price is inside its 30-min range ($0.9099-$0.9161); no breakout.
+2026-11-21 22:01:20 PT,auto_pick,5m,1795327200,219.2,skip,hour_filter,,,0.8945,,,,0.00,0.00,0.9157,0.9141,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 22:00 PT hour net $-4.25.
+2026-11-21 22:01:30 PT,model_lead,5m,1795327200,209.2,buy,ok,Up,0.7153,0.8357,0.5950,0.6000,0.0985,3.00,5.00,0.9153,0.9141,"Buying $3.00 of Up: I put Up at 72%, price+fee is 61.7c, edge 9.9c."
+2026-11-21 22:01:40 PT,control,5m,1795327200,199.2,skip,hour_filter,,,0.6126,,,,0.00,0.00,0.9144,0.9141,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 22:00 PT hour net $-2.08.
+2026-11-21 22:01:40 PT,trend_volume,5m,1795327200,199.2,skip,choppy,,,0.6126,0.5050,,,0.00,0.00,0.9144,0.9141,"Choppy: price went back and forth (straightness 0.11, need 0.15)."
+2026-11-21 22:01:40 PT,trend_down,5m,1795327200,199.2,skip,choppy,,,0.6126,0.5050,,,0.00,0.00,0.9144,0.9141,"Choppy: price went back and forth (straightness 0.11, need 0.12)."
+2026-11-21 22:01:40 PT,breakdown,5m,1795327200,199.2,skip,no_breakout,,,0.6126,0.5050,,,0.00,0.00,0.9144,0.9141,Price is inside its 30-min range ($0.9099-$0.9161); no breakout.
+2026-11-21 22:01:40 PT,auto_pick,5m,1795327200,199.2,skip,hour_filter,,,0.6126,,,,0.00,0.00,0.9144,0.9141,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 22:00 PT hour net $-4.25.
+2026-11-21 22:01:58 PT,down_ride,5m,1795327200,181.2,skip,timing,,,0.6357,0.7350,,,0.00,0.00,0.9145,0.9141,Only bets with 90-180s left; 181s left now.
+2026-11-21 22:02:00 PT,control,5m,1795327200,179.2,skip,hour_filter,,,0.7210,,,,0.00,0.00,0.9147,0.9141,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 22:00 PT hour net $-2.08.
+2026-11-21 22:02:00 PT,trend_volume,5m,1795327200,179.2,skip,choppy,,,0.7210,0.7550,,,0.00,0.00,0.9147,0.9141,"Choppy: price went back and forth (straightness 0.11, need 0.15)."
+2026-11-21 22:02:00 PT,trend_down,5m,1795327200,179.2,skip,choppy,,,0.7210,0.7550,,,0.00,0.00,0.9147,0.9141,"Choppy: price went back and forth (straightness 0.11, need 0.12)."
+2026-11-21 22:02:00 PT,breakdown,5m,1795327200,179.2,skip,no_breakout,,,0.7210,0.7550,,,0.00,0.00,0.9147,0.9141,Price is inside its 30-min range ($0.9099-$0.9161); no breakout.
+2026-11-21 22:02:00 PT,auto_pick,5m,1795327200,179.2,skip,hour_filter,,,0.7210,,,,0.00,0.00,0.9147,0.9141,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 22:00 PT hour net $-4.25.
+2026-11-21 22:02:18 PT,down_ride,5m,1795327200,161.2,skip,side_not_allowed,Up,0.7356,0.7261,0.7450,,,0.00,0.00,0.9147,0.9141,This variant only bets Down; the signal says Up.
+2026-11-21 22:02:20 PT,control,5m,1795327200,159.2,skip,hour_filter,,,0.7434,,,,0.00,0.00,0.9148,0.9141,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 22:00 PT hour net $-2.08.
+2026-11-21 22:02:20 PT,trend_volume,5m,1795327200,159.2,skip,choppy,,,0.7434,0.6500,,,0.00,0.00,0.9148,0.9141,"Choppy: price went back and forth (straightness 0.07, need 0.15)."
+2026-11-21 22:02:20 PT,trend_down,5m,1795327200,159.2,skip,choppy,,,0.7434,0.6500,,,0.00,0.00,0.9148,0.9141,"Choppy: price went back and forth (straightness 0.07, need 0.12)."
+2026-11-21 22:02:20 PT,breakdown,5m,1795327200,159.2,skip,no_breakout,,,0.7434,0.6500,,,0.00,0.00,0.9148,0.9141,Price is inside its 30-min range ($0.9099-$0.9161); no breakout.
+2026-11-21 22:02:20 PT,auto_pick,5m,1795327200,159.2,skip,hour_filter,,,0.7434,,,,0.00,0.00,0.9148,0.9141,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 22:00 PT hour net $-4.25.
+2026-11-21 22:02:38 PT,down_ride,5m,1795327200,141.2,skip,side_not_allowed,Up,0.7193,0.7785,0.6600,,,0.00,0.00,0.9148,0.9141,This variant only bets Down; the signal says Up.
+2026-11-21 22:02:40 PT,control,5m,1795327200,139.2,skip,hour_filter,,,0.7806,,,,0.00,0.00,0.9148,0.9141,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 22:00 PT hour net $-2.08.
+2026-11-21 22:02:40 PT,trend_volume,5m,1795327200,139.2,skip,choppy,,,0.7806,0.7050,,,0.00,0.00,0.9148,0.9141,"Choppy: price went back and forth (straightness 0.07, need 0.15)."
+2026-11-21 22:02:40 PT,trend_down,5m,1795327200,139.2,skip,choppy,,,0.7806,0.7050,,,0.00,0.00,0.9148,0.9141,"Choppy: price went back and forth (straightness 0.07, need 0.12)."
+2026-11-21 22:02:40 PT,breakdown,5m,1795327200,139.2,skip,no_breakout,,,0.7806,0.7050,,,0.00,0.00,0.9148,0.9141,Price is inside its 30-min range ($0.9099-$0.9161); no breakout.
+2026-11-21 22:02:40 PT,auto_pick,5m,1795327200,139.2,skip,hour_filter,,,0.7806,,,,0.00,0.00,0.9148,0.9141,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 22:00 PT hour net $-4.25.
+2026-11-21 22:02:58 PT,ride_favorite_80,5m,1795327200,121.2,skip,hour_filter,,,0.7855,,,,0.00,0.00,0.9148,0.9141,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 22:00 PT hour net $-0.28.
+2026-11-21 22:02:58 PT,down_ride,5m,1795327200,121.2,skip,side_not_allowed,Up,0.8003,0.7855,0.8150,,,0.00,0.00,0.9148,0.9141,This variant only bets Down; the signal says Up.
+2026-11-21 22:03:00 PT,control,5m,1795327200,119.2,skip,hour_filter,,,0.7917,,,,0.00,0.00,0.9148,0.9141,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 22:00 PT hour net $-2.08.
+2026-11-21 22:03:00 PT,trend_volume,5m,1795327200,119.2,skip,choppy,,,0.7917,0.7700,,,0.00,0.00,0.9148,0.9141,"Choppy: price went back and forth (straightness 0.07, need 0.15)."
+2026-11-21 22:03:00 PT,trend_down,5m,1795327200,119.2,skip,choppy,,,0.7917,0.7700,,,0.00,0.00,0.9148,0.9141,"Choppy: price went back and forth (straightness 0.07, need 0.12)."
+2026-11-21 22:03:00 PT,breakdown,5m,1795327200,119.2,skip,no_breakout,,,0.7917,0.7700,,,0.00,0.00,0.9148,0.9141,Price is inside its 30-min range ($0.9099-$0.9161); no breakout.
+2026-11-21 22:03:00 PT,auto_pick,5m,1795327200,119.2,skip,hour_filter,,,0.7917,,,,0.00,0.00,0.9148,0.9141,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 22:00 PT hour net $-4.25.
+2026-11-21 22:03:18 PT,ride_favorite_80,5m,1795327200,101.2,skip,hour_filter,,,0.7741,,,,0.00,0.00,0.9146,0.9141,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 22:00 PT hour net $-0.28.
+2026-11-21 22:03:18 PT,down_ride,5m,1795327200,101.2,skip,side_not_allowed,Up,0.6996,0.7741,0.6250,,,0.00,0.00,0.9146,0.9141,This variant only bets Down; the signal says Up.
+2026-11-21 22:03:20 PT,control,5m,1795327200,99.2,skip,hour_filter,,,0.7612,,,,0.00,0.00,0.9146,0.9141,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 22:00 PT hour net $-2.08.
+2026-11-21 22:03:20 PT,trend_volume,5m,1795327200,99.2,skip,choppy,,,0.7612,0.6300,,,0.00,0.00,0.9146,0.9141,"Choppy: price went back and forth (straightness 0.05, need 0.15)."
+2026-11-21 22:03:20 PT,trend_down,5m,1795327200,99.2,skip,choppy,,,0.7612,0.6300,,,0.00,0.00,0.9146,0.9141,"Choppy: price went back and forth (straightness 0.05, need 0.12)."
+2026-11-21 22:03:20 PT,breakdown,5m,1795327200,99.2,skip,no_breakout,,,0.7612,0.6300,,,0.00,0.00,0.9146,0.9141,Price is inside its 30-min range ($0.9099-$0.9161); no breakout.
+2026-11-21 22:03:20 PT,auto_pick,5m,1795327200,99.2,skip,hour_filter,,,0.7612,,,,0.00,0.00,0.9146,0.9141,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 22:00 PT hour net $-4.25.
+2026-11-21 22:03:38 PT,ride_favorite_80,5m,1795327200,81.2,skip,hour_filter,,,0.7052,,,,0.00,0.00,0.9144,0.9141,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 22:00 PT hour net $-0.28.
+2026-11-21 22:03:40 PT,control,5m,1795327200,79.2,skip,hour_filter,,,0.6405,,,,0.00,0.00,0.9143,0.9141,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 22:00 PT hour net $-2.08.
+2026-11-21 22:03:40 PT,auto_pick,5m,1795327200,79.2,skip,hour_filter,,,0.6405,,,,0.00,0.00,0.9143,0.9141,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 22:00 PT hour net $-4.25.
+2026-11-21 22:03:58 PT,ride_favorite_80,5m,1795327200,61.2,skip,hour_filter,,,0.7371,,,,0.00,0.00,0.9144,0.9141,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 22:00 PT hour net $-0.28.
+2026-11-21 22:04:00 PT,control,5m,1795327200,59.2,skip,hour_filter,,,0.7409,,,,0.00,0.00,0.9144,0.9141,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 22:00 PT hour net $-2.08.
+2026-11-21 22:04:00 PT,auto_pick,5m,1795327200,59.2,skip,hour_filter,,,0.7409,,,,0.00,0.00,0.9144,0.9141,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 22:00 PT hour net $-4.25.
+2026-11-21 22:04:20 PT,control,5m,1795327200,39.2,skip,hour_filter,,,0.9205,,,,0.00,0.00,0.9146,0.9141,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 22:00 PT hour net $-2.08.
+2026-11-21 22:04:20 PT,auto_pick,5m,1795327200,39.2,skip,hour_filter,,,0.9205,,,,0.00,0.00,0.9146,0.9141,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 22:00 PT hour net $-4.25.
