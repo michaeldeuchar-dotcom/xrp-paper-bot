@@ -1704,9 +1704,83 @@
     "to": "trend_volume",
     "ts_pt": "2026-11-22 10:41:00 PT",
     "why": "model_lead no longer qualifies"
+   },
+   {
+    "from": "trend_volume",
+    "scope": "6h",
+    "scores": {
+     "breakdown": [
+      -3.1,
+      1
+     ],
+     "control": [
+      1.61,
+      22
+     ],
+     "down_ride": [
+      -2.34,
+      6
+     ],
+     "model_lead": [
+      1.35,
+      4
+     ],
+     "ride_favorite_80": [
+      -5.0,
+      1
+     ],
+     "trend_down": [
+      -3.13,
+      1
+     ],
+     "trend_volume": [
+      -0.47,
+      2
+     ]
+    },
+    "to": "control",
+    "ts_pt": "2026-11-22 11:11:00 PT",
+    "why": "trend_volume no longer qualifies"
+   },
+   {
+    "from": "control",
+    "scope": "since_start",
+    "scores": {
+     "breakdown": [
+      -3.96,
+      12
+     ],
+     "control": [
+      -75.03,
+      288
+     ],
+     "down_ride": [
+      -12.65,
+      66
+     ],
+     "model_lead": [
+      -1.59,
+      64
+     ],
+     "ride_favorite_80": [
+      -32.47,
+      250
+     ],
+     "trend_down": [
+      5.67,
+      59
+     ],
+     "trend_volume": [
+      24.94,
+      61
+     ]
+    },
+    "to": "trend_volume",
+    "ts_pt": "2026-11-22 11:26:00 PT",
+    "why": "control no longer qualifies"
    }
   ],
-  "last_check_ws": 1795374300,
+  "last_check_ws": 1795375500,
   "leader": "trend_volume",
   "scope": "since_start",
   "scores": {
@@ -1715,8 +1789,8 @@
     12
    ],
    "control": [
-    -76.57,
-    285
+    -75.03,
+    288
    ],
    "down_ride": [
     -12.65,
@@ -1727,8 +1801,8 @@
     64
    ],
    "ride_favorite_80": [
-    -28.1,
-    248
+    -32.47,
+    250
    ],
    "trend_down": [
     5.67,
@@ -1742,50 +1816,16 @@
  },
  "open": [
   {
-   "shares": 6.72,
-   "side": "Down",
-   "tf": "5m",
-   "total_cost": 4.99831584,
-   "trade_id": "W000969",
-   "variant": "control",
-   "window_start": 1795374000
-  },
-  {
-   "shares": 5.82,
+   "shares": 6.52,
    "side": "Up",
    "tf": "5m",
-   "total_cost": 4.9989435,
-   "trade_id": "W000970",
-   "variant": "ride_favorite_80",
-   "window_start": 1795374000
-  },
-  {
-   "shares": 8.97,
-   "side": "Down",
-   "tf": "5m",
-   "total_cost": 4.999770360000001,
-   "trade_id": "W000971",
+   "total_cost": 3.11256976,
+   "trade_id": "W000975",
    "variant": "control",
-   "window_start": 1795374300
+   "window_start": 1795375500
   }
  ],
  "ptb": {
-  "1795367100": {
-   "p": 0.9265196666666667,
-   "src": "own_spot_samples_60s"
-  },
-  "1795367400": {
-   "p": 0.9272406666666666,
-   "src": "own_spot_samples_60s"
-  },
-  "1795367700": {
-   "p": 0.926223,
-   "src": "own_spot_samples_60s"
-  },
-  "1795368000": {
-   "p": 0.9255471666666666,
-   "src": "own_spot_samples_60s"
-  },
   "1795368300": {
    "p": 0.9272988333333334,
    "src": "own_spot_samples_60s"
@@ -1869,13 +1909,28 @@
   "1795374300": {
    "p": 0.928243,
    "src": "own_spot_samples_60s"
+  },
+  "1795374600": {
+   "p": 0.9271999999999999,
+   "src": "own_spot_samples_60s"
+  },
+  "1795374900": {
+   "p": 0.9277458333333333,
+   "src": "own_spot_samples_60s"
+  },
+  "1795375200": {
+   "p": 0.92727,
+   "src": "own_spot_samples_60s"
+  },
+  "1795375500": {
+   "p": 0.9266066666666667,
+   "src": "own_spot_samples_60s"
   }
  },
  "scale_pos": {},
- "seq": 971,
+ "seq": 975,
  "traded_windows": {
   "auto_pick": [
-   1795268400,
    1795268700,
    1795269000,
    1795271100,
@@ -1924,7 +1979,8 @@
    1795367100,
    1795367400,
    1795368600,
-   1795369800
+   1795369800,
+   1795374900
   ],
   "breakdown": [
    1795156800,
@@ -1941,8 +1997,6 @@
    1795367100
   ],
   "control": [
-   1795298700,
-   1795299000,
    1795299300,
    1795299900,
    1795300200,
@@ -1990,7 +2044,9 @@
    1795367400,
    1795368000,
    1795374000,
-   1795374300
+   1795374300,
+   1795374900,
+   1795375500
   ],
   "down_ride": [
    1795180200,
@@ -2097,7 +2153,6 @@
    1795365300
   ],
   "ride_favorite_80": [
-   1795244700,
    1795245000,
    1795245300,
    1795245600,
@@ -2146,7 +2201,8 @@
    1795308600,
    1795308900,
    1795324200,
-   1795374000
+   1795374000,
+   1795374300
   ],
   "trend_down": [
    1795176600,
