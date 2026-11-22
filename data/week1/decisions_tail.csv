@@ -1244,3 +1244,245 @@ ts_pt,variant,timeframe,window_start,secs_left,action,reason,side,est_prob,model
 2026-11-22 04:24:37 PT,hourly_ride_down,1h,1795348800,2122.8,skip,trend_filter,Down,0.8579,0.1042,0.1800,,,0.00,0.00,0.9215,0.9277,"Broader trend filter: the 4h move is +1.52%, not down."
 2026-11-22 04:24:57 PT,hourly_ride_down,1h,1795348800,2102.8,skip,trend_filter,Down,0.8388,0.1374,0.1850,,,0.00,0.00,0.9223,0.9277,"Broader trend filter: the 4h move is +1.52%, not down."
 2026-11-22 04:25:17 PT,hourly_ride_down,1h,1795348800,2082.8,skip,trend_filter,Down,0.8664,0.1173,0.1500,,,0.00,0.00,0.9214,0.9277,"Broader trend filter: the 4h move is +1.52%, not down."
+2026-11-22 04:25:37 PT,hourly_ride_down,1h,1795348800,2062.8,skip,ask_band,Down,0.9081,0.0737,0.1100,0.9000,0.0018,0.00,0.00,0.9201,0.9277,"Down costs 90c, outside this variant's 0.4-0.85 price range."
+2026-11-22 04:25:57 PT,hourly_ride_down,1h,1795348800,2042.8,skip,ask_band,Down,0.9225,0.0549,0.1000,0.9200,-0.0026,0.00,0.00,0.9194,0.9277,"Down costs 92c, outside this variant's 0.4-0.85 price range."
+2026-11-22 04:26:01 PT,control,5m,1795350300,238.8,skip,hour_filter,,,0.0378,,,,0.00,0.00,0.9199,0.9229,Tweak 2 HOUR_FILTER: hour_filter: 9 past trades in the 4:00 PT hour net $-7.52.
+2026-11-22 04:26:01 PT,model_lead,5m,1795350300,238.8,skip,ask_band,Down,0.8886,0.0378,0.1850,0.8300,0.0487,0.00,0.00,0.9199,0.9229,"Down costs 83c, outside this variant's 0.2-0.8 price range."
+2026-11-22 04:26:01 PT,trend_volume,5m,1795350300,238.8,skip,structure_conflict,,,0.0378,0.1850,,,0.00,0.00,0.9199,0.9229,Momentum says Down but price isn't making lower highs and lower lows (structure mixed).
+2026-11-22 04:26:01 PT,trend_down,5m,1795350300,238.8,skip,structure_conflict,,,0.0378,0.1850,,,0.00,0.00,0.9199,0.9229,Momentum says Down but price isn't making lower highs and lower lows (structure mixed).
+2026-11-22 04:26:01 PT,breakdown,5m,1795350300,238.8,skip,ask_band,Down,0.9186,0.0378,0.1850,0.8300,0.0787,0.00,0.00,0.9199,0.9229,"Down costs 83c, outside this variant's 0.25-0.8 price range."
+2026-11-22 04:26:01 PT,auto_pick,5m,1795350300,238.8,skip,hour_filter,,,0.0378,,,,0.00,0.00,0.9199,0.9229,Tweak 2 HOUR_FILTER: hour_filter: 10 past trades in the 4:00 PT hour net $-2.52.
+2026-11-22 04:26:13 PT,breakdown,5m,1795350300,226.8,buy,ok,Down,0.8872,0.0506,0.2350,0.7800,0.0952,3.90,5.00,0.9202,0.9229,"Buying $3.90 of Down: I put Down at 89%, price+fee is 79.2c, edge 9.5c; breakout Down: closed below the 30-min low $0.9245 on 4.5x volume, now $0.9202. (rounded $3.00 up to $3.90 for the 5-share minimum)"
+2026-11-22 04:26:17 PT,hourly_ride_down,1h,1795348800,2022.8,skip,ask_band,Down,0.8887,0.0876,0.1350,0.8800,0.0013,0.00,0.00,0.9207,0.9277,"Down costs 88c, outside this variant's 0.4-0.85 price range."
+2026-11-22 04:26:21 PT,control,5m,1795350300,218.7,skip,hour_filter,,,0.0823,,,,0.00,0.00,0.9207,0.9229,Tweak 2 HOUR_FILTER: hour_filter: 9 past trades in the 4:00 PT hour net $-7.52.
+2026-11-22 04:26:21 PT,model_lead,5m,1795350300,218.7,skip,min_shares,Down,0.8388,0.0823,0.2400,0.7700,0.0564,1.00,1.29,0.9207,0.9229,$1.00 only buys 1.29 shares of Down at 77c; Polymarket's minimum is 5.
+2026-11-22 04:26:21 PT,trend_volume,5m,1795350300,218.7,skip,structure_conflict,,,0.0823,0.2400,,,0.00,0.00,0.9207,0.9229,Momentum says Down but price isn't making lower highs and lower lows (structure mixed).
+2026-11-22 04:26:21 PT,trend_down,5m,1795350300,218.7,skip,structure_conflict,,,0.0823,0.2400,,,0.00,0.00,0.9207,0.9229,Momentum says Down but price isn't making lower highs and lower lows (structure mixed).
+2026-11-22 04:26:21 PT,auto_pick,5m,1795350300,218.7,skip,hour_filter,,,0.0823,,,,0.00,0.00,0.9207,0.9229,Tweak 2 HOUR_FILTER: hour_filter: 10 past trades in the 4:00 PT hour net $-2.52.
+2026-11-22 04:26:37 PT,hourly_ride_down,1h,1795348800,2002.7,skip,ask_band,Down,0.9098,0.0804,0.1000,0.9100,-0.0059,0.00,0.00,0.9205,0.9277,"Down costs 91c, outside this variant's 0.4-0.85 price range."
+2026-11-22 04:26:41 PT,control,5m,1795350300,198.7,skip,hour_filter,,,0.0253,,,,0.00,0.00,0.9200,0.9229,Tweak 2 HOUR_FILTER: hour_filter: 9 past trades in the 4:00 PT hour net $-7.52.
+2026-11-22 04:26:41 PT,model_lead,5m,1795350300,198.7,skip,ask_band,Down,0.9248,0.0253,0.1250,0.8800,0.0375,0.00,0.00,0.9200,0.9229,"Down costs 88c, outside this variant's 0.2-0.8 price range."
+2026-11-22 04:26:41 PT,trend_volume,5m,1795350300,198.7,skip,structure_conflict,,,0.0253,0.1250,,,0.00,0.00,0.9200,0.9229,Momentum says Down but price isn't making lower highs and lower lows (structure mixed).
+2026-11-22 04:26:41 PT,trend_down,5m,1795350300,198.7,skip,structure_conflict,,,0.0253,0.1250,,,0.00,0.00,0.9200,0.9229,Momentum says Down but price isn't making lower highs and lower lows (structure mixed).
+2026-11-22 04:26:41 PT,auto_pick,5m,1795350300,198.7,skip,hour_filter,,,0.0253,,,,0.00,0.00,0.9200,0.9229,Tweak 2 HOUR_FILTER: hour_filter: 10 past trades in the 4:00 PT hour net $-2.52.
+2026-11-22 04:26:57 PT,hourly_ride_down,1h,1795348800,1982.7,skip,ask_band,Down,0.9100,0.0700,0.1100,0.9000,0.0037,0.00,0.00,0.9201,0.9277,"Down costs 90c, outside this variant's 0.4-0.85 price range."
+2026-11-22 04:26:57 PT,down_ride,5m,1795350300,182.7,skip,timing,,,0.0259,0.1550,,,0.00,0.00,0.9201,0.9229,Only bets with 90-180s left; 183s left now.
+2026-11-22 04:27:01 PT,control,5m,1795350300,178.7,skip,hour_filter,,,0.0287,,,,0.00,0.00,0.9202,0.9229,Tweak 2 HOUR_FILTER: hour_filter: 9 past trades in the 4:00 PT hour net $-7.52.
+2026-11-22 04:27:01 PT,model_lead,5m,1795350300,178.7,skip,timing,,,0.0287,0.1350,,,0.00,0.00,0.9202,0.9229,Only bets with 180-240s left; 179s left now.
+2026-11-22 04:27:01 PT,trend_volume,5m,1795350300,178.7,skip,structure_conflict,,,0.0287,0.1350,,,0.00,0.00,0.9202,0.9229,Momentum says Down but price isn't making lower highs and lower lows (structure mixed).
+2026-11-22 04:27:01 PT,trend_down,5m,1795350300,178.7,skip,structure_conflict,,,0.0287,0.1350,,,0.00,0.00,0.9202,0.9229,Momentum says Down but price isn't making lower highs and lower lows (structure mixed).
+2026-11-22 04:27:01 PT,auto_pick,5m,1795350300,178.7,skip,hour_filter,,,0.0287,,,,0.00,0.00,0.9202,0.9229,Tweak 2 HOUR_FILTER: hour_filter: 10 past trades in the 4:00 PT hour net $-2.52.
+2026-11-22 04:27:17 PT,hourly_ride_down,1h,1795348800,1962.7,skip,ask_band,Down,0.8928,0.0894,0.1250,0.8900,-0.0040,0.00,0.00,0.9207,0.9277,"Down costs 89c, outside this variant's 0.4-0.85 price range."
+2026-11-22 04:27:17 PT,down_ride,5m,1795350300,162.7,skip,min_shares,Down,0.8985,0.0531,0.1500,0.8600,0.0300,2.00,2.32,0.9207,0.9229,$2.00 only buys 2.32 shares of Down at 86c; Polymarket's minimum is 5.
+2026-11-22 04:27:21 PT,control,5m,1795350300,158.7,skip,hour_filter,,,0.0263,,,,0.00,0.00,0.9203,0.9229,Tweak 2 HOUR_FILTER: hour_filter: 9 past trades in the 4:00 PT hour net $-7.52.
+2026-11-22 04:27:21 PT,trend_volume,5m,1795350300,158.7,skip,structure_conflict,,,0.0263,0.1350,,,0.00,0.00,0.9203,0.9229,Momentum says Down but price isn't making lower highs and lower lows (structure mixed).
+2026-11-22 04:27:21 PT,trend_down,5m,1795350300,158.7,skip,structure_conflict,,,0.0263,0.1350,,,0.00,0.00,0.9203,0.9229,Momentum says Down but price isn't making lower highs and lower lows (structure mixed).
+2026-11-22 04:27:21 PT,auto_pick,5m,1795350300,158.7,skip,hour_filter,,,0.0263,,,,0.00,0.00,0.9203,0.9229,Tweak 2 HOUR_FILTER: hour_filter: 10 past trades in the 4:00 PT hour net $-2.52.
+2026-11-22 04:27:37 PT,hourly_ride_down,1h,1795348800,1942.7,skip,ask_band,Down,0.8948,0.0903,0.1200,0.8900,-0.0020,0.00,0.00,0.9208,0.9277,"Down costs 89c, outside this variant's 0.4-0.85 price range."
+2026-11-22 04:27:37 PT,down_ride,5m,1795350300,142.7,skip,min_shares,Down,0.9005,0.0440,0.1550,0.8500,0.0416,2.00,2.35,0.9208,0.9229,$2.00 only buys 2.35 shares of Down at 85c; Polymarket's minimum is 5.
+2026-11-22 04:27:41 PT,control,5m,1795350300,138.7,skip,hour_filter,,,0.0333,,,,0.00,0.00,0.9207,0.9229,Tweak 2 HOUR_FILTER: hour_filter: 9 past trades in the 4:00 PT hour net $-7.52.
+2026-11-22 04:27:41 PT,trend_volume,5m,1795350300,138.7,skip,structure_conflict,,,0.0333,0.1450,,,0.00,0.00,0.9207,0.9229,Momentum says Down but price isn't making lower highs and lower lows (structure mixed).
+2026-11-22 04:27:41 PT,trend_down,5m,1795350300,138.7,skip,structure_conflict,,,0.0333,0.1450,,,0.00,0.00,0.9207,0.9229,Momentum says Down but price isn't making lower highs and lower lows (structure mixed).
+2026-11-22 04:27:41 PT,auto_pick,5m,1795350300,138.7,skip,hour_filter,,,0.0333,,,,0.00,0.00,0.9207,0.9229,Tweak 2 HOUR_FILTER: hour_filter: 10 past trades in the 4:00 PT hour net $-2.52.
+2026-11-22 04:27:57 PT,hourly_ride_down,1h,1795348800,1922.7,skip,ask_band,Down,0.9070,0.0811,0.1050,0.9000,0.0007,0.00,0.00,0.9205,0.9277,"Down costs 90c, outside this variant's 0.4-0.85 price range."
+2026-11-22 04:27:57 PT,ride_favorite_80,5m,1795350300,122.7,skip,hour_filter,,,0.0167,,,,0.00,0.00,0.9205,0.9229,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 4:00 PT hour net $-0.56.
+2026-11-22 04:27:57 PT,down_ride,5m,1795350300,122.7,skip,ask_band,Down,0.9467,0.0167,0.0900,0.9200,0.0215,0.00,0.00,0.9205,0.9229,"Down costs 92c, outside this variant's 0.5-0.9 price range."
+2026-11-22 04:28:01 PT,control,5m,1795350300,118.7,skip,hour_filter,,,0.0147,,,,0.00,0.00,0.9205,0.9229,Tweak 2 HOUR_FILTER: hour_filter: 9 past trades in the 4:00 PT hour net $-7.52.
+2026-11-22 04:28:01 PT,trend_volume,5m,1795350300,118.7,skip,structure_conflict,,,0.0147,0.0950,,,0.00,0.00,0.9205,0.9229,Momentum says Down but price isn't making lower highs and lower lows (structure mixed).
+2026-11-22 04:28:01 PT,trend_down,5m,1795350300,118.7,skip,structure_conflict,,,0.0147,0.0950,,,0.00,0.00,0.9205,0.9229,Momentum says Down but price isn't making lower highs and lower lows (structure mixed).
+2026-11-22 04:28:01 PT,auto_pick,5m,1795350300,118.7,skip,hour_filter,,,0.0147,,,,0.00,0.00,0.9205,0.9229,Tweak 2 HOUR_FILTER: hour_filter: 10 past trades in the 4:00 PT hour net $-2.52.
+2026-11-22 04:28:17 PT,hourly_ride_down,1h,1795348800,1902.7,skip,ask_band,Down,0.9192,0.0767,0.0850,0.9200,-0.0060,0.00,0.00,0.9204,0.9277,"Down costs 92c, outside this variant's 0.4-0.85 price range."
+2026-11-22 04:28:17 PT,ride_favorite_80,5m,1795350300,102.7,skip,hour_filter,,,0.0056,,,,0.00,0.00,0.9204,0.9229,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 4:00 PT hour net $-0.56.
+2026-11-22 04:28:17 PT,down_ride,5m,1795350300,102.7,skip,ask_band,Down,0.9747,0.0056,0.0450,0.9600,0.0120,0.00,0.00,0.9204,0.9229,"Down costs 96c, outside this variant's 0.5-0.9 price range."
+2026-11-22 04:28:21 PT,control,5m,1795350300,98.7,skip,hour_filter,,,0.0044,,,,0.00,0.00,0.9204,0.9229,Tweak 2 HOUR_FILTER: hour_filter: 9 past trades in the 4:00 PT hour net $-7.52.
+2026-11-22 04:28:21 PT,trend_volume,5m,1795350300,98.7,skip,structure_conflict,,,0.0044,0.0250,,,0.00,0.00,0.9204,0.9229,Momentum says Down but price isn't making lower highs and lower lows (structure mixed).
+2026-11-22 04:28:21 PT,trend_down,5m,1795350300,98.7,skip,structure_conflict,,,0.0044,0.0250,,,0.00,0.00,0.9204,0.9229,Momentum says Down but price isn't making lower highs and lower lows (structure mixed).
+2026-11-22 04:28:21 PT,auto_pick,5m,1795350300,98.7,skip,hour_filter,,,0.0044,,,,0.00,0.00,0.9204,0.9229,Tweak 2 HOUR_FILTER: hour_filter: 10 past trades in the 4:00 PT hour net $-2.52.
+2026-11-22 04:28:37 PT,hourly_ride_down,1h,1795348800,1882.7,skip,ask_band,Down,0.9436,0.0579,0.0550,0.9600,-0.0191,0.00,0.00,0.9197,0.9277,"Down costs 96c, outside this variant's 0.4-0.85 price range."
+2026-11-22 04:28:37 PT,ride_favorite_80,5m,1795350300,82.7,skip,hour_filter,,,0.0001,,,,0.00,0.00,0.9197,0.9229,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 4:00 PT hour net $-0.56.
+2026-11-22 04:28:41 PT,control,5m,1795350300,78.7,skip,hour_filter,,,0.0000,,,,0.00,0.00,0.9190,0.9229,Tweak 2 HOUR_FILTER: hour_filter: 9 past trades in the 4:00 PT hour net $-7.52.
+2026-11-22 04:28:41 PT,auto_pick,5m,1795350300,78.7,skip,hour_filter,,,0.0000,,,,0.00,0.00,0.9190,0.9229,Tweak 2 HOUR_FILTER: hour_filter: 10 past trades in the 4:00 PT hour net $-2.52.
+2026-11-22 04:28:57 PT,hourly_ride_down,1h,1795348800,1862.7,skip,ask_band,Down,0.9407,0.0485,0.0700,0.9400,-0.0032,0.00,0.00,0.9193,0.9277,"Down costs 94c, outside this variant's 0.4-0.85 price range."
+2026-11-22 04:28:57 PT,ride_favorite_80,5m,1795350300,62.7,skip,hour_filter,,,0.0000,,,,0.00,0.00,0.9193,0.9229,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 4:00 PT hour net $-0.56.
+2026-11-22 04:29:01 PT,control,5m,1795350300,58.7,skip,hour_filter,,,0.0000,,,,0.00,0.00,0.9192,0.9229,Tweak 2 HOUR_FILTER: hour_filter: 9 past trades in the 4:00 PT hour net $-7.52.
+2026-11-22 04:29:01 PT,auto_pick,5m,1795350300,58.7,skip,hour_filter,,,0.0000,,,,0.00,0.00,0.9192,0.9229,Tweak 2 HOUR_FILTER: hour_filter: 10 past trades in the 4:00 PT hour net $-2.52.
+2026-11-22 04:29:17 PT,hourly_ride_down,1h,1795348800,1842.7,skip,ask_band,Down,0.9289,0.0621,0.0800,0.9300,-0.0056,0.00,0.00,0.9199,0.9277,"Down costs 93c, outside this variant's 0.4-0.85 price range."
+2026-11-22 04:29:21 PT,control,5m,1795350300,38.7,skip,hour_filter,,,0.0000,,,,0.00,0.00,0.9200,0.9229,Tweak 2 HOUR_FILTER: hour_filter: 9 past trades in the 4:00 PT hour net $-7.52.
+2026-11-22 04:29:21 PT,auto_pick,5m,1795350300,38.7,skip,hour_filter,,,0.0000,,,,0.00,0.00,0.9200,0.9229,Tweak 2 HOUR_FILTER: hour_filter: 10 past trades in the 4:00 PT hour net $-2.52.
+2026-11-22 04:29:37 PT,hourly_ride_down,1h,1795348800,1822.7,skip,ask_band,Down,0.9358,0.0583,0.0700,0.9400,-0.0081,0.00,0.00,0.9198,0.9277,"Down costs 94c, outside this variant's 0.4-0.85 price range."
+2026-11-22 04:29:57 PT,hourly_ride_down,1h,1795348800,1802.7,skip,ask_band,Down,0.9131,0.0738,0.1000,0.9100,-0.0026,0.00,0.00,0.9205,0.9277,"Down costs 91c, outside this variant's 0.4-0.85 price range."
+2026-11-22 04:31:01 PT,control,5m,1795350600,238.7,skip,hour_filter,,,0.9444,,,,0.00,0.00,0.9226,0.9199,Tweak 2 HOUR_FILTER: hour_filter: 9 past trades in the 4:00 PT hour net $-7.52.
+2026-11-22 04:31:01 PT,model_lead,5m,1795350600,238.7,skip,ask_band,Up,0.9272,0.9444,0.9100,0.9200,0.0020,0.00,0.00,0.9226,0.9199,"Up costs 92c, outside this variant's 0.2-0.8 price range."
+2026-11-22 04:31:01 PT,trend_volume,5m,1795350600,238.7,skip,weak_momentum,,,0.9444,0.9100,,,0.00,0.00,0.9226,0.9199,"The 60m move (-0.69%) too small to call a trend (z -0.7, need 1.0)."
+2026-11-22 04:31:01 PT,trend_down,5m,1795350600,238.7,skip,weak_momentum,,,0.9444,0.9100,,,0.00,0.00,0.9226,0.9199,"The 60m move (-0.69%) too small to call a trend (z -0.7, need 0.8)."
+2026-11-22 04:31:01 PT,breakdown,5m,1795350600,238.7,skip,no_breakout,,,0.9444,0.9100,,,0.00,0.00,0.9226,0.9199,Price is inside its 30-min range ($0.9183-$0.9362); no breakout.
+2026-11-22 04:31:01 PT,auto_pick,5m,1795350600,238.7,skip,hour_filter,,,0.9444,,,,0.00,0.00,0.9226,0.9199,Tweak 2 HOUR_FILTER: hour_filter: 10 past trades in the 4:00 PT hour net $-2.52.
+2026-11-22 04:31:21 PT,control,5m,1795350600,218.7,skip,hour_filter,,,0.9758,,,,0.00,0.00,0.9232,0.9199,Tweak 2 HOUR_FILTER: hour_filter: 9 past trades in the 4:00 PT hour net $-7.52.
+2026-11-22 04:31:21 PT,model_lead,5m,1795350600,218.7,skip,ask_band,Up,0.9479,0.9758,0.9200,0.9300,0.0133,0.00,0.00,0.9232,0.9199,"Up costs 93c, outside this variant's 0.2-0.8 price range."
+2026-11-22 04:31:21 PT,trend_volume,5m,1795350600,218.7,skip,weak_momentum,,,0.9758,0.9200,,,0.00,0.00,0.9232,0.9199,"The 60m move (-0.69%) too small to call a trend (z -0.7, need 1.0)."
+2026-11-22 04:31:21 PT,trend_down,5m,1795350600,218.7,skip,weak_momentum,,,0.9758,0.9200,,,0.00,0.00,0.9232,0.9199,"The 60m move (-0.69%) too small to call a trend (z -0.7, need 0.8)."
+2026-11-22 04:31:21 PT,breakdown,5m,1795350600,218.7,skip,no_breakout,,,0.9758,0.9200,,,0.00,0.00,0.9232,0.9199,Price is inside its 30-min range ($0.9183-$0.9362); no breakout.
+2026-11-22 04:31:21 PT,auto_pick,5m,1795350600,218.7,skip,hour_filter,,,0.9758,,,,0.00,0.00,0.9232,0.9199,Tweak 2 HOUR_FILTER: hour_filter: 10 past trades in the 4:00 PT hour net $-2.52.
+2026-11-22 04:31:41 PT,control,5m,1795350600,198.7,skip,hour_filter,,,0.9566,,,,0.00,0.00,0.9226,0.9199,Tweak 2 HOUR_FILTER: hour_filter: 9 past trades in the 4:00 PT hour net $-7.52.
+2026-11-22 04:31:41 PT,model_lead,5m,1795350600,198.7,skip,ask_band,Up,0.9058,0.9566,0.8550,0.8600,0.0374,0.00,0.00,0.9226,0.9199,"Up costs 86c, outside this variant's 0.2-0.8 price range."
+2026-11-22 04:31:41 PT,trend_volume,5m,1795350600,198.7,skip,weak_momentum,,,0.9566,0.8550,,,0.00,0.00,0.9226,0.9199,"The 60m move (-0.69%) too small to call a trend (z -0.7, need 1.0)."
+2026-11-22 04:31:41 PT,trend_down,5m,1795350600,198.7,skip,weak_momentum,,,0.9566,0.8550,,,0.00,0.00,0.9226,0.9199,"The 60m move (-0.69%) too small to call a trend (z -0.7, need 0.8)."
+2026-11-22 04:31:41 PT,breakdown,5m,1795350600,198.7,skip,no_breakout,,,0.9566,0.8550,,,0.00,0.00,0.9226,0.9199,Price is inside its 30-min range ($0.9183-$0.9362); no breakout.
+2026-11-22 04:31:41 PT,auto_pick,5m,1795350600,198.7,skip,hour_filter,,,0.9566,,,,0.00,0.00,0.9226,0.9199,Tweak 2 HOUR_FILTER: hour_filter: 10 past trades in the 4:00 PT hour net $-2.52.
+2026-11-22 04:31:57 PT,down_ride,5m,1795350600,182.7,skip,timing,,,0.9352,0.8850,,,0.00,0.00,0.9222,0.9199,Only bets with 90-180s left; 183s left now.
+2026-11-22 04:32:01 PT,control,5m,1795350600,178.7,skip,hour_filter,,,0.9460,,,,0.00,0.00,0.9223,0.9199,Tweak 2 HOUR_FILTER: hour_filter: 9 past trades in the 4:00 PT hour net $-7.52.
+2026-11-22 04:32:01 PT,model_lead,5m,1795350600,178.7,skip,timing,,,0.9460,0.8850,,,0.00,0.00,0.9223,0.9199,Only bets with 180-240s left; 179s left now.
+2026-11-22 04:32:01 PT,trend_volume,5m,1795350600,178.7,skip,weak_momentum,,,0.9460,0.8850,,,0.00,0.00,0.9223,0.9199,"The 60m move (-0.69%) too small to call a trend (z -0.7, need 1.0)."
+2026-11-22 04:32:01 PT,trend_down,5m,1795350600,178.7,skip,weak_momentum,,,0.9460,0.8850,,,0.00,0.00,0.9223,0.9199,"The 60m move (-0.69%) too small to call a trend (z -0.7, need 0.8)."
+2026-11-22 04:32:01 PT,breakdown,5m,1795350600,178.7,skip,no_breakout,,,0.9460,0.8850,,,0.00,0.00,0.9223,0.9199,Price is inside its 30-min range ($0.9183-$0.9362); no breakout.
+2026-11-22 04:32:01 PT,auto_pick,5m,1795350600,178.7,skip,hour_filter,,,0.9460,,,,0.00,0.00,0.9223,0.9199,Tweak 2 HOUR_FILTER: hour_filter: 10 past trades in the 4:00 PT hour net $-2.52.
+2026-11-22 04:32:17 PT,down_ride,5m,1795350600,162.7,skip,side_not_allowed,Up,0.9357,0.9465,0.9250,,,0.00,0.00,0.9221,0.9199,This variant only bets Down; the signal says Up.
+2026-11-22 04:32:21 PT,control,5m,1795350600,158.7,skip,hour_filter,,,0.9776,,,,0.00,0.00,0.9226,0.9199,Tweak 2 HOUR_FILTER: hour_filter: 9 past trades in the 4:00 PT hour net $-7.52.
+2026-11-22 04:32:21 PT,trend_volume,5m,1795350600,158.7,skip,weak_momentum,,,0.9776,0.9250,,,0.00,0.00,0.9226,0.9199,"The 60m move (-0.72%) too small to call a trend (z -0.8, need 1.0)."
+2026-11-22 04:32:21 PT,trend_down,5m,1795350600,158.7,skip,weak_momentum,,,0.9776,0.9250,,,0.00,0.00,0.9226,0.9199,"The 60m move (-0.72%) too small to call a trend (z -0.8, need 0.8)."
+2026-11-22 04:32:21 PT,breakdown,5m,1795350600,158.7,skip,no_breakout,,,0.9776,0.9250,,,0.00,0.00,0.9226,0.9199,Price is inside its 30-min range ($0.9183-$0.9362); no breakout.
+2026-11-22 04:32:21 PT,auto_pick,5m,1795350600,158.7,skip,hour_filter,,,0.9776,,,,0.00,0.00,0.9226,0.9199,Tweak 2 HOUR_FILTER: hour_filter: 10 past trades in the 4:00 PT hour net $-2.52.
+2026-11-22 04:32:37 PT,down_ride,5m,1795350600,142.7,skip,side_not_allowed,Up,0.9155,0.9409,0.8900,,,0.00,0.00,0.9219,0.9199,This variant only bets Down; the signal says Up.
+2026-11-22 04:32:41 PT,control,5m,1795350600,138.7,skip,hour_filter,,,0.9809,,,,0.00,0.00,0.9225,0.9199,Tweak 2 HOUR_FILTER: hour_filter: 9 past trades in the 4:00 PT hour net $-7.52.
+2026-11-22 04:32:41 PT,trend_volume,5m,1795350600,138.7,skip,weak_momentum,,,0.9809,0.9550,,,0.00,0.00,0.9225,0.9199,"The 60m move (-0.72%) too small to call a trend (z -0.8, need 1.0)."
+2026-11-22 04:32:41 PT,trend_down,5m,1795350600,138.7,skip,weak_momentum,,,0.9809,0.9550,,,0.00,0.00,0.9225,0.9199,"The 60m move (-0.72%) too small to call a trend (z -0.8, need 0.8)."
+2026-11-22 04:32:41 PT,breakdown,5m,1795350600,138.7,skip,no_breakout,,,0.9809,0.9550,,,0.00,0.00,0.9225,0.9199,Price is inside its 30-min range ($0.9183-$0.9362); no breakout.
+2026-11-22 04:32:41 PT,auto_pick,5m,1795350600,138.7,skip,hour_filter,,,0.9809,,,,0.00,0.00,0.9225,0.9199,Tweak 2 HOUR_FILTER: hour_filter: 10 past trades in the 4:00 PT hour net $-2.52.
+2026-11-22 04:32:57 PT,ride_favorite_80,5m,1795350600,122.7,skip,hour_filter,,,0.9883,,,,0.00,0.00,0.9225,0.9199,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 4:00 PT hour net $-0.56.
+2026-11-22 04:32:57 PT,down_ride,5m,1795350600,122.7,skip,side_not_allowed,Up,0.9766,0.9883,0.9650,,,0.00,0.00,0.9225,0.9199,This variant only bets Down; the signal says Up.
+2026-11-22 04:33:01 PT,control,5m,1795350600,118.7,skip,hour_filter,,,0.9893,,,,0.00,0.00,0.9225,0.9199,Tweak 2 HOUR_FILTER: hour_filter: 9 past trades in the 4:00 PT hour net $-7.52.
+2026-11-22 04:33:01 PT,trend_volume,5m,1795350600,118.7,skip,weak_momentum,,,0.9893,0.9350,,,0.00,0.00,0.9225,0.9199,"The 60m move (-0.72%) too small to call a trend (z -0.8, need 1.0)."
+2026-11-22 04:33:01 PT,trend_down,5m,1795350600,118.7,skip,weak_momentum,,,0.9893,0.9350,,,0.00,0.00,0.9225,0.9199,"The 60m move (-0.72%) too small to call a trend (z -0.8, need 0.8)."
+2026-11-22 04:33:01 PT,breakdown,5m,1795350600,118.7,skip,no_breakout,,,0.9893,0.9350,,,0.00,0.00,0.9225,0.9199,Price is inside its 30-min range ($0.9183-$0.9362); no breakout.
+2026-11-22 04:33:01 PT,auto_pick,5m,1795350600,118.7,skip,hour_filter,,,0.9893,,,,0.00,0.00,0.9225,0.9199,Tweak 2 HOUR_FILTER: hour_filter: 10 past trades in the 4:00 PT hour net $-2.52.
+2026-11-22 04:33:17 PT,ride_favorite_80,5m,1795350600,102.7,skip,hour_filter,,,0.9921,,,,0.00,0.00,0.9223,0.9199,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 4:00 PT hour net $-0.56.
+2026-11-22 04:33:17 PT,down_ride,5m,1795350600,102.7,skip,side_not_allowed,Up,0.9861,0.9921,0.9800,,,0.00,0.00,0.9223,0.9199,This variant only bets Down; the signal says Up.
+2026-11-22 04:33:21 PT,control,5m,1795350600,98.7,skip,hour_filter,,,0.9936,,,,0.00,0.00,0.9223,0.9199,Tweak 2 HOUR_FILTER: hour_filter: 9 past trades in the 4:00 PT hour net $-7.52.
+2026-11-22 04:33:21 PT,trend_volume,5m,1795350600,98.7,skip,weak_momentum,,,0.9936,0.9800,,,0.00,0.00,0.9223,0.9199,"The 60m move (-0.71%) too small to call a trend (z -0.8, need 1.0)."
+2026-11-22 04:33:21 PT,trend_down,5m,1795350600,98.7,skip,weak_momentum,,,0.9936,0.9800,,,0.00,0.00,0.9223,0.9199,"The 60m move (-0.71%) too small to call a trend (z -0.8, need 0.8)."
+2026-11-22 04:33:21 PT,breakdown,5m,1795350600,98.7,skip,no_breakout,,,0.9936,0.9800,,,0.00,0.00,0.9223,0.9199,Price is inside its 30-min range ($0.9183-$0.9362); no breakout.
+2026-11-22 04:33:21 PT,auto_pick,5m,1795350600,98.7,skip,hour_filter,,,0.9936,,,,0.00,0.00,0.9223,0.9199,Tweak 2 HOUR_FILTER: hour_filter: 10 past trades in the 4:00 PT hour net $-2.52.
+2026-11-22 04:33:37 PT,ride_favorite_80,5m,1795350600,82.7,skip,hour_filter,,,0.9965,,,,0.00,0.00,0.9222,0.9199,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 4:00 PT hour net $-0.56.
+2026-11-22 04:33:41 PT,control,5m,1795350600,78.7,skip,hour_filter,,,0.9969,,,,0.00,0.00,0.9221,0.9199,Tweak 2 HOUR_FILTER: hour_filter: 9 past trades in the 4:00 PT hour net $-7.52.
+2026-11-22 04:33:41 PT,auto_pick,5m,1795350600,78.7,skip,hour_filter,,,0.9969,,,,0.00,0.00,0.9221,0.9199,Tweak 2 HOUR_FILTER: hour_filter: 10 past trades in the 4:00 PT hour net $-2.52.
+2026-11-22 04:33:57 PT,ride_favorite_80,5m,1795350600,62.7,skip,hour_filter,,,0.9992,,,,0.00,0.00,0.9219,0.9199,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 4:00 PT hour net $-0.56.
+2026-11-22 04:34:01 PT,control,5m,1795350600,58.7,skip,hour_filter,,,0.9995,,,,0.00,0.00,0.9219,0.9199,Tweak 2 HOUR_FILTER: hour_filter: 9 past trades in the 4:00 PT hour net $-7.52.
+2026-11-22 04:34:01 PT,auto_pick,5m,1795350600,58.7,skip,hour_filter,,,0.9995,,,,0.00,0.00,0.9219,0.9199,Tweak 2 HOUR_FILTER: hour_filter: 10 past trades in the 4:00 PT hour net $-2.52.
+2026-11-22 04:34:21 PT,control,5m,1795350600,38.7,skip,hour_filter,,,0.9990,,,,0.00,0.00,0.9211,0.9199,Tweak 2 HOUR_FILTER: hour_filter: 9 past trades in the 4:00 PT hour net $-7.52.
+2026-11-22 04:34:21 PT,auto_pick,5m,1795350600,38.7,skip,hour_filter,,,0.9990,,,,0.00,0.00,0.9211,0.9199,Tweak 2 HOUR_FILTER: hour_filter: 10 past trades in the 4:00 PT hour net $-2.52.
+2026-11-22 04:36:01 PT,control,5m,1795350900,238.6,skip,hour_filter,,,0.2663,,,,0.00,0.00,0.9197,0.9208,Tweak 2 HOUR_FILTER: hour_filter: 9 past trades in the 4:00 PT hour net $-7.52.
+2026-11-22 04:36:01 PT,model_lead,5m,1795350900,238.6,skip,edge_small,Down,0.7019,0.2663,0.3300,0.6900,-0.0031,0.00,0.00,0.9197,0.9208,Down at 69c: my estimate 70% beats price+fee by only -0.3c (need 4c).
+2026-11-22 04:36:01 PT,trend_volume,5m,1795350900,238.6,skip,structure_conflict,,,0.2663,0.3300,,,0.00,0.00,0.9197,0.9208,Momentum says Down but price isn't making lower highs and lower lows (structure mixed).
+2026-11-22 04:36:01 PT,trend_down,5m,1795350900,238.6,skip,structure_conflict,,,0.2663,0.3300,,,0.00,0.00,0.9197,0.9208,Momentum says Down but price isn't making lower highs and lower lows (structure mixed).
+2026-11-22 04:36:01 PT,breakdown,5m,1795350900,238.6,skip,no_breakout,,,0.2663,0.3300,,,0.00,0.00,0.9197,0.9208,Price is inside its 30-min range ($0.9183-$0.9362); no breakout.
+2026-11-22 04:36:01 PT,auto_pick,5m,1795350900,238.6,skip,hour_filter,,,0.2663,,,,0.00,0.00,0.9197,0.9208,Tweak 2 HOUR_FILTER: hour_filter: 10 past trades in the 4:00 PT hour net $-2.52.
+2026-11-22 04:36:13 PT,model_lead,5m,1795350900,226.6,buy,ok,Down,0.5933,0.3185,0.4950,0.5200,0.0558,2.60,5.00,0.9200,0.9208,"Buying $2.60 of Down: I put Down at 59%, price+fee is 53.7c, edge 5.6c. (rounded $1.00 up to $2.60 for the 5-share minimum)"
+2026-11-22 04:36:21 PT,control,5m,1795350900,218.6,skip,hour_filter,,,0.4725,,,,0.00,0.00,0.9207,0.9208,Tweak 2 HOUR_FILTER: hour_filter: 9 past trades in the 4:00 PT hour net $-7.52.
+2026-11-22 04:36:21 PT,trend_volume,5m,1795350900,218.6,skip,structure_conflict,,,0.4725,0.5500,,,0.00,0.00,0.9207,0.9208,Momentum says Down but price isn't making lower highs and lower lows (structure mixed).
+2026-11-22 04:36:21 PT,trend_down,5m,1795350900,218.6,skip,structure_conflict,,,0.4725,0.5500,,,0.00,0.00,0.9207,0.9208,Momentum says Down but price isn't making lower highs and lower lows (structure mixed).
+2026-11-22 04:36:21 PT,breakdown,5m,1795350900,218.6,skip,no_breakout,,,0.4725,0.5500,,,0.00,0.00,0.9207,0.9208,Price is inside its 30-min range ($0.9183-$0.9362); no breakout.
+2026-11-22 04:36:21 PT,auto_pick,5m,1795350900,218.6,skip,hour_filter,,,0.4725,,,,0.00,0.00,0.9207,0.9208,Tweak 2 HOUR_FILTER: hour_filter: 10 past trades in the 4:00 PT hour net $-2.52.
+2026-11-22 04:36:41 PT,control,5m,1795350900,198.6,skip,hour_filter,,,0.4913,,,,0.00,0.00,0.9207,0.9208,Tweak 2 HOUR_FILTER: hour_filter: 9 past trades in the 4:00 PT hour net $-7.52.
+2026-11-22 04:36:41 PT,trend_volume,5m,1795350900,198.6,skip,structure_conflict,,,0.4913,0.6200,,,0.00,0.00,0.9207,0.9208,Momentum says Down but price isn't making lower highs and lower lows (structure mixed).
+2026-11-22 04:36:41 PT,trend_down,5m,1795350900,198.6,skip,structure_conflict,,,0.4913,0.6200,,,0.00,0.00,0.9207,0.9208,Momentum says Down but price isn't making lower highs and lower lows (structure mixed).
+2026-11-22 04:36:41 PT,breakdown,5m,1795350900,198.6,skip,no_breakout,,,0.4913,0.6200,,,0.00,0.00,0.9207,0.9208,Price is inside its 30-min range ($0.9183-$0.9362); no breakout.
+2026-11-22 04:36:41 PT,auto_pick,5m,1795350900,198.6,skip,hour_filter,,,0.4913,,,,0.00,0.00,0.9207,0.9208,Tweak 2 HOUR_FILTER: hour_filter: 10 past trades in the 4:00 PT hour net $-2.52.
+2026-11-22 04:36:57 PT,down_ride,5m,1795350900,182.6,skip,timing,,,0.6689,0.7150,,,0.00,0.00,0.9214,0.9208,Only bets with 90-180s left; 183s left now.
+2026-11-22 04:37:01 PT,control,5m,1795350900,178.6,skip,hour_filter,,,0.6449,,,,0.00,0.00,0.9213,0.9208,Tweak 2 HOUR_FILTER: hour_filter: 9 past trades in the 4:00 PT hour net $-7.52.
+2026-11-22 04:37:01 PT,trend_volume,5m,1795350900,178.6,skip,structure_conflict,,,0.6449,0.6450,,,0.00,0.00,0.9213,0.9208,Momentum says Down but price isn't making lower highs and lower lows (structure mixed).
+2026-11-22 04:37:01 PT,trend_down,5m,1795350900,178.6,skip,structure_conflict,,,0.6449,0.6450,,,0.00,0.00,0.9213,0.9208,Momentum says Down but price isn't making lower highs and lower lows (structure mixed).
+2026-11-22 04:37:01 PT,breakdown,5m,1795350900,178.6,skip,no_breakout,,,0.6449,0.6450,,,0.00,0.00,0.9213,0.9208,Price is inside its 30-min range ($0.9183-$0.9362); no breakout.
+2026-11-22 04:37:01 PT,auto_pick,5m,1795350900,178.6,skip,hour_filter,,,0.6449,,,,0.00,0.00,0.9213,0.9208,Tweak 2 HOUR_FILTER: hour_filter: 10 past trades in the 4:00 PT hour net $-2.52.
+2026-11-22 04:37:17 PT,down_ride,5m,1795350900,162.6,skip,side_not_allowed,Up,0.5939,0.6678,0.5200,,,0.00,0.00,0.9214,0.9208,This variant only bets Down; the signal says Up.
+2026-11-22 04:37:21 PT,control,5m,1795350900,158.6,skip,hour_filter,,,0.5716,,,,0.00,0.00,0.9210,0.9208,Tweak 2 HOUR_FILTER: hour_filter: 9 past trades in the 4:00 PT hour net $-7.52.
+2026-11-22 04:37:21 PT,trend_volume,5m,1795350900,158.6,skip,weak_momentum,,,0.5716,0.4100,,,0.00,0.00,0.9210,0.9208,"The 60m move (-0.80%) too small to call a trend (z -0.8, need 1.0)."
+2026-11-22 04:37:21 PT,trend_down,5m,1795350900,158.6,skip,structure_conflict,,,0.5716,0.4100,,,0.00,0.00,0.9210,0.9208,Momentum says Down but price isn't making lower highs and lower lows (structure mixed).
+2026-11-22 04:37:21 PT,breakdown,5m,1795350900,158.6,skip,no_breakout,,,0.5716,0.4100,,,0.00,0.00,0.9210,0.9208,Price is inside its 30-min range ($0.9183-$0.9362); no breakout.
+2026-11-22 04:37:21 PT,auto_pick,5m,1795350900,158.6,skip,hour_filter,,,0.5716,,,,0.00,0.00,0.9210,0.9208,Tweak 2 HOUR_FILTER: hour_filter: 10 past trades in the 4:00 PT hour net $-2.52.
+2026-11-22 04:37:37 PT,down_ride,5m,1795350900,142.6,skip,lead_small,Down,0.6049,0.5002,0.2900,,,0.00,0.00,0.9208,0.9208,Lead gate: XRP is $-0.0000 past the price to beat our way (Down); need at least $0.0005 (0.055% of price).
+2026-11-22 04:37:41 PT,control,5m,1795350900,138.6,skip,hour_filter,,,0.3881,,,,0.00,0.00,0.9204,0.9208,Tweak 2 HOUR_FILTER: hour_filter: 9 past trades in the 4:00 PT hour net $-7.52.
+2026-11-22 04:37:41 PT,trend_volume,5m,1795350900,138.6,skip,weak_momentum,,,0.3881,0.3150,,,0.00,0.00,0.9204,0.9208,"The 60m move (-0.80%) too small to call a trend (z -0.8, need 1.0)."
+2026-11-22 04:37:41 PT,trend_down,5m,1795350900,138.6,skip,structure_conflict,,,0.3881,0.3150,,,0.00,0.00,0.9204,0.9208,Momentum says Down but price isn't making lower highs and lower lows (structure mixed).
+2026-11-22 04:37:41 PT,breakdown,5m,1795350900,138.6,skip,no_breakout,,,0.3881,0.3150,,,0.00,0.00,0.9204,0.9208,Price is inside its 30-min range ($0.9183-$0.9362); no breakout.
+2026-11-22 04:37:41 PT,auto_pick,5m,1795350900,138.6,skip,hour_filter,,,0.3881,,,,0.00,0.00,0.9204,0.9208,Tweak 2 HOUR_FILTER: hour_filter: 10 past trades in the 4:00 PT hour net $-2.52.
+2026-11-22 04:37:57 PT,ride_favorite_80,5m,1795350900,122.6,skip,hour_filter,,,0.2073,,,,0.00,0.00,0.9198,0.9208,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 4:00 PT hour net $-0.56.
+2026-11-22 04:37:57 PT,down_ride,5m,1795350900,122.6,skip,ask_band,Down,0.8488,0.2073,0.0950,0.9200,-0.0763,0.00,0.00,0.9198,0.9208,"Down costs 92c, outside this variant's 0.5-0.9 price range."
+2026-11-22 04:38:01 PT,control,5m,1795350900,118.6,skip,hour_filter,,,0.1057,,,,0.00,0.00,0.9193,0.9208,Tweak 2 HOUR_FILTER: hour_filter: 9 past trades in the 4:00 PT hour net $-7.52.
+2026-11-22 04:38:01 PT,trend_volume,5m,1795350900,118.6,skip,weak_momentum,,,0.1057,0.1700,,,0.00,0.00,0.9193,0.9208,"The 60m move (-0.80%) too small to call a trend (z -0.8, need 1.0)."
+2026-11-22 04:38:01 PT,trend_down,5m,1795350900,118.6,skip,structure_conflict,,,0.1057,0.1700,,,0.00,0.00,0.9193,0.9208,Momentum says Down but price isn't making lower highs and lower lows (structure mixed).
+2026-11-22 04:38:01 PT,breakdown,5m,1795350900,118.6,skip,no_breakout,,,0.1057,0.1700,,,0.00,0.00,0.9193,0.9208,Price is inside its 30-min range ($0.9183-$0.9362); no breakout.
+2026-11-22 04:38:01 PT,auto_pick,5m,1795350900,118.6,skip,hour_filter,,,0.1057,,,,0.00,0.00,0.9193,0.9208,Tweak 2 HOUR_FILTER: hour_filter: 10 past trades in the 4:00 PT hour net $-2.52.
+2026-11-22 04:38:17 PT,ride_favorite_80,5m,1795350900,102.6,skip,hour_filter,,,0.0343,,,,0.00,0.00,0.9189,0.9208,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 4:00 PT hour net $-0.56.
+2026-11-22 04:38:17 PT,down_ride,5m,1795350900,102.6,skip,ask_band,Down,0.9578,0.0343,0.0500,0.9700,-0.0142,0.00,0.00,0.9189,0.9208,"Down costs 97c, outside this variant's 0.5-0.9 price range."
+2026-11-22 04:38:21 PT,control,5m,1795350900,98.6,skip,hour_filter,,,0.0377,,,,0.00,0.00,0.9190,0.9208,Tweak 2 HOUR_FILTER: hour_filter: 9 past trades in the 4:00 PT hour net $-7.52.
+2026-11-22 04:38:21 PT,trend_volume,5m,1795350900,98.6,skip,volume_conflict,,,0.0377,0.0350,,,0.00,0.00,0.9190,0.9208,Volume doesn't back the Down move: trend-direction candles average only 0.93x the volume of opposite ones (need 1.15x).
+2026-11-22 04:38:21 PT,trend_down,5m,1795350900,98.6,skip,volume_conflict,,,0.0377,0.0350,,,0.00,0.00,0.9190,0.9208,Volume doesn't back the Down move: trend-direction candles average only 0.93x the volume of opposite ones (need 1.00x).
+2026-11-22 04:38:21 PT,breakdown,5m,1795350900,98.6,skip,no_breakout,,,0.0377,0.0350,,,0.00,0.00,0.9190,0.9208,Price is inside its 30-min range ($0.9183-$0.9362); no breakout.
+2026-11-22 04:38:21 PT,auto_pick,5m,1795350900,98.6,skip,hour_filter,,,0.0377,,,,0.00,0.00,0.9190,0.9208,Tweak 2 HOUR_FILTER: hour_filter: 10 past trades in the 4:00 PT hour net $-2.52.
+2026-11-22 04:38:37 PT,ride_favorite_80,5m,1795350900,82.6,skip,hour_filter,,,0.0291,,,,0.00,0.00,0.9191,0.9208,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 4:00 PT hour net $-0.56.
+2026-11-22 04:38:41 PT,control,5m,1795350900,78.6,skip,hour_filter,,,0.0239,,,,0.00,0.00,0.9191,0.9208,Tweak 2 HOUR_FILTER: hour_filter: 9 past trades in the 4:00 PT hour net $-7.52.
+2026-11-22 04:38:41 PT,auto_pick,5m,1795350900,78.6,skip,hour_filter,,,0.0239,,,,0.00,0.00,0.9191,0.9208,Tweak 2 HOUR_FILTER: hour_filter: 10 past trades in the 4:00 PT hour net $-2.52.
+2026-11-22 04:38:57 PT,ride_favorite_80,5m,1795350900,62.6,skip,hour_filter,,,0.0051,,,,0.00,0.00,0.9191,0.9208,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 4:00 PT hour net $-0.56.
+2026-11-22 04:39:01 PT,control,5m,1795350900,58.6,skip,hour_filter,,,0.0018,,,,0.00,0.00,0.9190,0.9208,Tweak 2 HOUR_FILTER: hour_filter: 9 past trades in the 4:00 PT hour net $-7.52.
+2026-11-22 04:39:01 PT,auto_pick,5m,1795350900,58.6,skip,hour_filter,,,0.0018,,,,0.00,0.00,0.9190,0.9208,Tweak 2 HOUR_FILTER: hour_filter: 10 past trades in the 4:00 PT hour net $-2.52.
+2026-11-22 04:39:21 PT,control,5m,1795350900,38.6,skip,hour_filter,,,0.0000,,,,0.00,0.00,0.9189,0.9208,Tweak 2 HOUR_FILTER: hour_filter: 9 past trades in the 4:00 PT hour net $-7.52.
+2026-11-22 04:39:21 PT,auto_pick,5m,1795350900,38.6,skip,hour_filter,,,0.0000,,,,0.00,0.00,0.9189,0.9208,Tweak 2 HOUR_FILTER: hour_filter: 10 past trades in the 4:00 PT hour net $-2.52.
+2026-11-22 04:41:01 PT,control,5m,1795351200,238.6,skip,hour_filter,,,0.8135,,,,0.00,0.00,0.9209,0.9193,Tweak 2 HOUR_FILTER: hour_filter: 9 past trades in the 4:00 PT hour net $-7.52.
+2026-11-22 04:41:01 PT,model_lead,5m,1795351200,238.6,skip,edge_small,Up,0.7967,0.8135,0.7800,0.7900,-0.0049,0.00,0.00,0.9209,0.9193,Up at 79c: my estimate 80% beats price+fee by only -0.5c (need 4c).
+2026-11-22 04:41:01 PT,trend_volume,5m,1795351200,238.6,skip,weak_momentum,,,0.8135,0.7800,,,0.00,0.00,0.9209,0.9193,"The 60m move (-0.81%) too small to call a trend (z -0.8, need 1.0)."
+2026-11-22 04:41:01 PT,trend_down,5m,1795351200,238.6,skip,momentum_conflict,,,0.8135,0.7800,,,0.00,0.00,0.9209,0.9193,The 60m trend says Down but the last 15m (+0.11%) disagree.
+2026-11-22 04:41:01 PT,breakdown,5m,1795351200,238.6,skip,no_breakout,,,0.8135,0.7800,,,0.00,0.00,0.9209,0.9193,Price is inside its 30-min range ($0.9183-$0.9362); no breakout.
+2026-11-22 04:41:01 PT,auto_pick,5m,1795351200,238.6,skip,hour_filter,,,0.8135,,,,0.00,0.00,0.9209,0.9193,Tweak 2 HOUR_FILTER: hour_filter: 10 past trades in the 4:00 PT hour net $-2.52.
+2026-11-22 04:41:21 PT,control,5m,1795351200,218.6,skip,hour_filter,,,0.8161,,,,0.00,0.00,0.9208,0.9193,Tweak 2 HOUR_FILTER: hour_filter: 9 past trades in the 4:00 PT hour net $-7.52.
+2026-11-22 04:41:21 PT,model_lead,5m,1795351200,218.6,skip,ask_band,Up,0.8355,0.8161,0.8550,0.8600,-0.0329,0.00,0.00,0.9208,0.9193,"Up costs 86c, outside this variant's 0.2-0.8 price range."
+2026-11-22 04:41:21 PT,trend_volume,5m,1795351200,218.6,skip,weak_momentum,,,0.8161,0.8550,,,0.00,0.00,0.9208,0.9193,"The 60m move (-0.81%) too small to call a trend (z -0.8, need 1.0)."
+2026-11-22 04:41:21 PT,trend_down,5m,1795351200,218.6,skip,momentum_conflict,,,0.8161,0.8550,,,0.00,0.00,0.9208,0.9193,The 60m trend says Down but the last 15m (+0.11%) disagree.
+2026-11-22 04:41:21 PT,breakdown,5m,1795351200,218.6,skip,no_breakout,,,0.8161,0.8550,,,0.00,0.00,0.9208,0.9193,Price is inside its 30-min range ($0.9183-$0.9362); no breakout.
+2026-11-22 04:41:21 PT,auto_pick,5m,1795351200,218.6,skip,hour_filter,,,0.8161,,,,0.00,0.00,0.9208,0.9193,Tweak 2 HOUR_FILTER: hour_filter: 10 past trades in the 4:00 PT hour net $-2.52.
+2026-11-22 04:41:41 PT,control,5m,1795351200,198.6,skip,hour_filter,,,0.8612,,,,0.00,0.00,0.9210,0.9193,Tweak 2 HOUR_FILTER: hour_filter: 9 past trades in the 4:00 PT hour net $-7.52.
+2026-11-22 04:41:41 PT,model_lead,5m,1795351200,198.6,skip,ask_band,Up,0.8756,0.8612,0.8900,0.9000,-0.0307,0.00,0.00,0.9210,0.9193,"Up costs 90c, outside this variant's 0.2-0.8 price range."
+2026-11-22 04:41:41 PT,trend_volume,5m,1795351200,198.6,skip,weak_momentum,,,0.8612,0.8900,,,0.00,0.00,0.9210,0.9193,"The 60m move (-0.81%) too small to call a trend (z -0.8, need 1.0)."
+2026-11-22 04:41:41 PT,trend_down,5m,1795351200,198.6,skip,momentum_conflict,,,0.8612,0.8900,,,0.00,0.00,0.9210,0.9193,The 60m trend says Down but the last 15m (+0.11%) disagree.
+2026-11-22 04:41:41 PT,breakdown,5m,1795351200,198.6,skip,no_breakout,,,0.8612,0.8900,,,0.00,0.00,0.9210,0.9193,Price is inside its 30-min range ($0.9183-$0.9362); no breakout.
+2026-11-22 04:41:41 PT,auto_pick,5m,1795351200,198.6,skip,hour_filter,,,0.8612,,,,0.00,0.00,0.9210,0.9193,Tweak 2 HOUR_FILTER: hour_filter: 10 past trades in the 4:00 PT hour net $-2.52.
+2026-11-22 04:41:57 PT,down_ride,5m,1795351200,182.6,skip,timing,,,0.8681,0.9200,,,0.00,0.00,0.9210,0.9193,Only bets with 90-180s left; 183s left now.
+2026-11-22 04:42:01 PT,control,5m,1795351200,178.6,skip,hour_filter,,,0.8714,,,,0.00,0.00,0.9210,0.9193,Tweak 2 HOUR_FILTER: hour_filter: 9 past trades in the 4:00 PT hour net $-7.52.
+2026-11-22 04:42:01 PT,model_lead,5m,1795351200,178.6,skip,timing,,,0.8714,0.9200,,,0.00,0.00,0.9210,0.9193,Only bets with 180-240s left; 179s left now.
+2026-11-22 04:42:01 PT,trend_volume,5m,1795351200,178.6,skip,weak_momentum,,,0.8714,0.9200,,,0.00,0.00,0.9210,0.9193,"The 60m move (-0.81%) too small to call a trend (z -0.8, need 1.0)."
+2026-11-22 04:42:01 PT,trend_down,5m,1795351200,178.6,skip,momentum_conflict,,,0.8714,0.9200,,,0.00,0.00,0.9210,0.9193,The 60m trend says Down but the last 15m (+0.11%) disagree.
+2026-11-22 04:42:01 PT,breakdown,5m,1795351200,178.6,skip,no_breakout,,,0.8714,0.9200,,,0.00,0.00,0.9210,0.9193,Price is inside its 30-min range ($0.9183-$0.9362); no breakout.
+2026-11-22 04:42:01 PT,auto_pick,5m,1795351200,178.6,skip,hour_filter,,,0.8714,,,,0.00,0.00,0.9210,0.9193,Tweak 2 HOUR_FILTER: hour_filter: 10 past trades in the 4:00 PT hour net $-2.52.
+2026-11-22 04:42:17 PT,down_ride,5m,1795351200,162.5,skip,side_not_allowed,Up,0.9382,0.9314,0.9450,,,0.00,0.00,0.9214,0.9193,This variant only bets Down; the signal says Up.
+2026-11-22 04:42:21 PT,control,5m,1795351200,158.5,skip,hour_filter,,,0.9173,,,,0.00,0.00,0.9212,0.9193,Tweak 2 HOUR_FILTER: hour_filter: 9 past trades in the 4:00 PT hour net $-7.52.
+2026-11-22 04:42:21 PT,trend_volume,5m,1795351200,158.5,skip,weak_momentum,,,0.9173,0.9550,,,0.00,0.00,0.9212,0.9193,"The 60m move (-0.75%) too small to call a trend (z -0.8, need 1.0)."
+2026-11-22 04:42:21 PT,trend_down,5m,1795351200,158.5,skip,weak_momentum,,,0.9173,0.9550,,,0.00,0.00,0.9212,0.9193,"The 60m move (-0.75%) too small to call a trend (z -0.8, need 0.8)."
+2026-11-22 04:42:21 PT,breakdown,5m,1795351200,158.5,skip,no_breakout,,,0.9173,0.9550,,,0.00,0.00,0.9212,0.9193,Price is inside its 30-min range ($0.9183-$0.9362); no breakout.
+2026-11-22 04:42:21 PT,auto_pick,5m,1795351200,158.5,skip,hour_filter,,,0.9173,,,,0.00,0.00,0.9212,0.9193,Tweak 2 HOUR_FILTER: hour_filter: 10 past trades in the 4:00 PT hour net $-2.52.
+2026-11-22 04:42:37 PT,down_ride,5m,1795351200,142.5,skip,side_not_allowed,Up,0.9525,0.9501,0.9550,,,0.00,0.00,0.9214,0.9193,This variant only bets Down; the signal says Up.
+2026-11-22 04:42:41 PT,control,5m,1795351200,138.5,skip,hour_filter,,,0.9579,,,,0.00,0.00,0.9215,0.9193,Tweak 2 HOUR_FILTER: hour_filter: 9 past trades in the 4:00 PT hour net $-7.52.
+2026-11-22 04:42:41 PT,trend_volume,5m,1795351200,138.5,skip,weak_momentum,,,0.9579,0.9350,,,0.00,0.00,0.9215,0.9193,"The 60m move (-0.75%) too small to call a trend (z -0.8, need 1.0)."
+2026-11-22 04:42:41 PT,trend_down,5m,1795351200,138.5,skip,weak_momentum,,,0.9579,0.9350,,,0.00,0.00,0.9215,0.9193,"The 60m move (-0.75%) too small to call a trend (z -0.8, need 0.8)."
+2026-11-22 04:42:41 PT,breakdown,5m,1795351200,138.5,skip,no_breakout,,,0.9579,0.9350,,,0.00,0.00,0.9215,0.9193,Price is inside its 30-min range ($0.9183-$0.9362); no breakout.
+2026-11-22 04:42:41 PT,auto_pick,5m,1795351200,138.5,skip,hour_filter,,,0.9579,,,,0.00,0.00,0.9215,0.9193,Tweak 2 HOUR_FILTER: hour_filter: 10 past trades in the 4:00 PT hour net $-2.52.
+2026-11-22 04:42:57 PT,ride_favorite_80,5m,1795351200,122.5,skip,hour_filter,,,0.9699,,,,0.00,0.00,0.9215,0.9193,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 4:00 PT hour net $-0.56.
+2026-11-22 04:42:57 PT,down_ride,5m,1795351200,122.5,skip,side_not_allowed,Up,0.9699,0.9699,0.9700,,,0.00,0.00,0.9215,0.9193,This variant only bets Down; the signal says Up.
+2026-11-22 04:43:01 PT,control,5m,1795351200,118.5,skip,hour_filter,,,0.9724,,,,0.00,0.00,0.9215,0.9193,Tweak 2 HOUR_FILTER: hour_filter: 9 past trades in the 4:00 PT hour net $-7.52.
+2026-11-22 04:43:01 PT,trend_volume,5m,1795351200,118.5,skip,weak_momentum,,,0.9724,0.9800,,,0.00,0.00,0.9215,0.9193,"The 60m move (-0.75%) too small to call a trend (z -0.8, need 1.0)."
+2026-11-22 04:43:01 PT,trend_down,5m,1795351200,118.5,skip,weak_momentum,,,0.9724,0.9800,,,0.00,0.00,0.9215,0.9193,"The 60m move (-0.75%) too small to call a trend (z -0.8, need 0.8)."
+2026-11-22 04:43:01 PT,breakdown,5m,1795351200,118.5,skip,no_breakout,,,0.9724,0.9800,,,0.00,0.00,0.9215,0.9193,Price is inside its 30-min range ($0.9183-$0.9362); no breakout.
+2026-11-22 04:43:01 PT,auto_pick,5m,1795351200,118.5,skip,hour_filter,,,0.9724,,,,0.00,0.00,0.9215,0.9193,Tweak 2 HOUR_FILTER: hour_filter: 10 past trades in the 4:00 PT hour net $-2.52.
+2026-11-22 04:43:17 PT,ride_favorite_80,5m,1795351200,102.5,skip,hour_filter,,,0.9835,,,,0.00,0.00,0.9215,0.9193,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 4:00 PT hour net $-0.56.
+2026-11-22 04:43:17 PT,down_ride,5m,1795351200,102.5,skip,side_not_allowed,Up,0.9818,0.9835,0.9800,,,0.00,0.00,0.9215,0.9193,This variant only bets Down; the signal says Up.
+2026-11-22 04:43:21 PT,control,5m,1795351200,98.5,skip,hour_filter,,,0.9863,,,,0.00,0.00,0.9215,0.9193,Tweak 2 HOUR_FILTER: hour_filter: 9 past trades in the 4:00 PT hour net $-7.52.
+2026-11-22 04:43:21 PT,trend_volume,5m,1795351200,98.5,skip,choppy,,,0.9863,0.9900,,,0.00,0.00,0.9215,0.9193,"Choppy: price went back and forth (straightness 0.15, need 0.15)."
+2026-11-22 04:43:21 PT,trend_down,5m,1795351200,98.5,skip,weak_momentum,,,0.9863,0.9900,,,0.00,0.00,0.9215,0.9193,"The 60m move (-0.71%) too small to call a trend (z -0.7, need 0.8)."
+2026-11-22 04:43:21 PT,breakdown,5m,1795351200,98.5,skip,no_breakout,,,0.9863,0.9900,,,0.00,0.00,0.9215,0.9193,Price is inside its 30-min range ($0.9183-$0.9362); no breakout.
+2026-11-22 04:43:21 PT,auto_pick,5m,1795351200,98.5,skip,hour_filter,,,0.9863,,,,0.00,0.00,0.9215,0.9193,Tweak 2 HOUR_FILTER: hour_filter: 10 past trades in the 4:00 PT hour net $-2.52.
+2026-11-22 04:43:37 PT,ride_favorite_80,5m,1795351200,82.5,skip,hour_filter,,,0.9971,,,,0.00,0.00,0.9217,0.9193,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 4:00 PT hour net $-0.56.
+2026-11-22 04:43:41 PT,control,5m,1795351200,78.5,skip,hour_filter,,,0.9980,,,,0.00,0.00,0.9217,0.9193,Tweak 2 HOUR_FILTER: hour_filter: 9 past trades in the 4:00 PT hour net $-7.52.
+2026-11-22 04:43:41 PT,auto_pick,5m,1795351200,78.5,skip,hour_filter,,,0.9980,,,,0.00,0.00,0.9217,0.9193,Tweak 2 HOUR_FILTER: hour_filter: 10 past trades in the 4:00 PT hour net $-2.52.
+2026-11-22 04:43:57 PT,ride_favorite_80,5m,1795351200,62.5,skip,hour_filter,,,1.0000,,,,0.00,0.00,0.9222,0.9193,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 4:00 PT hour net $-0.56.
+2026-11-22 04:44:01 PT,control,5m,1795351200,58.5,skip,hour_filter,,,1.0000,,,,0.00,0.00,0.9222,0.9193,Tweak 2 HOUR_FILTER: hour_filter: 9 past trades in the 4:00 PT hour net $-7.52.
+2026-11-22 04:44:01 PT,auto_pick,5m,1795351200,58.5,skip,hour_filter,,,1.0000,,,,0.00,0.00,0.9222,0.9193,Tweak 2 HOUR_FILTER: hour_filter: 10 past trades in the 4:00 PT hour net $-2.52.
+2026-11-22 04:44:21 PT,control,5m,1795351200,38.5,skip,hour_filter,,,1.0000,,,,0.00,0.00,0.9224,0.9193,Tweak 2 HOUR_FILTER: hour_filter: 9 past trades in the 4:00 PT hour net $-7.52.
+2026-11-22 04:44:21 PT,auto_pick,5m,1795351200,38.5,skip,hour_filter,,,1.0000,,,,0.00,0.00,0.9224,0.9193,Tweak 2 HOUR_FILTER: hour_filter: 10 past trades in the 4:00 PT hour net $-2.52.
