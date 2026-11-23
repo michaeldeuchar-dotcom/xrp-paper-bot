@@ -2,18 +2,56 @@
  "auto_pick": {
   "cand": null,
   "cand_n": 0,
-  "history": [],
-  "last_check_ws": 1795407900,
-  "leader": null,
-  "scope": "since_start",
+  "history": [
+   {
+    "from": null,
+    "scope": "6h",
+    "scores": {
+     "breakdown": [
+      0.0,
+      0
+     ],
+     "control": [
+      3.95,
+      3
+     ],
+     "down_ride": [
+      1.43,
+      1
+     ],
+     "model_lead": [
+      0.0,
+      0
+     ],
+     "ride_favorite_80": [
+      2.88,
+      5
+     ],
+     "trend_down": [
+      0.0,
+      0
+     ],
+     "trend_volume": [
+      0.0,
+      0
+     ]
+    },
+    "to": "ride_favorite_80",
+    "ts_pt": "2026-11-22 20:31:01 PT",
+    "why": "first pick"
+   }
+  ],
+  "last_check_ws": 1795409100,
+  "leader": "ride_favorite_80",
+  "scope": "6h",
   "scores": {
    "breakdown": [
     0.0,
     0
    ],
    "control": [
-    3.95,
-    3
+    -4.14,
+    5
    ],
    "down_ride": [
     1.43,
@@ -24,8 +62,8 @@
     0
    ],
    "ride_favorite_80": [
-    2.63,
-    4
+    4.52,
+    7
    ],
    "trend_down": [
     0.0,
@@ -38,29 +76,56 @@
   }
  },
  "bankroll": {
-  "balance": 20.0,
+  "balance": 17.1346,
   "busted": false,
   "busted_at": null,
-  "equity": 20.0,
-  "following": null,
+  "equity": 21.4108,
+  "following": "ride_favorite_80",
   "funded": true,
   "goal": 1000.0,
   "goal_reached": false,
   "goal_reached_at": null,
-  "n_bets": 0,
-  "n_settled": 0,
+  "n_bets": 3,
+  "n_settled": 2,
   "start": 20.0,
   "variant": "bankroll_20"
  },
  "open": [
   {
-   "shares": 5.24,
+   "shares": 5.35,
+   "side": "Up",
+   "tf": "5m",
+   "total_cost": 3.0882768,
+   "trade_id": "W000018",
+   "variant": "control",
+   "window_start": 1795409100
+  },
+  {
+   "shares": 6.09,
    "side": "Down",
    "tf": "5m",
-   "total_cost": 4.995423,
-   "trade_id": "W000009",
+   "total_cost": 4.99850757,
+   "trade_id": "W000019",
    "variant": "ride_favorite_80",
-   "window_start": 1795407900
+   "window_start": 1795409100
+  },
+  {
+   "shares": 5.0,
+   "side": "Down",
+   "tf": "5m",
+   "total_cost": 4.103865000000001,
+   "trade_id": "W000020",
+   "variant": "auto_pick",
+   "window_start": 1795409100
+  },
+  {
+   "shares": 5.21,
+   "side": "Down",
+   "tf": "5m",
+   "total_cost": 4.27622733,
+   "trade_id": "W000021",
+   "variant": "bankroll_20",
+   "window_start": 1795409100
   }
  ],
  "ptb": {
@@ -95,15 +160,44 @@
   "1795407900": {
    "p": 0.9350756666666666,
    "src": "own_spot_samples_60s"
+  },
+  "1795408200": {
+   "p": 0.9334686666666666,
+   "src": "own_spot_samples_60s"
+  },
+  "1795408500": {
+   "p": 0.9308765,
+   "src": "own_spot_samples_60s"
+  },
+  "1795408800": {
+   "p": 0.9313915,
+   "src": "own_spot_samples_60s"
+  },
+  "1795409100": {
+   "p": 0.9317838333333335,
+   "src": "own_spot_samples_60s"
   }
  },
  "scale_pos": {},
- "seq": 9,
+ "seq": 21,
  "traded_windows": {
+  "auto_pick": [
+   1795408500,
+   1795408800,
+   1795409100
+  ],
+  "bankroll_20": [
+   1795408500,
+   1795408800,
+   1795409100
+  ],
   "control": [
    1795406400,
    1795407000,
-   1795407300
+   1795407300,
+   1795408500,
+   1795408800,
+   1795409100
   ],
   "down_ride": [
    1795406700
@@ -113,7 +207,10 @@
    1795406700,
    1795407000,
    1795407300,
-   1795407900
+   1795407900,
+   1795408500,
+   1795408800,
+   1795409100
   ]
  }
 }
