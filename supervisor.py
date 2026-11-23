@@ -2,9 +2,9 @@
 """Keeps the paper bot alive for the week.
 
 * starts bot.py (paper only) and restarts it if the process dies,
-* kills + restarts it if data/week1/heartbeat.json is older than 3 minutes (a hang),
+* kills + restarts it if data/week2/heartbeat.json is older than 3 minutes (a hang),
 * stops for good at the run end time, when the bot writes FINISHED, or when ./STOP exists.
-Run:  nohup python3 supervisor.py >> data/week1/supervisor.log 2>&1 &
+Run:  nohup python3 supervisor.py >> data/week2/supervisor.log 2>&1 &
 """
 import json
 import os

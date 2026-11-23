@@ -9,8 +9,8 @@ from __future__ import annotations
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
-RUN_NAME = "week1"
-DATA_DIR = ROOT / "data" / RUN_NAME          # week run lives here; today's 2-hour run stays in data/
+RUN_NAME = "week2"
+DATA_DIR = ROOT / "data" / RUN_NAME          # current two-week paper run; the first trial is frozen under data/week1
 STATE_PATH = DATA_DIR / "state.json"
 LOG_PATH = DATA_DIR / "bot.log"
 DECISIONS_CSV = DATA_DIR / "decisions.csv"

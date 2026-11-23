@@ -4,7 +4,7 @@
 PAPER ONLY: this build contains no order-signing or wallet code at all. It reads
 public prices, simulates taker fills at the real best ask (with the taker fee),
 holds every bet to the official resolution, and runs several strategy variants
-side by side on the same data, each with its own ledger (data/week1/trades_<variant>.csv).
+side by side on the same data, each with its own ledger (data/week2/trades_<variant>.csv).
 """
 from __future__ import annotations
 

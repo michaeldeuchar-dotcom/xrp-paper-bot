@@ -1,0 +1,4 @@
+## 2026-11-22 (evening, PT) — end the week1 trial; start a fresh two-week run in data/week2 through Dec 7
+- Change: the first trial (`data/week1`) is frozen as-is on the `data` branch — no reset, no delete, no overwrite. A new paper run starts in `data/week2` from zero for every variant, including a fresh `bankroll_20` at $20 fake money with a $1,000 goal, and auto_pick ranking that uses only week2 results. New bets in this run stop Monday, December 7, 2026 at 11:30 AM PT. The results tool defaults to week2; pass `--run week1` to read the first trial.
+- Why: the owner asked to close the first trial and start a clean two-week test, while keeping the week1 ledgers for the final breakdown.
+- Unchanged: fake money only, no wallet, no real trades, $10 hard max per bet including the taker fee, week1 files on the data branch.

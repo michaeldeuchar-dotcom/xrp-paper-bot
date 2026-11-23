@@ -156,7 +156,7 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--since", help="PT date/time like 2026-11-18 or '2026-11-18 09:00', or 6h / 30m / 2d")
     ap.add_argument("--variant", help="only this variant")
-    ap.add_argument("--run", default="week1")
+    ap.add_argument("--run", default="week2", help="run folder under data/ (week2 is the current two-week test; use week1 for the first trial)")
     ap.add_argument("--file", help="summarize a single trades CSV instead (e.g. data/trades.csv)")
     a = ap.parse_args()
     since = parse_since(a.since)
