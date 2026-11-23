@@ -814,6 +814,9 @@ def cycle_tf(state: dict, tf: str, variants: dict, spot: float, now: float) -> N
         log.exception("max_profit rest check failed (continuing)")
     if not todo:
         return
+    # If a resting limit just filled, drop max_profit from this round so it cannot also take the ask.
+    todo = {n: v for n, v in todo.items()
+            if not (v.get("mode") == "max_profit" and (ws in traded.get(n, []) or f"{tf}:{ws}" in traded.get(n, [])))}
     obs = own_twap(ws + wsec - 60, now, min_n=3) if secs_left <= 60 else None
     p_up = strategy.p_up_model(spot, ptb, secs_left, vol, obs)
     _stats["evals"] += 1
