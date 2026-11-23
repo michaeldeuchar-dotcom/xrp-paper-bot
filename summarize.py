@@ -167,7 +167,20 @@ def main():
     now = datetime.now(PT)
     today0 = now.replace(hour=0, minute=0, second=0, microsecond=0)
     print(f"Paper (fake money) results as of {now:%a %b %d, %I:%M %p} PT" + (f", bets since {since:%b %d %I:%M %p} PT" if since else ""))
-    print("No real money was used.\n")
+    print("No real money was used.")
+    try:
+        import importlib.util
+        spec = importlib.util.spec_from_file_location("_run_cfg", os.path.join(ROOT, "config.py"))
+        cfg = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(cfg)
+        until = datetime.fromisoformat(cfg.RUN_UNTIL)
+        if until.tzinfo is None:
+            until = until.replace(tzinfo=PT)
+        print(f"This paper run takes new bets until {until.astimezone(PT):%a %b %d, %I:%M %p} PT.")
+    except Exception:
+        pass
+    print()
+
     try:
         import json
         c = json.load(open(os.path.join(ROOT, "data", a.run, "coverage.json")))

@@ -1,0 +1,4 @@
+## 2026-11-22 (evening, PT) — extend the paper run through Monday, Dec 7, 11:30 AM PT
+- Change: the hard end time is now Monday, December 7, 2026 at 11:30 AM PT (was November 23, 11:30 AM PT). Every variant, including `bankroll_20`, can keep placing new fake-money bets until then. After that the bots stop new bets and settle anything still open. The hourly backup cron and the self-restarting job chain use the same new end time. Results still live in `data/week1/` (that folder name is just the run label, not a calendar week).
+- Why: the owner approved two more weeks so the fleets, including the $20-to-$1,000 bankroll bots, have a longer stretch of fake-money results.
+- Unchanged: fake money only, no wallet, no real trades, $10 hard max per bet including the taker fee, existing state and ledgers, `bankroll_20` starting balance and $1,000 goal.

@@ -32,7 +32,7 @@ TIMEFRAMES = {
 WINDOW_SECONDS = 300          # kept for the 5-minute family (first-minute skip etc.)
 COINBASE_PRODUCT = "XRP-USD"
 
-RUN_UNTIL = "2026-11-23T11:30:00-08:00"      # hard end of the week run (PT)
+RUN_UNTIL = "2026-12-07T11:30:00-08:00"      # hard end of this paper run (PT); new bets stop here
 RESOLVE_GRACE_SEC = 900                      # after RUN_UNTIL keep settling open paper bets
 
 STAKE_HARD_MAX_USD = 10.00                   # ABSOLUTE ceiling per trade. Never raise.

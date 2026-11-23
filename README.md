@@ -12,7 +12,7 @@ pretend bet until the official result. Per-bet cost is hard-capped at $10 (fee i
 - 9 strategy variants run side by side, each with its own fake account (`variants.json`).
 - Results: the `data` branch (`data/week1/trades_<variant>.csv`, `state.json`, `heartbeat.json`, log tails).
 - Summary: copy `data/` from the `data` branch, then `python3 summarize.py`.
-- Runs on GitHub Actions in ~5h40m slices (`.github/workflows/paper-bot.yml`) until 2026-11-23 11:30 AM PT
+- Runs on GitHub Actions in ~5h40m slices (`.github/workflows/paper-bot.yml`) until 2026-12-07 11:30 AM PT
   (extendable: change `END_AT` in the workflow and `RUN_UNTIL` in `config.py`).
   Each slice starts the next one; an hourly cron (:17) restarts the chain if it ever breaks.
 - Stop it: commit a file named `STOP` to `main`, or disable the workflow.
