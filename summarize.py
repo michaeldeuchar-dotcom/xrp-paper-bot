@@ -98,6 +98,32 @@ def pick_line(run):
         return "  Current pick: unknown (no state file)."
 
 
+def bankroll_line(run):
+    """Fake-money bankroll_20 status (from the bot's saved state)."""
+    try:
+        import json
+        st = json.load(open(os.path.join(ROOT, "data", run, "state.json"))).get("bankroll")
+        if not st:
+            return "  Bankroll: not funded yet."
+        bal = float(st.get("balance") if st.get("balance") is not None else st.get("equity") or 0)
+        start = float(st.get("start", 20))
+        goal = float(st.get("goal", 1000))
+        n = int(st.get("n_bets") or 0)
+        txt = f"  Bankroll: ${bal:,.2f} of ${start:,.0f} start, goal ${goal:,.0f}, {n} bets"
+        follow = st.get("following")
+        if follow:
+            txt += f"; following {follow}"
+        elif st.get("funded") and n == 0:
+            txt += "; waiting to pick a strategy"
+        if st.get("goal_reached"):
+            txt += f"; GOAL REACHED at {st.get('goal_reached_at')}"
+        if st.get("busted"):
+            txt += f"; BUSTED at {st.get('busted_at')} (too little left for a minimum bet)"
+        return txt + "."
+    except Exception:
+        return "  Bankroll: unknown (no state file)."
+
+
 def load(args):
     if args.file:
         files = {os.path.basename(args.file): args.file}
@@ -160,6 +186,8 @@ def main():
         print(f"{name}:")
         if name == "auto_pick":
             print(pick_line(a.run))
+        if name == "bankroll_20":
+            print(bankroll_line(a.run))
         print(describe("Today", s_today))
         print(describe("Since start" if not since else "In this period", s_all))
         print()
@@ -171,9 +199,15 @@ def main():
             wr = f"{s['wins'] / s['settled']:.0%}" if s["settled"] else "-"
             roi = f"{s['pnl'] / s['staked']:+.0%}" if s["staked"] else "-"
             print(f"  {name:<19}{s['n']:>5}{s['wins']:>5}{s['losses']:>5}{s['open']:>5}{wr:>6}{s['staked']:>9.2f}{money(s['pnl']):>10}{roi:>8}")
-        total = sum(s["pnl"] for n, s in table if n != "auto_pick")
+        skip = {"auto_pick", "bankroll_20"}
+        total = sum(s["pnl"] for n, s in table if n not in skip)
+        extras = []
+        if any(n == "auto_pick" for n, _ in table):
+            extras.append("auto_pick left out because it only copies the others' bets")
+        if any(n == "bankroll_20" for n, _ in table):
+            extras.append("bankroll_20 left out because it is its own $20-to-$1,000 account that copies the current pick")
         print(f"\n  All variants together: {money(total)} (each variant is a separate fake account"
-              + ("; auto_pick left out because it only copies the others' bets" if any(n == "auto_pick" for n, _ in table) else "") + ").")
+              + (("; " + "; ".join(extras)) if extras else "") + ").")
 
 
 if __name__ == "__main__":

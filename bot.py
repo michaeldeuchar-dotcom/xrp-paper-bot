@@ -297,6 +297,7 @@ def meta_decide(state, name, v, variants, *, p_up, books, secs_left, trend, spot
 
 # ---------------------------------------------------------------- auto_pick variant (follows whichever 5m variant is hottest)
 AUTO_SWITCH_CSV = config.DATA_DIR / "auto_pick_switches.csv"
+COPY_MODES = frozenset({"auto_pick", "bankroll", "meta"})  # copiers are never ranking candidates
 _auto_cache: dict = {}
 
 
@@ -321,7 +322,7 @@ def _settled_stats(name: str, since_ts):
 def auto_scores(variants: dict, me: str, tf: str, now: float, hours: float, min_bets: int):
     """Rank same-timeframe variants (never itself) by net fake P&L on settled bets. Returns (scope, scores) where scores is
     {variant: (net_pnl, n_bets, dollars_bet)} for EVERY candidate; 'scope' is '6h' normally, or 'since_start' when nobody qualifies in the window."""
-    cands = [n for n, v in variants.items() if n != me and v.get("timeframe", "5m") == tf and v.get("mode") != "auto_pick"]
+    cands = [n for n, v in variants.items() if n != me and v.get("timeframe", "5m") == tf and v.get("mode") not in COPY_MODES]
     def qual(sc):
         return {n: s for n, s in sc.items() if s[1] >= min_bets and s[0] > 0}
     win = {n: _settled_stats(n, now - hours * 3600) for n in cands}
@@ -426,6 +427,201 @@ def auto_decide(state, name, v, variants, *, p_up, books, secs_left, trend, spot
     return D("skip", "leader_idle", f"Current pick {leader} ({scope} {pos[leader][0]:+.2f}) isn't betting this round; sitting out" + (": " + "; ".join(notes) if notes else "") + ".")
 
 
+
+# ---------------------------------------------------------------- bankroll_20 (fake $20 start, $1,000 goal; follows auto_pick's leader)
+BANKROLL_CSV = config.DATA_DIR / "bankroll_history.csv"
+FLOOR_ASK = 0.05  # cheapest ask we treat as a real minimum-order quote when judging "busted"
+
+
+def _min_order_cost(ask: float) -> float:
+    """Cost of Polymarket's 5-share minimum at this ask, including the taker fee."""
+    return config.MIN_ORDER_SHARES * (float(ask) + strategy.fee_per_share(ask))
+
+
+def bankroll_size(available: float, ask: float, frac: float) -> tuple | None:
+    """Size a bankroll bet. Returns (stake/notional, shares, fee, total_cost) or None if unaffordable.
+
+    Target is `frac` of cash on hand (default 20%), but always at least the 5-share minimum,
+    never more than the $10 hard max including fee, and never more than cash on hand.
+    """
+    import math
+    if ask <= 0 or available <= 0 or frac <= 0:
+        return None
+    hard = min(float(config.STAKE_HARD_MAX_USD), float(available))
+    min_cost = _min_order_cost(ask)
+    if min_cost > hard + 1e-9:
+        return None
+    budget = min(max(float(frac) * float(available), min_cost), hard)
+    fps = strategy.fee_per_share(ask)
+    cost_ps = float(ask) + fps
+    shares = math.floor(budget / cost_ps * 100) / 100
+    if shares + 1e-9 < config.MIN_ORDER_SHARES:
+        shares = float(config.MIN_ORDER_SHARES)
+    notional = shares * float(ask)
+    fee = shares * fps
+    total = notional + fee
+    if total > hard + 1e-9 or shares + 1e-9 < config.MIN_ORDER_SHARES:
+        return None
+    return notional, shares, fee, total
+
+
+def bankroll_log(event: str, *, balance: float, equity: float, delta: float = 0.0,
+                 trade_id: str = "", following: str = "", note: str = "", now: float | None = None) -> None:
+    import csv as _csv
+    BANKROLL_CSV.parent.mkdir(parents=True, exist_ok=True)
+    fresh = not BANKROLL_CSV.exists()
+    try:
+        with BANKROLL_CSV.open("a", newline="") as f:
+            w = _csv.writer(f)
+            if fresh:
+                w.writerow(["ts_pt", "event", "balance", "equity", "delta", "trade_id", "following", "note"])
+            w.writerow([store.iso_pt(now), event, f"{balance:.4f}", f"{equity:.4f}", f"{delta:.4f}",
+                        trade_id, following, note])
+    except Exception:  # noqa: BLE001
+        log.exception("could not write bankroll history csv")
+
+
+def bankroll_ensure(state: dict, v: dict, name: str) -> dict:
+    """Create the fake-money bankroll account once, then return it. Never resets an existing balance."""
+    start = float(v.get("start_balance", 20))
+    goal = float(v.get("goal_balance", 1000))
+    b = state.setdefault("bankroll", {})
+    if not b.get("funded"):
+        now = time.time()
+        b.update({
+            "variant": name, "start": start, "goal": goal, "balance": round(start, 4),
+            "equity": round(start, 4), "busted": False, "busted_at": None,
+            "goal_reached": False, "goal_reached_at": None, "n_bets": 0, "n_settled": 0,
+            "following": None, "funded": True,
+        })
+        bankroll_log("fund", balance=start, equity=start, note=f"starting fake-money balance; goal ${goal:,.0f}", now=now)
+        log.info("BANKROLL funded $%.2f fake money, goal $%.2f (variant=%s)", start, goal, name)
+    return b
+
+
+def bankroll_recompute(state: dict, name: str) -> dict:
+    b = state.get("bankroll") or bankroll_ensure(state, {}, name)
+    start = float(b.get("start", 20))
+    settled_pnl = open_cost = 0.0
+    n = n_settled = 0
+    csv_open = set()
+    for r in store.read_trades(name):
+        n += 1
+        if r.get("status") == "resolved" and r.get("pnl_usd") not in (None, ""):
+            settled_pnl += float(r["pnl_usd"])
+            n_settled += 1
+        elif r.get("status") == "open":
+            open_cost += float(r.get("total_cost_usd") or 0)
+            csv_open.add(r.get("trade_id"))
+    for item in state.get("open", []):
+        if item.get("variant") == name and item.get("trade_id") not in csv_open:
+            open_cost += float(item["total_cost"])
+    b["equity"] = round(start + settled_pnl, 4)
+    b["balance"] = round(start + settled_pnl - open_cost, 4)
+    b["n_bets"] = n
+    b["n_settled"] = n_settled
+    return b
+
+
+def bankroll_check_flags(state: dict, name: str, now: float | None = None) -> dict:
+    """Mark goal-reached or busted after a settlement (or on a skip). Open bets can still change the outcome."""
+    b = bankroll_recompute(state, name)
+    now = time.time() if now is None else now
+    open_n = sum(1 for item in state.get("open", []) if item.get("variant") == name)
+    if (not b.get("goal_reached")) and b["equity"] + 1e-9 >= float(b.get("goal", 1000)) and open_n == 0:
+        b["goal_reached"] = True
+        b["goal_reached_at"] = store.iso_pt(now)
+        bankroll_log("goal", balance=b["balance"], equity=b["equity"], following=b.get("following") or "",
+                     note=f"goal ${float(b['goal']):,.0f} reached; no new bets", now=now)
+        log.info("BANKROLL GOAL REACHED equity=$%.2f (start $%.2f, goal $%.2f)", b["equity"], b["start"], b["goal"])
+    floor = _min_order_cost(FLOOR_ASK)
+    if (not b.get("busted")) and (not b.get("goal_reached")) and open_n == 0 and b["balance"] + 1e-9 < floor:
+        b["busted"] = True
+        b["busted_at"] = store.iso_pt(now)
+        bankroll_log("busted", balance=b["balance"], equity=b["equity"], following=b.get("following") or "",
+                     note=f"cash ${b['balance']:.2f} cannot cover a 5-share minimum (floor ${floor:.2f})", now=now)
+        log.info("BANKROLL BUSTED balance=$%.2f (cannot cover a minimum order); stopping new bets", b["balance"])
+    return b
+
+
+def bankroll_on_fill(state: dict, name: str, trade_id: str, total_cost: float, copied: str = "") -> None:
+    b = bankroll_recompute(state, name)
+    if copied:
+        b["following"] = copied
+    bankroll_log("fill", balance=b["balance"], equity=b["equity"], delta=-float(total_cost),
+                 trade_id=trade_id, following=b.get("following") or copied,
+                 note=f"placed bet costing ${float(total_cost):.2f} incl. fee")
+    log.info("BANKROLL FILL %s cost=$%.2f cash=$%.2f equity=$%.2f following=%s",
+             trade_id, total_cost, b["balance"], b["equity"], b.get("following"))
+
+
+def bankroll_on_resolve(state: dict, name: str, trade_id: str, pnl: float, payout: float) -> None:
+    b = bankroll_recompute(state, name)
+    bankroll_log("settle", balance=b["balance"], equity=b["equity"], delta=float(payout),
+                 trade_id=trade_id, following=b.get("following") or "",
+                 note=f"settled pnl ${pnl:+.2f}, payout ${payout:.2f}")
+    log.info("BANKROLL SETTLE %s pnl=$%+.2f cash=$%.2f equity=$%.2f", trade_id, pnl, b["balance"], b["equity"])
+    bankroll_check_flags(state, name)
+
+
+def bankroll_decide(state, name, v, variants, *, p_up, books, secs_left, trend, spot, ptb, ws, now, breaker_on=None):
+    """Follow the same pick as auto_pick, but size the bet from this variant's own $20 fake bankroll."""
+    D = lambda action, reason, english, **kw: strategy.Decision(name, action, reason, english, model_p_up=p_up, **kw)  # noqa: E731
+    b = bankroll_ensure(state, v, name)
+    bankroll_recompute(state, name)
+    if b.get("busted"):
+        return D("skip", "busted", f"Bankroll busted at {b.get('busted_at')}: ${b['balance']:.2f} left, not enough for a minimum bet. Sitting out.")
+    if b.get("goal_reached"):
+        return D("skip", "goal_reached", f"Bankroll hit its ${float(b['goal']):,.0f} goal at {b.get('goal_reached_at')} (now ${b['equity']:.2f}). No new bets.")
+    tf = v.get("timeframe", "5m")
+    min_bets = int(v.get("min_bets", 5))
+    c = _auto_cache.get(name)
+    if c and c[0] == ws:
+        scope, scores = c[1], c[2]
+    else:
+        scope, scores = auto_scores(variants, name, tf, now, float(v.get("score_hours", 6)), min_bets)
+        _auto_cache[name] = (ws, scope, scores)
+    a = auto_update_leader(state, scores, scope, ws, min_bets, now)
+    pos = {n: s for n, s in scores.items() if s[1] >= min_bets and s[0] > 0}
+    leader = a.get("leader")
+    b["following"] = leader
+    if not pos or not leader or leader not in pos:
+        return D("skip", "nobody_qualifies", f"No {tf} variant has {min_bets}+ settled bets and positive P&L ({scope}); bankroll sitting out.")
+    sv = variants.get(leader)
+    if sv is None:
+        return D("skip", "leader_missing", f"Current pick {leader} is not in the active set; sitting out.")
+    if breaker_on and (sv.get("circuit_breaker") or "watch") == "block":
+        return D("skip", "leader_blocked", f"Current pick {leader} is paused by the jumpy-market safety switch; sitting out.")
+    dl = strategy.decide(leader, sv, p_model=p_up, books=books, secs_left=secs_left, trend=trend, spot=spot, ptb=ptb)
+    if dl.action != "buy":
+        return D("skip", "leader_idle", f"Current pick {leader} ({scope} {pos[leader][0]:+.2f}) isn't betting this round ({dl.reason}); sitting out.")
+    book = books.get(dl.side)
+    if book is None or book.best_ask is None:
+        return D("skip", "no_book", f"Current pick {leader} would buy {dl.side} but there is no ask on the book.")
+    ask = float(book.best_ask)
+    sized = bankroll_size(b["balance"], ask, float(v.get("stake_frac", 0.20)))
+    if sized is None:
+        bankroll_check_flags(state, name, now)
+        b = state["bankroll"]
+        if b.get("busted"):
+            return D("skip", "busted", f"Bankroll busted: ${b['balance']:.2f} left, not enough for a minimum bet. Sitting out.")
+        need = _min_order_cost(ask)
+        return D("skip", "bankroll_short", f"Bankroll has ${b['balance']:.2f} cash, but 5 shares of {dl.side} at {ask*100:.0f}c would cost ${need:.2f} incl. fee; sitting this one out.")
+    notional, sh, fee, total = sized
+    if book.best_ask_size + 1e-9 < sh:
+        return D("skip", "book_thin", f"Current pick {leader} would buy {dl.side}, but the book only has {book.best_ask_size:.2f} shares (need {sh:.2f}).")
+    fps = strategy.fee_per_share(ask)
+    pnl, nb, _cost = pos[leader]
+    eng = (f"Bankroll following {leader} ({scope} net ${pnl:+.2f} on {nb} settled bets): it would buy {dl.side} -- {dl.english} "
+           f"bankroll size ${notional:.2f}+${fee:.2f} fee ({float(v.get('stake_frac', 0.20)):.0%} of ${b['balance']:.2f} cash, "
+           f"5-share min, cap $10 incl. fee). Cash after fill ${b['balance']-total:.2f}.")
+    return strategy.Decision(name, "buy", "ok", eng, side=dl.side, est_prob=dl.est_prob, model_p_up=p_up,
+                             market_p_up=dl.market_p_up, ask=ask, ask_size=book.best_ask_size, fee_ps=fps,
+                             edge=dl.edge, stake=notional, shares=sh, notional=notional, fee=fee, total_cost=total,
+                             extra={"copied": leader})
+
+
+
 # ---------------------------------------------------------------- resolution
 _last_resolve = [0.0]
 
@@ -468,6 +664,9 @@ def resolve_open(state: dict, force: bool = False) -> None:
                 start_cooldown(state, item["variant"], vcfg, ws, time.time())
         log.info("RESOLVED [%s] %s %s outcome=%s %s pnl=$%+.2f variant_total=$%+.2f",
                  item["variant"], item["trade_id"], item["side"], outcome, "WON" if won else "LOST", pnl, prior + pnl)
+        if item["variant"] == (state.get("bankroll") or {}).get("variant") or ((_variants.get("data") or {}).get(item["variant"]) or {}).get("mode") == "bankroll":
+            payout = float(item["shares"]) if won else 0.0
+            bankroll_on_resolve(state, item["variant"], item["trade_id"], pnl, payout)
     state["open"] = still
 
 
@@ -514,6 +713,8 @@ def paper_fill(state, name, d, m, ws, secs_left, spot, ptb, ptb_src, vol, tf="5m
     log.info("PAPER FILL [%s] %s %s %s $%.2f = %.2f sh @ %.2f (fee $%.3f) %.0fs left", name, tf, tid, d.side, d.notional, d.shares, d.ask, d.fee, secs_left)
     _reason(f"[{name}] {d.english}")
     _stats["fills"] += 1
+    if name == (state.get("bankroll") or {}).get("variant") or ((_variants.get("data") or {}).get(name) or {}).get("mode") == "bankroll":
+        bankroll_on_fill(state, name, tid, d.total_cost, (d.extra or {}).get("copied") or "")
 
 
 def cycle(state: dict, accepting: bool) -> None:
@@ -590,6 +791,8 @@ def cycle_tf(state: dict, tf: str, variants: dict, spot: float, now: float) -> N
                         d = strategy.Decision(name, "skip", "cooldown", cd + f" (would have copied {d.extra.get('copied')} {d.side})", side=d.side, model_p_up=p_up)
             elif v.get("mode") == "auto_pick":
                 d = auto_decide(state, name, v, variants, p_up=p_up, books=books, secs_left=secs_left, trend=trend, spot=spot, ptb=ptb, ws=ws, now=now)
+            elif v.get("mode") == "bankroll":
+                d = bankroll_decide(state, name, v, variants, p_up=p_up, books=books, secs_left=secs_left, trend=trend, spot=spot, ptb=ptb, ws=ws, now=now)
             elif v.get("mode") in SCALE_MODES and _scale_open(name):
                 d = strategy.decide_scale_add(name, v, spos[name], books=books, secs_left=secs_left, spot=spot, ptb=ptb, now=now)
                 d.model_p_up = p_up
@@ -636,6 +839,9 @@ def heartbeat(state: dict, cycles: int, force_log: bool, last_log: list) -> None
     ap_ = state.get("auto_pick")
     if ap_:
         hb["auto_pick"] = {"leader": ap_.get("leader"), "scope": ap_.get("scope"), "last_check_ws": ap_.get("last_check_ws"), "scores": ap_.get("scores")}
+    br_ = state.get("bankroll")
+    if br_:
+        hb["bankroll"] = {k: br_.get(k) for k in ("variant", "start", "goal", "balance", "equity", "busted", "goal_reached", "n_bets", "n_settled", "following")}
     tmp = config.HEARTBEAT_PATH.with_suffix(".tmp")
     tmp.write_text(json.dumps(hb))
     os.replace(tmp, config.HEARTBEAT_PATH)
@@ -684,6 +890,10 @@ def main() -> int:
              os.getpid(), until.isoformat(), ",".join(vs), config.STAKE_HARD_MAX_USD, config.SKIP_FIRST_MINUTE,
              config.HOUR_FILTER, config.HOUR_FILTER_MIN_TRADES, config.LOG_BET_REASONS)
     state = store.load_state()
+    for n, v in vs.items():
+        if v.get("mode") == "bankroll":
+            bankroll_ensure(state, v, n)
+    store.save_state(state)
     cycles, last_log = 0, [0.0]
     grace_end = None
     last_pass = time.time()

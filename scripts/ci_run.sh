@@ -33,7 +33,7 @@ if [ -f data/week1/FINISHED ]; then echo "run already FINISHED"; exit 0; fi
 
 save() {
   mkdir -p "$ST/data/week1"
-  cp -a data/week1/trades_*.csv data/week1/auto_pick_switches.csv data/week1/state.json data/week1/coverage.json data/week1/heartbeat.json \
+  cp -a data/week1/trades_*.csv data/week1/auto_pick_switches.csv data/week1/bankroll_history.csv data/week1/state.json data/week1/coverage.json data/week1/heartbeat.json \
         "$ST/data/week1/" 2>/dev/null || true
   [ -f data/week1/FINISHED ] && cp data/week1/FINISHED "$ST/data/week1/"
   [ -f data/TWEAKS_LOG.md ] && cp data/TWEAKS_LOG.md "$ST/data/"

@@ -204,5 +204,18 @@
     "max_secs_left": 240,
     "round_up_to_min_shares": true,
     "max_round_up_usd": 5
+  },
+  "bankroll_20": {
+    "enabled": true,
+    "desc": "BANKROLL $20\u2192$1,000 (5m, fake money only): starts with a $20 fake-money balance and tries to grow it to $1,000. Follows ONLY the group's current auto_pick (other 5m variants ranked by 6-hour net fake P&L; 5+ settled bets and positive P&L to qualify; new leader must be best at 2 straight checks). Bets about 20% of its cash each time, rounded up to the 5-share minimum, never more than $10 including the taker fee, never more than the cash on hand. Stops if the balance can't cover a minimum order (busted) or once the $1,000 goal is hit. Own separate fake account; does not change the other variants.",
+    "timeframe": "5m",
+    "mode": "bankroll",
+    "score_hours": 6,
+    "min_bets": 5,
+    "start_balance": 20,
+    "goal_balance": 1000,
+    "stake_frac": 0.2,
+    "min_secs_left": 30,
+    "max_secs_left": 240
   }
 }
