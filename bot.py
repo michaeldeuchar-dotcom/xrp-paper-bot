@@ -513,8 +513,9 @@ def bankroll_recompute(state: dict, name: str) -> dict:
         elif r.get("status") == "open":
             open_cost += float(r.get("total_cost_usd") or 0)
             csv_open.add(r.get("trade_id"))
+    resolved_ids = {r.get("trade_id") for r in store.read_trades(name) if r.get("status") == "resolved"}
     for item in state.get("open", []):
-        if item.get("variant") == name and item.get("trade_id") not in csv_open:
+        if item.get("variant") == name and item.get("trade_id") not in csv_open and item.get("trade_id") not in resolved_ids:
             open_cost += float(item["total_cost"])
     b["equity"] = round(start + settled_pnl, 4)
     b["balance"] = round(start + settled_pnl - open_cost, 4)
