@@ -32,3 +32,13 @@
 - Change: added one new variant, `bankroll_20`. It gets its own $20 fake-money balance and tries to turn that into $1,000. It follows ONLY the group's current auto_pick (same 6-hour net-P&L ranking, 5+ settled bets and positive P&L to qualify, two-check rule to switch). Stake is about 20% of cash on hand, rounded up to the 5-share minimum, never more than $10 including the taker fee, and never more than the cash it has left. Balance updates when a bet settles. If the cash can't cover a minimum order it stops (busted) and logs it. If the balance hits $1,000 it records the goal and stops new bets. Balance history is written to `data/week1/bankroll_history.csv`. The results summary shows a `Bankroll: $X of $20 start, goal $1,000, N bets` line.
 - Why: give this group a single funded fake-money account with a clear $1,000 target, without changing how the other variants bet or how auto_pick ranks them.
 - Unchanged: every other variant, auto_pick's own $3 stake, $10 hard max per bet, fake money only, end time (still Nov 23, 11:30 AM PT).
+
+## 2026-11-22 (evening, PT) — extend the paper run through Monday, Dec 7, 11:30 AM PT
+- Change: the hard end time is now Monday, December 7, 2026 at 11:30 AM PT (was November 23, 11:30 AM PT). Every variant, including `bankroll_20`, can keep placing new fake-money bets until then. After that the bots stop new bets and settle anything still open. The hourly backup cron and the self-restarting job chain use the same new end time. Results still live in `data/week1/` (that folder name is just the run label, not a calendar week).
+- Why: the owner approved two more weeks so the fleets, including the $20-to-$1,000 bankroll bots, have a longer stretch of fake-money results.
+- Unchanged: fake money only, no wallet, no real trades, $10 hard max per bet including the taker fee, existing state and ledgers, `bankroll_20` starting balance and $1,000 goal.
+
+## 2026-11-22 (evening, PT) — end the week1 trial; start a fresh two-week run in data/week2 through Dec 7
+- Change: the first trial (`data/week1`) is frozen as-is on the `data` branch — no reset, no delete, no overwrite. A new paper run starts in `data/week2` from zero for every variant, including a fresh `bankroll_20` at $20 fake money with a $1,000 goal, and auto_pick ranking that uses only week2 results. New bets in this run stop Monday, December 7, 2026 at 11:30 AM PT. The results tool defaults to week2; pass `--run week1` to read the first trial.
+- Why: the owner asked to close the first trial and start a clean two-week test, while keeping the week1 ledgers for the final breakdown.
+- Unchanged: fake money only, no wallet, no real trades, $10 hard max per bet including the taker fee, week1 files on the data branch.
