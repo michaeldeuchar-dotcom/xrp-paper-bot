@@ -372,31 +372,68 @@
     "to": null,
     "ts_pt": "2026-11-23 02:41:01 PT",
     "why": "nobody has 5+ settled bets and positive P&L"
+   },
+   {
+    "from": null,
+    "scope": "6h",
+    "scores": {
+     "breakdown": [
+      1.57,
+      1
+     ],
+     "control": [
+      0.6,
+      47
+     ],
+     "down_ride": [
+      -13.79,
+      7
+     ],
+     "model_lead": [
+      -4.38,
+      5
+     ],
+     "ride_favorite_80": [
+      -6.59,
+      49
+     ],
+     "trend_down": [
+      -0.15,
+      2
+     ],
+     "trend_volume": [
+      -4.05,
+      7
+     ]
+    },
+    "to": "control",
+    "ts_pt": "2026-11-23 03:01:01 PT",
+    "why": "first pick"
    }
   ],
-  "last_check_ws": 1795431000,
-  "leader": null,
-  "scope": "since_start",
+  "last_check_ws": 1795432200,
+  "leader": "control",
+  "scope": "6h",
   "scores": {
    "breakdown": [
     1.57,
     1
    ],
    "control": [
-    -9.73,
-    54
+    0.6,
+    47
    ],
    "down_ride": [
-    -12.36,
-    8
+    -13.79,
+    7
    ],
    "model_lead": [
     -4.38,
     5
    ],
    "ride_favorite_80": [
-    -6.32,
-    57
+    -6.76,
+    48
    ],
    "trend_down": [
     -0.15,
@@ -409,38 +446,50 @@
   }
  },
  "bankroll": {
-  "balance": 3.0376,
+  "balance": 1.0551,
   "busted": false,
   "busted_at": null,
-  "equity": 3.0376,
-  "following": null,
+  "equity": 1.0551,
+  "following": "control",
   "funded": true,
   "goal": 1000.0,
   "goal_reached": false,
   "goal_reached_at": null,
-  "n_bets": 17,
-  "n_settled": 17,
+  "n_bets": 18,
+  "n_settled": 18,
   "start": 20.0,
   "variant": "bankroll_20"
  },
- "open": [],
+ "open": [
+  {
+   "shares": 18.28,
+   "side": "Down",
+   "tf": "5m",
+   "total_cost": 4.9989950400000005,
+   "trade_id": "W000174",
+   "variant": "control",
+   "window_start": 1795431900
+  },
+  {
+   "shares": 10.97,
+   "side": "Down",
+   "tf": "5m",
+   "total_cost": 2.9999439600000004,
+   "trade_id": "W000175",
+   "variant": "auto_pick",
+   "window_start": 1795431900
+  },
+  {
+   "shares": 5.57,
+   "side": "Up",
+   "tf": "5m",
+   "total_cost": 4.99547121,
+   "trade_id": "W000176",
+   "variant": "ride_favorite_80",
+   "window_start": 1795431900
+  }
+ ],
  "ptb": {
-  "1795423800": {
-   "p": 0.9391456896551724,
-   "src": "own_spot_samples_60s"
-  },
-  "1795424100": {
-   "p": 0.9402008333333334,
-   "src": "own_spot_samples_60s"
-  },
-  "1795424400": {
-   "p": 0.9393868333333334,
-   "src": "own_spot_samples_60s"
-  },
-  "1795424700": {
-   "p": 0.939187,
-   "src": "own_spot_samples_60s"
-  },
   "1795425000": {
    "p": 0.9392446666666667,
    "src": "own_spot_samples_60s"
@@ -524,10 +573,26 @@
   "1795431000": {
    "p": 0.9395833333333333,
    "src": "own_spot_samples_60s"
+  },
+  "1795431300": {
+   "p": 0.9402811666666667,
+   "src": "own_spot_samples_60s"
+  },
+  "1795431600": {
+   "p": 0.9388886666666667,
+   "src": "own_spot_samples_60s"
+  },
+  "1795431900": {
+   "p": 0.9391225,
+   "src": "own_spot_samples_60s"
+  },
+  "1795432200": {
+   "p": 0.9392243333333333,
+   "src": "own_spot_samples_60s"
   }
  },
  "scale_pos": {},
- "seq": 168,
+ "seq": 176,
  "traded_windows": {
   "auto_pick": [
    1795408500,
@@ -546,7 +611,9 @@
    1795420800,
    1795424700,
    1795425000,
-   1795430100
+   1795430100,
+   1795431600,
+   1795431900
   ],
   "bankroll_20": [
    1795408500,
@@ -565,14 +632,13 @@
    1795420800,
    1795424700,
    1795425000,
-   1795430100
+   1795430100,
+   1795431600
   ],
   "breakdown": [
    1795427100
   ],
   "control": [
-   1795408800,
-   1795409100,
    1795409400,
    1795409700,
    1795410900,
@@ -620,7 +686,9 @@
    1795429200,
    1795429500,
    1795430100,
-   1795430400
+   1795430400,
+   1795431600,
+   1795431900
   ],
   "down_ride": [
    1795406700,
@@ -640,9 +708,6 @@
    1795425600
   ],
   "ride_favorite_80": [
-   1795409100,
-   1795409400,
-   1795409700,
    1795410000,
    1795410600,
    1795411200,
@@ -689,7 +754,10 @@
    1795428900,
    1795429200,
    1795430100,
-   1795430400
+   1795430400,
+   1795431000,
+   1795431600,
+   1795431900
   ],
   "trend_down": [
    1795421700,
