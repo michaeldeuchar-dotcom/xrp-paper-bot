@@ -1114,7 +1114,7 @@
     "why": "control no longer qualifies"
    }
   ],
-  "last_check_ws": 1795475700,
+  "last_check_ws": 1795476900,
   "leader": "trend_down",
   "scope": "6h",
   "scores": {
@@ -1123,28 +1123,28 @@
     0
    ],
    "control": [
-    -4.76,
-    28
+    -10.13,
+    29
    ],
    "down_ride": [
-    4.22,
-    2
+    6.09,
+    3
    ],
    "model_lead": [
     -0.77,
     2
    ],
    "ride_favorite_80": [
-    -16.71,
+    -17.12,
     49
    ],
    "trend_down": [
-    6.36,
-    7
+    3.44,
+    6
    ],
    "trend_volume": [
-    0.57,
-    5
+    -2.35,
+    4
    ]
   }
  },
@@ -1163,24 +1163,71 @@
   "start": 20.0,
   "variant": "bankroll_20"
  },
- "open": [],
+ "crowd_stats": {
+  "bets": 0,
+  "comments_empty": 5,
+  "comments_failed": 0,
+  "comments_present": 0,
+  "flow_failed": 0,
+  "flow_ok": 0,
+  "last": "comments in-window=0 (Up 0/Down 0, fetched 0); buy flow Up $0 vs Down $0 (0 buys); bid size Up 5 vs Down 55",
+  "windows": 5
+ },
+ "crowd_windows": [
+  1795475700,
+  1795476000,
+  1795476300,
+  1795476600,
+  1795476900
+ ],
+ "max_profit": {
+  "balance": 97.7738,
+  "equity": 100.6238,
+  "floor": 12.0,
+  "funded": true,
+  "funded_at": "2026-11-23 15:17:48 PT",
+  "last_signal": "trend_volume",
+  "n_bets": 2,
+  "n_settled": 1,
+  "paused": false,
+  "paused_at": null,
+  "rest": {},
+  "start": 100.0,
+  "variant": "max_profit"
+ },
+ "open": [
+  {
+   "shares": 5.0,
+   "side": "Up",
+   "tf": "5m",
+   "total_cost": 3.084,
+   "trade_id": "W000429",
+   "ts_fill": 1795477035.5814822,
+   "variant": "trend_volume",
+   "window_start": 1795476900
+  },
+  {
+   "shares": 5.0,
+   "side": "Up",
+   "tf": "5m",
+   "total_cost": 3.084,
+   "trade_id": "W000430",
+   "ts_fill": 1795477035.5820467,
+   "variant": "trend_volume_xo",
+   "window_start": 1795476900
+  },
+  {
+   "shares": 5.0,
+   "side": "Up",
+   "tf": "5m",
+   "total_cost": 2.8499999999999996,
+   "trade_id": "W000431",
+   "ts_fill": 1795477037.7274542,
+   "variant": "max_profit",
+   "window_start": 1795476900
+  }
+ ],
  "ptb": {
-  "1795468500": {
-   "p": 0.9344135,
-   "src": "own_spot_samples_60s"
-  },
-  "1795468800": {
-   "p": 0.9338938333333334,
-   "src": "own_spot_samples_60s"
-  },
-  "1795469100": {
-   "p": 0.9365413333333332,
-   "src": "own_spot_samples_60s"
-  },
-  "1795469400": {
-   "p": 0.9407866666666665,
-   "src": "own_spot_samples_60s"
-  },
   "1795469700": {
    "p": 0.9413856666666667,
    "src": "own_spot_samples_60s"
@@ -1264,10 +1311,26 @@
   "1795475700": {
    "p": 0.9400445000000001,
    "src": "own_spot_samples_60s"
+  },
+  "1795476000": {
+   "p": 0.9418395,
+   "src": "own_spot_samples_60s"
+  },
+  "1795476300": {
+   "p": 0.9405509999999999,
+   "src": "own_spot_samples_60s"
+  },
+  "1795476600": {
+   "p": 0.9419826666666666,
+   "src": "own_spot_samples_60s"
+  },
+  "1795476900": {
+   "p": 0.9410109999999999,
+   "src": "own_spot_samples_60s"
   }
  },
  "scale_pos": {},
- "seq": 419,
+ "seq": 432,
  "traded_windows": {
   "auto_pick": [
    1795408800,
@@ -1403,7 +1466,9 @@
    1795474200,
    1795474800,
    1795475100,
-   1795475400
+   1795475400,
+   1795475700,
+   1795476000
   ],
   "down_ride": [
    1795406700,
@@ -1422,7 +1487,12 @@
    1795437600,
    1795437900,
    1795462800,
-   1795466100
+   1795466100,
+   1795476000
+  ],
+  "max_profit": [
+   "5m:1795476900",
+   "5m:1795476900"
   ],
   "model_lead": [
    1795412400,
@@ -1491,7 +1561,10 @@
    1795473900,
    1795474200,
    1795475100,
-   1795475400
+   1795475400,
+   1795475700,
+   1795476000,
+   1795476600
   ],
   "ride_favorite_80_xo": [
    1795472100,
@@ -1502,7 +1575,10 @@
    1795474200,
    1795474500,
    1795475100,
-   1795475400
+   1795475400,
+   1795475700,
+   1795476000,
+   1795476600
   ],
   "trend_down": [
    1795421700,
@@ -1531,7 +1607,11 @@
    1795464600,
    1795467300,
    1795471200,
-   1795471500
+   1795471500,
+   1795476900
+  ],
+  "trend_volume_xo": [
+   1795476900
   ]
  }
 }
