@@ -4,43 +4,6 @@
   "cand_n": 0,
   "history": [
    {
-    "from": null,
-    "scope": "6h",
-    "scores": {
-     "breakdown": [
-      0.0,
-      0
-     ],
-     "control": [
-      8.79,
-      6
-     ],
-     "down_ride": [
-      0.0,
-      0
-     ],
-     "model_lead": [
-      -0.67,
-      2
-     ],
-     "ride_favorite_80": [
-      1.38,
-      3
-     ],
-     "trend_down": [
-      0.0,
-      0
-     ],
-     "trend_volume": [
-      0.0,
-      0
-     ]
-    },
-    "to": "control",
-    "ts_pt": "2026-11-19 17:46:00 PT",
-    "why": "first pick"
-   },
-   {
     "from": "control",
     "scope": "since_start",
     "scores": {
@@ -1852,60 +1815,96 @@
     "to": "trend_volume",
     "ts_pt": "2026-11-22 14:41:01 PT",
     "why": "control no longer qualifies"
+   },
+   {
+    "from": "trend_volume",
+    "scope": "6h",
+    "scores": {
+     "breakdown": [
+      -6.22,
+      3
+     ],
+     "control": [
+      -12.86,
+      7
+     ],
+     "down_ride": [
+      -1.59,
+      6
+     ],
+     "model_lead": [
+      10.91,
+      7
+     ],
+     "ride_favorite_80": [
+      -1.56,
+      22
+     ],
+     "trend_down": [
+      0.52,
+      4
+     ],
+     "trend_volume": [
+      0.0,
+      0
+     ]
+    },
+    "to": "model_lead",
+    "ts_pt": "2026-11-22 18:09:12 PT",
+    "why": "trend_volume no longer qualifies"
    }
   ],
-  "last_check_ws": 1795388100,
-  "leader": "trend_volume",
-  "scope": "since_start",
+  "last_check_ws": 1795400700,
+  "leader": "model_lead",
+  "scope": "6h",
   "scores": {
    "breakdown": [
-    -8.08,
-    13
+    -2.1,
+    2
    ],
    "control": [
-    -71.35,
-    299
+    -12.86,
+    7
    ],
    "down_ride": [
-    -15.09,
-    68
+    -1.59,
+    6
    ],
    "model_lead": [
-    -1.65,
-    66
+    8.27,
+    8
    ],
    "ride_favorite_80": [
-    -40.91,
-    263
+    -1.56,
+    22
    ],
    "trend_down": [
-    5.67,
-    59
+    0.52,
+    4
    ],
    "trend_volume": [
-    24.94,
-    61
+    0.0,
+    0
    ]
   }
  },
+ "bankroll": {
+  "balance": 18.5422,
+  "busted": false,
+  "busted_at": null,
+  "equity": 18.5422,
+  "following": "model_lead",
+  "funded": true,
+  "goal": 1000.0,
+  "goal_reached": false,
+  "goal_reached_at": null,
+  "n_bets": 2,
+  "n_settled": 2,
+  "start": 20.0,
+  "variant": "bankroll_20"
+ },
  "open": [],
  "ptb": {
-  "1795392300": {
-   "p": 0.9254359999999999,
-   "src": "own_spot_samples_60s"
-  },
-  "1795392600": {
-   "p": 0.9249773333333333,
-   "src": "own_spot_samples_60s"
-  },
-  "1795392900": {
-   "p": 0.9263716666666666,
-   "src": "own_spot_samples_60s"
-  },
-  "1795393200": {
-   "p": 0.9254335,
-   "src": "own_spot_samples_60s"
-  },
   "1795393500": {
    "p": 0.9247533333333333,
    "src": "own_spot_samples_60s"
@@ -1989,10 +1988,26 @@
   "1795399500": {
    "p": 0.9173625,
    "src": "own_spot_samples_60s"
+  },
+  "1795399800": {
+   "p": 0.9158016666666667,
+   "src": "own_spot_samples_60s"
+  },
+  "1795400100": {
+   "p": 0.9183655000000001,
+   "src": "own_spot_samples_60s"
+  },
+  "1795400400": {
+   "p": 0.9186673333333333,
+   "src": "own_spot_samples_60s"
+  },
+  "1795400700": {
+   "p": 0.9171893333333333,
+   "src": "own_spot_samples_60s"
   }
  },
  "scale_pos": {},
- "seq": 1043,
+ "seq": 1047,
  "traded_windows": {
   "auto_pick": [
    1795294800,
@@ -2045,6 +2060,10 @@
    1795386300,
    1795386600,
    1795386900
+  ],
+  "bankroll_20": [
+   1795400100,
+   1795400400
   ],
   "breakdown": [
    1795156800,
@@ -2171,8 +2190,6 @@
    1795384800
   ],
   "model_lead": [
-   1795180200,
-   1795180500,
    1795181700,
    1795185300,
    1795185900,
@@ -2220,7 +2237,9 @@
    1795395900,
    1795396500,
    1795397100,
-   1795399200
+   1795399200,
+   1795400100,
+   1795400400
   ],
   "ride_favorite_80": [
    1795296000,

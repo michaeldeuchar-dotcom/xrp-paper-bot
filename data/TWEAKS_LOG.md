@@ -27,3 +27,8 @@
 - Change: auto_pick no longer falls back to the next-ranked qualifying variant. If its current pick doesn't bet in a window, auto_pick sits out that window.
 - Why: the fallback meant most of its bets copied lower-ranked variants (mostly `control`) instead of the pick it reports.
 - Unchanged: 6h net-P&L ranking (since-start fallback), 5+ bets and positive P&L to qualify, two-check rule to switch leaders, flat $3 stake with round-up to the 5-share minimum capped at $5 total, $10 hard max, end time.
+
+## 2026-11-22 (evening, PT) — bankroll_20: $20 fake-money start, $1,000 goal
+- Change: added one new variant, `bankroll_20`. It gets its own $20 fake-money balance and tries to turn that into $1,000. It follows ONLY the group's current auto_pick (same 6-hour net-P&L ranking, 5+ settled bets and positive P&L to qualify, two-check rule to switch). Stake is about 20% of cash on hand, rounded up to the 5-share minimum, never more than $10 including the taker fee, and never more than the cash it has left. Balance updates when a bet settles. If the cash can't cover a minimum order it stops (busted) and logs it. If the balance hits $1,000 it records the goal and stops new bets. Balance history is written to `data/week1/bankroll_history.csv`. The results summary shows a `Bankroll: $X of $20 start, goal $1,000, N bets` line.
+- Why: give this group a single funded fake-money account with a clear $1,000 target, without changing how the other variants bet or how auto_pick ranks them.
+- Unchanged: every other variant, auto_pick's own $3 stake, $10 hard max per bet, fake money only, end time (still Nov 23, 11:30 AM PT).
