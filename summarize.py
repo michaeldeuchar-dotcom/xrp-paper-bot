@@ -55,7 +55,9 @@ def stats(rows):
     best = max(res, key=lambda r: float(r["pnl_usd"]), default=None)
     worst = min(res, key=lambda r: float(r["pnl_usd"]), default=None)
     at_risk = sum(float(r.get("total_cost_usd") or 0) for r in rows if r.get("status") == "open")
-    return dict(at_risk=at_risk, n=len(rows), settled=len(res), wins=len(wins), losses=len(res) - len(wins),
+    early = [r for r in res if r.get("outcome") == "sold_early"]
+    early_pnl = sum(float(r["pnl_usd"]) for r in early)
+    return dict(at_risk=at_risk, n=len(rows), settled=len(res), wins=len(wins), losses=len(res) - len(wins), early=len(early), early_pnl=early_pnl,
                 open=sum(1 for r in rows if r.get("status") == "open"), pnl=sum(pnl), staked=staked,
                 best=best, worst=worst)
 
@@ -67,6 +69,8 @@ def describe(label, s):
     roi = f", {s['pnl'] / s['staked']:+.0%} on ${s['staked']:.2f} bet" if s["staked"] else ""
     out = [f"  {label}: {s['n']} bets — {s['wins']} won, {s['losses']} lost, {s['open']} still open "
            f"(win rate {wr})." + (f" ${s['at_risk']:.2f} riding on open bets." if s["open"] else "") + f" Net fake P&L {money(s['pnl'])}{roi}."]
+    if s.get("early"):
+        out.append(f"    {s['early']} of those were sold early (cash-out) for {money(s['early_pnl'])}.")
     for tag, r in (("Biggest win", s["best"]), ("Biggest loss", s["worst"])):
         if r is not None and ((tag == "Biggest win" and float(r["pnl_usd"]) > 0) or (tag == "Biggest loss" and float(r["pnl_usd"]) < 0)):
             out.append(f"    {tag}: {money(float(r['pnl_usd']))} — ${float(r['total_cost_usd']):.2f} on {r['side']} at "
@@ -207,11 +211,11 @@ def main():
         table.append((name, s_all))
     if len(table) > 1:
         print("Comparison (best to worst by net fake P&L):")
-        print(f"  {'variant':<19}{'bets':>5}{'won':>5}{'lost':>5}{'open':>5}{'win%':>6}{'bet $':>9}{'net P&L':>10}{'return':>8}")
+        print(f"  {'variant':<26}{'bets':>5}{'won':>5}{'lost':>5}{'open':>5}{'win%':>6}{'bet $':>9}{'net P&L':>10}{'return':>8}")
         for name, s in sorted(table, key=lambda t: -t[1]["pnl"]):
             wr = f"{s['wins'] / s['settled']:.0%}" if s["settled"] else "-"
             roi = f"{s['pnl'] / s['staked']:+.0%}" if s["staked"] else "-"
-            print(f"  {name:<19}{s['n']:>5}{s['wins']:>5}{s['losses']:>5}{s['open']:>5}{wr:>6}{s['staked']:>9.2f}{money(s['pnl']):>10}{roi:>8}")
+            print(f"  {name:<26}{s['n']:>5}{s['wins']:>5}{s['losses']:>5}{s['open']:>5}{wr:>6}{s['staked']:>9.2f}{money(s['pnl']):>10}{roi:>8}")
         skip = {"auto_pick", "bankroll_20"}
         total = sum(s["pnl"] for n, s in table if n not in skip)
         extras = []
@@ -219,6 +223,7 @@ def main():
             extras.append("auto_pick left out because it only copies the others' bets")
         if any(n == "bankroll_20" for n, _ in table):
             extras.append("bankroll_20 left out because it is its own $20-to-$1,000 account that copies the current pick")
+        print("  Note: auto_pick and bankroll_20 still rank and follow only the original 5-minute hold-to-settlement strategies; cash-out and 15-minute variants are scored separately and are not in that ranking.")
         print(f"\n  All variants together: {money(total)} (each variant is a separate fake account"
               + (("; " + "; ".join(extras)) if extras else "") + ").")
 

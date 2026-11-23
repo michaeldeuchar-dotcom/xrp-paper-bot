@@ -87,6 +87,7 @@ class Book:
     best_bid: Optional[float]
     best_ask: Optional[float]
     best_ask_size: float
+    best_bid_size: float = 0.0
 
 
 def fetch_book(token_id: str) -> Book:
@@ -96,7 +97,7 @@ def fetch_book(token_id: str) -> Book:
     asks, bids = b.get("asks") or [], b.get("bids") or []
     ba = min(asks, key=px) if asks else None
     bb = max(bids, key=px) if bids else None
-    return Book(px(bb) if bb else None, px(ba) if ba else None, sz(ba) if ba else 0.0)
+    return Book(px(bb) if bb else None, px(ba) if ba else None, sz(ba) if ba else 0.0, sz(bb) if bb else 0.0)
 
 
 def fetch_books(m: Market) -> dict:

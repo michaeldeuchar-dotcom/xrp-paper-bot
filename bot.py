@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""PAPER bot for Polymarket XRP (Ripple) Up/Down markets: 5-minute and 1-hour.
+"""PAPER bot for Polymarket XRP (Ripple) Up/Down markets: 5-minute, 15-minute, and 1-hour.
 
 PAPER ONLY: this build contains no order-signing or wallet code at all. It reads
 public prices, simulates taker fills at the real best ask (with the taker fee),
-holds every bet to the official resolution, and runs several strategy variants
+runs several strategy variants (most hold to official resolution; cash-out variants may sell early into the best bid)
 side by side on the same data, each with its own ledger (data/week2/trades_<variant>.csv).
 """
 from __future__ import annotations
@@ -26,6 +26,7 @@ import config
 import feeds
 import polymarket
 import store
+import cashout
 import strategy
 
 PT = ZoneInfo("America/Los_Angeles")
@@ -322,7 +323,7 @@ def _settled_stats(name: str, since_ts):
 def auto_scores(variants: dict, me: str, tf: str, now: float, hours: float, min_bets: int):
     """Rank same-timeframe variants (never itself) by net fake P&L on settled bets. Returns (scope, scores) where scores is
     {variant: (net_pnl, n_bets, dollars_bet)} for EVERY candidate; 'scope' is '6h' normally, or 'since_start' when nobody qualifies in the window."""
-    cands = [n for n, v in variants.items() if n != me and v.get("timeframe", "5m") == tf and v.get("mode") not in COPY_MODES]
+    cands = [n for n, v in variants.items() if n != me and v.get("timeframe", "5m") == tf and v.get("mode") not in COPY_MODES and not v.get("cash_out")]
     def qual(sc):
         return {n: s for n, s in sc.items() if s[1] >= min_bets and s[0] > 0}
     win = {n: _settled_stats(n, now - hours * 3600) for n in cands}
@@ -708,7 +709,7 @@ def paper_fill(state, name, d, m, ws, secs_left, spot, ptb, ptb_src, vol, tf="5m
         "ptb_source": ptb_src, "seconds_left": f"{secs_left:.1f}", "annual_vol": f"{vol:.4f}", "reason": d.english,
     })
     state.setdefault("open", []).append({"trade_id": tid, "variant": name, "window_start": ws, "tf": tf, "side": d.side,
-                                         "shares": d.shares, "total_cost": d.total_cost})
+                                         "shares": d.shares, "total_cost": d.total_cost, "ts_fill": now})
     state.setdefault("traded_windows", {}).setdefault(name, []).append(ws)
     state["traded_windows"][name] = state["traded_windows"][name][-50:]
     log.info("PAPER FILL [%s] %s %s %s $%.2f = %.2f sh @ %.2f (fee $%.3f) %.0fs left", name, tf, tid, d.side, d.notional, d.shares, d.ask, d.fee, secs_left)
@@ -730,6 +731,12 @@ def cycle(state: dict, accepting: bool) -> None:
         resolve_open(state)
         return
     resolve_open(state)
+    try:
+        cashout.manage_open(state, load_variants(), spot=spot, now=now,
+                            price_to_beat_fn=price_to_beat, get_market_fn=get_market)
+    except Exception:  # noqa: BLE001
+        _stats["errors"] += 1
+        log.exception("cash-out check failed (continuing)")
     if not accepting:
         return
     variants = load_variants()
@@ -746,11 +753,14 @@ def cycle_tf(state: dict, tf: str, variants: dict, spot: float, now: float) -> N
     ws = polymarket.window_start_ts(now, tf)
     elapsed = now - ws
     secs_left = wsec - elapsed
-    if tf == "5m" and config.SKIP_FIRST_MINUTE and elapsed < 60:
-        key = ("*", ws, "first_minute")
+    skip_s = 0
+    if config.SKIP_FIRST_MINUTE:
+        skip_s = 60 if tf == "5m" else (180 if tf == "15m" else 0)
+    if skip_s and elapsed < skip_s:
+        key = ("*", ws, "first_minute", tf)
         if key not in _reason_seen:
             _reason_seen.add(key)
-            _reason("[all 5m] Skipping: Tweak 1 SKIP_FIRST_MINUTE is on and this window is in its first 60 seconds.")
+            _reason(f"[all {tf}] Skipping: Tweak 1 SKIP_FIRST_MINUTE is on and this window is in its first {skip_s} seconds.")
         return
     traded = state.setdefault("traded_windows", {})
     spos = state.setdefault("scale_pos", {})

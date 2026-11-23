@@ -27,6 +27,7 @@ ASSET = "XRP"
 # Polymarket's XRP Up/Down market families we trade (verified on the public Gamma API). Each variant picks one via "timeframe".
 TIMEFRAMES = {
     "5m": {"seconds": 300, "slug": "xrp-updown-5m-{start}", "candle_sec": 60, "candle_lookback": 60},
+    "15m": {"seconds": 900, "slug": "xrp-updown-15m-{start}", "candle_sec": 60, "candle_lookback": 180},  # 15m trend = last 3h of 1-min candles
     "1h": {"seconds": 3600, "slug": "xrp-updown-1h-{start}", "candle_sec": 300, "candle_lookback": 48},   # hourly trend read = last 4h of 5-min candles
 }
 WINDOW_SECONDS = 300          # kept for the 5-minute family (first-minute skip etc.)
