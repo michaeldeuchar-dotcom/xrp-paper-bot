@@ -27,6 +27,8 @@ import feeds
 import polymarket
 import store
 import cashout
+import crowd
+import maxprofit
 import strategy
 
 PT = ZoneInfo("America/Los_Angeles")
@@ -81,7 +83,9 @@ def load_variants(force: bool = False) -> dict:
         if force or mt != _variants["mtime"]:
             raw = json.loads(config.VARIANTS_PATH.read_text())
             data = {k: v for k, v in raw.items() if not k.startswith("_") and isinstance(v, dict) and v.get("enabled", True)}
-            for k, v in data.items():  # hard ceiling, regardless of the file
+            for k, v in data.items():  # hard ceiling, regardless of the file (except paper-only max_profit)
+                if v.get("allow_over_hard_max"):
+                    continue
                 for key in ("base_stake", "max_stake", "high_ask_max_stake", "max_round_up_usd", "max_loss_per_bet"):
                     if float(v.get(key, 0) or 0) > config.STAKE_HARD_MAX_USD:
                         log.warning("variant %s %s=%s clipped to $%.0f hard max", k, key, v[key], config.STAKE_HARD_MAX_USD)
@@ -323,7 +327,7 @@ def _settled_stats(name: str, since_ts):
 def auto_scores(variants: dict, me: str, tf: str, now: float, hours: float, min_bets: int):
     """Rank same-timeframe variants (never itself) by net fake P&L on settled bets. Returns (scope, scores) where scores is
     {variant: (net_pnl, n_bets, dollars_bet)} for EVERY candidate; 'scope' is '6h' normally, or 'since_start' when nobody qualifies in the window."""
-    cands = [n for n, v in variants.items() if n != me and v.get("timeframe", "5m") == tf and v.get("mode") not in COPY_MODES and not v.get("cash_out")]
+    cands = [n for n, v in variants.items() if n != me and v.get("timeframe", "5m") == tf and v.get("mode") not in COPY_MODES and not v.get("cash_out") and not v.get("exclude_from_rank") and v.get("mode") not in ("crowd", "max_profit")]
     def qual(sc):
         return {n: s for n, s in sc.items() if s[1] >= min_bets and s[0] > 0}
     win = {n: _settled_stats(n, now - hours * 3600) for n in cands}
@@ -669,6 +673,9 @@ def resolve_open(state: dict, force: bool = False) -> None:
         if item["variant"] == (state.get("bankroll") or {}).get("variant") or ((_variants.get("data") or {}).get(item["variant"]) or {}).get("mode") == "bankroll":
             payout = float(item["shares"]) if won else 0.0
             bankroll_on_resolve(state, item["variant"], item["trade_id"], pnl, payout)
+        if item["variant"] == (state.get("max_profit") or {}).get("variant") or ((_variants.get("data") or {}).get(item["variant"]) or {}).get("mode") == "max_profit":
+            payout = float(item["shares"]) if won else 0.0
+            maxprofit.on_resolve(state, item["variant"], item["trade_id"], pnl, payout)
     state["open"] = still
 
 
@@ -692,8 +699,13 @@ def get_market(ws: int, tf: str = "5m"):
 
 
 def paper_fill(state, name, d, m, ws, secs_left, spot, ptb, ptb_src, vol, tf="5m"):
-    if d.stake > config.STAKE_HARD_MAX_USD + 1e-9 or d.total_cost > config.STAKE_HARD_MAX_USD + 1e-9:
-        log.error("REFUSED [%s] stake $%.2f above hard max", name, d.stake)
+    hard = config.STAKE_HARD_MAX_USD
+    if (d.extra or {}).get("allow_over_hard_max"):
+        hard = float((d.extra or {}).get("hard_max") or 0)
+        if hard <= 0:
+            hard = d.total_cost
+    if d.stake > hard + 1e-9 or d.total_cost > hard + 1e-9:
+        log.error("REFUSED [%s] stake $%.2f above cap $%.2f", name, d.stake, hard)
         return
     state["seq"] = int(state.get("seq", 0)) + 1
     tid = f"W{state['seq']:06d}"
@@ -710,13 +722,16 @@ def paper_fill(state, name, d, m, ws, secs_left, spot, ptb, ptb_src, vol, tf="5m
     })
     state.setdefault("open", []).append({"trade_id": tid, "variant": name, "window_start": ws, "tf": tf, "side": d.side,
                                          "shares": d.shares, "total_cost": d.total_cost, "ts_fill": now})
-    state.setdefault("traded_windows", {}).setdefault(name, []).append(ws)
-    state["traded_windows"][name] = state["traded_windows"][name][-50:]
+    tw_key = f"{tf}:{ws}" if ((_variants.get("data") or {}).get(name) or {}).get("mode") == "max_profit" else ws
+    state.setdefault("traded_windows", {}).setdefault(name, []).append(tw_key)
+    state["traded_windows"][name] = state["traded_windows"][name][-80:]
     log.info("PAPER FILL [%s] %s %s %s $%.2f = %.2f sh @ %.2f (fee $%.3f) %.0fs left", name, tf, tid, d.side, d.notional, d.shares, d.ask, d.fee, secs_left)
     _reason(f"[{name}] {d.english}")
     _stats["fills"] += 1
     if name == (state.get("bankroll") or {}).get("variant") or ((_variants.get("data") or {}).get(name) or {}).get("mode") == "bankroll":
         bankroll_on_fill(state, name, tid, d.total_cost, (d.extra or {}).get("copied") or "")
+    if name == (state.get("max_profit") or {}).get("variant") or ((_variants.get("data") or {}).get(name) or {}).get("mode") == "max_profit":
+        maxprofit.on_fill(state, name, tid, d.total_cost, (d.extra or {}).get("signal") or "")
 
 
 def cycle(state: dict, accepting: bool) -> None:
@@ -734,6 +749,7 @@ def cycle(state: dict, accepting: bool) -> None:
     try:
         cashout.manage_open(state, load_variants(), spot=spot, now=now,
                             price_to_beat_fn=price_to_beat, get_market_fn=get_market)
+        maxprofit.sync(state)
     except Exception:  # noqa: BLE001
         _stats["errors"] += 1
         log.exception("cash-out check failed (continuing)")
@@ -769,10 +785,19 @@ def cycle_tf(state: dict, tf: str, variants: dict, spot: float, now: float) -> N
         pos = spos.get(n)
         return bool(pos) and int(pos.get("ws", 0)) == ws
 
-    todo = {n: v for n, v in variants.items() if v.get("timeframe", "5m") == tf
-            and (ws not in traded.get(n, []) or (v.get("mode") in SCALE_MODES and _scale_open(n)))
-            and float(v.get("min_secs_left", 0)) - 3 <= secs_left <= float(v.get("max_secs_left", wsec)) + 3}
-    if not todo:
+    def _wanted(n, v):
+        tfs = list(v.get("timeframes") or [v.get("timeframe", "5m")]) if v.get("mode") == "max_profit" else [v.get("timeframe", "5m")]
+        if tf not in tfs:
+            return False
+        already = ws in traded.get(n, []) or f"{tf}:{ws}" in traded.get(n, [])
+        if already and not (v.get("mode") in SCALE_MODES and _scale_open(n)):
+            return False
+        if v.get("mode") == "max_profit":
+            return True
+        return float(v.get("min_secs_left", 0)) - 3 <= secs_left <= float(v.get("max_secs_left", wsec)) + 3
+    todo = {n: v for n, v in variants.items() if _wanted(n, v)}
+    has_rest = maxprofit.has_rest(state, tf, ws)
+    if not todo and not has_rest:
         return
     m = get_market(ws, tf)
     if m is None or not m.token_ids:
@@ -781,6 +806,14 @@ def cycle_tf(state: dict, tf: str, variants: dict, spot: float, now: float) -> N
     books = polymarket.fetch_books(m)
     vol = feeds.realized_annual_vol()
     ptb, ptb_src = price_to_beat(state, ws)
+    try:
+        maxprofit.manage_rest(state, variants, tf=tf, ws=ws, books=books, secs_left=secs_left,
+                              m=m, spot=spot, ptb=ptb, ptb_src=ptb_src, vol=vol, now=now, paper_fill=paper_fill)
+    except Exception:  # noqa: BLE001
+        _stats["errors"] += 1
+        log.exception("max_profit rest check failed (continuing)")
+    if not todo:
+        return
     obs = own_twap(ws + wsec - 60, now, min_n=3) if secs_left <= 60 else None
     p_up = strategy.p_up_model(spot, ptb, secs_left, vol, obs)
     _stats["evals"] += 1
@@ -790,7 +823,7 @@ def cycle_tf(state: dict, tf: str, variants: dict, spot: float, now: float) -> N
         _reason_seen.add(tk)
         log.info("TREND %s window=%s spot=%.4f ptb=%.4f %s", tf, ws, spot, ptb, feeds.trend_summary(trend))
     for name, v in todo.items():
-        block = hour_filter_blocks(name)
+        block = None if v.get("mode") == "max_profit" else hour_filter_blocks(name)
         if block:
             d = strategy.Decision(name, "skip", "hour_filter", f"Tweak 2 HOUR_FILTER: {block}.", model_p_up=p_up)
         else:
@@ -804,6 +837,10 @@ def cycle_tf(state: dict, tf: str, variants: dict, spot: float, now: float) -> N
                 d = auto_decide(state, name, v, variants, p_up=p_up, books=books, secs_left=secs_left, trend=trend, spot=spot, ptb=ptb, ws=ws, now=now)
             elif v.get("mode") == "bankroll":
                 d = bankroll_decide(state, name, v, variants, p_up=p_up, books=books, secs_left=secs_left, trend=trend, spot=spot, ptb=ptb, ws=ws, now=now)
+            elif v.get("mode") == "crowd":
+                d = crowd.decide(name, v, m=m, books=books, secs_left=secs_left, ws=ws, now=now, state=state, p_up=p_up)
+            elif v.get("mode") == "max_profit":
+                d = maxprofit.decide(state, name, v, variants, p_up=p_up, books=books, secs_left=secs_left, trend=trend, spot=spot, ptb=ptb, ws=ws, now=now, tf=tf, m=m)
             elif v.get("mode") in SCALE_MODES and _scale_open(name):
                 d = strategy.decide_scale_add(name, v, spos[name], books=books, secs_left=secs_left, spot=spot, ptb=ptb, now=now)
                 d.model_p_up = p_up
@@ -853,6 +890,11 @@ def heartbeat(state: dict, cycles: int, force_log: bool, last_log: list) -> None
     br_ = state.get("bankroll")
     if br_:
         hb["bankroll"] = {k: br_.get(k) for k in ("variant", "start", "goal", "balance", "equity", "busted", "goal_reached", "n_bets", "n_settled", "following")}
+    mp_ = state.get("max_profit")
+    if mp_:
+        hb["max_profit"] = {k: mp_.get(k) for k in ("variant", "start", "floor", "balance", "equity", "paused", "n_bets", "n_settled", "last_signal")}
+    if state.get("crowd_stats"):
+        hb["crowd_stats"] = dict(state["crowd_stats"])
     tmp = config.HEARTBEAT_PATH.with_suffix(".tmp")
     tmp.write_text(json.dumps(hb))
     os.replace(tmp, config.HEARTBEAT_PATH)
@@ -904,6 +946,8 @@ def main() -> int:
     for n, v in vs.items():
         if v.get("mode") == "bankroll":
             bankroll_ensure(state, v, n)
+        if v.get("mode") == "max_profit":
+            maxprofit.ensure(state, v, n)
     store.save_state(state)
     cycles, last_log = 0, [0.0]
     grace_end = None

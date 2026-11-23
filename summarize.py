@@ -128,6 +128,50 @@ def bankroll_line(run):
         return "  Bankroll: unknown (no state file)."
 
 
+def maxprofit_line(run):
+    """Fake-money max_profit $100 account status (from the bot's saved state)."""
+    try:
+        import json
+        st = json.load(open(os.path.join(ROOT, "data", run, "state.json"))).get("max_profit")
+        if not st:
+            return "  Max profit: not funded yet."
+        bal = float(st.get("balance") if st.get("balance") is not None else st.get("equity") or 0)
+        start = float(st.get("start", 100))
+        floor = float(st.get("floor", 12))
+        n = int(st.get("n_bets") or 0)
+        txt = f"  Max profit: ${bal:,.2f} of ${start:,.0f} start (floor ${floor:,.0f}), {n} bets"
+        sig = st.get("last_signal")
+        if sig:
+            txt += f"; last signal {sig}"
+        if st.get("paused"):
+            txt += f"; PAUSED at {st.get('paused_at')} (cash below the floor, sitting out so it cannot go to zero)"
+        return txt + "."
+    except Exception:
+        return "  Max profit: unknown (no state file)."
+
+
+def crowd_line(run):
+    """How often the official comment feed actually had chat in this run."""
+    try:
+        import json
+        st = json.load(open(os.path.join(ROOT, "data", run, "state.json"))).get("crowd_stats") or {}
+        w = int(st.get("windows") or 0)
+        if w <= 0:
+            return "  Crowd comments: no windows evaluated yet."
+        present = int(st.get("comments_present") or 0)
+        empty = int(st.get("comments_empty") or 0)
+        failed = int(st.get("comments_failed") or 0)
+        last = st.get("last") or ""
+        txt = (f"  Crowd comments: present in {present} of {w} evaluated windows"
+               f" (empty {empty}, fetch failed {failed})")
+        if last:
+            txt += f". Last read: {last}"
+        return txt + "."
+    except Exception:
+        return "  Crowd comments: unknown (no state file)."
+
+
+
 def load(args):
     if args.file:
         files = {os.path.basename(args.file): args.file}
@@ -205,6 +249,10 @@ def main():
             print(pick_line(a.run))
         if name == "bankroll_20":
             print(bankroll_line(a.run))
+        if name == "max_profit":
+            print(maxprofit_line(a.run))
+        if name == "crowd":
+            print(crowd_line(a.run))
         print(describe("Today", s_today))
         print(describe("Since start" if not since else "In this period", s_all))
         print()
@@ -216,14 +264,16 @@ def main():
             wr = f"{s['wins'] / s['settled']:.0%}" if s["settled"] else "-"
             roi = f"{s['pnl'] / s['staked']:+.0%}" if s["staked"] else "-"
             print(f"  {name:<26}{s['n']:>5}{s['wins']:>5}{s['losses']:>5}{s['open']:>5}{wr:>6}{s['staked']:>9.2f}{money(s['pnl']):>10}{roi:>8}")
-        skip = {"auto_pick", "bankroll_20"}
+        skip = {"auto_pick", "bankroll_20", "max_profit"}
         total = sum(s["pnl"] for n, s in table if n not in skip)
         extras = []
         if any(n == "auto_pick" for n, _ in table):
             extras.append("auto_pick left out because it only copies the others' bets")
         if any(n == "bankroll_20" for n, _ in table):
             extras.append("bankroll_20 left out because it is its own $20-to-$1,000 account that copies the current pick")
-        print("  Note: auto_pick and bankroll_20 still rank and follow only the original 5-minute hold-to-settlement strategies; cash-out and 15-minute variants are scored separately and are not in that ranking.")
+        if any(n == "max_profit" for n, _ in table):
+            extras.append("max_profit left out because it is its own $100 fake account")
+        print("  Note: auto_pick and bankroll_20 still rank and follow only the original 5-minute hold-to-settlement strategies; cash-out, 15-minute, crowd, and max_profit variants are scored separately and are not in that ranking.")
         print(f"\n  All variants together: {money(total)} (each variant is a separate fake account"
               + (("; " + "; ".join(extras)) if extras else "") + ").")
 

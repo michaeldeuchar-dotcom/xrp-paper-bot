@@ -78,8 +78,15 @@ def fetch_event(ws: int, tf: str = "5m") -> Optional[Market]:
                 op[str(n)] = float(px[i])
             except (TypeError, ValueError):
                 pass
+    meta = dict(ev.get("eventMetadata") or {})
+    if ev.get("id") is not None:
+        meta["event_id"] = ev.get("id")
+    if m.get("id") is not None:
+        meta["market_id"] = m.get("id")
+    if m.get("conditionId"):
+        meta["condition_id"] = m.get("conditionId")
     return Market(slug_for(ws, tf), ws, str(m.get("question") or ev.get("title") or ""), tid, op,
-                  bool(m.get("closed") or ev.get("closed")), ev.get("eventMetadata") or {})
+                  bool(m.get("closed") or ev.get("closed")), meta)
 
 
 @dataclass
@@ -105,3 +112,26 @@ def fetch_books(m: Market) -> dict:
     if err:
         raise RuntimeError(f"book fetch failed: {err}")
     return ok
+
+
+def fetch_comments(event_id, limit: int = 100) -> list:
+    """Official public Gamma comments for an event. No auth. Returns a list (possibly empty)."""
+    if event_id in (None, ""):
+        return []
+    url = (f"{config.GAMMA_BASE}/comments?parent_entity_type=Event"
+           f"&parent_entity_id={event_id}&limit={int(limit)}&order=createdAt&ascending=false")
+    data = net.hard_get_json(url, 5)
+    return data if isinstance(data, list) else []
+
+
+def fetch_recent_trades(condition_id, limit: int = 100) -> list:
+    """Official public Data API v2 trades for a market (taker fills). No auth."""
+    if not condition_id:
+        return []
+    base = getattr(config, "DATA_API_BASE", "https://data-api.polymarket.com")
+    url = f"{base}/v2/trades?condition={condition_id}&limit={int(limit)}&taker_only=true"
+    data = net.hard_get_json(url, 6)
+    if isinstance(data, dict):
+        rows = data.get("data")
+        return rows if isinstance(rows, list) else []
+    return data if isinstance(data, list) else []

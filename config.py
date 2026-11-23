@@ -23,6 +23,7 @@ KILL_SWITCH_PATH = ROOT / "STOP"             # touch this file to stop bot + sup
 
 GAMMA_BASE = "https://gamma-api.polymarket.com"
 CLOB_BASE = "https://clob.polymarket.com"
+DATA_API_BASE = "https://data-api.polymarket.com"
 ASSET = "XRP"
 # Polymarket's XRP Up/Down market families we trade (verified on the public Gamma API). Each variant picks one via "timeframe".
 TIMEFRAMES = {

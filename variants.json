@@ -318,6 +318,69 @@
     "round_up_to_min_shares": true,
     "max_round_up_usd": 4
   },
+  "crowd": {
+    "enabled": true,
+    "mode": "crowd",
+    "timeframe": "5m",
+    "exclude_from_rank": true,
+    "min_secs_left": 60,
+    "max_secs_left": 180,
+    "min_ask": 0.25,
+    "max_ask": 0.9,
+    "high_ask": 0.8,
+    "base_stake": 4,
+    "max_stake": 5,
+    "high_ask_max_stake": 4,
+    "cap_incl_fee": 5,
+    "min_comments": 3,
+    "comment_share": 0.67,
+    "min_flow_usd": 15,
+    "flow_share": 0.62,
+    "book_imbalance": 0.25,
+    "round_up_to_min_shares": true,
+    "max_round_up_usd": 1,
+    "desc": "CROWD (5m): bets with whatever side is most popular. Reads the official public comment feed for this event (keyword lean: up/pump/moon/long vs down/dump/short/rekt) and, because these short markets often have no chat, falls back to public trade-flow (buy volume on Up vs Down) plus a book-imbalance check. Bets only when the signal is clear, with 60-180s left, asks 25-90c, about $4 incl. fee (5-share min, $10 cap). Not used by auto_pick or bankroll_20.",
+    "min_edge": 0,
+    "edge_per_dollar": 1.0
+  },
+  "max_profit": {
+    "enabled": true,
+    "mode": "max_profit",
+    "timeframes": [
+      "5m",
+      "15m"
+    ],
+    "timeframe": "5m",
+    "exclude_from_rank": true,
+    "allow_over_hard_max": true,
+    "cash_out": true,
+    "take_profit_pct": 0.2,
+    "take_profit_bid": 0.95,
+    "stop_loss_frac": 0.55,
+    "flip_secs_left": 60,
+    "min_hold_sec": 20,
+    "start_balance": 100,
+    "floor_balance": 12,
+    "max_frac": 0.25,
+    "kelly_frac": 0.5,
+    "min_edge": 0.02,
+    "try_maker": true,
+    "maker_min_spread": 0.02,
+    "rest_take_secs": 40,
+    "signal_sources": {
+      "5m": [
+        "trend_volume",
+        "model_lead",
+        "crowd"
+      ],
+      "15m": [
+        "trend_volume_15m",
+        "model_lead_15m"
+      ]
+    },
+    "circuit_breaker": "off",
+    "desc": "MAX PROFIT (5m+15m, fake $100 account): tries to grow a $100 fake-money bankroll as fast as it can. Uses the best available signals from the other variants (and crowd when chat/flow is clear), both sides, and can sell early (cash-out). Sizes with half-Kelly, capped at 25% of current equity and never so large that a loss would break a $12 floor (pauses if cash falls below $12). Because this is fake money it may exceed the usual $10-per-bet cap \u2014 do not use this with real money as-is. May rest a paper limit at the bid when the spread is wide. Not used by auto_pick or bankroll_20."
+  },
   "auto_pick": {
     "enabled": true,
     "desc": "AUTO PICK (5m): every round it ranks the other 5m variants by net fake P&L on bets settled in the last 6 hours (falls back to since-start if nobody qualifies in the window). A variant qualifies with 5+ settled bets and positive P&L. It follows ONLY its current pick's bets (same side, same moment); if the pick doesn't bet in a window it sits out. New leader must be best at 2 straight checks. Flat $3 target incl. fee (rounded up to the 5-share minimum, never above $5 total; hard max $10). Own separate fake account.",
