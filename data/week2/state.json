@@ -1186,39 +1186,76 @@
     "to": "model_lead",
     "ts_pt": "2026-11-23 19:31:01 PT",
     "why": "best at 2 straight checks"
+   },
+   {
+    "from": "model_lead",
+    "scope": "since_start",
+    "scores": {
+     "breakdown": [
+      1.57,
+      1
+     ],
+     "control": [
+      -32.34,
+      151
+     ],
+     "down_ride": [
+      -23.51,
+      26
+     ],
+     "model_lead": [
+      -4.68,
+      14
+     ],
+     "ride_favorite_80": [
+      -101.9,
+      192
+     ],
+     "trend_down": [
+      8.34,
+      15
+     ],
+     "trend_volume": [
+      -1.41,
+      18
+     ]
+    },
+    "to": "trend_down",
+    "ts_pt": "2026-11-23 20:46:01 PT",
+    "why": "model_lead no longer qualifies"
    }
   ],
-  "last_check_ws": 1795494900,
-  "leader": "model_lead",
-  "scope": "6h",
+  "last_check_ws": 1795496100,
+  "leader": "trend_down",
+  "scope": "since_start",
   "scores": {
    "breakdown": [
-    0.0,
-    0
+    1.57,
+    1
    ],
    "control": [
-    -17.5,
-    37
+    -32.34,
+    151
    ],
    "down_ride": [
-    -10.88,
-    9
+    -23.51,
+    26
    ],
    "model_lead": [
-    0.82,
-    5
+    -4.68,
+    14
    ],
    "ride_favorite_80": [
-    -44.43,
-    42
+    -101.9,
+    192
    ],
    "trend_down": [
-    3.47,
-    4
+    8.34,
+    15
    ],
    "trend_volume": [
-    -3.36,
-    3
+    -1.41,
+    18
    ]
   }
  },
@@ -1227,7 +1264,7 @@
   "busted": false,
   "busted_at": null,
   "equity": 0.271,
-  "following": "model_lead",
+  "following": "trend_down",
   "funded": true,
   "goal": 1000.0,
   "goal_reached": false,
@@ -1238,14 +1275,14 @@
   "variant": "bankroll_20"
  },
  "crowd_stats": {
-  "bets": 25,
-  "comments_empty": 65,
+  "bets": 27,
+  "comments_empty": 69,
   "comments_failed": 0,
   "comments_present": 0,
   "flow_failed": 0,
-  "flow_ok": 14,
-  "last": "comments in-window=0 (Up 0/Down 0, fetched 0); buy flow Up $0 vs Down $0 (0 buys); bid size Up 762 vs Down 0",
-  "windows": 65
+  "flow_ok": 15,
+  "last": "comments in-window=0 (Up 0/Down 0, fetched 0); buy flow Up $0 vs Down $0 (0 buys); bid size Up 0 vs Down 1035",
+  "windows": 69
  },
  "crowd_windows": [
   1795475700,
@@ -1312,17 +1349,21 @@
   1795494000,
   1795494300,
   1795494600,
-  1795494900
+  1795494900,
+  1795495200,
+  1795495500,
+  1795495800,
+  1795496100
  ],
  "max_profit": {
-  "balance": 55.804,
-  "equity": 55.804,
+  "balance": 54.1584,
+  "equity": 54.1584,
   "floor": 12.0,
   "funded": true,
   "funded_at": "2026-11-23 15:17:48 PT",
-  "last_signal": "trend_volume",
-  "n_bets": 16,
-  "n_settled": 16,
+  "last_signal": "crowd",
+  "n_bets": 17,
+  "n_settled": 17,
   "paused": false,
   "paused_at": null,
   "rest": {},
@@ -1331,22 +1372,6 @@
  },
  "open": [],
  "ptb": {
-  "1795487700": {
-   "p": 0.9434498333333333,
-   "src": "own_spot_samples_60s"
-  },
-  "1795488000": {
-   "p": 0.9440841379310345,
-   "src": "own_spot_samples_60s"
-  },
-  "1795488300": {
-   "p": 0.9436611666666667,
-   "src": "own_spot_samples_60s"
-  },
-  "1795488600": {
-   "p": 0.9413026666666667,
-   "src": "own_spot_samples_60s"
-  },
   "1795488900": {
    "p": 0.9395471666666667,
    "src": "own_spot_samples_60s"
@@ -1430,10 +1455,26 @@
   "1795494900": {
    "p": 0.9544251666666667,
    "src": "own_spot_samples_60s"
+  },
+  "1795495200": {
+   "p": 0.9567963333333334,
+   "src": "own_spot_samples_60s"
+  },
+  "1795495500": {
+   "p": 0.9532098333333334,
+   "src": "own_spot_samples_60s"
+  },
+  "1795495800": {
+   "p": 0.952824,
+   "src": "own_spot_samples_60s"
+  },
+  "1795496100": {
+   "p": 0.9517341666666667,
+   "src": "own_spot_samples_60s"
   }
  },
  "scale_pos": {},
- "seq": 587,
+ "seq": 590,
  "traded_windows": {
   "auto_pick": [
    1795408800,
@@ -1616,7 +1657,8 @@
    1795488600,
    1795488900,
    1795490100,
-   1795493400
+   1795493400,
+   1795495500
   ],
   "down_ride": [
    1795406700,
@@ -1662,7 +1704,8 @@
    "5m:1795488900",
    "5m:1795490100",
    "5m:1795493400",
-   "5m:1795494600"
+   "5m:1795494600",
+   "5m:1795495500"
   ],
   "model_lead": [
    1795412400,
@@ -1823,7 +1866,8 @@
    1795493400,
    1795493700,
    1795494300,
-   1795494600
+   1795494600,
+   1795495500
   ],
   "trend_down": [
    1795421700,
