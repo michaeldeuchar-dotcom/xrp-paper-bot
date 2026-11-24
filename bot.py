@@ -30,6 +30,9 @@ import cashout
 import crowd
 import maxprofit
 import ab_hedge
+import price_lag
+import sum_arb
+import safety
 import strategy
 
 PT = ZoneInfo("America/Los_Angeles")
@@ -328,7 +331,7 @@ def _settled_stats(name: str, since_ts):
 def auto_scores(variants: dict, me: str, tf: str, now: float, hours: float, min_bets: int):
     """Rank same-timeframe variants (never itself) by net fake P&L on settled bets. Returns (scope, scores) where scores is
     {variant: (net_pnl, n_bets, dollars_bet)} for EVERY candidate; 'scope' is '6h' normally, or 'since_start' when nobody qualifies in the window."""
-    cands = [n for n, v in variants.items() if n != me and v.get("timeframe", "5m") == tf and v.get("mode") not in COPY_MODES and not v.get("cash_out") and not v.get("exclude_from_rank") and v.get("mode") not in ("crowd", "max_profit", "ab_hedge")]
+    cands = [n for n, v in variants.items() if n != me and v.get("timeframe", "5m") == tf and v.get("mode") not in COPY_MODES and not v.get("cash_out") and not v.get("exclude_from_rank") and v.get("mode") not in ("crowd", "max_profit", "ab_hedge", "price_lag", "sum_arb")]
     def qual(sc):
         return {n: s for n, s in sc.items() if s[1] >= min_bets and s[0] > 0}
     win = {n: _settled_stats(n, now - hours * 3600) for n in cands}
@@ -764,6 +767,10 @@ def cycle(state: dict, accepting: bool) -> None:
         log.exception("cash-out check failed (continuing)")
     if not accepting:
         return
+    try:
+        price_lag.touch_extra_feeds(spot)
+    except Exception:
+        pass
     variants = load_variants()
     for tf in sorted({t for v in variants.values() for t in (list(v.get("timeframes") or []) or [v.get("timeframe", "5m")])}):
         try:
@@ -781,12 +788,12 @@ def cycle_tf(state: dict, tf: str, variants: dict, spot: float, now: float) -> N
     skip_s = 0
     if config.SKIP_FIRST_MINUTE:
         skip_s = 60 if tf == "5m" else (180 if tf == "15m" else 0)
-    if skip_s and elapsed < skip_s:
+    early_skip = bool(skip_s and elapsed < skip_s)
+    if early_skip:
         key = ("*", ws, "first_minute", tf)
         if key not in _reason_seen:
             _reason_seen.add(key)
-            _reason(f"[all {tf}] Skipping: Tweak 1 SKIP_FIRST_MINUTE is on and this window is in its first {skip_s} seconds.")
-        return
+            _reason(f"[most {tf}] Skipping: Tweak 1 SKIP_FIRST_MINUTE is on and this window is in its first {skip_s} seconds. price_lag / sum_arb still run — a lag edge is most useful early.")
     traded = state.setdefault("traded_windows", {})
     spos = state.setdefault("scale_pos", {})
 
@@ -797,6 +804,8 @@ def cycle_tf(state: dict, tf: str, variants: dict, spot: float, now: float) -> N
     def _wanted(n, v):
         tfs = list(v.get("timeframes") or [v.get("timeframe", "5m")]) if v.get("mode") == "max_profit" else [v.get("timeframe", "5m")]
         if tf not in tfs:
+            return False
+        if early_skip and not (v.get("ignore_skip_first_minute") or v.get("mode") in ("price_lag", "sum_arb")):
             return False
         if v.get("mode") == "ab_hedge":
             return ab_hedge.wanted(state, n, v, tf, ws, secs_left, wsec)
@@ -837,7 +846,7 @@ def cycle_tf(state: dict, tf: str, variants: dict, spot: float, now: float) -> N
         _reason_seen.add(tk)
         log.info("TREND %s window=%s spot=%.4f ptb=%.4f %s", tf, ws, spot, ptb, feeds.trend_summary(trend))
     for name, v in todo.items():
-        if v.get("mode") == "max_profit" or (v.get("mode") == "ab_hedge" and ab_hedge.has_open_a(state, name, tf, ws)):
+        if v.get("mode") in ("max_profit", "price_lag", "sum_arb") or v.get("ignore_hour_filter") or (v.get("mode") == "ab_hedge" and ab_hedge.has_open_a(state, name, tf, ws)):
             block = None
         else:
             block = hour_filter_blocks(name)
@@ -861,6 +870,14 @@ def cycle_tf(state: dict, tf: str, variants: dict, spot: float, now: float) -> N
                     d = maxprofit.decide(state, name, v, variants, p_up=p_up, books=books, secs_left=secs_left, trend=trend, spot=spot, ptb=ptb, ws=ws, now=now, tf=tf, m=m)
                 elif v.get("mode") == "ab_hedge":
                     d = ab_hedge.decide(name, v, state=state, books=books, secs_left=secs_left, spot=spot, ptb=ptb, ws=ws, now=now, tf=tf, m=m, p_up=p_up)
+                elif v.get("mode") == "price_lag":
+                    off_p, off_s = price_lag.official_strike(tf, ws, get_market)
+                    d = price_lag.decide(name, v, state=state, books=books, secs_left=secs_left, spot=spot, ptb=ptb, ptb_src=ptb_src, ws=ws, now=now, tf=tf, m=m, p_up=p_up, official_ptb=off_p, official_src=off_s, observed_twap=obs)
+                elif v.get("mode") == "sum_arb":
+                    meta = getattr(feeds, "last_spot_meta", {}) or {}
+                    lats = meta.get("latencies_ms") or {}
+                    lat = max(lats.values()) if lats else None
+                    d = sum_arb.decide(name, v, state=state, books=books, secs_left=secs_left, ws=ws, now=now, tf=tf, m=m, p_up=p_up, latency_ms=lat)
                 elif v.get("mode") in SCALE_MODES and _scale_open(name):
                     d = strategy.decide_scale_add(name, v, spos[name], books=books, secs_left=secs_left, spot=spot, ptb=ptb, now=now)
                     d.model_p_up = p_up
@@ -870,6 +887,13 @@ def cycle_tf(state: dict, tf: str, variants: dict, spot: float, now: float) -> N
             _stats["errors"] += 1
             log.exception("variant %s error in %s family (continuing)", name, tf)
             continue
+        try:
+            paused, why = safety.paused(state, name, v, now)
+            if paused and d.action in ("buy", "buy_pair"):
+                d = strategy.Decision(name, "skip", "daily_loss", why, side=d.side, ask=d.ask, model_p_up=p_up, edge=d.edge)
+        except Exception:  # noqa: BLE001
+            _stats["errors"] += 1
+            log.exception("daily-loss check failed for %s (continuing)", name)
         if d.action == "buy" and v.get("mode") in SCALE_MODES:
             pos = spos.get(name) if _scale_open(name) else None
             spent = sum(float(f["cost"]) for f in pos["fills"]) if pos else 0.0
@@ -885,14 +909,17 @@ def cycle_tf(state: dict, tf: str, variants: dict, spot: float, now: float) -> N
                     pos = spos[name] = {"ws": ws, "side": d.side, "fills": []}
                 gap = (spot - ptb) if d.side == "Up" else (ptb - spot)
                 pos["fills"].append({"ts": now, "ask": d.ask, "gap": gap, "cost": d.total_cost})
-        if d.action == "buy":
+        if d.action == "buy_pair":
+            for leg in (d.extra or {}).get("legs") or []:
+                paper_fill(state, name, leg, m, ws, secs_left, spot, ptb, ptb_src, vol, tf)
+        elif d.action == "buy":
             paper_fill(state, name, d, m, ws, secs_left, spot, ptb, ptb_src, vol, tf)
         else:
             rk = (name, ws, d.reason)
             if rk not in _reason_seen:
                 _reason_seen.add(rk)
                 _reason(f"[{name}] Not betting: {d.english}")
-        if d.action == "buy" or now - _last_decision_log.get(name, 0) >= config.DECISION_LOG_EVERY_SEC:
+        if d.action in ("buy", "buy_pair") or now - _last_decision_log.get(name, 0) >= config.DECISION_LOG_EVERY_SEC:
             _last_decision_log[name] = now
             f = lambda x, n=4: "" if x is None else f"{x:.{n}f}"  # noqa: E731
             store.append_decision({"ts_pt": store.iso_pt(now), "variant": name, "timeframe": tf, "window_start": ws, "secs_left": f(secs_left, 1),

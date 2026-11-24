@@ -10,11 +10,17 @@ from datetime import datetime, timezone
 import config
 import net
 
+last_spot_meta = {"ts": 0.0, "latencies_ms": {}, "errors": {}, "readings": {}, "prices": {}, "exchange_ts": {}}
+
 log = logging.getLogger("xrpbot")
 
 
 def _cb_exchange():
-    return float(net.hard_get_json("https://api.exchange.coinbase.com/products/XRP-USD/ticker", 5)["price"])
+    d = net.hard_get_json("https://api.exchange.coinbase.com/products/XRP-USD/ticker", 5)
+    if d.get("time"):
+        last_spot_meta.setdefault("exchange_ts", {})["coinbase_exchange"] = d["time"]
+    return float(d["price"])
+
 
 
 def _cb_retail():
@@ -35,8 +41,28 @@ def _bitstamp():
 FEEDS = {"coinbase_exchange": _cb_exchange, "coinbase": _cb_retail, "kraken": _kraken, "bitstamp": _bitstamp}
 
 
+def _timed(name, fn):
+    t0 = time.time()
+    try:
+        px = fn()
+        last_spot_meta["latencies_ms"][name] = (time.time() - t0) * 1000
+        last_spot_meta["prices"][name] = float(px)
+        return px
+    except Exception:
+        last_spot_meta["latencies_ms"][name] = (time.time() - t0) * 1000
+        raise
+
+
 def current_spot() -> tuple[float, dict]:
-    ok, err = net.parallel(FEEDS, deadline=6)
+    last_spot_meta["ts"] = time.time()
+    last_spot_meta["latencies_ms"] = {}
+    last_spot_meta["errors"] = {}
+    last_spot_meta["prices"] = {}
+    last_spot_meta["exchange_ts"] = dict(last_spot_meta.get("exchange_ts") or {})
+    timed = {k: (lambda k=k, f=f: _timed(k, f)) for k, f in FEEDS.items()}
+    ok, err = net.parallel(timed, deadline=6)
+    last_spot_meta["readings"] = dict(ok)
+    last_spot_meta["errors"] = {k: str(v)[:200] for k, v in (err or {}).items()}
     if not ok:
         raise RuntimeError(f"all spot feeds failed: {err}")
     return float(statistics.median(ok.values())), ok

@@ -221,6 +221,98 @@ def ab_hedge_line(run):
     return "\n".join(lines)
 
 
+
+def price_lag_line(run):
+    """How often a fresh unpriced move appeared, and how those paper trades did."""
+    path = os.path.join(ROOT, "data", run, "price_lag_trades.csv")
+    if not os.path.exists(path):
+        return "  Price lag: no opportunity log yet."
+    try:
+        with open(path, newline="") as f:
+            rows = list(csv.DictReader(f))
+    except Exception:
+        return "  Price lag: could not read price_lag_trades.csv."
+    if not rows:
+        return "  Price lag: no opportunity log yet."
+    def pnl_for(name):
+        tp = os.path.join(ROOT, "data", run, f"trades_{name}.csv")
+        if not os.path.exists(tp):
+            return 0, 0.0
+        n = s = 0
+        with open(tp, newline="") as f:
+            for r in csv.DictReader(f):
+                if r.get("status") == "resolved" and r.get("pnl_usd"):
+                    try:
+                        s += float(r["pnl_usd"]); n += 1
+                    except (TypeError, ValueError):
+                        pass
+        return n, s
+    n = len(rows)
+    fresh = sum(1 for r in rows if r.get("status") in ("filling", "thin_book", "ask_band", "min_shares", "kill_switch"))
+    stale = sum(1 for r in rows if r.get("status") == "stale_edge")
+    fills = sum(1 for r in rows if r.get("status") == "filling")
+    names = []
+    for r in rows:
+        v = r.get("variant") or ""
+        if v and v not in names:
+            names.append(v)
+    bits = []
+    total_n = total_p = 0
+    for name in names:
+        tn, tp = pnl_for(name)
+        total_n += tn; total_p += tp
+        if tn:
+            bits.append(f"{name} {tn} settled {money(tp)}")
+    settled = f" Settled paper P&L: {', '.join(bits)}." if bits else " No lag trades have settled yet."
+    return (f"  Price lag: {n} logged edges ({fresh} fresh, {stale} stale/book-already-moved, "
+            f"{fills} taken).{settled}")
+
+
+def sum_arb_line(run):
+    """How often both sides added up to less than $1, and whether we could fill."""
+    path = os.path.join(ROOT, "data", run, "sum_arb_ops.csv")
+    if not os.path.exists(path):
+        return "  Sum arb: no opportunity log yet."
+    try:
+        with open(path, newline="") as f:
+            rows = list(csv.DictReader(f))
+    except Exception:
+        return "  Sum arb: could not read sum_arb_ops.csv."
+    if not rows:
+        return "  Sum arb: no opportunity log yet."
+    def pnl_for(name):
+        tp = os.path.join(ROOT, "data", run, f"trades_{name}.csv")
+        if not os.path.exists(tp):
+            return 0, 0.0
+        n = s = 0
+        with open(tp, newline="") as f:
+            for r in csv.DictReader(f):
+                if r.get("status") == "resolved" and r.get("pnl_usd"):
+                    try:
+                        s += float(r["pnl_usd"]); n += 1
+                    except (TypeError, ValueError):
+                        pass
+        return n, s
+    n = len(rows)
+    fillable = sum(1 for r in rows if r.get("fillable") == "1" or r.get("status") == "filling")
+    tight = sum(1 for r in rows if r.get("status") == "too_tight")
+    thin = sum(1 for r in rows if r.get("status") == "not_fillable")
+    taken = sum(1 for r in rows if r.get("status") == "filling")
+    names = []
+    for r in rows:
+        v = r.get("variant") or ""
+        if v and v not in names:
+            names.append(v)
+    bits = []
+    for name in names:
+        tn, tp = pnl_for(name)
+        if tn:
+            bits.append(f"{name} {tn} settled {money(tp)}")
+    settled = f" Settled paper P&L: {', '.join(bits)}." if bits else " No sum-arb trades have settled yet."
+    return (f"  Sum arb: {n} under-$1 prints ({tight} inside the 2c buffer, {thin} too thin, "
+            f"{fillable} fillable, {taken} taken).{settled}")
+
+
 def load(args):
     if args.file:
         files = {os.path.basename(args.file): args.file}
@@ -308,6 +400,10 @@ def main():
         table.append((name, s_all))
     if any(n.startswith("ab_hedge") for n, _ in table) or os.path.exists(os.path.join(ROOT, "data", a.run, "ab_hedge_pairs.csv")):
         print(ab_hedge_line(a.run))
+    if any(n.startswith("price_lag") for n, _ in table) or os.path.exists(os.path.join(ROOT, "data", a.run, "price_lag_trades.csv")):
+        print(price_lag_line(a.run))
+    if any(n.startswith("sum_arb") for n, _ in table) or os.path.exists(os.path.join(ROOT, "data", a.run, "sum_arb_ops.csv")):
+        print(sum_arb_line(a.run))
         print()
     if len(table) > 1:
         print("Comparison (best to worst by net fake P&L):")
@@ -325,7 +421,7 @@ def main():
             extras.append("bankroll_20 left out because it is its own $20-to-$1,000 account that copies the current pick")
         if any(n == "max_profit" for n, _ in table):
             extras.append("max_profit left out because it is its own $100 fake account")
-        print("  Note: auto_pick and bankroll_20 still rank and follow only the original 5-minute hold-to-settlement strategies; cash-out, 15-minute, crowd, max_profit, and ab_hedge variants are scored separately and are not in that ranking.")
+        print("  Note: auto_pick and bankroll_20 still rank and follow only the original 5-minute hold-to-settlement strategies; cash-out, 15-minute, crowd, max_profit, ab_hedge, price_lag, and sum_arb variants are scored separately and are not in that ranking.")
         print(f"\n  All variants together: {money(total)} (each variant is a separate fake account"
               + (("; " + "; ".join(extras)) if extras else "") + ").")
 

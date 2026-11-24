@@ -39,7 +39,7 @@ if [ -f "data/$RUN/FINISHED" ]; then echo "$RUN already FINISHED"; exit 0; fi
 
 save() {
   mkdir -p "$ST/data/$RUN"
-  cp -a data/$RUN/trades_*.csv data/$RUN/auto_pick_switches.csv data/$RUN/bankroll_history.csv data/$RUN/cash_out_exits.csv data/$RUN/max_profit_history.csv data/$RUN/ab_hedge_pairs.csv data/$RUN/state.json data/$RUN/coverage.json data/$RUN/heartbeat.json \
+  cp -a data/$RUN/trades_*.csv data/$RUN/auto_pick_switches.csv data/$RUN/bankroll_history.csv data/$RUN/cash_out_exits.csv data/$RUN/max_profit_history.csv data/$RUN/ab_hedge_pairs.csv data/$RUN/price_lag_trades.csv data/$RUN/sum_arb_ops.csv data/$RUN/state.json data/$RUN/coverage.json data/$RUN/heartbeat.json \
         "$ST/data/$RUN/" 2>/dev/null || true
   [ -f data/$RUN/FINISHED ] && cp data/$RUN/FINISHED "$ST/data/$RUN/"
   [ -f data/TWEAKS_LOG.md ] && cp data/TWEAKS_LOG.md "$ST/data/"
