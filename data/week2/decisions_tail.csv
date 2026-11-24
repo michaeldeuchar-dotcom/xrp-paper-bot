@@ -482,3 +482,541 @@ ts_pt,variant,timeframe,window_start,secs_left,action,reason,side,est_prob,model
 2026-11-24 04:02:21 PT,max_profit,5m,1795521600,158.4,skip,no_signal,,,0.0415,,,,0.00,0.00,0.9314,0.9334,No source strategy has a clear entry in this 5m window (158s left). Cash $61.31.
 2026-11-24 04:02:21 PT,auto_pick,5m,1795521600,158.4,skip,leader_idle,,,0.0415,,,,0.00,0.00,0.9314,0.9334,Current pick control (6h +4.98) isn't betting this round; sitting out: #1 control not betting (ask_band).
 2026-11-24 04:02:21 PT,bankroll_20,5m,1795521600,158.4,skip,leader_idle,,,0.0415,,,,0.00,0.00,0.9314,0.9334,Current pick control (6h +4.98) isn't betting this round (ask_band); sitting out.
+2026-11-24 04:02:37 PT,down_ride,5m,1795521600,142.4,skip,ask_band,Down,0.9512,0.0525,0.0450,0.9800,-0.0301,0.00,0.00,0.9316,0.9334,"Down costs 98c, outside this variant's 0.5-0.9 price range."
+2026-11-24 04:02:37 PT,crowd,5m,1795521600,142.4,skip,no_crowd,,,0.0525,,,,0.00,0.00,0.9316,0.9334,"No comments in this short window (common on 5-minute markets). No clear crowd yet. comments in-window=0 (Up 0/Down 0, fetched 0); buy flow Up $0 vs Down $0 (0 buys); bid size Up 42 vs Down 5"
+2026-11-24 04:02:41 PT,control,5m,1795521600,138.4,skip,edge_small,Down,0.9507,0.0493,0.1050,0.9200,0.0255,0.00,0.00,0.9316,0.9334,Down at 92c: my estimate 95% beats price+fee by only 2.6c (need 3c).
+2026-11-24 04:02:41 PT,trend_volume,5m,1795521600,138.4,skip,choppy,,,0.0493,0.1050,,,0.00,0.00,0.9316,0.9334,"Choppy: price went back and forth (straightness 0.09, need 0.15)."
+2026-11-24 04:02:41 PT,trend_volume_xo,5m,1795521600,138.4,skip,choppy,,,0.0493,0.1050,,,0.00,0.00,0.9316,0.9334,"Choppy: price went back and forth (straightness 0.09, need 0.15)."
+2026-11-24 04:02:41 PT,trend_down,5m,1795521600,138.4,skip,choppy,,,0.0493,0.1050,,,0.00,0.00,0.9316,0.9334,"Choppy: price went back and forth (straightness 0.09, need 0.12)."
+2026-11-24 04:02:41 PT,breakdown,5m,1795521600,138.4,skip,no_breakout,,,0.0493,0.1050,,,0.00,0.00,0.9316,0.9334,Price is inside its 30-min range ($0.9261-$0.9341); no breakout.
+2026-11-24 04:02:41 PT,max_profit,5m,1795521600,138.4,skip,no_signal,,,0.0493,,,,0.00,0.00,0.9316,0.9334,No source strategy has a clear entry in this 5m window (138s left). Cash $61.31.
+2026-11-24 04:02:41 PT,auto_pick,5m,1795521600,138.4,skip,leader_idle,,,0.0493,,,,0.00,0.00,0.9316,0.9334,Current pick control (6h +4.98) isn't betting this round; sitting out: #1 control not betting (edge_small).
+2026-11-24 04:02:41 PT,bankroll_20,5m,1795521600,138.4,skip,leader_idle,,,0.0493,,,,0.00,0.00,0.9316,0.9334,Current pick control (6h +4.98) isn't betting this round (edge_small); sitting out.
+2026-11-24 04:02:57 PT,ride_favorite_80,5m,1795521600,122.4,skip,hour_filter,,,0.0528,,,,0.00,0.00,0.9318,0.9334,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 4:00 PT hour net $-5.35.
+2026-11-24 04:02:57 PT,ride_favorite_80_xo,5m,1795521600,122.4,skip,timing,,,0.0528,0.0300,,,0.00,0.00,0.9318,0.9334,Only bets with 60-120s left; 122s left now.
+2026-11-24 04:02:57 PT,down_ride,5m,1795521600,122.4,skip,ask_band,Down,0.9586,0.0528,0.0300,0.9900,-0.0321,0.00,0.00,0.9318,0.9334,"Down costs 99c, outside this variant's 0.5-0.9 price range."
+2026-11-24 04:02:57 PT,crowd,5m,1795521600,122.4,skip,no_crowd,,,0.0528,,,,0.00,0.00,0.9318,0.9334,"No comments in this short window (common on 5-minute markets). No clear crowd yet. comments in-window=0 (Up 0/Down 0, fetched 0); buy flow Up $0 vs Down $0 (0 buys); bid size Up 86 vs Down 7"
+2026-11-24 04:03:01 PT,trend_volume_15m,15m,1795521600,718.4,skip,choppy,,,0.2751,0.2500,,,0.00,0.00,0.9317,0.9334,"Choppy: price went back and forth (straightness 0.01, need 0.15)."
+2026-11-24 04:03:01 PT,model_lead_15m,15m,1795521600,718.4,skip,edge_small,Down,0.7375,0.2751,0.2500,0.7700,-0.0449,0.00,0.00,0.9317,0.9334,Down at 77c: my estimate 74% beats price+fee by only -4.5c (need 4c).
+2026-11-24 04:03:01 PT,max_profit,15m,1795521600,718.4,skip,no_signal,,,0.2751,,,,0.00,0.00,0.9317,0.9334,No source strategy has a clear entry in this 15m window (718s left). Cash $61.31.
+2026-11-24 04:03:01 PT,ab_hedge_15m,15m,1795521600,718.4,buy,ok,Down,,0.2751,,0.7700,,5.00,6.39,0.9317,0.9334,"Leg A: the coin leads Down (spot vs price to beat), so buying $5.00 of Down at 77c (6.39 sh, fee $0.079, 718s left). Will watch the other side for a cheap hedge."
+2026-11-24 04:03:01 PT,control,5m,1795521600,118.4,skip,ask_band,Down,0.9549,0.0451,0.0350,0.9900,-0.0358,0.00,0.00,0.9317,0.9334,"Down costs 99c, outside this variant's 0.05-0.95 price range."
+2026-11-24 04:03:01 PT,trend_volume,5m,1795521600,118.4,skip,choppy,,,0.0451,0.0350,,,0.00,0.00,0.9317,0.9334,"Choppy: price went back and forth (straightness 0.09, need 0.15)."
+2026-11-24 04:03:01 PT,trend_volume_xo,5m,1795521600,118.4,skip,choppy,,,0.0451,0.0350,,,0.00,0.00,0.9317,0.9334,"Choppy: price went back and forth (straightness 0.09, need 0.15)."
+2026-11-24 04:03:01 PT,trend_down,5m,1795521600,118.4,skip,choppy,,,0.0451,0.0350,,,0.00,0.00,0.9317,0.9334,"Choppy: price went back and forth (straightness 0.09, need 0.12)."
+2026-11-24 04:03:01 PT,breakdown,5m,1795521600,118.4,skip,no_breakout,,,0.0451,0.0350,,,0.00,0.00,0.9317,0.9334,Price is inside its 30-min range ($0.9261-$0.9341); no breakout.
+2026-11-24 04:03:01 PT,auto_pick,5m,1795521600,118.4,skip,leader_idle,,,0.0451,,,,0.00,0.00,0.9317,0.9334,Current pick control (6h +4.98) isn't betting this round; sitting out: #1 control not betting (ask_band).
+2026-11-24 04:03:01 PT,bankroll_20,5m,1795521600,118.4,skip,leader_idle,,,0.0451,,,,0.00,0.00,0.9317,0.9334,Current pick control (6h +4.98) isn't betting this round (ask_band); sitting out.
+2026-11-24 04:03:17 PT,ride_favorite_80,5m,1795521600,102.4,skip,hour_filter,,,0.0271,,,,0.00,0.00,0.9317,0.9334,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 4:00 PT hour net $-5.35.
+2026-11-24 04:03:17 PT,ride_favorite_80_xo,5m,1795521600,102.4,skip,ask_band,Down,,0.0271,0.0200,0.9900,,0.00,0.00,0.9317,0.9334,"Down costs 99c, outside this variant's 0.8-0.95 price range."
+2026-11-24 04:03:17 PT,down_ride,5m,1795521600,102.4,skip,ask_band,Down,0.9764,0.0271,0.0200,0.9900,-0.0143,0.00,0.00,0.9317,0.9334,"Down costs 99c, outside this variant's 0.5-0.9 price range."
+2026-11-24 04:03:17 PT,crowd,5m,1795521600,102.4,skip,no_crowd,,,0.0271,,,,0.00,0.00,0.9317,0.9334,"No comments in this short window (common on 5-minute markets). No clear crowd yet. comments in-window=0 (Up 0/Down 0, fetched 0); buy flow Up $0 vs Down $0 (0 buys); bid size Up 27 vs Down 39"
+2026-11-24 04:03:21 PT,trend_volume_15m,15m,1795521600,698.4,skip,choppy,,,0.2614,0.2000,,,0.00,0.00,0.9316,0.9334,"Choppy: price went back and forth (straightness 0.01, need 0.15)."
+2026-11-24 04:03:21 PT,model_lead_15m,15m,1795521600,698.4,skip,ask_band,Down,0.7693,0.2614,0.2000,0.8100,-0.0515,0.00,0.00,0.9316,0.9334,"Down costs 81c, outside this variant's 0.2-0.8 price range."
+2026-11-24 04:03:21 PT,max_profit,15m,1795521600,698.4,skip,no_signal,,,0.2614,,,,0.00,0.00,0.9316,0.9334,No source strategy has a clear entry in this 15m window (698s left). Cash $61.31.
+2026-11-24 04:03:21 PT,ab_hedge_15m,15m,1795521600,698.4,skip,no_hedge,Up,,0.2614,,0.2100,,0.00,6.39,0.9316,0.9334,Watching Up at 21c: combined cost 100.4c/share (need ≤ 98.0c to lock a ≥2c profit). too soon after A to cap a loss.
+2026-11-24 04:03:21 PT,control,5m,1795521600,98.4,skip,ask_band,Down,0.9794,0.0206,0.0200,0.9900,-0.0113,0.00,0.00,0.9316,0.9334,"Down costs 99c, outside this variant's 0.05-0.95 price range."
+2026-11-24 04:03:21 PT,trend_volume,5m,1795521600,98.4,skip,choppy,,,0.0206,0.0200,,,0.00,0.00,0.9316,0.9334,"Choppy: price went back and forth (straightness 0.06, need 0.15)."
+2026-11-24 04:03:21 PT,trend_volume_xo,5m,1795521600,98.4,skip,choppy,,,0.0206,0.0200,,,0.00,0.00,0.9316,0.9334,"Choppy: price went back and forth (straightness 0.06, need 0.15)."
+2026-11-24 04:03:21 PT,trend_down,5m,1795521600,98.4,skip,choppy,,,0.0206,0.0200,,,0.00,0.00,0.9316,0.9334,"Choppy: price went back and forth (straightness 0.06, need 0.12)."
+2026-11-24 04:03:21 PT,breakdown,5m,1795521600,98.4,skip,no_breakout,,,0.0206,0.0200,,,0.00,0.00,0.9316,0.9334,Price is inside its 30-min range ($0.9261-$0.9341); no breakout.
+2026-11-24 04:03:21 PT,auto_pick,5m,1795521600,98.4,skip,leader_idle,,,0.0206,,,,0.00,0.00,0.9316,0.9334,Current pick control (6h +4.98) isn't betting this round; sitting out: #1 control not betting (ask_band).
+2026-11-24 04:03:21 PT,bankroll_20,5m,1795521600,98.4,skip,leader_idle,,,0.0206,,,,0.00,0.00,0.9316,0.9334,Current pick control (6h +4.98) isn't betting this round (ask_band); sitting out.
+2026-11-24 04:03:25 PT,ab_hedge_15m,15m,1795521600,694.4,buy,ok,Up,,0.2607,,0.1800,,1.15,6.39,0.9316,0.9334,"Leg B lock_profit: buying 6.39 sh of Up at 18c (fee $0.066). Combined cost 97.3c/share, locks about 2.7c/share ($0.17 total) at settlement."
+2026-11-24 04:03:37 PT,ride_favorite_80,5m,1795521600,82.4,skip,hour_filter,,,0.0030,,,,0.00,0.00,0.9314,0.9334,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 4:00 PT hour net $-5.35.
+2026-11-24 04:03:37 PT,ride_favorite_80_xo,5m,1795521600,82.4,skip,no_ask,Down,,0.0030,0.0200,,,0.00,0.00,0.9314,0.9334,Nobody is selling Down right now.
+2026-11-24 04:03:37 PT,crowd,5m,1795521600,82.4,skip,no_book,,,0.0030,,,,0.00,0.00,0.9314,0.9334,"Crowd leans Down (trade flow), but there is no ask to buy."
+2026-11-24 04:03:41 PT,trend_volume_15m,15m,1795521600,678.4,skip,choppy,,,0.2406,0.2200,,,0.00,0.00,0.9315,0.9334,"Choppy: price went back and forth (straightness 0.01, need 0.15)."
+2026-11-24 04:03:41 PT,model_lead_15m,15m,1795521600,678.4,skip,edge_small,Down,0.7697,0.2406,0.2200,0.7900,-0.0319,0.00,0.00,0.9315,0.9334,Down at 79c: my estimate 77% beats price+fee by only -3.2c (need 4c).
+2026-11-24 04:03:41 PT,max_profit,15m,1795521600,678.4,skip,no_signal,,,0.2406,,,,0.00,0.00,0.9315,0.9334,No source strategy has a clear entry in this 15m window (678s left). Cash $61.31.
+2026-11-24 04:03:41 PT,control,5m,1795521600,78.4,skip,ask_band,Down,0.9961,0.0039,0.0150,0.9900,0.0054,0.00,0.00,0.9315,0.9334,"Down costs 99c, outside this variant's 0.05-0.95 price range."
+2026-11-24 04:03:41 PT,auto_pick,5m,1795521600,78.4,skip,leader_idle,,,0.0039,,,,0.00,0.00,0.9315,0.9334,Current pick control (6h +4.98) isn't betting this round; sitting out: #1 control not betting (ask_band).
+2026-11-24 04:03:41 PT,bankroll_20,5m,1795521600,78.4,skip,leader_idle,,,0.0039,,,,0.00,0.00,0.9315,0.9334,Current pick control (6h +4.98) isn't betting this round (ask_band); sitting out.
+2026-11-24 04:03:57 PT,ride_favorite_80,5m,1795521600,62.4,skip,hour_filter,,,0.0002,,,,0.00,0.00,0.9314,0.9334,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 4:00 PT hour net $-5.35.
+2026-11-24 04:03:57 PT,ride_favorite_80_xo,5m,1795521600,62.4,skip,no_ask,Down,,0.0002,0.0100,,,0.00,0.00,0.9314,0.9334,Nobody is selling Down right now.
+2026-11-24 04:03:57 PT,crowd,5m,1795521600,62.4,skip,no_book,,,0.0002,,,,0.00,0.00,0.9314,0.9334,"Crowd leans Down (trade flow), but there is no ask to buy."
+2026-11-24 04:04:01 PT,trend_volume_15m,15m,1795521600,658.4,skip,choppy,,,0.2201,0.1850,,,0.00,0.00,0.9314,0.9334,"Choppy: price went back and forth (straightness 0.01, need 0.15)."
+2026-11-24 04:04:01 PT,model_lead_15m,15m,1795521600,658.4,skip,ask_band,Down,0.7974,0.2201,0.1850,0.8300,-0.0424,0.00,0.00,0.9314,0.9334,"Down costs 83c, outside this variant's 0.2-0.8 price range."
+2026-11-24 04:04:01 PT,max_profit,15m,1795521600,658.4,skip,no_signal,,,0.2201,,,,0.00,0.00,0.9314,0.9334,No source strategy has a clear entry in this 15m window (658s left). Cash $61.31.
+2026-11-24 04:04:01 PT,control,5m,1795521600,58.4,skip,no_ask,Down,0.9999,0.0001,0.0100,,,0.00,0.00,0.9314,0.9334,Nobody is selling Down right now.
+2026-11-24 04:04:01 PT,auto_pick,5m,1795521600,58.4,skip,leader_idle,,,0.0001,,,,0.00,0.00,0.9314,0.9334,Current pick control (6h +4.98) isn't betting this round; sitting out: #1 control not betting (no_ask).
+2026-11-24 04:04:01 PT,bankroll_20,5m,1795521600,58.4,skip,leader_idle,,,0.0001,,,,0.00,0.00,0.9314,0.9334,Current pick control (6h +4.98) isn't betting this round (no_ask); sitting out.
+2026-11-24 04:04:21 PT,trend_volume_15m,15m,1795521600,638.4,skip,choppy,,,0.1739,0.1500,,,0.00,0.00,0.9309,0.9334,"Choppy: price went back and forth (straightness 0.03, need 0.15)."
+2026-11-24 04:04:21 PT,model_lead_15m,15m,1795521600,638.4,skip,ask_band,Down,0.8380,0.1739,0.1500,0.8700,-0.0399,0.00,0.00,0.9309,0.9334,"Down costs 87c, outside this variant's 0.2-0.8 price range."
+2026-11-24 04:04:21 PT,max_profit,15m,1795521600,638.4,skip,no_signal,,,0.1739,,,,0.00,0.00,0.9309,0.9334,No source strategy has a clear entry in this 15m window (638s left). Cash $61.31.
+2026-11-24 04:04:21 PT,control,5m,1795521600,38.4,skip,no_ask,Down,1.0000,0.0000,0.0010,,,0.00,0.00,0.9309,0.9334,Nobody is selling Down right now.
+2026-11-24 04:04:21 PT,auto_pick,5m,1795521600,38.4,skip,leader_idle,,,0.0000,,,,0.00,0.00,0.9309,0.9334,Current pick control (6h +4.98) isn't betting this round; sitting out: #1 control not betting (no_ask).
+2026-11-24 04:04:21 PT,bankroll_20,5m,1795521600,38.4,skip,leader_idle,,,0.0000,,,,0.00,0.00,0.9309,0.9334,Current pick control (6h +4.98) isn't betting this round (no_ask); sitting out.
+2026-11-24 04:04:41 PT,trend_volume_15m,15m,1795521600,618.4,skip,choppy,,,0.1684,0.1650,,,0.00,0.00,0.9309,0.9334,"Choppy: price went back and forth (straightness 0.03, need 0.15)."
+2026-11-24 04:04:41 PT,model_lead_15m,15m,1795521600,618.4,skip,ask_band,Down,0.8333,0.1684,0.1650,0.8500,-0.0256,0.00,0.00,0.9309,0.9334,"Down costs 85c, outside this variant's 0.2-0.8 price range."
+2026-11-24 04:04:41 PT,max_profit,15m,1795521600,618.4,skip,no_signal,,,0.1684,,,,0.00,0.00,0.9309,0.9334,No source strategy has a clear entry in this 15m window (618s left). Cash $61.31.
+2026-11-24 04:05:01 PT,trend_volume_15m,15m,1795521600,598.4,skip,choppy,,,0.1502,0.1500,,,0.00,0.00,0.9308,0.9334,"Choppy: price went back and forth (straightness 0.03, need 0.15)."
+2026-11-24 04:05:01 PT,model_lead_15m,15m,1795521600,598.4,skip,ask_band,Down,0.8499,0.1502,0.1500,0.8600,-0.0185,0.00,0.00,0.9308,0.9334,"Down costs 86c, outside this variant's 0.2-0.8 price range."
+2026-11-24 04:05:01 PT,max_profit,15m,1795521600,598.4,skip,no_signal,,,0.1502,,,,0.00,0.00,0.9308,0.9334,No source strategy has a clear entry in this 15m window (598s left). Cash $61.31.
+2026-11-24 04:05:21 PT,trend_volume_15m,15m,1795521600,578.4,skip,choppy,,,0.1269,0.0950,,,0.00,0.00,0.9306,0.9334,"Choppy: price went back and forth (straightness 0.03, need 0.15)."
+2026-11-24 04:05:21 PT,model_lead_15m,15m,1795521600,578.4,skip,ask_band,Down,0.8891,0.1269,0.0950,0.9200,-0.0361,0.00,0.00,0.9306,0.9334,"Down costs 92c, outside this variant's 0.2-0.8 price range."
+2026-11-24 04:05:21 PT,max_profit,15m,1795521600,578.4,skip,no_signal,,,0.1269,,,,0.00,0.00,0.9306,0.9334,No source strategy has a clear entry in this 15m window (578s left). Cash $61.31.
+2026-11-24 04:05:41 PT,trend_volume_15m,15m,1795521600,558.4,skip,choppy,,,0.1336,0.0950,,,0.00,0.00,0.9307,0.9334,"Choppy: price went back and forth (straightness 0.03, need 0.15)."
+2026-11-24 04:05:41 PT,model_lead_15m,15m,1795521600,558.4,skip,ask_band,Down,0.8857,0.1336,0.0950,0.9200,-0.0395,0.00,0.00,0.9307,0.9334,"Down costs 92c, outside this variant's 0.2-0.8 price range."
+2026-11-24 04:05:41 PT,max_profit,15m,1795521600,558.4,skip,no_signal,,,0.1336,,,,0.00,0.00,0.9307,0.9334,No source strategy has a clear entry in this 15m window (558s left). Cash $61.31.
+2026-11-24 04:06:01 PT,trend_volume_15m,15m,1795521600,538.4,skip,choppy,,,0.1009,0.0850,,,0.00,0.00,0.9304,0.9334,"Choppy: price went back and forth (straightness 0.03, need 0.15)."
+2026-11-24 04:06:01 PT,model_lead_15m,15m,1795521600,538.4,skip,timing,,,0.1009,0.0850,,,0.00,0.00,0.9304,0.9334,Only bets with 540-720s left; 538s left now.
+2026-11-24 04:06:01 PT,max_profit,15m,1795521600,538.4,skip,no_signal,,,0.1009,,,,0.00,0.00,0.9304,0.9334,No source strategy has a clear entry in this 15m window (538s left). Cash $61.31.
+2026-11-24 04:06:01 PT,control,5m,1795521900,238.4,skip,edge_small,Down,0.6567,0.3433,0.3650,0.6700,-0.0288,0.00,0.00,0.9304,0.9310,Down at 67c: my estimate 66% beats price+fee by only -2.9c (need 3c).
+2026-11-24 04:06:01 PT,model_lead,5m,1795521900,238.4,skip,edge_small,Down,0.6458,0.3433,0.3650,0.6700,-0.0396,0.00,0.00,0.9304,0.9310,Down at 67c: my estimate 65% beats price+fee by only -4.0c (need 4c).
+2026-11-24 04:06:01 PT,trend_volume,5m,1795521900,238.4,skip,choppy,,,0.3433,0.3650,,,0.00,0.00,0.9304,0.9310,"Choppy: price went back and forth (straightness 0.03, need 0.15)."
+2026-11-24 04:06:01 PT,trend_volume_xo,5m,1795521900,238.4,skip,choppy,,,0.3433,0.3650,,,0.00,0.00,0.9304,0.9310,"Choppy: price went back and forth (straightness 0.03, need 0.15)."
+2026-11-24 04:06:01 PT,model_lead_xo,5m,1795521900,238.4,skip,edge_small,Down,0.6458,0.3433,0.3650,0.6700,-0.0396,0.00,0.00,0.9304,0.9310,Down at 67c: my estimate 65% beats price+fee by only -4.0c (need 4c).
+2026-11-24 04:06:01 PT,trend_down,5m,1795521900,238.4,skip,choppy,,,0.3433,0.3650,,,0.00,0.00,0.9304,0.9310,"Choppy: price went back and forth (straightness 0.03, need 0.12)."
+2026-11-24 04:06:01 PT,breakdown,5m,1795521900,238.4,skip,no_breakout,,,0.3433,0.3650,,,0.00,0.00,0.9304,0.9310,Price is inside its 30-min range ($0.9265-$0.9341); no breakout.
+2026-11-24 04:06:01 PT,auto_pick,5m,1795521900,238.4,skip,leader_idle,,,0.3433,,,,0.00,0.00,0.9304,0.9310,Current pick model_lead (6h +6.19) isn't betting this round; sitting out: #1 model_lead not betting (edge_small).
+2026-11-24 04:06:01 PT,bankroll_20,5m,1795521900,238.4,skip,leader_idle,,,0.3433,,,,0.00,0.00,0.9304,0.9310,Current pick model_lead (6h +6.19) isn't betting this round (edge_small); sitting out.
+2026-11-24 04:06:01 PT,ab_hedge_5m,5m,1795521900,238.4,skip,thin_book,Down,,0.3433,,0.6700,,5.00,7.29,0.9304,0.9310,Only 5.0 shares offered at 67c; need 7.29.
+2026-11-24 04:06:21 PT,trend_volume_15m,15m,1795521600,518.4,skip,choppy,,,0.0677,0.0550,,,0.00,0.00,0.9299,0.9334,"Choppy: price went back and forth (straightness 0.03, need 0.15)."
+2026-11-24 04:06:21 PT,max_profit,15m,1795521600,518.4,skip,no_signal,,,0.0677,,,,0.00,0.00,0.9299,0.9334,No source strategy has a clear entry in this 15m window (518s left). Cash $61.31.
+2026-11-24 04:06:21 PT,control,5m,1795521900,218.4,skip,edge_small,Down,0.7683,0.2317,0.2200,0.7900,-0.0333,0.00,0.00,0.9299,0.9310,Down at 79c: my estimate 77% beats price+fee by only -3.3c (need 3c).
+2026-11-24 04:06:21 PT,model_lead,5m,1795521900,218.4,skip,edge_small,Down,0.7741,0.2317,0.2200,0.7900,-0.0275,0.00,0.00,0.9299,0.9310,Down at 79c: my estimate 77% beats price+fee by only -2.7c (need 4c).
+2026-11-24 04:06:21 PT,trend_volume,5m,1795521900,218.4,skip,choppy,,,0.2317,0.2200,,,0.00,0.00,0.9299,0.9310,"Choppy: price went back and forth (straightness 0.03, need 0.15)."
+2026-11-24 04:06:21 PT,trend_volume_xo,5m,1795521900,218.4,skip,choppy,,,0.2317,0.2200,,,0.00,0.00,0.9299,0.9310,"Choppy: price went back and forth (straightness 0.03, need 0.15)."
+2026-11-24 04:06:21 PT,model_lead_xo,5m,1795521900,218.4,skip,edge_small,Down,0.7741,0.2317,0.2200,0.7900,-0.0275,0.00,0.00,0.9299,0.9310,Down at 79c: my estimate 77% beats price+fee by only -2.7c (need 4c).
+2026-11-24 04:06:21 PT,trend_down,5m,1795521900,218.4,skip,choppy,,,0.2317,0.2200,,,0.00,0.00,0.9299,0.9310,"Choppy: price went back and forth (straightness 0.03, need 0.12)."
+2026-11-24 04:06:21 PT,breakdown,5m,1795521900,218.4,skip,no_breakout,,,0.2317,0.2200,,,0.00,0.00,0.9299,0.9310,Price is inside its 30-min range ($0.9265-$0.9341); no breakout.
+2026-11-24 04:06:21 PT,auto_pick,5m,1795521900,218.4,skip,leader_idle,,,0.2317,,,,0.00,0.00,0.9299,0.9310,Current pick model_lead (6h +6.19) isn't betting this round; sitting out: #1 model_lead not betting (edge_small).
+2026-11-24 04:06:21 PT,bankroll_20,5m,1795521900,218.4,skip,leader_idle,,,0.2317,,,,0.00,0.00,0.9299,0.9310,Current pick model_lead (6h +6.19) isn't betting this round (edge_small); sitting out.
+2026-11-24 04:06:21 PT,ab_hedge_5m,5m,1795521900,218.4,skip,thin_book,Down,,0.2317,,0.7900,,5.00,6.23,0.9299,0.9310,Only 5.0 shares offered at 79c; need 6.23.
+2026-11-24 04:06:33 PT,ab_hedge_5m,5m,1795521900,206.4,buy,ok,Down,,0.2406,,0.7500,,5.00,6.55,0.9300,0.9310,"Leg A: the coin leads Down (spot vs price to beat), so buying $5.00 of Down at 75c (6.55 sh, fee $0.086, 206s left). Will watch the other side for a cheap hedge."
+2026-11-24 04:06:41 PT,trend_volume_15m,15m,1795521600,498.3,skip,choppy,,,0.0719,0.0700,,,0.00,0.00,0.9301,0.9334,"Choppy: price went back and forth (straightness 0.03, need 0.15)."
+2026-11-24 04:06:41 PT,max_profit,15m,1795521600,498.3,skip,no_signal,,,0.0719,,,,0.00,0.00,0.9301,0.9334,No source strategy has a clear entry in this 15m window (498s left). Cash $61.31.
+2026-11-24 04:06:41 PT,control,5m,1795521900,198.3,skip,min_shares,Down,0.7485,0.2515,0.3150,0.7000,0.0338,1.00,1.42,0.9301,0.9310,$1.00 only buys 1.42 shares of Down at 70c; Polymarket's minimum is 5.
+2026-11-24 04:06:41 PT,model_lead,5m,1795521900,198.3,skip,edge_small,Down,0.7168,0.2515,0.3150,0.7000,0.0021,0.00,0.00,0.9301,0.9310,Down at 70c: my estimate 72% beats price+fee by only 0.2c (need 4c).
+2026-11-24 04:06:41 PT,trend_volume,5m,1795521900,198.3,skip,choppy,,,0.2515,0.3150,,,0.00,0.00,0.9301,0.9310,"Choppy: price went back and forth (straightness 0.03, need 0.15)."
+2026-11-24 04:06:41 PT,trend_volume_xo,5m,1795521900,198.3,skip,choppy,,,0.2515,0.3150,,,0.00,0.00,0.9301,0.9310,"Choppy: price went back and forth (straightness 0.03, need 0.15)."
+2026-11-24 04:06:41 PT,model_lead_xo,5m,1795521900,198.3,skip,edge_small,Down,0.7168,0.2515,0.3150,0.7000,0.0021,0.00,0.00,0.9301,0.9310,Down at 70c: my estimate 72% beats price+fee by only 0.2c (need 4c).
+2026-11-24 04:06:41 PT,trend_down,5m,1795521900,198.3,skip,choppy,,,0.2515,0.3150,,,0.00,0.00,0.9301,0.9310,"Choppy: price went back and forth (straightness 0.03, need 0.12)."
+2026-11-24 04:06:41 PT,breakdown,5m,1795521900,198.3,skip,no_breakout,,,0.2515,0.3150,,,0.00,0.00,0.9301,0.9310,Price is inside its 30-min range ($0.9265-$0.9341); no breakout.
+2026-11-24 04:06:41 PT,auto_pick,5m,1795521900,198.3,skip,leader_idle,,,0.2515,,,,0.00,0.00,0.9301,0.9310,Current pick model_lead (6h +6.19) isn't betting this round; sitting out: #1 model_lead not betting (edge_small).
+2026-11-24 04:06:41 PT,bankroll_20,5m,1795521900,198.3,skip,leader_idle,,,0.2515,,,,0.00,0.00,0.9301,0.9310,Current pick model_lead (6h +6.19) isn't betting this round (edge_small); sitting out.
+2026-11-24 04:06:53 PT,ab_hedge_5m,5m,1795521900,186.3,skip,thin_book,Up,,0.2530,,0.2800,,0.00,6.55,0.9301,0.9310,Other side (Up) only has 5.0 shares at 28c; need 6.55 to match A.
+2026-11-24 04:06:57 PT,down_ride,5m,1795521900,182.3,skip,timing,,,0.3319,0.4450,,,0.00,0.00,0.9304,0.9310,Only bets with 90-180s left; 182s left now.
+2026-11-24 04:06:57 PT,crowd,5m,1795521900,182.3,skip,timing,,,0.3319,,,,0.00,0.00,0.9304,0.9310,Only bets with 60-180s left; 182s left now.
+2026-11-24 04:07:01 PT,trend_volume_15m,15m,1795521600,478.3,skip,choppy,,,0.1009,0.0950,,,0.00,0.00,0.9305,0.9334,"Choppy: price went back and forth (straightness 0.03, need 0.15)."
+2026-11-24 04:07:01 PT,max_profit,15m,1795521600,478.3,skip,no_signal,,,0.1009,,,,0.00,0.00,0.9305,0.9334,No source strategy has a clear entry in this 15m window (478s left). Cash $61.31.
+2026-11-24 04:07:01 PT,control,5m,1795521900,178.3,skip,edge_small,Down,0.6324,0.3676,0.4100,0.6000,0.0156,0.00,0.00,0.9305,0.9310,Down at 60c: my estimate 63% beats price+fee by only 1.6c (need 3c).
+2026-11-24 04:07:01 PT,model_lead,5m,1795521900,178.3,skip,timing,,,0.3676,0.4100,,,0.00,0.00,0.9305,0.9310,Only bets with 180-240s left; 178s left now.
+2026-11-24 04:07:01 PT,trend_volume,5m,1795521900,178.3,skip,choppy,,,0.3676,0.4100,,,0.00,0.00,0.9305,0.9310,"Choppy: price went back and forth (straightness 0.03, need 0.15)."
+2026-11-24 04:07:01 PT,trend_volume_xo,5m,1795521900,178.3,skip,choppy,,,0.3676,0.4100,,,0.00,0.00,0.9305,0.9310,"Choppy: price went back and forth (straightness 0.03, need 0.15)."
+2026-11-24 04:07:01 PT,model_lead_xo,5m,1795521900,178.3,skip,timing,,,0.3676,0.4100,,,0.00,0.00,0.9305,0.9310,Only bets with 180-240s left; 178s left now.
+2026-11-24 04:07:01 PT,trend_down,5m,1795521900,178.3,skip,choppy,,,0.3676,0.4100,,,0.00,0.00,0.9305,0.9310,"Choppy: price went back and forth (straightness 0.03, need 0.12)."
+2026-11-24 04:07:01 PT,breakdown,5m,1795521900,178.3,skip,no_breakout,,,0.3676,0.4100,,,0.00,0.00,0.9305,0.9310,Price is inside its 30-min range ($0.9265-$0.9341); no breakout.
+2026-11-24 04:07:01 PT,auto_pick,5m,1795521900,178.3,skip,leader_idle,,,0.3676,,,,0.00,0.00,0.9305,0.9310,Current pick model_lead (6h +6.19) isn't betting this round; sitting out: #1 model_lead not betting (timing).
+2026-11-24 04:07:01 PT,bankroll_20,5m,1795521900,178.3,skip,leader_idle,,,0.3676,,,,0.00,0.00,0.9305,0.9310,Current pick model_lead (6h +6.19) isn't betting this round (timing); sitting out.
+2026-11-24 04:07:13 PT,ab_hedge_5m,5m,1795521900,166.3,skip,thin_book,Up,,0.3852,,0.4300,,0.00,6.55,0.9306,0.9310,Other side (Up) only has 6.0 shares at 43c; need 6.55 to match A.
+2026-11-24 04:07:17 PT,down_ride,5m,1795521900,162.3,skip,lead_small,Down,0.5733,0.3835,0.4700,,,0.00,0.00,0.9306,0.9310,Lead gate: XRP is $+0.0004 past the price to beat our way (Down); need at least $0.0005 (0.055% of price).
+2026-11-24 04:07:17 PT,crowd,5m,1795521900,162.3,skip,no_crowd,,,0.3835,,,,0.00,0.00,0.9306,0.9310,"No comments in this short window (common on 5-minute markets). No clear crowd yet. comments in-window=0 (Up 0/Down 0, fetched 0); buy flow Up $0 vs Down $0 (0 buys); bid size Up 5 vs Down 20"
+2026-11-24 04:07:21 PT,trend_volume_15m,15m,1795521600,458.3,skip,choppy,,,0.1208,0.0950,,,0.00,0.00,0.9308,0.9334,"Choppy: price went back and forth (straightness 0.02, need 0.15)."
+2026-11-24 04:07:21 PT,max_profit,15m,1795521600,458.3,skip,no_signal,,,0.1208,,,,0.00,0.00,0.9308,0.9334,No source strategy has a clear entry in this 15m window (458s left). Cash $61.31.
+2026-11-24 04:07:21 PT,control,5m,1795521900,158.3,skip,thin_book,Down,0.5462,0.4538,0.5550,0.4700,0.0588,3.00,6.38,0.9308,0.9310,Only 5.0 shares offered at 47c; need 6.38.
+2026-11-24 04:07:21 PT,trend_volume,5m,1795521900,158.3,skip,choppy,,,0.4538,0.5550,,,0.00,0.00,0.9308,0.9310,"Choppy: price went back and forth (straightness 0.03, need 0.15)."
+2026-11-24 04:07:21 PT,trend_volume_xo,5m,1795521900,158.3,skip,choppy,,,0.4538,0.5550,,,0.00,0.00,0.9308,0.9310,"Choppy: price went back and forth (straightness 0.03, need 0.15)."
+2026-11-24 04:07:21 PT,trend_down,5m,1795521900,158.3,skip,choppy,,,0.4538,0.5550,,,0.00,0.00,0.9308,0.9310,"Choppy: price went back and forth (straightness 0.03, need 0.12)."
+2026-11-24 04:07:21 PT,breakdown,5m,1795521900,158.3,skip,no_breakout,,,0.4538,0.5550,,,0.00,0.00,0.9308,0.9310,Price is inside its 30-min range ($0.9265-$0.9341); no breakout.
+2026-11-24 04:07:21 PT,auto_pick,5m,1795521900,158.3,skip,leader_idle,,,0.4538,,,,0.00,0.00,0.9308,0.9310,Current pick model_lead (6h +6.19) isn't betting this round; sitting out: #1 model_lead not betting (timing).
+2026-11-24 04:07:21 PT,bankroll_20,5m,1795521900,158.3,skip,leader_idle,,,0.4538,,,,0.00,0.00,0.9308,0.9310,Current pick model_lead (6h +6.19) isn't betting this round (timing); sitting out.
+2026-11-24 04:07:25 PT,control,5m,1795521900,154.3,buy,ok,Down,0.5537,0.4463,0.6100,0.4100,0.1268,5.00,11.71,0.9308,0.9310,"Buying $4.80 of Down: I put Down at 55%, price+fee is 42.7c, edge 12.7c."
+2026-11-24 04:07:33 PT,ab_hedge_5m,5m,1795521900,146.3,skip,thin_book,Up,,0.4444,,0.6800,,0.00,6.55,0.9308,0.9310,Other side (Up) only has 5.0 shares at 68c; need 6.55 to match A.
+2026-11-24 04:07:37 PT,down_ride,5m,1795521900,142.3,skip,side_not_allowed,Up,0.6281,0.5311,0.7250,,,0.00,0.00,0.9311,0.9310,This variant only bets Down; the signal says Up.
+2026-11-24 04:07:37 PT,crowd,5m,1795521900,142.3,skip,no_crowd,,,0.5311,,,,0.00,0.00,0.9311,0.9310,"No comments in this short window (common on 5-minute markets). No clear crowd yet. comments in-window=0 (Up 0/Down 0, fetched 0); buy flow Up $0 vs Down $0 (0 buys); bid size Up 5 vs Down 48"
+2026-11-24 04:07:41 PT,trend_volume_15m,15m,1795521600,438.3,skip,choppy,,,0.1512,0.1250,,,0.00,0.00,0.9312,0.9334,"Choppy: price went back and forth (straightness 0.02, need 0.15)."
+2026-11-24 04:07:41 PT,max_profit,15m,1795521600,438.3,skip,no_signal,,,0.1512,,,,0.00,0.00,0.9312,0.9334,No source strategy has a clear entry in this 15m window (438s left). Cash $61.31.
+2026-11-24 04:07:41 PT,trend_volume,5m,1795521900,138.3,skip,choppy,,,0.5806,0.6100,,,0.00,0.00,0.9312,0.9310,"Choppy: price went back and forth (straightness 0.03, need 0.15)."
+2026-11-24 04:07:41 PT,trend_volume_xo,5m,1795521900,138.3,skip,choppy,,,0.5806,0.6100,,,0.00,0.00,0.9312,0.9310,"Choppy: price went back and forth (straightness 0.03, need 0.15)."
+2026-11-24 04:07:41 PT,trend_down,5m,1795521900,138.3,skip,choppy,,,0.5806,0.6100,,,0.00,0.00,0.9312,0.9310,"Choppy: price went back and forth (straightness 0.03, need 0.12)."
+2026-11-24 04:07:41 PT,breakdown,5m,1795521900,138.3,skip,no_breakout,,,0.5806,0.6100,,,0.00,0.00,0.9312,0.9310,Price is inside its 30-min range ($0.9265-$0.9341); no breakout.
+2026-11-24 04:07:41 PT,auto_pick,5m,1795521900,138.3,skip,leader_idle,,,0.5806,,,,0.00,0.00,0.9312,0.9310,Current pick model_lead (6h +6.19) isn't betting this round; sitting out: #1 model_lead not betting (timing).
+2026-11-24 04:07:41 PT,bankroll_20,5m,1795521900,138.3,skip,leader_idle,,,0.5806,,,,0.00,0.00,0.9312,0.9310,Current pick model_lead (6h +6.19) isn't betting this round (timing); sitting out.
+2026-11-24 04:07:53 PT,ab_hedge_5m,5m,1795521900,126.3,skip,thin_book,Up,,0.5279,,0.7500,,0.00,6.55,0.9311,0.9310,Other side (Up) only has 5.0 shares at 75c; need 6.55 to match A.
+2026-11-24 04:07:57 PT,ride_favorite_80,5m,1795521900,122.3,skip,hour_filter,,,0.7068,,,,0.00,0.00,0.9315,0.9310,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 4:00 PT hour net $-5.35.
+2026-11-24 04:07:57 PT,ride_favorite_80_xo,5m,1795521900,122.3,skip,timing,,,0.7068,0.8100,,,0.00,0.00,0.9315,0.9310,Only bets with 60-120s left; 122s left now.
+2026-11-24 04:07:57 PT,down_ride,5m,1795521900,122.3,skip,side_not_allowed,Up,0.7584,0.7068,0.8100,,,0.00,0.00,0.9315,0.9310,This variant only bets Down; the signal says Up.
+2026-11-24 04:07:57 PT,crowd,5m,1795521900,122.3,skip,no_crowd,,,0.7068,,,,0.00,0.00,0.9315,0.9310,"No comments in this short window (common on 5-minute markets). No clear crowd yet. comments in-window=0 (Up 0/Down 0, fetched 0); buy flow Up $0 vs Down $0 (0 buys); bid size Up 5 vs Down 5"
+2026-11-24 04:08:01 PT,trend_volume_15m,15m,1795521600,418.3,skip,choppy,,,0.1869,0.1150,,,0.00,0.00,0.9316,0.9334,"Choppy: price went back and forth (straightness 0.02, need 0.15)."
+2026-11-24 04:08:01 PT,max_profit,15m,1795521600,418.3,skip,no_signal,,,0.1869,,,,0.00,0.00,0.9316,0.9334,No source strategy has a clear entry in this 15m window (418s left). Cash $61.31.
+2026-11-24 04:08:01 PT,trend_volume,5m,1795521900,118.3,skip,choppy,,,0.7198,0.7050,,,0.00,0.00,0.9316,0.9310,"Choppy: price went back and forth (straightness 0.03, need 0.15)."
+2026-11-24 04:08:01 PT,trend_volume_xo,5m,1795521900,118.3,skip,choppy,,,0.7198,0.7050,,,0.00,0.00,0.9316,0.9310,"Choppy: price went back and forth (straightness 0.03, need 0.15)."
+2026-11-24 04:08:01 PT,trend_down,5m,1795521900,118.3,skip,choppy,,,0.7198,0.7050,,,0.00,0.00,0.9316,0.9310,"Choppy: price went back and forth (straightness 0.03, need 0.12)."
+2026-11-24 04:08:01 PT,breakdown,5m,1795521900,118.3,skip,no_breakout,,,0.7198,0.7050,,,0.00,0.00,0.9316,0.9310,Price is inside its 30-min range ($0.9265-$0.9341); no breakout.
+2026-11-24 04:08:01 PT,auto_pick,5m,1795521900,118.3,skip,leader_idle,,,0.7198,,,,0.00,0.00,0.9316,0.9310,Current pick model_lead (6h +6.19) isn't betting this round; sitting out: #1 model_lead not betting (timing).
+2026-11-24 04:08:01 PT,bankroll_20,5m,1795521900,118.3,skip,leader_idle,,,0.7198,,,,0.00,0.00,0.9316,0.9310,Current pick model_lead (6h +6.19) isn't betting this round (timing); sitting out.
+2026-11-24 04:08:13 PT,ab_hedge_5m,5m,1795521900,106.3,skip,thin_book,Up,,0.7149,,0.7000,,0.00,6.55,0.9315,0.9310,Other side (Up) only has 5.0 shares at 70c; need 6.55 to match A.
+2026-11-24 04:08:17 PT,ride_favorite_80,5m,1795521900,102.3,skip,hour_filter,,,0.6771,,,,0.00,0.00,0.9314,0.9310,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 4:00 PT hour net $-5.35.
+2026-11-24 04:08:17 PT,ride_favorite_80_xo,5m,1795521900,102.3,skip,ask_band,Up,,0.6771,0.6700,0.6800,,0.00,0.00,0.9314,0.9310,"Up costs 68c, outside this variant's 0.8-0.95 price range."
+2026-11-24 04:08:17 PT,down_ride,5m,1795521900,102.3,skip,side_not_allowed,Up,0.6736,0.6771,0.6700,,,0.00,0.00,0.9314,0.9310,This variant only bets Down; the signal says Up.
+2026-11-24 04:08:17 PT,crowd,5m,1795521900,102.3,skip,no_crowd,,,0.6771,,,,0.00,0.00,0.9314,0.9310,"No comments in this short window (common on 5-minute markets). No clear crowd yet. comments in-window=0 (Up 0/Down 0, fetched 0); buy flow Up $0 vs Down $0 (0 buys); bid size Up 5 vs Down 25"
+2026-11-24 04:08:21 PT,trend_volume_15m,15m,1795521600,398.3,skip,choppy,,,0.1672,0.1100,,,0.00,0.00,0.9315,0.9334,"Choppy: price went back and forth (straightness 0.02, need 0.15)."
+2026-11-24 04:08:21 PT,max_profit,15m,1795521600,398.3,skip,no_signal,,,0.1672,,,,0.00,0.00,0.9315,0.9334,No source strategy has a clear entry in this 15m window (398s left). Cash $61.31.
+2026-11-24 04:08:21 PT,trend_volume,5m,1795521900,98.3,skip,choppy,,,0.7065,0.6300,,,0.00,0.00,0.9315,0.9310,"Choppy: price went back and forth (straightness 0.07, need 0.15)."
+2026-11-24 04:08:21 PT,trend_volume_xo,5m,1795521900,98.3,skip,choppy,,,0.7065,0.6300,,,0.00,0.00,0.9315,0.9310,"Choppy: price went back and forth (straightness 0.07, need 0.15)."
+2026-11-24 04:08:21 PT,trend_down,5m,1795521900,98.3,skip,choppy,,,0.7065,0.6300,,,0.00,0.00,0.9315,0.9310,"Choppy: price went back and forth (straightness 0.07, need 0.12)."
+2026-11-24 04:08:21 PT,breakdown,5m,1795521900,98.3,skip,no_breakout,,,0.7065,0.6300,,,0.00,0.00,0.9315,0.9310,Price is inside its 30-min range ($0.9265-$0.9341); no breakout.
+2026-11-24 04:08:21 PT,auto_pick,5m,1795521900,98.3,skip,leader_idle,,,0.7065,,,,0.00,0.00,0.9315,0.9310,Current pick model_lead (6h +6.19) isn't betting this round; sitting out: #1 model_lead not betting (timing).
+2026-11-24 04:08:21 PT,bankroll_20,5m,1795521900,98.3,skip,leader_idle,,,0.7065,,,,0.00,0.00,0.9315,0.9310,Current pick model_lead (6h +6.19) isn't betting this round (timing); sitting out.
+2026-11-24 04:08:33 PT,ab_hedge_5m,5m,1795521900,86.3,skip,limit_too_wide,Up,,0.6585,,0.7100,,0.00,6.55,0.9313,0.9310,"A is badly losing, but hedging Up at 71c would lock a 48.8c/share loss (cap is 10c). Waiting."
+2026-11-24 04:08:37 PT,ride_favorite_80,5m,1795521900,82.3,skip,hour_filter,,,0.6861,,,,0.00,0.00,0.9313,0.9310,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 4:00 PT hour net $-5.35.
+2026-11-24 04:08:37 PT,ride_favorite_80_xo,5m,1795521900,82.3,buy,ok,Up,,0.6861,0.8450,0.8600,,5.00,5.75,0.9313,0.9310,Buying $4.95 of Up: market favorite Up at 86c with 82s left.
+2026-11-24 04:08:37 PT,crowd,5m,1795521900,82.3,skip,no_crowd,,,0.6861,,,,0.00,0.00,0.9313,0.9310,"No comments in this short window (common on 5-minute markets). No clear crowd yet. comments in-window=0 (Up 0/Down 0, fetched 0); buy flow Up $0 vs Down $0 (0 buys); bid size Up 10 vs Down 31"
+2026-11-24 04:08:41 PT,trend_volume_15m,15m,1795521600,378.3,skip,choppy,,,0.1525,0.1400,,,0.00,0.00,0.9314,0.9334,"Choppy: price went back and forth (straightness 0.02, need 0.15)."
+2026-11-24 04:08:41 PT,max_profit,15m,1795521600,378.3,skip,no_signal,,,0.1525,,,,0.00,0.00,0.9314,0.9334,No source strategy has a clear entry in this 15m window (378s left). Cash $61.31.
+2026-11-24 04:08:41 PT,auto_pick,5m,1795521900,78.3,skip,leader_idle,,,0.7128,,,,0.00,0.00,0.9314,0.9310,Current pick model_lead (6h +6.19) isn't betting this round; sitting out: #1 model_lead not betting (timing).
+2026-11-24 04:08:41 PT,bankroll_20,5m,1795521900,78.3,skip,leader_idle,,,0.7128,,,,0.00,0.00,0.9314,0.9310,Current pick model_lead (6h +6.19) isn't betting this round (timing); sitting out.
+2026-11-24 04:08:53 PT,ab_hedge_5m,5m,1795521900,66.3,skip,limit_too_wide,Up,,0.7594,,0.8600,,0.00,6.55,0.9314,0.9310,"A is badly losing, but hedging Up at 86c would lock a 63.2c/share loss (cap is 10c). Waiting."
+2026-11-24 04:08:57 PT,ride_favorite_80,5m,1795521900,62.3,skip,hour_filter,,,0.7737,,,,0.00,0.00,0.9314,0.9310,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 4:00 PT hour net $-5.35.
+2026-11-24 04:08:57 PT,crowd,5m,1795521900,62.3,skip,no_crowd,,,0.7737,,,,0.00,0.00,0.9314,0.9310,"No comments in this short window (common on 5-minute markets). No clear crowd yet. comments in-window=0 (Up 0/Down 0, fetched 0); buy flow Up $49 vs Down $50 (43 buys); bid size Up 26 vs Down 55"
+2026-11-24 04:09:01 PT,trend_volume_15m,15m,1795521600,358.3,skip,choppy,,,0.1537,0.1150,,,0.00,0.00,0.9315,0.9334,"Choppy: price went back and forth (straightness 0.02, need 0.15)."
+2026-11-24 04:09:01 PT,max_profit,15m,1795521600,358.3,skip,no_signal,,,0.1537,,,,0.00,0.00,0.9315,0.9334,No source strategy has a clear entry in this 15m window (358s left). Cash $61.31.
+2026-11-24 04:09:01 PT,auto_pick,5m,1795521900,58.3,skip,leader_idle,,,0.8083,,,,0.00,0.00,0.9315,0.9310,Current pick model_lead (6h +6.19) isn't betting this round; sitting out: #1 model_lead not betting (timing).
+2026-11-24 04:09:01 PT,bankroll_20,5m,1795521900,58.3,skip,leader_idle,,,0.8083,,,,0.00,0.00,0.9315,0.9310,Current pick model_lead (6h +6.19) isn't betting this round (timing); sitting out.
+2026-11-24 04:09:13 PT,ab_hedge_5m,5m,1795521900,46.3,skip,thin_book,Up,,0.7466,,0.7000,,0.00,6.55,0.9312,0.9310,Other side (Up) only has 6.0 shares at 70c; need 6.55 to match A.
+2026-11-24 04:09:21 PT,trend_volume_15m,15m,1795521600,338.3,skip,choppy,,,0.1042,0.0600,,,0.00,0.00,0.9311,0.9334,"Choppy: price went back and forth (straightness 0.01, need 0.15)."
+2026-11-24 04:09:21 PT,max_profit,15m,1795521600,338.3,skip,no_signal,,,0.1042,,,,0.00,0.00,0.9311,0.9334,No source strategy has a clear entry in this 15m window (338s left). Cash $61.31.
+2026-11-24 04:09:21 PT,auto_pick,5m,1795521900,38.3,skip,leader_idle,,,0.6637,,,,0.00,0.00,0.9311,0.9310,Current pick model_lead (6h +6.19) isn't betting this round; sitting out: #1 model_lead not betting (timing).
+2026-11-24 04:09:21 PT,bankroll_20,5m,1795521900,38.3,skip,leader_idle,,,0.6637,,,,0.00,0.00,0.9311,0.9310,Current pick model_lead (6h +6.19) isn't betting this round (timing); sitting out.
+2026-11-24 04:09:33 PT,ab_hedge_5m,5m,1795521900,26.3,skip,no_hedge,Up,,0.5619,,0.2500,,0.00,6.55,0.9309,0.9310,Watching Up at 25c: combined cost 102.6c/share (need ≤ 98.0c to lock a ≥2c profit). A is not down enough to cap the loss.
+2026-11-24 04:09:35 PT,ab_hedge_5m,5m,1795521900,24.3,buy,ok,Up,,0.5634,,0.1900,,1.24,6.55,0.9309,0.9310,"Leg B lock_profit: buying 6.55 sh of Up at 19c (fee $0.071). Combined cost 96.4c/share, locks about 3.6c/share ($0.24 total) at settlement."
+2026-11-24 04:09:41 PT,trend_volume_15m,15m,1795521600,318.3,skip,choppy,,,0.0785,0.0850,,,0.00,0.00,0.9309,0.9334,"Choppy: price went back and forth (straightness 0.01, need 0.15)."
+2026-11-24 04:09:41 PT,max_profit,15m,1795521600,318.3,skip,no_signal,,,0.0785,,,,0.00,0.00,0.9309,0.9334,No source strategy has a clear entry in this 15m window (318s left). Cash $61.31.
+2026-11-24 04:10:01 PT,trend_volume_15m,15m,1795521600,298.3,skip,choppy,,,0.0810,0.0550,,,0.00,0.00,0.9310,0.9334,"Choppy: price went back and forth (straightness 0.01, need 0.15)."
+2026-11-24 04:10:01 PT,max_profit,15m,1795521600,298.3,skip,no_signal,,,0.0810,,,,0.00,0.00,0.9310,0.9334,No source strategy has a clear entry in this 15m window (298s left). Cash $61.31.
+2026-11-24 04:10:21 PT,trend_volume_15m,15m,1795521600,278.3,skip,choppy,,,0.0848,0.0500,,,0.00,0.00,0.9311,0.9334,"Choppy: price went back and forth (straightness 0.01, need 0.15)."
+2026-11-24 04:10:21 PT,max_profit,15m,1795521600,278.3,skip,no_signal,,,0.0848,,,,0.00,0.00,0.9311,0.9334,No source strategy has a clear entry in this 15m window (278s left). Cash $61.31.
+2026-11-24 04:10:41 PT,max_profit,15m,1795521600,258.3,skip,no_signal,,,0.0862,,,,0.00,0.00,0.9312,0.9334,No source strategy has a clear entry in this 15m window (258s left). Cash $61.31.
+2026-11-24 04:11:01 PT,max_profit,15m,1795521600,238.3,skip,no_signal,,,0.0629,,,,0.00,0.00,0.9311,0.9334,No source strategy has a clear entry in this 15m window (238s left). Cash $61.31.
+2026-11-24 04:11:01 PT,control,5m,1795522200,238.3,skip,edge_small,Up,0.5079,0.5079,0.4650,0.4700,0.0205,0.00,0.00,0.9311,0.9310,Up at 47c: my estimate 51% beats price+fee by only 2.0c (need 3c).
+2026-11-24 04:11:01 PT,model_lead,5m,1795522200,238.3,skip,lead_small,Down,0.5135,0.5079,0.4650,,,0.00,0.00,0.9311,0.9310,Lead gate: XRP is $-0.0000 past the price to beat our way (Down); need at least $0.0005 (0.055% of price).
+2026-11-24 04:11:01 PT,trend_volume,5m,1795522200,238.3,skip,choppy,,,0.5079,0.4650,,,0.00,0.00,0.9311,0.9310,"Choppy: price went back and forth (straightness 0.10, need 0.15)."
+2026-11-24 04:11:01 PT,trend_volume_xo,5m,1795522200,238.3,skip,choppy,,,0.5079,0.4650,,,0.00,0.00,0.9311,0.9310,"Choppy: price went back and forth (straightness 0.10, need 0.15)."
+2026-11-24 04:11:01 PT,model_lead_xo,5m,1795522200,238.3,skip,lead_small,Down,0.5135,0.5079,0.4650,,,0.00,0.00,0.9311,0.9310,Lead gate: XRP is $-0.0000 past the price to beat our way (Down); need at least $0.0005 (0.055% of price).
+2026-11-24 04:11:01 PT,trend_down,5m,1795522200,238.3,skip,choppy,,,0.5079,0.4650,,,0.00,0.00,0.9311,0.9310,"Choppy: price went back and forth (straightness 0.10, need 0.12)."
+2026-11-24 04:11:01 PT,breakdown,5m,1795522200,238.3,skip,no_breakout,,,0.5079,0.4650,,,0.00,0.00,0.9311,0.9310,Price is inside its 30-min range ($0.9271-$0.9341); no breakout.
+2026-11-24 04:11:01 PT,auto_pick,5m,1795522200,238.3,skip,leader_idle,,,0.5079,,,,0.00,0.00,0.9311,0.9310,Current pick model_lead (6h +6.19) isn't betting this round; sitting out: #1 model_lead not betting (lead_small).
+2026-11-24 04:11:01 PT,bankroll_20,5m,1795522200,238.3,skip,leader_idle,,,0.5079,,,,0.00,0.00,0.9311,0.9310,Current pick model_lead (6h +6.19) isn't betting this round (lead_small); sitting out.
+2026-11-24 04:11:01 PT,ab_hedge_5m,5m,1795522200,238.3,skip,no_lead,,,0.5079,,,,0.00,0.00,0.9311,0.9310,No clear lead yet (gap $+0.00; need about $0.00 past the price to beat).
+2026-11-24 04:11:21 PT,max_profit,15m,1795521600,218.3,skip,no_signal,,,0.0508,,,,0.00,0.00,0.9310,0.9334,No source strategy has a clear entry in this 15m window (218s left). Cash $61.31.
+2026-11-24 04:11:21 PT,control,5m,1795522200,218.3,skip,edge_small,Down,0.5013,0.4987,0.4950,0.5200,-0.0362,0.00,0.00,0.9310,0.9310,Down at 52c: my estimate 50% beats price+fee by only -3.6c (need 3c).
+2026-11-24 04:11:21 PT,model_lead,5m,1795522200,218.3,skip,lead_small,Down,0.5031,0.4987,0.4950,,,0.00,0.00,0.9310,0.9310,Lead gate: XRP is $+0.0000 past the price to beat our way (Down); need at least $0.0005 (0.055% of price).
+2026-11-24 04:11:21 PT,trend_volume,5m,1795522200,218.3,skip,choppy,,,0.4987,0.4950,,,0.00,0.00,0.9310,0.9310,"Choppy: price went back and forth (straightness 0.10, need 0.15)."
+2026-11-24 04:11:21 PT,trend_volume_xo,5m,1795522200,218.3,skip,choppy,,,0.4987,0.4950,,,0.00,0.00,0.9310,0.9310,"Choppy: price went back and forth (straightness 0.10, need 0.15)."
+2026-11-24 04:11:21 PT,model_lead_xo,5m,1795522200,218.3,skip,lead_small,Down,0.5031,0.4987,0.4950,,,0.00,0.00,0.9310,0.9310,Lead gate: XRP is $+0.0000 past the price to beat our way (Down); need at least $0.0005 (0.055% of price).
+2026-11-24 04:11:21 PT,trend_down,5m,1795522200,218.3,skip,choppy,,,0.4987,0.4950,,,0.00,0.00,0.9310,0.9310,"Choppy: price went back and forth (straightness 0.10, need 0.12)."
+2026-11-24 04:11:21 PT,breakdown,5m,1795522200,218.3,skip,no_breakout,,,0.4987,0.4950,,,0.00,0.00,0.9310,0.9310,Price is inside its 30-min range ($0.9271-$0.9341); no breakout.
+2026-11-24 04:11:21 PT,auto_pick,5m,1795522200,218.3,skip,leader_idle,,,0.4987,,,,0.00,0.00,0.9310,0.9310,Current pick model_lead (6h +6.19) isn't betting this round; sitting out: #1 model_lead not betting (lead_small).
+2026-11-24 04:11:21 PT,bankroll_20,5m,1795522200,218.3,skip,leader_idle,,,0.4987,,,,0.00,0.00,0.9310,0.9310,Current pick model_lead (6h +6.19) isn't betting this round (lead_small); sitting out.
+2026-11-24 04:11:21 PT,ab_hedge_5m,5m,1795522200,218.3,skip,no_lead,,,0.4987,,,,0.00,0.00,0.9310,0.9310,No clear lead yet (gap $-0.00; need about $0.00 past the price to beat).
+2026-11-24 04:11:37 PT,ab_hedge_5m,5m,1795522200,202.3,buy,ok,Down,,0.4031,,0.6600,,5.00,7.39,0.9307,0.9310,"Leg A: the coin leads Down (spot vs price to beat), so buying $5.00 of Down at 66c (7.39 sh, fee $0.116, 202s left). Will watch the other side for a cheap hedge."
+2026-11-24 04:11:41 PT,max_profit,15m,1795521600,198.3,skip,no_signal,,,0.0239,,,,0.00,0.00,0.9307,0.9334,No source strategy has a clear entry in this 15m window (198s left). Cash $61.31.
+2026-11-24 04:11:41 PT,control,5m,1795522200,198.3,skip,edge_small,Down,0.5980,0.4020,0.3600,0.6500,-0.0679,0.00,0.00,0.9307,0.9310,Down at 65c: my estimate 60% beats price+fee by only -6.8c (need 3c).
+2026-11-24 04:11:41 PT,model_lead,5m,1795522200,198.3,skip,lead_small,Down,0.6190,0.4020,0.3600,,,0.00,0.00,0.9307,0.9310,Lead gate: XRP is $+0.0003 past the price to beat our way (Down); need at least $0.0005 (0.055% of price).
+2026-11-24 04:11:41 PT,trend_volume,5m,1795522200,198.3,skip,choppy,,,0.4020,0.3600,,,0.00,0.00,0.9307,0.9310,"Choppy: price went back and forth (straightness 0.10, need 0.15)."
+2026-11-24 04:11:41 PT,trend_volume_xo,5m,1795522200,198.3,skip,choppy,,,0.4020,0.3600,,,0.00,0.00,0.9307,0.9310,"Choppy: price went back and forth (straightness 0.10, need 0.15)."
+2026-11-24 04:11:41 PT,model_lead_xo,5m,1795522200,198.3,skip,lead_small,Down,0.6190,0.4020,0.3600,,,0.00,0.00,0.9307,0.9310,Lead gate: XRP is $+0.0003 past the price to beat our way (Down); need at least $0.0005 (0.055% of price).
+2026-11-24 04:11:41 PT,trend_down,5m,1795522200,198.3,skip,choppy,,,0.4020,0.3600,,,0.00,0.00,0.9307,0.9310,"Choppy: price went back and forth (straightness 0.10, need 0.12)."
+2026-11-24 04:11:41 PT,breakdown,5m,1795522200,198.3,skip,no_breakout,,,0.4020,0.3600,,,0.00,0.00,0.9307,0.9310,Price is inside its 30-min range ($0.9271-$0.9341); no breakout.
+2026-11-24 04:11:41 PT,auto_pick,5m,1795522200,198.3,skip,leader_idle,,,0.4020,,,,0.00,0.00,0.9307,0.9310,Current pick model_lead (6h +6.19) isn't betting this round; sitting out: #1 model_lead not betting (lead_small).
+2026-11-24 04:11:41 PT,bankroll_20,5m,1795522200,198.3,skip,leader_idle,,,0.4020,,,,0.00,0.00,0.9307,0.9310,Current pick model_lead (6h +6.19) isn't betting this round (lead_small); sitting out.
+2026-11-24 04:11:55 PT,ab_hedge_5m,5m,1795522200,184.3,buy,ok,Up,,0.3248,,0.2400,,1.77,7.39,0.9304,0.9310,"Leg B lock_profit: buying 7.39 sh of Up at 24c (fee $0.094). Combined cost 92.8c/share, locks about 7.2c/share ($0.53 total) at settlement."
+2026-11-24 04:11:57 PT,ab_hedge_1h,1h,1795521600,2882.3,buy,ok,Down,,0.2986,,0.7500,,5.00,6.55,0.9304,0.9334,"Leg A: the coin leads Down (spot vs price to beat), so buying $5.00 of Down at 75c (6.55 sh, fee $0.086, 2882s left). Will watch the other side for a cheap hedge."
+2026-11-24 04:11:57 PT,down_ride,5m,1795522200,182.3,skip,timing,,,0.3127,0.2250,,,0.00,0.00,0.9304,0.9310,Only bets with 90-180s left; 182s left now.
+2026-11-24 04:11:57 PT,crowd,5m,1795522200,182.3,skip,timing,,,0.3127,,,,0.00,0.00,0.9304,0.9310,Only bets with 60-180s left; 182s left now.
+2026-11-24 04:12:01 PT,max_profit,15m,1795521600,178.3,skip,no_signal,,,0.0096,,,,0.00,0.00,0.9304,0.9334,No source strategy has a clear entry in this 15m window (178s left). Cash $61.31.
+2026-11-24 04:12:01 PT,control,5m,1795522200,178.3,skip,edge_small,Down,0.6897,0.3103,0.2400,0.7700,-0.0927,0.00,0.00,0.9304,0.9310,Down at 77c: my estimate 69% beats price+fee by only -9.3c (need 3c).
+2026-11-24 04:12:01 PT,model_lead,5m,1795522200,178.3,skip,timing,,,0.3103,0.2400,,,0.00,0.00,0.9304,0.9310,Only bets with 180-240s left; 178s left now.
+2026-11-24 04:12:01 PT,trend_volume,5m,1795522200,178.3,skip,choppy,,,0.3103,0.2400,,,0.00,0.00,0.9304,0.9310,"Choppy: price went back and forth (straightness 0.10, need 0.15)."
+2026-11-24 04:12:01 PT,trend_volume_xo,5m,1795522200,178.3,skip,choppy,,,0.3103,0.2400,,,0.00,0.00,0.9304,0.9310,"Choppy: price went back and forth (straightness 0.10, need 0.15)."
+2026-11-24 04:12:01 PT,model_lead_xo,5m,1795522200,178.3,skip,timing,,,0.3103,0.2400,,,0.00,0.00,0.9304,0.9310,Only bets with 180-240s left; 178s left now.
+2026-11-24 04:12:01 PT,trend_down,5m,1795522200,178.3,skip,choppy,,,0.3103,0.2400,,,0.00,0.00,0.9304,0.9310,"Choppy: price went back and forth (straightness 0.10, need 0.12)."
+2026-11-24 04:12:01 PT,breakdown,5m,1795522200,178.3,skip,no_breakout,,,0.3103,0.2400,,,0.00,0.00,0.9304,0.9310,Price is inside its 30-min range ($0.9271-$0.9341); no breakout.
+2026-11-24 04:12:01 PT,auto_pick,5m,1795522200,178.3,skip,leader_idle,,,0.3103,,,,0.00,0.00,0.9304,0.9310,Current pick model_lead (6h +6.19) isn't betting this round; sitting out: #1 model_lead not betting (timing).
+2026-11-24 04:12:01 PT,bankroll_20,5m,1795522200,178.3,skip,leader_idle,,,0.3103,,,,0.00,0.00,0.9304,0.9310,Current pick model_lead (6h +6.19) isn't betting this round (timing); sitting out.
+2026-11-24 04:12:17 PT,ab_hedge_1h,1h,1795521600,2862.3,skip,no_hedge,Up,,0.2816,,0.2700,,0.00,6.55,0.9301,0.9334,Watching Up at 27c: combined cost 104.7c/share (need ≤ 98.0c to lock a ≥2c profit). too soon after A to cap a loss.
+2026-11-24 04:12:17 PT,down_ride,5m,1795522200,162.3,skip,edge_small,Down,0.8264,0.2272,0.1200,0.8800,-0.0610,0.00,0.00,0.9301,0.9310,Down at 88c: my estimate 83% beats price+fee by only -6.1c (need 3c).
+2026-11-24 04:12:17 PT,crowd,5m,1795522200,162.3,skip,no_crowd,,,0.2272,,,,0.00,0.00,0.9301,0.9310,"No comments in this short window (common on 5-minute markets). No clear crowd yet. comments in-window=0 (Up 0/Down 0, fetched 0); buy flow Up $0 vs Down $0 (0 buys); bid size Up 36 vs Down 10"
+2026-11-24 04:12:21 PT,max_profit,15m,1795521600,158.3,skip,no_signal,,,0.0024,,,,0.00,0.00,0.9301,0.9334,No source strategy has a clear entry in this 15m window (158s left). Cash $61.31.
+2026-11-24 04:12:21 PT,control,5m,1795522200,158.3,skip,edge_small,Down,0.7960,0.2040,0.1100,0.9300,-0.1386,0.00,0.00,0.9301,0.9310,Down at 93c: my estimate 80% beats price+fee by only -13.9c (need 3c).
+2026-11-24 04:12:21 PT,trend_volume,5m,1795522200,158.3,skip,choppy,,,0.2040,0.1100,,,0.00,0.00,0.9301,0.9310,"Choppy: price went back and forth (straightness 0.10, need 0.15)."
+2026-11-24 04:12:21 PT,trend_volume_xo,5m,1795522200,158.3,skip,choppy,,,0.2040,0.1100,,,0.00,0.00,0.9301,0.9310,"Choppy: price went back and forth (straightness 0.10, need 0.15)."
+2026-11-24 04:12:21 PT,trend_down,5m,1795522200,158.3,skip,choppy,,,0.2040,0.1100,,,0.00,0.00,0.9301,0.9310,"Choppy: price went back and forth (straightness 0.10, need 0.12)."
+2026-11-24 04:12:21 PT,breakdown,5m,1795522200,158.3,skip,no_breakout,,,0.2040,0.1100,,,0.00,0.00,0.9301,0.9310,Price is inside its 30-min range ($0.9272-$0.9341); no breakout.
+2026-11-24 04:12:21 PT,auto_pick,5m,1795522200,158.3,skip,leader_idle,,,0.2040,,,,0.00,0.00,0.9301,0.9310,Current pick model_lead (6h +6.19) isn't betting this round; sitting out: #1 model_lead not betting (timing).
+2026-11-24 04:12:21 PT,bankroll_20,5m,1795522200,158.3,skip,leader_idle,,,0.2040,,,,0.00,0.00,0.9301,0.9310,Current pick model_lead (6h +6.19) isn't betting this round (timing); sitting out.
+2026-11-24 04:12:37 PT,ab_hedge_1h,1h,1795521600,2842.3,skip,thin_book,Up,,0.2734,,0.2900,,0.00,6.55,0.9300,0.9334,Other side (Up) only has 6.2 shares at 29c; need 6.55 to match A.
+2026-11-24 04:12:37 PT,down_ride,5m,1795522200,142.3,skip,edge_small,Down,0.8114,0.1771,0.2000,0.8100,-0.0093,0.00,0.00,0.9300,0.9310,Down at 81c: my estimate 81% beats price+fee by only -0.9c (need 3c).
+2026-11-24 04:12:37 PT,crowd,5m,1795522200,142.3,skip,no_crowd,,,0.1771,,,,0.00,0.00,0.9300,0.9310,"No comments in this short window (common on 5-minute markets). No clear crowd yet. comments in-window=0 (Up 0/Down 0, fetched 0); buy flow Up $0 vs Down $0 (0 buys); bid size Up 5 vs Down 5"
+2026-11-24 04:12:41 PT,max_profit,15m,1795521600,138.2,skip,no_signal,,,0.0009,,,,0.00,0.00,0.9300,0.9334,No source strategy has a clear entry in this 15m window (138s left). Cash $61.31.
+2026-11-24 04:12:41 PT,control,5m,1795522200,138.2,skip,edge_small,Down,0.8274,0.1726,0.1350,0.8700,-0.0505,0.00,0.00,0.9300,0.9310,Down at 87c: my estimate 83% beats price+fee by only -5.1c (need 3c).
+2026-11-24 04:12:41 PT,trend_volume,5m,1795522200,138.2,skip,choppy,,,0.1726,0.1350,,,0.00,0.00,0.9300,0.9310,"Choppy: price went back and forth (straightness 0.10, need 0.15)."
+2026-11-24 04:12:41 PT,trend_volume_xo,5m,1795522200,138.2,skip,choppy,,,0.1726,0.1350,,,0.00,0.00,0.9300,0.9310,"Choppy: price went back and forth (straightness 0.10, need 0.15)."
+2026-11-24 04:12:41 PT,trend_down,5m,1795522200,138.2,skip,choppy,,,0.1726,0.1350,,,0.00,0.00,0.9300,0.9310,"Choppy: price went back and forth (straightness 0.10, need 0.12)."
+2026-11-24 04:12:41 PT,breakdown,5m,1795522200,138.2,skip,no_breakout,,,0.1726,0.1350,,,0.00,0.00,0.9300,0.9310,Price is inside its 30-min range ($0.9272-$0.9341); no breakout.
+2026-11-24 04:12:41 PT,auto_pick,5m,1795522200,138.2,skip,leader_idle,,,0.1726,,,,0.00,0.00,0.9300,0.9310,Current pick model_lead (6h +6.19) isn't betting this round; sitting out: #1 model_lead not betting (timing).
+2026-11-24 04:12:41 PT,bankroll_20,5m,1795522200,138.2,skip,leader_idle,,,0.1726,,,,0.00,0.00,0.9300,0.9310,Current pick model_lead (6h +6.19) isn't betting this round (timing); sitting out.
+2026-11-24 04:12:57 PT,ab_hedge_1h,1h,1795521600,2822.2,skip,no_hedge,Up,,0.2739,,0.2700,,0.00,6.55,0.9300,0.9334,Watching Up at 27c: combined cost 104.7c/share (need ≤ 98.0c to lock a ≥2c profit). too soon after A to cap a loss.
+2026-11-24 04:12:57 PT,ride_favorite_80,5m,1795522200,122.2,skip,hour_filter,,,0.1574,,,,0.00,0.00,0.9300,0.9310,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 4:00 PT hour net $-5.35.
+2026-11-24 04:12:57 PT,ride_favorite_80_xo,5m,1795522200,122.2,skip,timing,,,0.1574,0.0800,,,0.00,0.00,0.9300,0.9310,Only bets with 60-120s left; 122s left now.
+2026-11-24 04:12:57 PT,down_ride,5m,1795522200,122.2,skip,ask_band,Down,0.8813,0.1574,0.0800,0.9300,-0.0533,0.00,0.00,0.9300,0.9310,"Down costs 93c, outside this variant's 0.5-0.9 price range."
+2026-11-24 04:12:57 PT,crowd,5m,1795522200,122.2,skip,no_crowd,,,0.1574,,,,0.00,0.00,0.9300,0.9310,"No comments in this short window (common on 5-minute markets). No clear crowd yet. comments in-window=0 (Up 0/Down 0, fetched 0); buy flow Up $0 vs Down $0 (0 buys); bid size Up 30 vs Down 15"
+2026-11-24 04:13:01 PT,max_profit,15m,1795521600,118.2,skip,no_signal,,,0.0003,,,,0.00,0.00,0.9300,0.9334,No source strategy has a clear entry in this 15m window (118s left). Cash $61.31.
+2026-11-24 04:13:01 PT,control,5m,1795522200,118.2,skip,ask_band,Down,0.8482,0.1518,0.0600,0.9600,-0.1145,0.00,0.00,0.9300,0.9310,"Down costs 96c, outside this variant's 0.05-0.95 price range."
+2026-11-24 04:13:01 PT,trend_volume,5m,1795522200,118.2,skip,choppy,,,0.1518,0.0600,,,0.00,0.00,0.9300,0.9310,"Choppy: price went back and forth (straightness 0.10, need 0.15)."
+2026-11-24 04:13:01 PT,trend_volume_xo,5m,1795522200,118.2,skip,choppy,,,0.1518,0.0600,,,0.00,0.00,0.9300,0.9310,"Choppy: price went back and forth (straightness 0.10, need 0.15)."
+2026-11-24 04:13:01 PT,trend_down,5m,1795522200,118.2,skip,choppy,,,0.1518,0.0600,,,0.00,0.00,0.9300,0.9310,"Choppy: price went back and forth (straightness 0.10, need 0.12)."
+2026-11-24 04:13:01 PT,breakdown,5m,1795522200,118.2,skip,no_breakout,,,0.1518,0.0600,,,0.00,0.00,0.9300,0.9310,Price is inside its 30-min range ($0.9272-$0.9341); no breakout.
+2026-11-24 04:13:01 PT,auto_pick,5m,1795522200,118.2,skip,leader_idle,,,0.1518,,,,0.00,0.00,0.9300,0.9310,Current pick model_lead (6h +6.19) isn't betting this round; sitting out: #1 model_lead not betting (timing).
+2026-11-24 04:13:01 PT,bankroll_20,5m,1795522200,118.2,skip,leader_idle,,,0.1518,,,,0.00,0.00,0.9300,0.9310,Current pick model_lead (6h +6.19) isn't betting this round (timing); sitting out.
+2026-11-24 04:13:17 PT,ab_hedge_1h,1h,1795521600,2802.2,skip,no_hedge,Up,,0.2484,,0.2300,,0.00,6.55,0.9296,0.9334,Watching Up at 23c: combined cost 100.6c/share (need ≤ 98.0c to lock a ≥2c profit). too soon after A to cap a loss.
+2026-11-24 04:13:17 PT,ride_favorite_80,5m,1795522200,102.2,skip,hour_filter,,,0.0523,,,,0.00,0.00,0.9296,0.9310,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 4:00 PT hour net $-5.35.
+2026-11-24 04:13:17 PT,ride_favorite_80_xo,5m,1795522200,102.2,skip,ask_band,Down,,0.0523,0.0200,0.9900,,0.00,0.00,0.9296,0.9310,"Down costs 99c, outside this variant's 0.8-0.95 price range."
+2026-11-24 04:13:17 PT,down_ride,5m,1795522200,102.2,skip,ask_band,Down,0.9638,0.0523,0.0200,0.9900,-0.0269,0.00,0.00,0.9296,0.9310,"Down costs 99c, outside this variant's 0.5-0.9 price range."
+2026-11-24 04:13:17 PT,crowd,5m,1795522200,102.2,skip,no_crowd,,,0.0523,,,,0.00,0.00,0.9296,0.9310,"No comments in this short window (common on 5-minute markets). No clear crowd yet. comments in-window=0 (Up 0/Down 0, fetched 0); buy flow Up $0 vs Down $0 (0 buys); bid size Up 33 vs Down 33"
+2026-11-24 04:13:21 PT,max_profit,15m,1795521600,98.2,skip,no_signal,,,0.0000,,,,0.00,0.00,0.9295,0.9334,No source strategy has a clear entry in this 15m window (98s left). Cash $61.31.
+2026-11-24 04:13:21 PT,control,5m,1795522200,98.2,skip,no_ask,Down,0.9602,0.0398,0.0300,,,0.00,0.00,0.9295,0.9310,Nobody is selling Down right now.
+2026-11-24 04:13:21 PT,trend_volume,5m,1795522200,98.2,skip,choppy,,,0.0398,0.0300,,,0.00,0.00,0.9295,0.9310,"Choppy: price went back and forth (straightness 0.09, need 0.15)."
+2026-11-24 04:13:21 PT,trend_volume_xo,5m,1795522200,98.2,skip,choppy,,,0.0398,0.0300,,,0.00,0.00,0.9295,0.9310,"Choppy: price went back and forth (straightness 0.09, need 0.15)."
+2026-11-24 04:13:21 PT,trend_down,5m,1795522200,98.2,skip,choppy,,,0.0398,0.0300,,,0.00,0.00,0.9295,0.9310,"Choppy: price went back and forth (straightness 0.09, need 0.12)."
+2026-11-24 04:13:21 PT,breakdown,5m,1795522200,98.2,skip,no_breakout,,,0.0398,0.0300,,,0.00,0.00,0.9295,0.9310,Price is inside its 30-min range ($0.9273-$0.9341); no breakout.
+2026-11-24 04:13:21 PT,auto_pick,5m,1795522200,98.2,skip,leader_idle,,,0.0398,,,,0.00,0.00,0.9295,0.9310,Current pick model_lead (6h +6.19) isn't betting this round; sitting out: #1 model_lead not betting (timing).
+2026-11-24 04:13:21 PT,bankroll_20,5m,1795522200,98.2,skip,leader_idle,,,0.0398,,,,0.00,0.00,0.9295,0.9310,Current pick model_lead (6h +6.19) isn't betting this round (timing); sitting out.
+2026-11-24 04:13:37 PT,ab_hedge_1h,1h,1795521600,2782.2,skip,no_hedge,Up,,0.2414,,0.2500,,0.00,6.55,0.9295,0.9334,Watching Up at 25c: combined cost 102.6c/share (need ≤ 98.0c to lock a ≥2c profit). too soon after A to cap a loss.
+2026-11-24 04:13:37 PT,ride_favorite_80,5m,1795522200,82.2,skip,hour_filter,,,0.0191,,,,0.00,0.00,0.9295,0.9310,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 4:00 PT hour net $-5.35.
+2026-11-24 04:13:37 PT,ride_favorite_80_xo,5m,1795522200,82.2,skip,ask_band,Down,,0.0191,0.0050,0.9990,,0.00,0.00,0.9295,0.9310,"Down costs 100c, outside this variant's 0.8-0.95 price range."
+2026-11-24 04:13:37 PT,crowd,5m,1795522200,82.2,skip,no_crowd,,,0.0191,,,,0.00,0.00,0.9295,0.9310,"No comments in this short window (common on 5-minute markets). No clear crowd yet. comments in-window=0 (Up 0/Down 0, fetched 0); buy flow Up $0 vs Down $0 (0 buys); bid size Up 41 vs Down 20"
+2026-11-24 04:13:41 PT,max_profit,15m,1795521600,78.2,skip,no_signal,,,0.0000,,,,0.00,0.00,0.9295,0.9334,No source strategy has a clear entry in this 15m window (78s left). Cash $61.31.
+2026-11-24 04:13:41 PT,control,5m,1795522200,78.2,skip,ask_band,Down,0.9870,0.0130,0.0050,0.9990,-0.0121,0.00,0.00,0.9295,0.9310,"Down costs 100c, outside this variant's 0.05-0.95 price range."
+2026-11-24 04:13:41 PT,auto_pick,5m,1795522200,78.2,skip,leader_idle,,,0.0130,,,,0.00,0.00,0.9295,0.9310,Current pick model_lead (6h +6.19) isn't betting this round; sitting out: #1 model_lead not betting (timing).
+2026-11-24 04:13:41 PT,bankroll_20,5m,1795522200,78.2,skip,leader_idle,,,0.0130,,,,0.00,0.00,0.9295,0.9310,Current pick model_lead (6h +6.19) isn't betting this round (timing); sitting out.
+2026-11-24 04:13:57 PT,ab_hedge_1h,1h,1795521600,2762.2,skip,no_hedge,Up,,0.2295,,0.2300,,0.00,6.55,0.9293,0.9334,Watching Up at 23c: combined cost 100.6c/share (need ≤ 98.0c to lock a ≥2c profit). too soon after A to cap a loss.
+2026-11-24 04:13:57 PT,ride_favorite_80,5m,1795522200,62.2,skip,hour_filter,,,0.0012,,,,0.00,0.00,0.9293,0.9310,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 4:00 PT hour net $-5.35.
+2026-11-24 04:13:57 PT,ride_favorite_80_xo,5m,1795522200,62.2,skip,ask_band,Down,,0.0012,0.0050,0.9990,,0.00,0.00,0.9293,0.9310,"Down costs 100c, outside this variant's 0.8-0.95 price range."
+2026-11-24 04:13:57 PT,crowd,5m,1795522200,62.2,skip,no_crowd,,,0.0012,,,,0.00,0.00,0.9293,0.9310,"No comments in this short window (common on 5-minute markets). No clear crowd yet. comments in-window=0 (Up 0/Down 0, fetched 0); buy flow Up $0 vs Down $0 (0 buys); bid size Up 30 vs Down 20"
+2026-11-24 04:14:01 PT,max_profit,15m,1795521600,58.2,skip,no_signal,,,0.0000,,,,0.00,0.00,0.9293,0.9334,No source strategy has a clear entry in this 15m window (58s left). Cash $61.31.
+2026-11-24 04:14:01 PT,control,5m,1795522200,58.2,skip,no_ask,Down,0.9995,0.0005,0.0090,,,0.00,0.00,0.9293,0.9310,Nobody is selling Down right now.
+2026-11-24 04:14:01 PT,auto_pick,5m,1795522200,58.2,skip,leader_idle,,,0.0005,,,,0.00,0.00,0.9293,0.9310,Current pick model_lead (6h +6.19) isn't betting this round; sitting out: #1 model_lead not betting (timing).
+2026-11-24 04:14:01 PT,bankroll_20,5m,1795522200,58.2,skip,leader_idle,,,0.0005,,,,0.00,0.00,0.9293,0.9310,Current pick model_lead (6h +6.19) isn't betting this round (timing); sitting out.
+2026-11-24 04:14:11 PT,ab_hedge_1h,1h,1795521600,2748.2,buy,ok,Up,,0.2248,,0.2000,,1.31,6.55,0.9292,0.9334,"Leg B lock_profit: buying 6.55 sh of Up at 20c (fee $0.073). Combined cost 97.4c/share, locks about 2.6c/share ($0.17 total) at settlement."
+2026-11-24 04:14:21 PT,max_profit,15m,1795521600,38.2,skip,no_signal,,,0.0000,,,,0.00,0.00,0.9293,0.9334,No source strategy has a clear entry in this 15m window (38s left). Cash $61.31.
+2026-11-24 04:14:21 PT,control,5m,1795522200,38.2,skip,no_ask,Down,1.0000,0.0000,0.0010,,,0.00,0.00,0.9293,0.9310,Nobody is selling Down right now.
+2026-11-24 04:14:21 PT,auto_pick,5m,1795522200,38.2,skip,leader_idle,,,0.0000,,,,0.00,0.00,0.9293,0.9310,Current pick model_lead (6h +6.19) isn't betting this round; sitting out: #1 model_lead not betting (timing).
+2026-11-24 04:14:21 PT,bankroll_20,5m,1795522200,38.2,skip,leader_idle,,,0.0000,,,,0.00,0.00,0.9293,0.9310,Current pick model_lead (6h +6.19) isn't betting this round (timing); sitting out.
+2026-11-24 04:14:41 PT,max_profit,15m,1795521600,18.2,skip,no_signal,,,0.0000,,,,0.00,0.00,0.9290,0.9334,No source strategy has a clear entry in this 15m window (18s left). Cash $61.31.
+2026-11-24 04:14:57 PT,hourly_ride_down,1h,1795521600,2702.2,skip,timing,,,0.2032,0.2000,,,0.00,0.00,0.9289,0.9334,Only bets with 1800-2700s left; 2702s left now.
+2026-11-24 04:15:17 PT,hourly_ride_down,1h,1795521600,2682.2,skip,edge_small,Down,0.8011,0.1978,0.2000,0.8100,-0.0197,0.00,0.00,0.9288,0.9334,Down at 81c: my estimate 80% beats price+fee by only -2.0c (need 3c).
+2026-11-24 04:15:37 PT,hourly_ride_down,1h,1795521600,2662.2,skip,edge_small,Down,0.8160,0.1830,0.1850,0.8200,-0.0143,0.00,0.00,0.9285,0.9334,Down at 82c: my estimate 82% beats price+fee by only -1.4c (need 3c).
+2026-11-24 04:15:57 PT,hourly_ride_down,1h,1795521600,2642.2,skip,edge_small,Down,0.8035,0.1929,0.2000,0.8100,-0.0172,0.00,0.00,0.9288,0.9334,Down at 81c: my estimate 80% beats price+fee by only -1.7c (need 3c).
+2026-11-24 04:16:01 PT,control,5m,1795522500,238.2,skip,edge_small,Down,0.6139,0.3861,0.4450,0.5700,0.0268,0.00,0.00,0.9286,0.9291,Down at 57c: my estimate 61% beats price+fee by only 2.7c (need 3c).
+2026-11-24 04:16:01 PT,model_lead,5m,1795522500,238.2,skip,lead_small,Down,0.5845,0.3861,0.4450,,,0.00,0.00,0.9286,0.9291,Lead gate: XRP is $+0.0004 past the price to beat our way (Down); need at least $0.0005 (0.055% of price).
+2026-11-24 04:16:01 PT,trend_volume,5m,1795522500,238.2,skip,choppy,,,0.3861,0.4450,,,0.00,0.00,0.9286,0.9291,"Choppy: price went back and forth (straightness 0.13, need 0.15)."
+2026-11-24 04:16:01 PT,trend_volume_xo,5m,1795522500,238.2,skip,choppy,,,0.3861,0.4450,,,0.00,0.00,0.9286,0.9291,"Choppy: price went back and forth (straightness 0.13, need 0.15)."
+2026-11-24 04:16:01 PT,model_lead_xo,5m,1795522500,238.2,skip,lead_small,Down,0.5845,0.3861,0.4450,,,0.00,0.00,0.9286,0.9291,Lead gate: XRP is $+0.0004 past the price to beat our way (Down); need at least $0.0005 (0.055% of price).
+2026-11-24 04:16:01 PT,trend_down,5m,1795522500,238.2,skip,momentum_conflict,,,0.3861,0.4450,,,0.00,0.00,0.9286,0.9291,The 60m trend says Up but the last 15m (-0.41%) disagree.
+2026-11-24 04:16:01 PT,breakdown,5m,1795522500,238.2,skip,no_breakout,,,0.3861,0.4450,,,0.00,0.00,0.9286,0.9291,Price is inside its 30-min range ($0.9282-$0.9341); no breakout.
+2026-11-24 04:16:01 PT,max_profit,5m,1795522500,238.2,skip,no_signal,,,0.3861,,,,0.00,0.00,0.9286,0.9291,No source strategy has a clear entry in this 5m window (238s left). Cash $61.31.
+2026-11-24 04:16:01 PT,auto_pick,5m,1795522500,238.2,skip,leader_idle,,,0.3861,,,,0.00,0.00,0.9286,0.9291,Current pick model_lead (6h +6.19) isn't betting this round; sitting out: #1 model_lead not betting (lead_small).
+2026-11-24 04:16:01 PT,bankroll_20,5m,1795522500,238.2,skip,leader_idle,,,0.3861,,,,0.00,0.00,0.9286,0.9291,Current pick model_lead (6h +6.19) isn't betting this round (lead_small); sitting out.
+2026-11-24 04:16:01 PT,ab_hedge_5m,5m,1795522500,238.2,buy,ok,Down,,0.3861,,0.5700,,5.00,8.51,0.9286,0.9291,"Leg A: the coin leads Down (spot vs price to beat), so buying $5.00 of Down at 57c (8.51 sh, fee $0.146, 238s left). Will watch the other side for a cheap hedge."
+2026-11-24 04:16:17 PT,hourly_ride_down,1h,1795521600,2622.2,skip,edge_small,Down,0.8199,0.1852,0.1750,0.8400,-0.0295,0.00,0.00,0.9286,0.9334,Down at 84c: my estimate 82% beats price+fee by only -2.9c (need 3c).
+2026-11-24 04:16:21 PT,control,5m,1795522500,218.2,skip,edge_small,Down,0.6130,0.3870,0.3400,0.7100,-0.1114,0.00,0.00,0.9287,0.9291,Down at 71c: my estimate 61% beats price+fee by only -11.1c (need 3c).
+2026-11-24 04:16:21 PT,model_lead,5m,1795522500,218.2,skip,lead_small,Down,0.6365,0.3870,0.3400,,,0.00,0.00,0.9287,0.9291,Lead gate: XRP is $+0.0004 past the price to beat our way (Down); need at least $0.0005 (0.055% of price).
+2026-11-24 04:16:21 PT,trend_volume,5m,1795522500,218.2,skip,choppy,,,0.3870,0.3400,,,0.00,0.00,0.9287,0.9291,"Choppy: price went back and forth (straightness 0.13, need 0.15)."
+2026-11-24 04:16:21 PT,trend_volume_xo,5m,1795522500,218.2,skip,choppy,,,0.3870,0.3400,,,0.00,0.00,0.9287,0.9291,"Choppy: price went back and forth (straightness 0.13, need 0.15)."
+2026-11-24 04:16:21 PT,model_lead_xo,5m,1795522500,218.2,skip,lead_small,Down,0.6365,0.3870,0.3400,,,0.00,0.00,0.9287,0.9291,Lead gate: XRP is $+0.0004 past the price to beat our way (Down); need at least $0.0005 (0.055% of price).
+2026-11-24 04:16:21 PT,trend_down,5m,1795522500,218.2,skip,momentum_conflict,,,0.3870,0.3400,,,0.00,0.00,0.9287,0.9291,The 60m trend says Up but the last 15m (-0.41%) disagree.
+2026-11-24 04:16:21 PT,breakdown,5m,1795522500,218.2,skip,no_breakout,,,0.3870,0.3400,,,0.00,0.00,0.9287,0.9291,Price is inside its 30-min range ($0.9282-$0.9341); no breakout.
+2026-11-24 04:16:21 PT,max_profit,5m,1795522500,218.2,skip,no_signal,,,0.3870,,,,0.00,0.00,0.9287,0.9291,No source strategy has a clear entry in this 5m window (218s left). Cash $61.31.
+2026-11-24 04:16:21 PT,auto_pick,5m,1795522500,218.2,skip,leader_idle,,,0.3870,,,,0.00,0.00,0.9287,0.9291,Current pick model_lead (6h +6.19) isn't betting this round; sitting out: #1 model_lead not betting (lead_small).
+2026-11-24 04:16:21 PT,bankroll_20,5m,1795522500,218.2,skip,leader_idle,,,0.3870,,,,0.00,0.00,0.9287,0.9291,Current pick model_lead (6h +6.19) isn't betting this round (lead_small); sitting out.
+2026-11-24 04:16:21 PT,ab_hedge_5m,5m,1795522500,218.2,skip,thin_book,Up,,0.3870,,0.3900,,0.00,8.51,0.9287,0.9291,Other side (Up) only has 5.0 shares at 39c; need 8.51 to match A.
+2026-11-24 04:16:33 PT,ab_hedge_5m,5m,1795522500,206.2,buy,ok,Up,,0.2910,,0.2400,,2.04,8.51,0.9283,0.9291,"Leg B lock_profit: buying 8.51 sh of Up at 24c (fee $0.109). Combined cost 84.0c/share, locks about 16.0c/share ($1.36 total) at settlement."
+2026-11-24 04:16:37 PT,hourly_ride_down,1h,1795521600,2602.2,skip,ask_band,Down,0.8427,0.1695,0.1450,0.8700,-0.0352,0.00,0.00,0.9283,0.9334,"Down costs 87c, outside this variant's 0.4-0.85 price range."
+2026-11-24 04:16:41 PT,control,5m,1795522500,198.2,skip,edge_small,Down,0.7135,0.2865,0.3000,0.7100,-0.0109,0.00,0.00,0.9283,0.9291,Down at 71c: my estimate 71% beats price+fee by only -1.1c (need 3c).
+2026-11-24 04:16:41 PT,model_lead,5m,1795522500,198.2,skip,edge_small,Down,0.7067,0.2865,0.3000,0.7100,-0.0177,0.00,0.00,0.9283,0.9291,Down at 71c: my estimate 71% beats price+fee by only -1.8c (need 4c).
+2026-11-24 04:16:41 PT,trend_volume,5m,1795522500,198.2,skip,choppy,,,0.2865,0.3000,,,0.00,0.00,0.9283,0.9291,"Choppy: price went back and forth (straightness 0.13, need 0.15)."
+2026-11-24 04:16:41 PT,trend_volume_xo,5m,1795522500,198.2,skip,choppy,,,0.2865,0.3000,,,0.00,0.00,0.9283,0.9291,"Choppy: price went back and forth (straightness 0.13, need 0.15)."
+2026-11-24 04:16:41 PT,model_lead_xo,5m,1795522500,198.2,skip,edge_small,Down,0.7067,0.2865,0.3000,0.7100,-0.0177,0.00,0.00,0.9283,0.9291,Down at 71c: my estimate 71% beats price+fee by only -1.8c (need 4c).
+2026-11-24 04:16:41 PT,trend_down,5m,1795522500,198.2,skip,momentum_conflict,,,0.2865,0.3000,,,0.00,0.00,0.9283,0.9291,The 60m trend says Up but the last 15m (-0.41%) disagree.
+2026-11-24 04:16:41 PT,breakdown,5m,1795522500,198.2,skip,no_breakout,,,0.2865,0.3000,,,0.00,0.00,0.9283,0.9291,Price is inside its 30-min range ($0.9282-$0.9341); no breakout.
+2026-11-24 04:16:41 PT,max_profit,5m,1795522500,198.2,skip,no_signal,,,0.2865,,,,0.00,0.00,0.9283,0.9291,No source strategy has a clear entry in this 5m window (198s left). Cash $61.31.
+2026-11-24 04:16:41 PT,auto_pick,5m,1795522500,198.2,skip,leader_idle,,,0.2865,,,,0.00,0.00,0.9283,0.9291,Current pick model_lead (6h +6.19) isn't betting this round; sitting out: #1 model_lead not betting (edge_small).
+2026-11-24 04:16:41 PT,bankroll_20,5m,1795522500,198.2,skip,leader_idle,,,0.2865,,,,0.00,0.00,0.9283,0.9291,Current pick model_lead (6h +6.19) isn't betting this round (edge_small); sitting out.
+2026-11-24 04:16:57 PT,hourly_ride_down,1h,1795521600,2582.2,skip,edge_small,Down,0.8216,0.1768,0.1800,0.8300,-0.0183,0.00,0.00,0.9285,0.9334,Down at 83c: my estimate 82% beats price+fee by only -1.8c (need 3c).
+2026-11-24 04:16:57 PT,down_ride,5m,1795522500,182.2,skip,timing,,,0.3226,0.3750,,,0.00,0.00,0.9285,0.9291,Only bets with 90-180s left; 182s left now.
+2026-11-24 04:16:57 PT,crowd,5m,1795522500,182.2,skip,timing,,,0.3226,,,,0.00,0.00,0.9285,0.9291,Only bets with 60-180s left; 182s left now.
+2026-11-24 04:17:01 PT,control,5m,1795522500,178.2,skip,min_shares,Down,0.6257,0.3743,0.4400,0.5700,0.0385,1.00,1.75,0.9287,0.9291,$1.00 only buys 1.75 shares of Down at 57c; Polymarket's minimum is 5.
+2026-11-24 04:17:01 PT,model_lead,5m,1795522500,178.2,skip,timing,,,0.3743,0.4400,,,0.00,0.00,0.9287,0.9291,Only bets with 180-240s left; 178s left now.
+2026-11-24 04:17:01 PT,trend_volume,5m,1795522500,178.2,skip,choppy,,,0.3743,0.4400,,,0.00,0.00,0.9287,0.9291,"Choppy: price went back and forth (straightness 0.13, need 0.15)."
+2026-11-24 04:17:01 PT,trend_volume_xo,5m,1795522500,178.2,skip,choppy,,,0.3743,0.4400,,,0.00,0.00,0.9287,0.9291,"Choppy: price went back and forth (straightness 0.13, need 0.15)."
+2026-11-24 04:17:01 PT,model_lead_xo,5m,1795522500,178.2,skip,timing,,,0.3743,0.4400,,,0.00,0.00,0.9287,0.9291,Only bets with 180-240s left; 178s left now.
+2026-11-24 04:17:01 PT,trend_down,5m,1795522500,178.2,skip,momentum_conflict,,,0.3743,0.4400,,,0.00,0.00,0.9287,0.9291,The 60m trend says Up but the last 15m (-0.41%) disagree.
+2026-11-24 04:17:01 PT,breakdown,5m,1795522500,178.2,skip,no_breakout,,,0.3743,0.4400,,,0.00,0.00,0.9287,0.9291,Price is inside its 30-min range ($0.9282-$0.9341); no breakout.
+2026-11-24 04:17:01 PT,max_profit,5m,1795522500,178.2,skip,no_signal,,,0.3743,,,,0.00,0.00,0.9287,0.9291,No source strategy has a clear entry in this 5m window (178s left). Cash $61.31.
+2026-11-24 04:17:01 PT,auto_pick,5m,1795522500,178.2,skip,leader_idle,,,0.3743,,,,0.00,0.00,0.9287,0.9291,Current pick model_lead (6h +6.19) isn't betting this round; sitting out: #1 model_lead not betting (timing).
+2026-11-24 04:17:01 PT,bankroll_20,5m,1795522500,178.2,skip,leader_idle,,,0.3743,,,,0.00,0.00,0.9287,0.9291,Current pick model_lead (6h +6.19) isn't betting this round (timing); sitting out.
+2026-11-24 04:17:17 PT,hourly_ride_down,1h,1795521600,2562.2,skip,edge_small,Down,0.8177,0.1897,0.1750,0.8400,-0.0317,0.00,0.00,0.9288,0.9334,Down at 84c: my estimate 82% beats price+fee by only -3.2c (need 3c).
+2026-11-24 04:17:17 PT,down_ride,5m,1795522500,162.2,skip,lead_small,Down,0.5746,0.3957,0.4550,,,0.00,0.00,0.9288,0.9291,Lead gate: XRP is $+0.0003 past the price to beat our way (Down); need at least $0.0005 (0.055% of price).
+2026-11-24 04:17:17 PT,crowd,5m,1795522500,162.2,skip,no_crowd,,,0.3957,,,,0.00,0.00,0.9288,0.9291,"No comments in this short window (common on 5-minute markets). No clear crowd yet. comments in-window=0 (Up 0/Down 0, fetched 0); buy flow Up $0 vs Down $0 (0 buys); bid size Up 6 vs Down 5"
+2026-11-24 04:17:21 PT,control,5m,1795522500,158.2,buy,ok,Down,0.5944,0.4056,0.5050,0.5200,0.0569,3.00,5.76,0.9288,0.9291,"Buying $3.00 of Down: I put Down at 59%, price+fee is 53.7c, edge 5.7c."
+2026-11-24 04:17:21 PT,trend_volume,5m,1795522500,158.2,skip,choppy,,,0.4056,0.5050,,,0.00,0.00,0.9288,0.9291,"Choppy: price went back and forth (straightness 0.11, need 0.15)."
+2026-11-24 04:17:21 PT,trend_volume_xo,5m,1795522500,158.2,skip,choppy,,,0.4056,0.5050,,,0.00,0.00,0.9288,0.9291,"Choppy: price went back and forth (straightness 0.11, need 0.15)."
+2026-11-24 04:17:21 PT,trend_down,5m,1795522500,158.2,skip,choppy,,,0.4056,0.5050,,,0.00,0.00,0.9288,0.9291,"Choppy: price went back and forth (straightness 0.11, need 0.12)."
+2026-11-24 04:17:21 PT,breakdown,5m,1795522500,158.2,skip,no_breakout,,,0.4056,0.5050,,,0.00,0.00,0.9288,0.9291,Price is inside its 30-min range ($0.9282-$0.9341); no breakout.
+2026-11-24 04:17:21 PT,max_profit,5m,1795522500,158.2,skip,no_signal,,,0.4056,,,,0.00,0.00,0.9288,0.9291,No source strategy has a clear entry in this 5m window (158s left). Cash $61.31.
+2026-11-24 04:17:21 PT,auto_pick,5m,1795522500,158.2,skip,leader_idle,,,0.4056,,,,0.00,0.00,0.9288,0.9291,Current pick model_lead (6h +6.19) isn't betting this round; sitting out: #1 model_lead not betting (timing).
+2026-11-24 04:17:21 PT,bankroll_20,5m,1795522500,158.2,skip,leader_idle,,,0.4056,,,,0.00,0.00,0.9288,0.9291,Current pick model_lead (6h +6.19) isn't betting this round (timing); sitting out.
+2026-11-24 04:17:37 PT,hourly_ride_down,1h,1795521600,2542.2,skip,edge_small,Down,0.7966,0.1968,0.2100,0.8000,-0.0146,0.00,0.00,0.9289,0.9334,Down at 80c: my estimate 80% beats price+fee by only -1.5c (need 3c).
+2026-11-24 04:17:37 PT,down_ride,5m,1795522500,142.2,skip,side_not_allowed,Up,0.5634,0.4418,0.6850,,,0.00,0.00,0.9289,0.9291,This variant only bets Down; the signal says Up.
+2026-11-24 04:17:37 PT,crowd,5m,1795522500,142.2,skip,no_crowd,,,0.4418,,,,0.00,0.00,0.9289,0.9291,"No comments in this short window (common on 5-minute markets). No clear crowd yet. comments in-window=0 (Up 0/Down 0, fetched 0); buy flow Up $0 vs Down $0 (0 buys); bid size Up 5 vs Down 5"
+2026-11-24 04:17:41 PT,trend_volume,5m,1795522500,138.2,skip,choppy,,,0.5053,0.6700,,,0.00,0.00,0.9291,0.9291,"Choppy: price went back and forth (straightness 0.11, need 0.15)."
+2026-11-24 04:17:41 PT,trend_volume_xo,5m,1795522500,138.2,skip,choppy,,,0.5053,0.6700,,,0.00,0.00,0.9291,0.9291,"Choppy: price went back and forth (straightness 0.11, need 0.15)."
+2026-11-24 04:17:41 PT,trend_down,5m,1795522500,138.2,skip,choppy,,,0.5053,0.6700,,,0.00,0.00,0.9291,0.9291,"Choppy: price went back and forth (straightness 0.11, need 0.12)."
+2026-11-24 04:17:41 PT,breakdown,5m,1795522500,138.2,skip,no_breakout,,,0.5053,0.6700,,,0.00,0.00,0.9291,0.9291,Price is inside its 30-min range ($0.9282-$0.9341); no breakout.
+2026-11-24 04:17:41 PT,max_profit,5m,1795522500,138.2,skip,no_signal,,,0.5053,,,,0.00,0.00,0.9291,0.9291,No source strategy has a clear entry in this 5m window (138s left). Cash $61.31.
+2026-11-24 04:17:41 PT,auto_pick,5m,1795522500,138.2,skip,leader_idle,,,0.5053,,,,0.00,0.00,0.9291,0.9291,Current pick model_lead (6h +6.19) isn't betting this round; sitting out: #1 model_lead not betting (timing).
+2026-11-24 04:17:41 PT,bankroll_20,5m,1795522500,138.2,skip,leader_idle,,,0.5053,,,,0.00,0.00,0.9291,0.9291,Current pick model_lead (6h +6.19) isn't betting this round (timing); sitting out.
+2026-11-24 04:17:57 PT,hourly_ride_down,1h,1795521600,2522.2,skip,edge_small,Down,0.8113,0.1925,0.1850,0.8300,-0.0286,0.00,0.00,0.9289,0.9334,Down at 83c: my estimate 81% beats price+fee by only -2.9c (need 3c).
+2026-11-24 04:17:57 PT,ride_favorite_80,5m,1795522500,122.2,skip,hour_filter,,,0.4100,,,,0.00,0.00,0.9289,0.9291,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 4:00 PT hour net $-5.35.
+2026-11-24 04:17:57 PT,ride_favorite_80_xo,5m,1795522500,122.2,skip,timing,,,0.4100,0.4650,,,0.00,0.00,0.9289,0.9291,Only bets with 60-120s left; 122s left now.
+2026-11-24 04:17:57 PT,down_ride,5m,1795522500,122.2,skip,lead_small,Down,0.5625,0.4100,0.4650,,,0.00,0.00,0.9289,0.9291,Lead gate: XRP is $+0.0002 past the price to beat our way (Down); need at least $0.0005 (0.055% of price).
+2026-11-24 04:17:57 PT,crowd,5m,1795522500,122.2,skip,no_crowd,,,0.4100,,,,0.00,0.00,0.9289,0.9291,"No comments in this short window (common on 5-minute markets). No clear crowd yet. comments in-window=0 (Up 0/Down 0, fetched 0); buy flow Up $0 vs Down $0 (0 buys); bid size Up 61 vs Down 5"
+2026-11-24 04:18:01 PT,trend_volume_15m,15m,1795522500,718.2,skip,choppy,,,0.4709,0.3850,,,0.00,0.00,0.9289,0.9291,"Choppy: price went back and forth (straightness 0.03, need 0.15)."
+2026-11-24 04:18:01 PT,model_lead_15m,15m,1795522500,718.2,skip,lead_small,Down,0.5720,0.4709,0.3850,,,0.00,0.00,0.9289,0.9291,Lead gate: XRP is $+0.0002 past the price to beat our way (Down); need at least $0.0005 (0.055% of price).
+2026-11-24 04:18:01 PT,max_profit,15m,1795522500,718.2,skip,no_signal,,,0.4709,,,,0.00,0.00,0.9289,0.9291,No source strategy has a clear entry in this 15m window (718s left). Cash $61.31.
+2026-11-24 04:18:01 PT,ab_hedge_15m,15m,1795522500,718.2,skip,no_lead,,,0.4709,,,,0.00,0.00,0.9289,0.9291,No clear lead yet (gap $-0.00; need about $0.00 past the price to beat).
+2026-11-24 04:18:01 PT,trend_volume,5m,1795522500,118.2,skip,choppy,,,0.4180,0.1550,,,0.00,0.00,0.9289,0.9291,"Choppy: price went back and forth (straightness 0.11, need 0.15)."
+2026-11-24 04:18:01 PT,trend_volume_xo,5m,1795522500,118.2,skip,choppy,,,0.4180,0.1550,,,0.00,0.00,0.9289,0.9291,"Choppy: price went back and forth (straightness 0.11, need 0.15)."
+2026-11-24 04:18:01 PT,ride_favorite_80_xo,5m,1795522500,118.2,buy,ok,Down,,0.4180,0.1550,0.8600,,5.00,5.75,0.9289,0.9291,Buying $4.95 of Down: market favorite Down at 86c with 118s left.
+2026-11-24 04:18:01 PT,trend_down,5m,1795522500,118.2,skip,choppy,,,0.4180,0.1550,,,0.00,0.00,0.9289,0.9291,"Choppy: price went back and forth (straightness 0.11, need 0.12)."
+2026-11-24 04:18:01 PT,breakdown,5m,1795522500,118.2,skip,no_breakout,,,0.4180,0.1550,,,0.00,0.00,0.9289,0.9291,Price is inside its 30-min range ($0.9282-$0.9341); no breakout.
+2026-11-24 04:18:01 PT,auto_pick,5m,1795522500,118.2,skip,leader_idle,,,0.4180,,,,0.00,0.00,0.9289,0.9291,Current pick model_lead (6h +6.19) isn't betting this round; sitting out: #1 model_lead not betting (timing).
+2026-11-24 04:18:01 PT,bankroll_20,5m,1795522500,118.2,skip,leader_idle,,,0.4180,,,,0.00,0.00,0.9289,0.9291,Current pick model_lead (6h +6.19) isn't betting this round (timing); sitting out.
+2026-11-24 04:18:03 PT,ab_hedge_15m,15m,1795522500,716.2,buy,ok,Down,,0.3957,,0.6300,,5.00,7.73,0.9284,0.9291,"Leg A: the coin leads Down (spot vs price to beat), so buying $5.00 of Down at 63c (7.73 sh, fee $0.126, 716s left). Will watch the other side for a cheap hedge."
+2026-11-24 04:18:17 PT,hourly_ride_down,1h,1795521600,2502.2,skip,ask_band,Down,0.8431,0.1637,0.1500,0.8700,-0.0348,0.00,0.00,0.9283,0.9334,"Down costs 87c, outside this variant's 0.4-0.85 price range."
+2026-11-24 04:18:17 PT,ride_favorite_80,5m,1795522500,102.2,skip,hour_filter,,,0.1856,,,,0.00,0.00,0.9283,0.9291,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 4:00 PT hour net $-5.35.
+2026-11-24 04:18:17 PT,down_ride,5m,1795522500,102.2,skip,edge_small,Down,0.8322,0.1856,0.1500,0.8600,-0.0362,0.00,0.00,0.9283,0.9291,Down at 86c: my estimate 83% beats price+fee by only -3.6c (need 3c).
+2026-11-24 04:18:17 PT,crowd,5m,1795522500,102.2,skip,no_crowd,,,0.1856,,,,0.00,0.00,0.9283,0.9291,"No comments in this short window (common on 5-minute markets). No clear crowd yet. comments in-window=0 (Up 0/Down 0, fetched 0); buy flow Up $0 vs Down $0 (0 buys); bid size Up 7 vs Down 5"
+2026-11-24 04:18:21 PT,trend_volume_15m,15m,1795522500,698.2,skip,choppy,,,0.3851,0.4600,,,0.00,0.00,0.9283,0.9291,"Choppy: price went back and forth (straightness 0.03, need 0.15)."
+2026-11-24 04:18:21 PT,model_lead_15m,15m,1795522500,698.2,skip,edge_small,Down,0.5774,0.3851,0.4600,0.5600,0.0002,0.00,0.00,0.9283,0.9291,Down at 56c: my estimate 58% beats price+fee by only 0.0c (need 4c).
+2026-11-24 04:18:21 PT,max_profit,15m,1795522500,698.2,skip,no_signal,,,0.3851,,,,0.00,0.00,0.9283,0.9291,No source strategy has a clear entry in this 15m window (698s left). Cash $61.31.
+2026-11-24 04:18:21 PT,trend_volume,5m,1795522500,98.2,skip,choppy,,,0.1754,0.3350,,,0.00,0.00,0.9283,0.9291,"Choppy: price went back and forth (straightness 0.10, need 0.15)."
+2026-11-24 04:18:21 PT,trend_volume_xo,5m,1795522500,98.2,skip,choppy,,,0.1754,0.3350,,,0.00,0.00,0.9283,0.9291,"Choppy: price went back and forth (straightness 0.10, need 0.15)."
+2026-11-24 04:18:21 PT,trend_down,5m,1795522500,98.2,skip,choppy,,,0.1754,0.3350,,,0.00,0.00,0.9283,0.9291,"Choppy: price went back and forth (straightness 0.10, need 0.12)."
+2026-11-24 04:18:21 PT,breakdown,5m,1795522500,98.2,skip,no_breakout,,,0.1754,0.3350,,,0.00,0.00,0.9283,0.9291,Price is inside its 30-min range ($0.9282-$0.9341); no breakout.
+2026-11-24 04:18:21 PT,down_ride,5m,1795522500,98.2,buy,ok,Down,0.7448,0.1754,0.3350,0.6800,0.0496,3.40,5.00,0.9283,0.9291,"Buying $3.40 of Down: I put Down at 74%, price+fee is 69.5c, edge 5.0c. (rounded $2.00 up to $3.40 for the 5-share minimum)"
+2026-11-24 04:18:21 PT,auto_pick,5m,1795522500,98.2,skip,leader_idle,,,0.1754,,,,0.00,0.00,0.9283,0.9291,Current pick model_lead (6h +6.19) isn't betting this round; sitting out: #1 model_lead not betting (timing).
+2026-11-24 04:18:21 PT,bankroll_20,5m,1795522500,98.2,skip,leader_idle,,,0.1754,,,,0.00,0.00,0.9283,0.9291,Current pick model_lead (6h +6.19) isn't betting this round (timing); sitting out.
+2026-11-24 04:18:23 PT,ab_hedge_15m,15m,1795522500,696.2,skip,thin_book,Up,,0.4353,,0.4100,,0.00,7.73,0.9286,0.9291,Other side (Up) only has 5.0 shares at 41c; need 7.73 to match A.
+2026-11-24 04:18:37 PT,model_lead_15m,15m,1795522500,682.1,buy,ok,Down,0.5073,0.4054,0.5800,0.4400,0.0501,2.20,5.00,0.9284,0.9291,"Buying $2.20 of Down: I put Down at 51%, price+fee is 45.7c, edge 5.0c. (rounded $1.00 up to $2.20 for the 5-share minimum)"
+2026-11-24 04:18:37 PT,hourly_ride_down,1h,1795521600,2482.1,skip,edge_small,Down,0.8178,0.1695,0.1950,0.8200,-0.0126,0.00,0.00,0.9284,0.9334,Down at 82c: my estimate 82% beats price+fee by only -1.3c (need 3c).
+2026-11-24 04:18:37 PT,ride_favorite_80,5m,1795522500,82.1,skip,hour_filter,,,0.1921,,,,0.00,0.00,0.9284,0.9291,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 4:00 PT hour net $-5.35.
+2026-11-24 04:18:37 PT,crowd,5m,1795522500,82.1,skip,no_crowd,,,0.1921,,,,0.00,0.00,0.9284,0.9291,"No comments in this short window (common on 5-minute markets). No clear crowd yet. comments in-window=0 (Up 0/Down 0, fetched 0); buy flow Up $22 vs Down $33 (26 buys); bid size Up 5 vs Down 71"
+2026-11-24 04:18:41 PT,trend_volume_15m,15m,1795522500,678.1,skip,choppy,,,0.4102,0.5200,,,0.00,0.00,0.9285,0.9291,"Choppy: price went back and forth (straightness 0.03, need 0.15)."
+2026-11-24 04:18:41 PT,max_profit,15m,1795522500,678.1,skip,resting,,,0.4102,,,,0.00,0.00,0.9285,0.9291,A limit order is already resting in this 15m window; waiting for a fill or to take later.
+2026-11-24 04:18:41 PT,auto_pick,5m,1795522500,78.1,skip,leader_idle,,,0.1954,,,,0.00,0.00,0.9285,0.9291,Current pick model_lead (6h +6.19) isn't betting this round; sitting out: #1 model_lead not betting (timing).
+2026-11-24 04:18:41 PT,bankroll_20,5m,1795522500,78.1,skip,leader_idle,,,0.1954,,,,0.00,0.00,0.9285,0.9291,Current pick model_lead (6h +6.19) isn't betting this round (timing); sitting out.
+2026-11-24 04:18:43 PT,ab_hedge_15m,15m,1795522500,676.1,skip,no_hedge,Up,,0.4670,,0.5400,,0.00,7.73,0.9289,0.9291,Watching Up at 54c: combined cost 120.4c/share (need ≤ 98.0c to lock a ≥2c profit). too soon after A to cap a loss.
+2026-11-24 04:18:57 PT,hourly_ride_down,1h,1795521600,2462.1,skip,edge_small,Down,0.8169,0.1962,0.1700,0.8400,-0.0325,0.00,0.00,0.9290,0.9334,Down at 84c: my estimate 82% beats price+fee by only -3.3c (need 3c).
+2026-11-24 04:18:57 PT,ride_favorite_80,5m,1795522500,62.1,skip,hour_filter,,,0.4296,,,,0.00,0.00,0.9290,0.9291,Tweak 2 HOUR_FILTER: hour_filter: 8 past trades in the 4:00 PT hour net $-5.35.
+2026-11-24 04:18:57 PT,crowd,5m,1795522500,62.1,skip,no_crowd,,,0.4296,,,,0.00,0.00,0.9290,0.9291,"No comments in this short window (common on 5-minute markets). No clear crowd yet. comments in-window=0 (Up 0/Down 0, fetched 0); buy flow Up $22 vs Down $33 (26 buys); bid size Up 50 vs Down 5"
+2026-11-24 04:19:01 PT,trend_volume_15m,15m,1795522500,658.1,skip,choppy,,,0.4605,0.5000,,,0.00,0.00,0.9288,0.9291,"Choppy: price went back and forth (straightness 0.03, need 0.15)."
+2026-11-24 04:19:01 PT,max_profit,15m,1795522500,658.1,skip,resting,,,0.4605,,,,0.00,0.00,0.9288,0.9291,A limit order is already resting in this 15m window; waiting for a fill or to take later.
+2026-11-24 04:19:01 PT,auto_pick,5m,1795522500,58.1,skip,leader_idle,,,0.3106,,,,0.00,0.00,0.9288,0.9291,Current pick model_lead (6h +6.19) isn't betting this round; sitting out: #1 model_lead not betting (timing).
+2026-11-24 04:19:01 PT,bankroll_20,5m,1795522500,58.1,skip,leader_idle,,,0.3106,,,,0.00,0.00,0.9288,0.9291,Current pick model_lead (6h +6.19) isn't betting this round (timing); sitting out.
+2026-11-24 04:19:03 PT,ab_hedge_15m,15m,1795522500,656.1,skip,thin_book,Up,,0.4603,,0.5000,,0.00,7.73,0.9288,0.9291,Other side (Up) only has 5.0 shares at 50c; need 7.73 to match A.
+2026-11-24 04:19:17 PT,hourly_ride_down,1h,1795521600,2442.1,skip,edge_small,Down,0.8198,0.1855,0.1750,0.8400,-0.0297,0.00,0.00,0.9288,0.9334,Down at 84c: my estimate 82% beats price+fee by only -3.0c (need 3c).
+2026-11-24 04:19:21 PT,trend_volume_15m,15m,1795522500,638.1,skip,choppy,,,0.4829,0.5900,,,0.00,0.00,0.9290,0.9291,"Choppy: price went back and forth (straightness 0.04, need 0.15)."
+2026-11-24 04:19:21 PT,max_profit,15m,1795522500,638.1,skip,resting,,,0.4829,,,,0.00,0.00,0.9290,0.9291,A limit order is already resting in this 15m window; waiting for a fill or to take later.
+2026-11-24 04:19:21 PT,auto_pick,5m,1795522500,38.1,skip,leader_idle,,,0.3369,,,,0.00,0.00,0.9290,0.9291,Current pick model_lead (6h +6.19) isn't betting this round; sitting out: #1 model_lead not betting (timing).
+2026-11-24 04:19:21 PT,bankroll_20,5m,1795522500,38.1,skip,leader_idle,,,0.3369,,,,0.00,0.00,0.9290,0.9291,Current pick model_lead (6h +6.19) isn't betting this round (timing); sitting out.
+2026-11-24 04:19:23 PT,ab_hedge_15m,15m,1795522500,636.1,skip,no_hedge,Up,,0.5022,,0.6200,,0.00,7.73,0.9291,0.9291,Watching Up at 62c: combined cost 128.3c/share (need ≤ 98.0c to lock a ≥2c profit). still in the first half of the window.
+2026-11-24 04:19:37 PT,hourly_ride_down,1h,1795521600,2422.1,skip,edge_small,Down,0.8044,0.2011,0.1900,0.8300,-0.0355,0.00,0.00,0.9291,0.9334,Down at 83c: my estimate 80% beats price+fee by only -3.5c (need 3c).
+2026-11-24 04:19:41 PT,trend_volume_15m,15m,1795522500,618.1,skip,choppy,,,0.5313,0.5700,,,0.00,0.00,0.9293,0.9291,"Choppy: price went back and forth (straightness 0.04, need 0.15)."
+2026-11-24 04:19:41 PT,max_profit,15m,1795522500,618.1,skip,resting,,,0.5313,,,,0.00,0.00,0.9293,0.9291,A limit order is already resting in this 15m window; waiting for a fill or to take later.
+2026-11-24 04:19:43 PT,ab_hedge_15m,15m,1795522500,616.1,skip,no_hedge,Up,,0.5180,,0.5000,,0.00,7.73,0.9292,0.9291,Watching Up at 50c: combined cost 116.4c/share (need ≤ 98.0c to lock a ≥2c profit). still in the first half of the window.
+2026-11-24 04:19:57 PT,hourly_ride_down,1h,1795521600,2402.1,skip,edge_small,Down,0.8039,0.2071,0.1850,0.8300,-0.0359,0.00,0.00,0.9293,0.9334,Down at 83c: my estimate 80% beats price+fee by only -3.6c (need 3c).
+2026-11-24 04:20:01 PT,trend_volume_15m,15m,1795522500,598.1,skip,choppy,,,0.5111,0.5000,,,0.00,0.00,0.9292,0.9291,"Choppy: price went back and forth (straightness 0.04, need 0.15)."
+2026-11-24 04:20:01 PT,max_profit,15m,1795522500,598.1,skip,resting,,,0.5111,,,,0.00,0.00,0.9292,0.9291,A limit order is already resting in this 15m window; waiting for a fill or to take later.
+2026-11-24 04:20:03 PT,ab_hedge_15m,15m,1795522500,596.1,skip,thin_book,Up,,0.5103,,0.5300,,0.00,7.73,0.9292,0.9291,Other side (Up) only has 5.0 shares at 53c; need 7.73 to match A.
+2026-11-24 04:20:17 PT,hourly_ride_down,1h,1795521600,2382.1,skip,edge_small,Down,0.8206,0.1989,0.1600,0.8500,-0.0384,0.00,0.00,0.9291,0.9334,Down at 85c: my estimate 82% beats price+fee by only -3.8c (need 3c).
+2026-11-24 04:20:21 PT,trend_volume_15m,15m,1795522500,578.1,skip,choppy,,,0.4771,0.4950,,,0.00,0.00,0.9289,0.9291,"Choppy: price went back and forth (straightness 0.04, need 0.15)."
+2026-11-24 04:20:21 PT,max_profit,15m,1795522500,578.1,skip,resting,,,0.4771,,,,0.00,0.00,0.9289,0.9291,A limit order is already resting in this 15m window; waiting for a fill or to take later.
+2026-11-24 04:20:23 PT,ab_hedge_15m,15m,1795522500,576.1,skip,thin_book,Up,,0.4852,,0.4900,,0.00,7.73,0.9290,0.9291,Other side (Up) only has 5.0 shares at 49c; need 7.73 to match A.
+2026-11-24 04:20:37 PT,hourly_ride_down,1h,1795521600,2362.1,skip,edge_small,Down,0.7919,0.2063,0.2100,0.8100,-0.0289,0.00,0.00,0.9293,0.9334,Down at 81c: my estimate 79% beats price+fee by only -2.9c (need 3c).
+2026-11-24 04:20:41 PT,trend_volume_15m,15m,1795522500,558.1,skip,choppy,,,0.5115,0.4700,,,0.00,0.00,0.9292,0.9291,"Choppy: price went back and forth (straightness 0.04, need 0.15)."
+2026-11-24 04:20:43 PT,ab_hedge_15m,15m,1795522500,556.1,skip,no_hedge,Up,,0.4650,,0.4800,,0.00,7.73,0.9289,0.9291,Watching Up at 48c: combined cost 114.4c/share (need ≤ 98.0c to lock a ≥2c profit). still in the first half of the window.
+2026-11-24 04:20:57 PT,hourly_ride_down,1h,1795521600,2342.1,skip,edge_small,Down,0.8221,0.1908,0.1650,0.8500,-0.0368,0.00,0.00,0.9290,0.9334,Down at 85c: my estimate 82% beats price+fee by only -3.7c (need 3c).
+2026-11-24 04:21:01 PT,trend_volume_15m,15m,1795522500,538.1,skip,choppy,,,0.4686,0.4550,,,0.00,0.00,0.9289,0.9291,"Choppy: price went back and forth (straightness 0.04, need 0.15)."
+2026-11-24 04:21:01 PT,control,5m,1795522800,238.1,skip,edge_small,Down,0.5420,0.4580,0.4150,0.6000,-0.0748,0.00,0.00,0.9289,0.9291,Down at 60c: my estimate 54% beats price+fee by only -7.5c (need 3c).
+2026-11-24 04:21:01 PT,model_lead,5m,1795522800,238.1,skip,lead_small,Down,0.5635,0.4580,0.4150,,,0.00,0.00,0.9289,0.9291,Lead gate: XRP is $+0.0002 past the price to beat our way (Down); need at least $0.0005 (0.055% of price).
+2026-11-24 04:21:01 PT,trend_volume,5m,1795522800,238.1,skip,choppy,,,0.4580,0.4150,,,0.00,0.00,0.9289,0.9291,"Choppy: price went back and forth (straightness 0.11, need 0.15)."
+2026-11-24 04:21:01 PT,trend_volume_xo,5m,1795522800,238.1,skip,choppy,,,0.4580,0.4150,,,0.00,0.00,0.9289,0.9291,"Choppy: price went back and forth (straightness 0.11, need 0.15)."
+2026-11-24 04:21:01 PT,model_lead_xo,5m,1795522800,238.1,skip,lead_small,Down,0.5635,0.4580,0.4150,,,0.00,0.00,0.9289,0.9291,Lead gate: XRP is $+0.0002 past the price to beat our way (Down); need at least $0.0005 (0.055% of price).
+2026-11-24 04:21:01 PT,trend_down,5m,1795522800,238.1,skip,choppy,,,0.4580,0.4150,,,0.00,0.00,0.9289,0.9291,"Choppy: price went back and forth (straightness 0.11, need 0.12)."
+2026-11-24 04:21:01 PT,breakdown,5m,1795522800,238.1,skip,no_breakout,,,0.4580,0.4150,,,0.00,0.00,0.9289,0.9291,Price is inside its 30-min range ($0.9279-$0.9341); no breakout.
+2026-11-24 04:21:01 PT,max_profit,5m,1795522800,238.1,skip,no_signal,,,0.4580,,,,0.00,0.00,0.9289,0.9291,No source strategy has a clear entry in this 5m window (238s left). Cash $61.72.
+2026-11-24 04:21:01 PT,auto_pick,5m,1795522800,238.1,skip,leader_idle,,,0.4580,,,,0.00,0.00,0.9289,0.9291,Current pick model_lead (6h +6.19) isn't betting this round; sitting out: #1 model_lead not betting (lead_small).
+2026-11-24 04:21:01 PT,bankroll_20,5m,1795522800,238.1,skip,leader_idle,,,0.4580,,,,0.00,0.00,0.9289,0.9291,Current pick model_lead (6h +6.19) isn't betting this round (lead_small); sitting out.
+2026-11-24 04:21:01 PT,ab_hedge_5m,5m,1795522800,238.1,skip,no_lead,,,0.4580,,,,0.00,0.00,0.9289,0.9291,No clear lead yet (gap $-0.00; need about $0.00 past the price to beat).
+2026-11-24 04:21:03 PT,ab_hedge_15m,15m,1795522500,536.1,skip,thin_book,Up,,0.4685,,0.4800,,0.00,7.73,0.9289,0.9291,Other side (Up) only has 5.0 shares at 48c; need 7.73 to match A.
+2026-11-24 04:21:17 PT,hourly_ride_down,1h,1795521600,2322.1,skip,edge_small,Down,0.8335,0.1731,0.1600,0.8500,-0.0255,0.00,0.00,0.9287,0.9334,Down at 85c: my estimate 83% beats price+fee by only -2.5c (need 3c).
+2026-11-24 04:21:21 PT,trend_volume_15m,15m,1795522500,518.1,skip,choppy,,,0.4242,0.4100,,,0.00,0.00,0.9286,0.9291,"Choppy: price went back and forth (straightness 0.04, need 0.15)."
+2026-11-24 04:21:21 PT,control,5m,1795522800,218.1,skip,edge_small,Down,0.6141,0.3859,0.3500,0.6600,-0.0616,0.00,0.00,0.9286,0.9291,Down at 66c: my estimate 61% beats price+fee by only -6.2c (need 3c).
+2026-11-24 04:21:21 PT,model_lead,5m,1795522800,218.1,skip,lead_small,Down,0.6321,0.3859,0.3500,,,0.00,0.00,0.9286,0.9291,Lead gate: XRP is $+0.0004 past the price to beat our way (Down); need at least $0.0005 (0.055% of price).
+2026-11-24 04:21:21 PT,trend_volume,5m,1795522800,218.1,skip,choppy,,,0.3859,0.3500,,,0.00,0.00,0.9286,0.9291,"Choppy: price went back and forth (straightness 0.11, need 0.15)."
+2026-11-24 04:21:21 PT,trend_volume_xo,5m,1795522800,218.1,skip,choppy,,,0.3859,0.3500,,,0.00,0.00,0.9286,0.9291,"Choppy: price went back and forth (straightness 0.11, need 0.15)."
+2026-11-24 04:21:21 PT,model_lead_xo,5m,1795522800,218.1,skip,lead_small,Down,0.6321,0.3859,0.3500,,,0.00,0.00,0.9286,0.9291,Lead gate: XRP is $+0.0004 past the price to beat our way (Down); need at least $0.0005 (0.055% of price).
+2026-11-24 04:21:21 PT,trend_down,5m,1795522800,218.1,skip,choppy,,,0.3859,0.3500,,,0.00,0.00,0.9286,0.9291,"Choppy: price went back and forth (straightness 0.11, need 0.12)."
+2026-11-24 04:21:21 PT,breakdown,5m,1795522800,218.1,skip,no_breakout,,,0.3859,0.3500,,,0.00,0.00,0.9286,0.9291,Price is inside its 30-min range ($0.9279-$0.9341); no breakout.
+2026-11-24 04:21:21 PT,max_profit,5m,1795522800,218.1,skip,no_signal,,,0.3859,,,,0.00,0.00,0.9286,0.9291,No source strategy has a clear entry in this 5m window (218s left). Cash $61.72.
+2026-11-24 04:21:21 PT,auto_pick,5m,1795522800,218.1,skip,leader_idle,,,0.3859,,,,0.00,0.00,0.9286,0.9291,Current pick model_lead (6h +6.19) isn't betting this round; sitting out: #1 model_lead not betting (lead_small).
+2026-11-24 04:21:21 PT,bankroll_20,5m,1795522800,218.1,skip,leader_idle,,,0.3859,,,,0.00,0.00,0.9286,0.9291,Current pick model_lead (6h +6.19) isn't betting this round (lead_small); sitting out.
+2026-11-24 04:21:21 PT,ab_hedge_5m,5m,1795522800,218.1,skip,thin_book,Down,,0.3859,,0.6600,,5.00,7.39,0.9286,0.9291,Only 5.0 shares offered at 66c; need 7.39.
+2026-11-24 04:21:23 PT,ab_hedge_15m,15m,1795522500,516.1,skip,thin_book,Up,,0.4096,,0.4600,,0.00,7.73,0.9286,0.9291,Other side (Up) only has 5.0 shares at 46c; need 7.73 to match A.
+2026-11-24 04:21:27 PT,ab_hedge_5m,5m,1795522800,212.1,buy,ok,Down,,0.3611,,0.7100,,5.00,6.90,0.9286,0.9291,"Leg A: the coin leads Down (spot vs price to beat), so buying $5.00 of Down at 71c (6.90 sh, fee $0.099, 212s left). Will watch the other side for a cheap hedge."
+2026-11-24 04:21:37 PT,hourly_ride_down,1h,1795521600,2302.1,skip,ask_band,Down,0.8511,0.1578,0.1400,0.8700,-0.0268,0.00,0.00,0.9284,0.9334,"Down costs 87c, outside this variant's 0.4-0.85 price range."
+2026-11-24 04:21:41 PT,trend_volume_15m,15m,1795522500,498.1,skip,choppy,,,0.3823,0.3750,,,0.00,0.00,0.9284,0.9291,"Choppy: price went back and forth (straightness 0.04, need 0.15)."
+2026-11-24 04:21:41 PT,control,5m,1795522800,198.1,skip,edge_small,Down,0.6851,0.3149,0.3150,0.7100,-0.0393,0.00,0.00,0.9284,0.9291,Down at 71c: my estimate 69% beats price+fee by only -3.9c (need 3c).
+2026-11-24 04:21:41 PT,model_lead,5m,1795522800,198.1,skip,edge_small,Down,0.6850,0.3149,0.3150,0.7100,-0.0394,0.00,0.00,0.9284,0.9291,Down at 71c: my estimate 69% beats price+fee by only -3.9c (need 4c).
+2026-11-24 04:21:41 PT,trend_volume,5m,1795522800,198.1,skip,choppy,,,0.3149,0.3150,,,0.00,0.00,0.9284,0.9291,"Choppy: price went back and forth (straightness 0.11, need 0.15)."
+2026-11-24 04:21:41 PT,trend_volume_xo,5m,1795522800,198.1,skip,choppy,,,0.3149,0.3150,,,0.00,0.00,0.9284,0.9291,"Choppy: price went back and forth (straightness 0.11, need 0.15)."
+2026-11-24 04:21:41 PT,model_lead_xo,5m,1795522800,198.1,skip,edge_small,Down,0.6850,0.3149,0.3150,0.7100,-0.0394,0.00,0.00,0.9284,0.9291,Down at 71c: my estimate 69% beats price+fee by only -3.9c (need 4c).
+2026-11-24 04:21:41 PT,trend_down,5m,1795522800,198.1,skip,choppy,,,0.3149,0.3150,,,0.00,0.00,0.9284,0.9291,"Choppy: price went back and forth (straightness 0.11, need 0.12)."
+2026-11-24 04:21:41 PT,breakdown,5m,1795522800,198.1,skip,no_breakout,,,0.3149,0.3150,,,0.00,0.00,0.9284,0.9291,Price is inside its 30-min range ($0.9279-$0.9341); no breakout.
+2026-11-24 04:21:41 PT,max_profit,5m,1795522800,198.1,skip,no_signal,,,0.3149,,,,0.00,0.00,0.9284,0.9291,No source strategy has a clear entry in this 5m window (198s left). Cash $61.72.
+2026-11-24 04:21:41 PT,auto_pick,5m,1795522800,198.1,skip,leader_idle,,,0.3149,,,,0.00,0.00,0.9284,0.9291,Current pick model_lead (6h +6.19) isn't betting this round; sitting out: #1 model_lead not betting (edge_small).
+2026-11-24 04:21:41 PT,bankroll_20,5m,1795522800,198.1,skip,leader_idle,,,0.3149,,,,0.00,0.00,0.9284,0.9291,Current pick model_lead (6h +6.19) isn't betting this round (edge_small); sitting out.
+2026-11-24 04:21:43 PT,ab_hedge_15m,15m,1795522500,496.1,skip,no_hedge,Up,,0.3906,,0.3600,,0.00,7.73,0.9285,0.9291,Watching Up at 36c: combined cost 102.2c/share (need ≤ 98.0c to lock a ≥2c profit). still in the first half of the window.
+2026-11-24 04:21:47 PT,ab_hedge_5m,5m,1795522800,192.1,buy,ok,Up,,0.2985,,0.2300,,1.59,6.90,0.9284,0.9291,"Leg B lock_profit: buying 6.90 sh of Up at 23c (fee $0.086). Combined cost 96.7c/share, locks about 3.3c/share ($0.23 total) at settlement."
+2026-11-24 04:21:57 PT,hourly_ride_down,1h,1795521600,2282.1,skip,ask_band,Down,0.8563,0.1524,0.1350,0.8800,-0.0311,0.00,0.00,0.9283,0.9334,"Down costs 88c, outside this variant's 0.4-0.85 price range."
+2026-11-24 04:21:57 PT,down_ride,5m,1795522800,182.1,skip,timing,,,0.2818,0.2900,,,0.00,0.00,0.9283,0.9291,Only bets with 90-180s left; 182s left now.
+2026-11-24 04:21:57 PT,crowd,5m,1795522800,182.1,skip,timing,,,0.2818,,,,0.00,0.00,0.9283,0.9291,Only bets with 60-180s left; 182s left now.
+2026-11-24 04:22:01 PT,trend_volume_15m,15m,1795522500,478.1,skip,choppy,,,0.3644,0.4250,,,0.00,0.00,0.9283,0.9291,"Choppy: price went back and forth (straightness 0.04, need 0.15)."
+2026-11-24 04:22:01 PT,control,5m,1795522800,178.1,skip,edge_small,Down,0.7209,0.2791,0.3550,0.6800,0.0257,0.00,0.00,0.9283,0.9291,Down at 68c: my estimate 72% beats price+fee by only 2.6c (need 3c).
+2026-11-24 04:22:01 PT,model_lead,5m,1795522800,178.1,skip,timing,,,0.2791,0.3550,,,0.00,0.00,0.9283,0.9291,Only bets with 180-240s left; 178s left now.
+2026-11-24 04:22:01 PT,trend_volume,5m,1795522800,178.1,skip,choppy,,,0.2791,0.3550,,,0.00,0.00,0.9283,0.9291,"Choppy: price went back and forth (straightness 0.11, need 0.15)."
+2026-11-24 04:22:01 PT,trend_volume_xo,5m,1795522800,178.1,skip,choppy,,,0.2791,0.3550,,,0.00,0.00,0.9283,0.9291,"Choppy: price went back and forth (straightness 0.11, need 0.15)."
+2026-11-24 04:22:01 PT,model_lead_xo,5m,1795522800,178.1,skip,timing,,,0.2791,0.3550,,,0.00,0.00,0.9283,0.9291,Only bets with 180-240s left; 178s left now.
+2026-11-24 04:22:01 PT,trend_down,5m,1795522800,178.1,skip,choppy,,,0.2791,0.3550,,,0.00,0.00,0.9283,0.9291,"Choppy: price went back and forth (straightness 0.11, need 0.12)."
+2026-11-24 04:22:01 PT,breakdown,5m,1795522800,178.1,skip,no_breakout,,,0.2791,0.3550,,,0.00,0.00,0.9283,0.9291,Price is inside its 30-min range ($0.9279-$0.9341); no breakout.
+2026-11-24 04:22:01 PT,max_profit,5m,1795522800,178.1,skip,no_signal,,,0.2791,,,,0.00,0.00,0.9283,0.9291,No source strategy has a clear entry in this 5m window (178s left). Cash $61.72.
+2026-11-24 04:22:01 PT,auto_pick,5m,1795522800,178.1,skip,leader_idle,,,0.2791,,,,0.00,0.00,0.9283,0.9291,Current pick model_lead (6h +6.19) isn't betting this round; sitting out: #1 model_lead not betting (timing).
+2026-11-24 04:22:01 PT,bankroll_20,5m,1795522800,178.1,skip,leader_idle,,,0.2791,,,,0.00,0.00,0.9283,0.9291,Current pick model_lead (6h +6.19) isn't betting this round (timing); sitting out.
+2026-11-24 04:22:03 PT,ab_hedge_15m,15m,1795522500,476.1,skip,thin_book,Up,,0.3701,,0.4500,,0.00,7.73,0.9284,0.9291,Other side (Up) only has 5.0 shares at 45c; need 7.73 to match A.
+2026-11-24 04:22:05 PT,control,5m,1795522800,174.1,buy,ok,Down,0.6933,0.3067,0.4450,0.5700,0.1061,5.00,8.51,0.9284,0.9291,"Buying $4.85 of Down: I put Down at 69%, price+fee is 58.7c, edge 10.6c."
+2026-11-24 04:22:05 PT,down_ride,5m,1795522800,174.1,buy,ok,Down,0.6242,0.3067,0.4450,0.5700,0.0370,2.85,5.00,0.9284,0.9291,"Buying $2.85 of Down: I put Down at 62%, price+fee is 58.7c, edge 3.7c. (rounded $2.00 up to $2.85 for the 5-share minimum)"
+2026-11-24 04:22:17 PT,hourly_ride_down,1h,1795521600,2262.1,skip,edge_small,Down,0.8206,0.1788,0.1800,0.8300,-0.0193,0.00,0.00,0.9289,0.9334,Down at 83c: my estimate 82% beats price+fee by only -1.9c (need 3c).
+2026-11-24 04:22:17 PT,crowd,5m,1795522800,162.1,skip,no_crowd,,,0.4355,,,,0.00,0.00,0.9289,0.9291,"No comments in this short window (common on 5-minute markets). No clear crowd yet. comments in-window=0 (Up 0/Down 0, fetched 0); buy flow Up $0 vs Down $0 (0 buys); bid size Up 6 vs Down 5"
+2026-11-24 04:22:21 PT,trend_volume_15m,15m,1795522500,458.1,skip,choppy,,,0.4667,0.5700,,,0.00,0.00,0.9289,0.9291,"Choppy: price went back and forth (straightness 0.05, need 0.15)."
+2026-11-24 04:22:21 PT,trend_volume,5m,1795522800,158.1,skip,choppy,,,0.4480,0.6150,,,0.00,0.00,0.9289,0.9291,"Choppy: price went back and forth (straightness 0.14, need 0.15)."
+2026-11-24 04:22:21 PT,trend_volume_xo,5m,1795522800,158.1,skip,choppy,,,0.4480,0.6150,,,0.00,0.00,0.9289,0.9291,"Choppy: price went back and forth (straightness 0.14, need 0.15)."
+2026-11-24 04:22:21 PT,trend_down,5m,1795522800,158.1,skip,momentum_conflict,,,0.4480,0.6150,,,0.00,0.00,0.9289,0.9291,The 60m trend says Up but the last 15m (-0.22%) disagree.
+2026-11-24 04:22:21 PT,breakdown,5m,1795522800,158.1,skip,no_breakout,,,0.4480,0.6150,,,0.00,0.00,0.9289,0.9291,Price is inside its 30-min range ($0.9279-$0.9341); no breakout.
+2026-11-24 04:22:21 PT,max_profit,5m,1795522800,158.1,skip,no_signal,,,0.4480,,,,0.00,0.00,0.9289,0.9291,No source strategy has a clear entry in this 5m window (158s left). Cash $61.72.
+2026-11-24 04:22:21 PT,auto_pick,5m,1795522800,158.1,skip,leader_idle,,,0.4480,,,,0.00,0.00,0.9289,0.9291,Current pick model_lead (6h +6.19) isn't betting this round; sitting out: #1 model_lead not betting (timing).
+2026-11-24 04:22:21 PT,bankroll_20,5m,1795522800,158.1,skip,leader_idle,,,0.4480,,,,0.00,0.00,0.9289,0.9291,Current pick model_lead (6h +6.19) isn't betting this round (timing); sitting out.
+2026-11-24 04:22:23 PT,ab_hedge_15m,15m,1795522500,456.1,skip,thin_book,Up,,0.5359,,0.5500,,0.00,7.73,0.9293,0.9291,Other side (Up) only has 5.0 shares at 55c; need 7.73 to match A.
