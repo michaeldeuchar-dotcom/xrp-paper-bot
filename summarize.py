@@ -190,21 +190,35 @@ def ab_hedge_line(run):
             return float(r.get("pnl_usd") or 0)
         except (TypeError, ValueError):
             return 0.0
-    by = {}
+    typ_order = ("lock_profit", "soft_lock", "limit_loss", "cash_out", "a_only")
+    def bits_of(subset):
+        by = {}
+        for r in subset:
+            typ = r.get("status") or r.get("b_type") or "a_only"
+            by.setdefault(typ, {"n": 0, "pnl": 0.0})
+            by[typ]["n"] += 1
+            by[typ]["pnl"] += pnl_of(r)
+        bits = []
+        for typ in typ_order:
+            if typ in by:
+                bits.append(f"{by[typ]['n']} {typ} {money(by[typ]['pnl'])}")
+        for typ, s in by.items():
+            if typ not in typ_order:
+                bits.append(f"{s['n']} {typ} {money(s['pnl'])}")
+        return bits, sum(pnl_of(r) for r in subset)
+    bits, total = bits_of(rows)
+    lines = [f"  A/B hedge pairs: {len(rows)} settled ({', '.join(bits)}). Combined pair P&L {money(total)}."]
+    names = []
     for r in rows:
-        typ = r.get("status") or r.get("b_type") or "a_only"
-        by.setdefault(typ, {"n": 0, "pnl": 0.0})
-        by[typ]["n"] += 1
-        by[typ]["pnl"] += pnl_of(r)
-    bits = []
-    for typ in ("lock_profit", "limit_loss", "a_only"):
-        if typ in by:
-            bits.append(f"{by[typ]['n']} {typ} {money(by[typ]['pnl'])}")
-    for typ, s in by.items():
-        if typ not in ("lock_profit", "limit_loss", "a_only"):
-            bits.append(f"{s['n']} {typ} {money(s['pnl'])}")
-    total = sum(pnl_of(r) for r in rows)
-    return (f"  A/B hedge pairs: {len(rows)} settled ({', '.join(bits)}). Combined pair P&L {money(total)}." )
+        n = r.get("variant") or ""
+        if n and n not in names:
+            names.append(n)
+    if len(names) > 1:
+        for n in names:
+            sub = [r for r in rows if (r.get("variant") or "") == n]
+            b, t = bits_of(sub)
+            lines.append(f"    {n}: {len(sub)} settled ({', '.join(b)}). Pair P&L {money(t)}.")
+    return "\n".join(lines)
 
 
 def load(args):

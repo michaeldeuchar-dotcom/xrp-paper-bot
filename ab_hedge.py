@@ -8,8 +8,9 @@ from __future__ import annotations
 import csv
 import logging
 import time
-from typing import Optional
+from typing import Callable, Optional
 
+import cashout
 import config
 import polymarket
 import store
@@ -41,6 +42,11 @@ def locked_pnl_ps(ask_a: float, ask_b: float) -> float:
     return 1.0 - combined_cost_ps(ask_a, ask_b)
 
 
+def locked_pnl_usd(a_total: float, shares: float, ask_b: float) -> float:
+    """Total settlement P&L of a matched A+B pair (negative = a capped loss)."""
+    return float(shares) - float(a_total) - float(shares) * cost_per_share(ask_b)
+
+
 def lock_profit_ok(ask_a: float, ask_b: float, min_margin: float = 0.02) -> bool:
     return locked_pnl_ps(ask_a, ask_b) >= float(min_margin) - 1e-12
 
@@ -59,7 +65,7 @@ def get_pair(state: dict, name: str, tf: str, ws: int) -> Optional[dict]:
 
 def has_open_a(state: dict, name: str, tf: str, ws: int) -> bool:
     p = get_pair(state, name, tf, ws)
-    return bool(p and p.get("a_trade_id") and not p.get("b_trade_id"))
+    return bool(p and p.get("a_trade_id") and not p.get("b_trade_id") and not p.get("cashed_out"))
 
 
 def _noise_usd(ptb: float) -> float:
@@ -84,7 +90,7 @@ def lead_side(spot, ptb, v: dict) -> Optional[str]:
 def wanted(state: dict, name: str, v: dict, tf: str, ws: int, secs_left: float, wsec: float) -> bool:
     """Whether this variant should run on this pass (A entry window, or watching for B)."""
     p = get_pair(state, name, tf, ws)
-    if p and p.get("b_trade_id"):
+    if p and (p.get("b_trade_id") or p.get("cashed_out")):
         return False
     if p and p.get("a_trade_id"):
         return secs_left >= float(v.get("b_min_secs_left", 8)) - 1e-9
@@ -108,8 +114,14 @@ def _can_fill(book, shares: float) -> bool:
     return float(book.best_ask_size or 0) + 1e-9 >= float(shares)
 
 
+def _can_sell(book, shares: float) -> bool:
+    if book is None or getattr(book, "best_bid", None) is None:
+        return False
+    return float(getattr(book, "best_bid_size", 0) or 0) + 1e-9 >= float(shares)
+
+
 def _a_badly_losing(v: dict, pair: dict, books: dict, spot, ptb, now: float, wsec: float, secs_left: float) -> tuple[bool, str]:
-    """True if we should consider a damage-limit B buy."""
+    """True if we should consider a damage-limit B buy. v1: back half + flip + tight drawdown."""
     hold = float(v.get("limit_loss_min_hold_sec", 20))
     if now - float(pair.get("a_ts") or 0) < hold - 1e-9:
         return False, "too soon after A to cap a loss"
@@ -136,6 +148,46 @@ def _a_badly_losing(v: dict, pair: dict, books: dict, spot, ptb, now: float, wse
     return True, "A is badly losing"
 
 
+def _should_cap_v2(v: dict, pair: dict, books: dict, spot, ptb, now: float,
+                   wsec: float, secs_left: float, ask_b: Optional[float]) -> tuple[bool, str]:
+    """v2: cap when the move has gone against A, in either half of the window.
+
+    Triggers (any one is enough), after a short hold:
+    - the coin's lead has flipped to the other side
+    - A's bid has dropped to limit_loss_a_bid or below (default 40c)
+    - B's ask has risen off the best print we have seen and is at least
+      adverse_min_b_ask (default 40c), or B is already 50c+
+    """
+    hold = float(v.get("limit_loss_min_hold_sec", 10))
+    if now - float(pair.get("a_ts") or 0) < hold - 1e-9:
+        return False, "too soon after A to cap a loss"
+    side = pair["a_side"]
+    other = "Down" if side == "Up" else "Up"
+    lead = lead_side(spot, ptb, v)
+    book_a = books.get(side)
+    bid = getattr(book_a, "best_bid", None) if book_a is not None else None
+    bid_cut = float(v.get("limit_loss_a_bid", 0.40))
+    reasons = []
+    if lead is not None and lead != side:
+        reasons.append(f"lead flipped to {lead}")
+    if bid is not None and float(bid) <= bid_cut + 1e-12:
+        reasons.append(f"A's bid is {float(bid)*100:.0f}c")
+    if ask_b is not None:
+        min_b = float(v.get("adverse_min_b_ask", 0.40))
+        rise = float(v.get("adverse_rise_ps", 0.05))
+        best = pair.get("best_b_ask")
+        if float(ask_b) >= 0.50 - 1e-12:
+            reasons.append(f"the other side is {float(ask_b)*100:.0f}c")
+        elif best is not None and float(ask_b) >= min_b - 1e-12 and float(ask_b) >= float(best) + rise - 1e-12:
+            reasons.append(
+                f"the other side rose to {float(ask_b)*100:.0f}c from a best of {float(best)*100:.0f}c")
+    if reasons:
+        return True, "A is losing (" + "; ".join(reasons) + ")"
+    if lead == side:
+        return False, "price still leads A's way"
+    return False, "A is not clearly losing yet; waiting for a cheap lock or a clearer flip"
+
+
 def decide(name: str, v: dict, *, state: dict, books: dict, secs_left: float, spot, ptb,
            ws: int, now: float, tf: str, m, p_up: float) -> strategy.Decision:
     D = lambda action, reason, english, **kw: strategy.Decision(  # noqa: E731
@@ -143,7 +195,7 @@ def decide(name: str, v: dict, *, state: dict, books: dict, secs_left: float, sp
     wsec = float(v.get("window_seconds") or polymarket.window_seconds(tf))
     pair = get_pair(state, name, tf, ws)
 
-    if pair and pair.get("a_trade_id") and not pair.get("b_trade_id"):
+    if pair and pair.get("a_trade_id") and not pair.get("b_trade_id") and not pair.get("cashed_out"):
         return _decide_b(name, v, pair=pair, books=books, secs_left=secs_left,
                          spot=spot, ptb=ptb, now=now, wsec=wsec, p_up=p_up, D=D)
 
@@ -185,6 +237,12 @@ def decide(name: str, v: dict, *, state: dict, books: dict, secs_left: float, sp
              extra={"leg": "A", "note": note})
 
 
+def _record_best_b(pair: dict, ask_b: float) -> None:
+    prev = pair.get("best_b_ask")
+    if prev is None or float(ask_b) < float(prev) - 1e-12:
+        pair["best_b_ask"] = float(ask_b)
+
+
 def _decide_b(name, v, *, pair, books, secs_left, spot, ptb, now, wsec, p_up, D):
     other = "Down" if pair["a_side"] == "Up" else "Up"
     shares = float(pair["a_shares"])
@@ -197,6 +255,7 @@ def _decide_b(name, v, *, pair, books, secs_left, spot, ptb, now, wsec, p_up, D)
             f"Other side ({other}) only has {size:.1f} shares at {float(ask)*100:.0f}c; need {shares:.2f} to match A.")
         return D("skip", "thin_book", why, side=other, ask=ask, shares=shares)
     ask_b = float(book.best_ask)
+    _record_best_b(pair, ask_b)
     fps = strategy.fee_per_share(ask_b)
     fee = shares * fps
     notional = shares * ask_b
@@ -215,7 +274,50 @@ def _decide_b(name, v, *, pair, books, secs_left, spot, ptb, now, wsec, p_up, D)
         return D("buy", "ok", eng, side=other, ask=ask_b, ask_size=book.best_ask_size, fee_ps=fps,
                  stake=notional, shares=shares, notional=notional, fee=fee, total_cost=total,
                  extra={"leg": "B", "b_type": "lock_profit", "combined_cost_ps": comb, "locked_pnl_ps": locked})
+    # v2 soft lock: combined is a few cents over $1, take it as cheap insurance
+    soft = float(v.get("soft_lock_combined_ps") or 0)
+    if soft > 0 and comb <= soft + 1e-12:
+        pnl = locked_pnl_usd(float(pair["a_total_cost"]), shares, ask_b)
+        eng = (f"Leg B soft_lock: buying {shares:.2f} sh of {other} at {ask_b*100:.0f}c "
+               f"(fee ${fee:.3f}). Combined cost {comb*100:.1f}c/share (soft-lock ceiling "
+               f"{soft*100:.0f}c), locks about ${pnl:+.2f} at settlement instead of waiting "
+               f"for a 2c profit that may never come.")
+        return D("buy", "ok", eng, side=other, ask=ask_b, ask_size=book.best_ask_size, fee_ps=fps,
+                 stake=notional, shares=shares, notional=notional, fee=fee, total_cost=total,
+                 extra={"leg": "B", "b_type": "soft_lock", "combined_cost_ps": comb, "locked_pnl_ps": locked})
     # optional damage-limit hedge
+    if v.get("ab_hedge_v2"):
+        ok, why = _should_cap_v2(v, pair, books, spot, ptb, now, wsec, secs_left, ask_b)
+        pnl = locked_pnl_usd(float(pair["a_total_cost"]), shares, ask_b)
+        tight = float(v.get("limit_loss_usd", 1.50))
+        wide = float(v.get("limit_loss_wide_usd", 3.00))
+        a_cost = float(pair["a_total_cost"])
+        if ok and pnl >= -tight - 1e-12:
+            label, cap_s = "limit_loss", f"${tight:.2f}"
+        elif ok and pnl >= -wide - 1e-12:
+            label, cap_s = "limit_loss", f"${wide:.2f} wide cap"
+        elif ok and pnl > -a_cost + 0.25:
+            label, cap_s = "limit_loss", "better than riding A alone"
+        else:
+            label, cap_s = "", ""
+        if label:
+            eng = (f"Leg B limit_loss: {why}, so buying {shares:.2f} sh of {other} at "
+                   f"{ask_b*100:.0f}c (fee ${fee:.3f}) to cap the pair at about ${pnl:+.2f} "
+                   f"({cap_s}) instead of risking all of A's ${a_cost:.2f}.")
+            return D("buy", "ok", eng, side=other, ask=ask_b, ask_size=book.best_ask_size, fee_ps=fps,
+                     stake=notional, shares=shares, notional=notional, fee=fee, total_cost=total,
+                     extra={"leg": "B", "b_type": "limit_loss", "combined_cost_ps": comb, "locked_pnl_ps": locked})
+        if ok:
+            return D("skip", "limit_too_wide",
+                     f"{why}, but hedging {other} at {ask_b*100:.0f}c would lock about "
+                     f"${pnl:+.2f} (wide cap is ${wide:.2f}). Waiting; may cash A out if the book stays thin.",
+                     side=other, ask=ask_b, shares=shares)
+        return D("skip", "no_hedge",
+                 f"Watching {other} at {ask_b*100:.0f}c: combined cost {comb*100:.1f}c/share "
+                 f"(need ≤ {(1 - margin)*100:.1f}c to lock a ≥{margin*100:.0f}c profit, or "
+                 f"≤ {soft*100:.1f}c for a soft lock). {why}.",
+                 side=other, ask=ask_b, shares=shares)
+
     ok, why = _a_badly_losing(v, pair, books, spot, ptb, now, wsec, secs_left)
     cap = float(v.get("limit_loss_ps", 0.10))
     if ok and (-locked) <= cap + 1e-12:
@@ -249,6 +351,7 @@ def on_fill(state: dict, name: str, tid: str, d: strategy.Decision, *, tf: str, 
             "a_ts": time.time(),
             "b_side": None, "b_ask": None, "b_cost_ps": None, "b_total_cost": None,
             "b_trade_id": None, "b_type": None, "logged": False,
+            "cashed_out": False, "best_b_ask": None,
         }
         log.info("AB_HEDGE A opened [%s] %s %s %s @ %.2f (%.2f sh, $%.2f)",
                  name, tid, key, d.side, d.ask, d.shares, d.total_cost)
@@ -267,6 +370,125 @@ def on_fill(state: dict, name: str, tid: str, d: strategy.Decision, *, tf: str, 
     log.info("AB_HEDGE B %s [%s] %s %s %s @ %.2f (%.2f sh, $%.2f); combined=%.3f lock_ps=%s",
              p.get("b_type"), name, tid, key, d.side, d.ask, d.shares, d.total_cost,
              p.get("combined_cost_ps") or 0, p.get("locked_pnl_ps"))
+
+
+def _fetch_books(get_market_fn: Callable, tf: str, ws: int):
+    try:
+        try:
+            m = get_market_fn(ws, tf)
+        except TypeError:
+            m = get_market_fn(ws)
+        books = polymarket.fetch_books(m) if m is not None and m.token_ids else None
+        return m, books
+    except Exception as exc:  # noqa: BLE001
+        log.warning("ab_hedge book fetch failed for %s %s: %s", tf, ws, exc)
+        return None, None
+
+
+def manage_exits(state: dict, variants: dict, *, spot: float, now: float,
+                 price_to_beat_fn: Callable, get_market_fn: Callable) -> int:
+    """v2 only: sell A into the bid when we need to cap a loss but B is thin or too expensive.
+
+    Fake money only. Does not place a real order.
+    """
+    sold = 0
+    by_mkt: dict = {}
+    still = []
+    for item in list(state.get("open") or []):
+        name = item.get("variant")
+        v = variants.get(name) or {}
+        if not v.get("ab_hedge_v2") or not v.get("cash_out_if_thin"):
+            still.append(item)
+            continue
+        tf = item.get("tf") or v.get("timeframe") or "5m"
+        ws = int(item["window_start"])
+        p = get_pair(state, name, tf, ws)
+        if not p or p.get("b_trade_id") or p.get("cashed_out") or p.get("a_trade_id") != item.get("trade_id"):
+            still.append(item)
+            continue
+        try:
+            wsec = polymarket.window_seconds(tf) if hasattr(polymarket, "window_seconds") else int(
+                getattr(config, "TIMEFRAMES", {}).get(tf, {}).get("seconds") or config.WINDOW_SECONDS)
+        except Exception:
+            wsec = int(getattr(config, "WINDOW_SECONDS", 300))
+        secs_left = wsec - (now - ws)
+        if secs_left < float(v.get("b_min_secs_left", 8)) - 1e-9:
+            still.append(item)
+            continue
+        key = (tf, ws)
+        if key not in by_mkt:
+            by_mkt[key] = _fetch_books(get_market_fn, tf, ws)
+        m, books = by_mkt[key]
+        if not books:
+            still.append(item)
+            continue
+        side = p["a_side"]
+        other = "Down" if side == "Up" else "Up"
+        shares = float(p["a_shares"])
+        book_b = books.get(other)
+        if _can_fill(book_b, shares):
+            _record_best_b(p, float(book_b.best_ask))
+        book_a = books.get(side)
+        if not _can_sell(book_a, shares):
+            still.append(item)
+            continue
+        bid = float(book_a.best_bid)
+        proceeds, fee = cashout.sell_proceeds(shares, bid)
+        if proceeds <= 0:
+            still.append(item)
+            continue
+        a_cost = float(p["a_total_cost"])
+        sell_pnl = proceeds - a_cost
+        if sell_pnl <= -a_cost + 0.10:
+            still.append(item)
+            continue
+        try:
+            ptb, _src = price_to_beat_fn(state, ws)
+        except Exception:
+            ptb = None
+        ask_b = float(book_b.best_ask) if book_b is not None and book_b.best_ask is not None else None
+        ok, why = _should_cap_v2(v, p, books, spot, ptb, now, wsec, secs_left, ask_b)
+        bid_cut = float(v.get("cash_out_max_bid", 0.45))
+        if not ok and bid > bid_cut + 1e-12:
+            still.append(item)
+            continue
+        # If B is fillable at a better (or equal) locked P&L, leave it for decide() to buy B.
+        if _can_fill(book_b, shares):
+            b_pnl = locked_pnl_usd(a_cost, shares, float(book_b.best_ask))
+            if b_pnl >= sell_pnl - 1e-9:
+                still.append(item)
+                continue
+        reason = "ab_hedge_cash_out"
+        english = (
+            f"Cashing out leg A: {why if ok else 'A is down and the other side is too thin or too expensive to hedge'}. "
+            f"Selling {shares:.2f} sh of {side} at {bid*100:.0f}c bid (fee ${fee:.3f}) "
+            f"locks ${sell_pnl:+.2f} instead of riding A's ${a_cost:.2f}."
+        )
+        prior = sum(float(r["pnl_usd"]) for r in store.read_trades(name) if r.get("status") == "resolved" and r.get("pnl_usd"))
+        store.update_trade(name, item["trade_id"], {
+            "status": "resolved", "ts_resolve_utc": store.iso_utc(now),
+            "outcome": "sold_early", "won": "1" if sell_pnl > 0 else "0",
+            "payout_usd": f"{proceeds:.4f}", "pnl_usd": f"{sell_pnl:.6f}",
+            "cumulative_pnl_usd": f"{prior + sell_pnl:.6f}",
+            "exit_type": "ab_hedge_cash_out", "exit_reason": reason, "exit_bid": f"{bid:.4f}",
+            "exit_shares": f"{shares:.2f}", "exit_fee_usd": f"{fee:.6f}",
+            "exit_proceeds_usd": f"{proceeds:.4f}", "ts_exit_pt": store.iso_pt(now),
+        })
+        p["cashed_out"] = True
+        p["cash_out_bid"] = bid
+        p["cash_out_pnl"] = sell_pnl
+        p["b_type"] = "cash_out"
+        log.info("AB_HEDGE CASH OUT [%s] %s sold %.2f %s @ %.2f bid (fee $%.3f) proceeds $%.2f pnl=$%+.2f — %s",
+                 name, item["trade_id"], shares, side, bid, fee, proceeds, sell_pnl, english)
+        sold += 1
+        # do not keep this item in open
+    state["open"] = still
+    if sold:
+        try:
+            after_resolve(state)
+        except Exception:  # noqa: BLE001
+            log.exception("ab_hedge pair log after cash-out failed")
+    return sold
 
 
 def after_resolve(state: dict) -> None:
@@ -321,13 +543,24 @@ def _log_resolved_pair(name: str, p: dict) -> None:
             outcome = bo
     b_type = p.get("b_type") or ""
     status = b_type if b_type else "a_only"
+    if p.get("cashed_out") or a.get("outcome") == "sold_early" and not p.get("b_trade_id"):
+        status = "cash_out"
+        b_type = b_type or "cash_out"
     comb = p.get("combined_cost_ps")
     if comb is None and p.get("b_ask") is not None:
         comb = combined_cost_ps(float(p["a_ask"]), float(p["b_ask"]))
         p["combined_cost_ps"] = comb
         p["locked_pnl_ps"] = 1.0 - comb
-    note = "A rode to settlement alone" if status == "a_only" else (
-        "Both sides held to settlement; one pays $1/share" if p.get("b_trade_id") else "")
+    if status == "a_only":
+        note = "A rode to settlement alone"
+    elif status == "cash_out":
+        bid = p.get("cash_out_bid")
+        bid_s = f" at {float(bid)*100:.0f}c" if bid is not None else ""
+        note = f"Sold A into the bid{bid_s} to cap the loss; no B leg"
+    elif p.get("b_trade_id"):
+        note = "Both sides held to settlement; one pays $1/share"
+    else:
+        note = ""
     row = {
         "ts_pt": store.iso_pt(),
         "variant": name,
@@ -356,7 +589,7 @@ def _log_resolved_pair(name: str, p: dict) -> None:
     _append_pair(row)
     log.info("AB_HEDGE PAIR [%s] %s A=%s@%s B=%s@%s type=%s pnl=$%+.2f",
              name, p.get("slug") or p.get("window_start"), p.get("a_side"), p.get("a_ask"),
-             p.get("b_side") or "none", p.get("b_ask") or "", status, pnl)
+             p.get("b_side") or "none", p.get("b_ask") or p.get("cash_out_bid") or "", status, pnl)
 
 
 def _append_pair(row: dict) -> None:

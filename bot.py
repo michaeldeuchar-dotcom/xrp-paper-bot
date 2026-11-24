@@ -756,6 +756,8 @@ def cycle(state: dict, accepting: bool) -> None:
     try:
         cashout.manage_open(state, load_variants(), spot=spot, now=now,
                             price_to_beat_fn=price_to_beat, get_market_fn=get_market)
+        ab_hedge.manage_exits(state, load_variants(), spot=spot, now=now,
+                              price_to_beat_fn=price_to_beat, get_market_fn=get_market)
         maxprofit.sync(state)
     except Exception:  # noqa: BLE001
         _stats["errors"] += 1

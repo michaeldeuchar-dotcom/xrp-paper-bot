@@ -10,7 +10,7 @@ pretend bet until the official result. Per-bet cost is hard-capped at $10 (fee i
 - Built from the same code as the Bitcoin paper bot (`btc5m-paper-bot`), adapted for XRP (price-scaled basis noise,
   higher volatility limits, a minimum-lead gate, down-only variants, and an hourly market family).
 - 9 strategy variants run side by side, each with its own fake account (`variants.json`).
-- Week-2 also runs cash-out, 15-minute, crowd, max-profit, and A/B-hedge (`ab_hedge_5m` / `_15m` / `_1h`) paper variants. Those are scored separately and are not used by auto_pick or bankroll_20.
+- Week-2 also runs cash-out, 15-minute, crowd, max-profit, and A/B-hedge (`ab_hedge_5m` / `_15m` / `_1h`, plus tuned `ab_hedge_v2_5m` / `_15m` / `_1h`) paper variants. Those are scored separately and are not used by auto_pick or bankroll_20.
 - Results: the `data` branch — current run in `data/week2/` (`trades_<variant>.csv`, `state.json`, `heartbeat.json`, log tails); the first trial is kept untouched in `data/week1/`.
 - Summary: copy `data/` from the `data` branch, then `python3 summarize.py`.
 - Runs on GitHub Actions in ~5h40m slices (`.github/workflows/paper-bot.yml`) until 2026-12-07 11:30 AM PT
