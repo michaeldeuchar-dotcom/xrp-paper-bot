@@ -172,6 +172,41 @@ def crowd_line(run):
 
 
 
+
+def ab_hedge_line(run):
+    """How the A/B hedge pairs did (from data/<run>/ab_hedge_pairs.csv)."""
+    path = os.path.join(ROOT, "data", run, "ab_hedge_pairs.csv")
+    if not os.path.exists(path):
+        return "  A/B hedge pairs: none logged yet."
+    try:
+        with open(path, newline="") as f:
+            rows = list(csv.DictReader(f))
+    except Exception:
+        return "  A/B hedge pairs: could not read the pairs file."
+    if not rows:
+        return "  A/B hedge pairs: none logged yet."
+    def pnl_of(r):
+        try:
+            return float(r.get("pnl_usd") or 0)
+        except (TypeError, ValueError):
+            return 0.0
+    by = {}
+    for r in rows:
+        typ = r.get("status") or r.get("b_type") or "a_only"
+        by.setdefault(typ, {"n": 0, "pnl": 0.0})
+        by[typ]["n"] += 1
+        by[typ]["pnl"] += pnl_of(r)
+    bits = []
+    for typ in ("lock_profit", "limit_loss", "a_only"):
+        if typ in by:
+            bits.append(f"{by[typ]['n']} {typ} {money(by[typ]['pnl'])}")
+    for typ, s in by.items():
+        if typ not in ("lock_profit", "limit_loss", "a_only"):
+            bits.append(f"{s['n']} {typ} {money(s['pnl'])}")
+    total = sum(pnl_of(r) for r in rows)
+    return (f"  A/B hedge pairs: {len(rows)} settled ({', '.join(bits)}). Combined pair P&L {money(total)}." )
+
+
 def load(args):
     if args.file:
         files = {os.path.basename(args.file): args.file}
@@ -257,6 +292,9 @@ def main():
         print(describe("Since start" if not since else "In this period", s_all))
         print()
         table.append((name, s_all))
+    if any(n.startswith("ab_hedge") for n, _ in table) or os.path.exists(os.path.join(ROOT, "data", a.run, "ab_hedge_pairs.csv")):
+        print(ab_hedge_line(a.run))
+        print()
     if len(table) > 1:
         print("Comparison (best to worst by net fake P&L):")
         print(f"  {'variant':<26}{'bets':>5}{'won':>5}{'lost':>5}{'open':>5}{'win%':>6}{'bet $':>9}{'net P&L':>10}{'return':>8}")
@@ -273,7 +311,7 @@ def main():
             extras.append("bankroll_20 left out because it is its own $20-to-$1,000 account that copies the current pick")
         if any(n == "max_profit" for n, _ in table):
             extras.append("max_profit left out because it is its own $100 fake account")
-        print("  Note: auto_pick and bankroll_20 still rank and follow only the original 5-minute hold-to-settlement strategies; cash-out, 15-minute, crowd, and max_profit variants are scored separately and are not in that ranking.")
+        print("  Note: auto_pick and bankroll_20 still rank and follow only the original 5-minute hold-to-settlement strategies; cash-out, 15-minute, crowd, max_profit, and ab_hedge variants are scored separately and are not in that ranking.")
         print(f"\n  All variants together: {money(total)} (each variant is a separate fake account"
               + (("; " + "; ".join(extras)) if extras else "") + ").")
 

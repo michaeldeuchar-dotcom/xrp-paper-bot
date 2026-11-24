@@ -76,5 +76,5 @@ jobs:
         run: |
           if [ -f STOP ]; then echo "STOP on main; chain ends"; exit 0; fi
           if [ "$(date +%s)" -ge "$(date -d "$END_AT" +%s)" ]; then echo "end time reached; chain ends"; exit 0; fi
-          if git show origin/data:data/week1/FINISHED >/dev/null 2>&1; then echo "run finished; chain ends"; exit 0; fi
+          if git show origin/data:data/week2/FINISHED >/dev/null 2>&1; then echo "run finished; chain ends"; exit 0; fi
           for i in 1 2 3; do gh workflow run paper-bot.yml --ref "${{ github.ref_name }}" -f chained=true && break; sleep 10; done

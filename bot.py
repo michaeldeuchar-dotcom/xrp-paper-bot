@@ -29,6 +29,7 @@ import store
 import cashout
 import crowd
 import maxprofit
+import ab_hedge
 import strategy
 
 PT = ZoneInfo("America/Los_Angeles")
@@ -327,7 +328,7 @@ def _settled_stats(name: str, since_ts):
 def auto_scores(variants: dict, me: str, tf: str, now: float, hours: float, min_bets: int):
     """Rank same-timeframe variants (never itself) by net fake P&L on settled bets. Returns (scope, scores) where scores is
     {variant: (net_pnl, n_bets, dollars_bet)} for EVERY candidate; 'scope' is '6h' normally, or 'since_start' when nobody qualifies in the window."""
-    cands = [n for n, v in variants.items() if n != me and v.get("timeframe", "5m") == tf and v.get("mode") not in COPY_MODES and not v.get("cash_out") and not v.get("exclude_from_rank") and v.get("mode") not in ("crowd", "max_profit")]
+    cands = [n for n, v in variants.items() if n != me and v.get("timeframe", "5m") == tf and v.get("mode") not in COPY_MODES and not v.get("cash_out") and not v.get("exclude_from_rank") and v.get("mode") not in ("crowd", "max_profit", "ab_hedge")]
     def qual(sc):
         return {n: s for n, s in sc.items() if s[1] >= min_bets and s[0] > 0}
     win = {n: _settled_stats(n, now - hours * 3600) for n in cands}
@@ -677,6 +678,10 @@ def resolve_open(state: dict, force: bool = False) -> None:
             payout = float(item["shares"]) if won else 0.0
             maxprofit.on_resolve(state, item["variant"], item["trade_id"], pnl, payout)
     state["open"] = still
+    try:
+        ab_hedge.after_resolve(state)
+    except Exception:  # noqa: BLE001
+        log.exception("ab_hedge resolve log failed")
 
 
 # ---------------------------------------------------------------- main cycle
@@ -732,6 +737,8 @@ def paper_fill(state, name, d, m, ws, secs_left, spot, ptb, ptb_src, vol, tf="5m
         bankroll_on_fill(state, name, tid, d.total_cost, (d.extra or {}).get("copied") or "")
     if name == (state.get("max_profit") or {}).get("variant") or ((_variants.get("data") or {}).get(name) or {}).get("mode") == "max_profit":
         maxprofit.on_fill(state, name, tid, d.total_cost, (d.extra or {}).get("signal") or "")
+    if ((_variants.get("data") or {}).get(name) or {}).get("mode") == "ab_hedge":
+        ab_hedge.on_fill(state, name, tid, d, tf=tf, ws=ws, slug=m.slug)
 
 
 def cycle(state: dict, accepting: bool) -> None:
@@ -756,7 +763,7 @@ def cycle(state: dict, accepting: bool) -> None:
     if not accepting:
         return
     variants = load_variants()
-    for tf in sorted({v.get("timeframe", "5m") for v in variants.values()}):
+    for tf in sorted({t for v in variants.values() for t in (list(v.get("timeframes") or []) or [v.get("timeframe", "5m")])}):
         try:
             cycle_tf(state, tf, variants, spot, now)
         except Exception:  # noqa: BLE001 - one timeframe failing must not block the other
@@ -789,6 +796,8 @@ def cycle_tf(state: dict, tf: str, variants: dict, spot: float, now: float) -> N
         tfs = list(v.get("timeframes") or [v.get("timeframe", "5m")]) if v.get("mode") == "max_profit" else [v.get("timeframe", "5m")]
         if tf not in tfs:
             return False
+        if v.get("mode") == "ab_hedge":
+            return ab_hedge.wanted(state, n, v, tf, ws, secs_left, wsec)
         already = ws in traded.get(n, []) or f"{tf}:{ws}" in traded.get(n, [])
         if already and not (v.get("mode") in SCALE_MODES and _scale_open(n)):
             return False
@@ -826,29 +835,39 @@ def cycle_tf(state: dict, tf: str, variants: dict, spot: float, now: float) -> N
         _reason_seen.add(tk)
         log.info("TREND %s window=%s spot=%.4f ptb=%.4f %s", tf, ws, spot, ptb, feeds.trend_summary(trend))
     for name, v in todo.items():
-        block = None if v.get("mode") == "max_profit" else hour_filter_blocks(name)
-        if block:
-            d = strategy.Decision(name, "skip", "hour_filter", f"Tweak 2 HOUR_FILTER: {block}.", model_p_up=p_up)
+        if v.get("mode") == "max_profit" or (v.get("mode") == "ab_hedge" and ab_hedge.has_open_a(state, name, tf, ws)):
+            block = None
         else:
-            if v.get("mode") == "meta":
-                d = meta_decide(state, name, v, variants, p_up=p_up, books=books, secs_left=secs_left, trend=trend, spot=spot, ws=ws, now=now)
-                if d.action == "buy":
-                    cd = cooldown_blocks(state, name, v, ws, now)
-                    if cd:
-                        d = strategy.Decision(name, "skip", "cooldown", cd + f" (would have copied {d.extra.get('copied')} {d.side})", side=d.side, model_p_up=p_up)
-            elif v.get("mode") == "auto_pick":
-                d = auto_decide(state, name, v, variants, p_up=p_up, books=books, secs_left=secs_left, trend=trend, spot=spot, ptb=ptb, ws=ws, now=now)
-            elif v.get("mode") == "bankroll":
-                d = bankroll_decide(state, name, v, variants, p_up=p_up, books=books, secs_left=secs_left, trend=trend, spot=spot, ptb=ptb, ws=ws, now=now)
-            elif v.get("mode") == "crowd":
-                d = crowd.decide(name, v, m=m, books=books, secs_left=secs_left, ws=ws, now=now, state=state, p_up=p_up)
-            elif v.get("mode") == "max_profit":
-                d = maxprofit.decide(state, name, v, variants, p_up=p_up, books=books, secs_left=secs_left, trend=trend, spot=spot, ptb=ptb, ws=ws, now=now, tf=tf, m=m)
-            elif v.get("mode") in SCALE_MODES and _scale_open(name):
-                d = strategy.decide_scale_add(name, v, spos[name], books=books, secs_left=secs_left, spot=spot, ptb=ptb, now=now)
-                d.model_p_up = p_up
+            block = hour_filter_blocks(name)
+        try:
+            if block:
+                d = strategy.Decision(name, "skip", "hour_filter", f"Tweak 2 HOUR_FILTER: {block}.", model_p_up=p_up)
             else:
-                d = strategy.decide(name, v, p_model=p_up, books=books, secs_left=secs_left, trend=trend, spot=spot, ptb=ptb)
+                if v.get("mode") == "meta":
+                    d = meta_decide(state, name, v, variants, p_up=p_up, books=books, secs_left=secs_left, trend=trend, spot=spot, ws=ws, now=now)
+                    if d.action == "buy":
+                        cd = cooldown_blocks(state, name, v, ws, now)
+                        if cd:
+                            d = strategy.Decision(name, "skip", "cooldown", cd + f" (would have copied {d.extra.get('copied')} {d.side})", side=d.side, model_p_up=p_up)
+                elif v.get("mode") == "auto_pick":
+                    d = auto_decide(state, name, v, variants, p_up=p_up, books=books, secs_left=secs_left, trend=trend, spot=spot, ptb=ptb, ws=ws, now=now)
+                elif v.get("mode") == "bankroll":
+                    d = bankroll_decide(state, name, v, variants, p_up=p_up, books=books, secs_left=secs_left, trend=trend, spot=spot, ptb=ptb, ws=ws, now=now)
+                elif v.get("mode") == "crowd":
+                    d = crowd.decide(name, v, m=m, books=books, secs_left=secs_left, ws=ws, now=now, state=state, p_up=p_up)
+                elif v.get("mode") == "max_profit":
+                    d = maxprofit.decide(state, name, v, variants, p_up=p_up, books=books, secs_left=secs_left, trend=trend, spot=spot, ptb=ptb, ws=ws, now=now, tf=tf, m=m)
+                elif v.get("mode") == "ab_hedge":
+                    d = ab_hedge.decide(name, v, state=state, books=books, secs_left=secs_left, spot=spot, ptb=ptb, ws=ws, now=now, tf=tf, m=m, p_up=p_up)
+                elif v.get("mode") in SCALE_MODES and _scale_open(name):
+                    d = strategy.decide_scale_add(name, v, spos[name], books=books, secs_left=secs_left, spot=spot, ptb=ptb, now=now)
+                    d.model_p_up = p_up
+                else:
+                    d = strategy.decide(name, v, p_model=p_up, books=books, secs_left=secs_left, trend=trend, spot=spot, ptb=ptb)
+        except Exception:  # noqa: BLE001 - one variant must never kill the rest of this family
+            _stats["errors"] += 1
+            log.exception("variant %s error in %s family (continuing)", name, tf)
+            continue
         if d.action == "buy" and v.get("mode") in SCALE_MODES:
             pos = spos.get(name) if _scale_open(name) else None
             spent = sum(float(f["cost"]) for f in pos["fills"]) if pos else 0.0

@@ -83,7 +83,7 @@ def size_bet(v: dict, edge: float, ask: float) -> tuple[float, float, str]:
     if v.get("mode") in ("favorite", "contrarian", "scale"):
         stake = float(v.get("base_stake", 1))
     else:
-        steps = math.floor((edge - float(v["min_edge"])) / float(v.get("edge_per_dollar", 0.02)) + 1e-9)
+        steps = math.floor((edge - float(v.get("min_edge", 0))) / float(v.get("edge_per_dollar", 0.02)) + 1e-9)
         stake = float(v.get("base_stake", 1)) + max(steps, 0)
     stake = min(stake, float(v.get("max_stake", 5)))
     if ask > float(v.get("high_ask", 1.0)):
@@ -259,8 +259,8 @@ def decide(name: str, v: dict, *, p_model: float, books: dict, secs_left: float,
     kw = dict(side=side, est_prob=est, ask=ask, ask_size=book.best_ask_size, fee_ps=fps, edge=edge, **base)
     if not (float(v.get("min_ask", 0)) <= ask <= float(v.get("max_ask", 1))):
         return D("skip", "ask_band", f"{side} costs {ask*100:.0f}c, outside this variant's {v.get('min_ask')}-{v.get('max_ask')} price range.", **kw)
-    if edge is not None and edge < float(v["min_edge"]) - 1e-12:
-        return D("skip", "edge_small", f"{side} at {ask*100:.0f}c: my estimate {est:.0%} beats price+fee by only {edge*100:.1f}c (need {float(v['min_edge'])*100:.0f}c).", **kw)
+    if edge is not None and edge < float(v.get("min_edge", 0)) - 1e-12:
+        return D("skip", "edge_small", f"{side} at {ask*100:.0f}c: my estimate {est:.0%} beats price+fee by only {edge*100:.1f}c (need {float(v.get('min_edge', 0))*100:.0f}c).", **kw)
     stake, shares, note = size_bet(v, edge or 0.0, ask)
     if shares + 1e-9 < config.MIN_ORDER_SHARES:
         return D("skip", "min_shares", f"${stake:.2f} only buys {shares:.2f} shares of {side} at {ask*100:.0f}c; Polymarket's minimum is 5.", stake=stake, shares=shares, **kw)
