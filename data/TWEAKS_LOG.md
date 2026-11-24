@@ -108,3 +108,34 @@ It may use any signal from the other paper strategies in the same window (the st
 **Maker-style entries:** when the spread is at least 2¢ and there is time, it rests a paper limit at the best bid and only fills if the ask crosses that price (no taker fee on that fill). If it has not filled with about 40 seconds left, it takes the ask if the trade still fits the caps.
 
 Bankroll history is written to `data/week2/max_profit_history.csv`. `pull_results.sh` / summarize prints the current max-profit balance.
+
+# A/B hedge paper variants (week 2)
+
+Added three **new** paper-only variants to the week-2 test (ends Monday, Dec 7, 2026, 11:30 AM PT): `ab_hedge_5m`, `ab_hedge_15m`, and `ab_hedge_1h`. Existing variants, their week-2 ledgers, and the frozen week-1 data are unchanged.
+
+Fake money only. $10 max per bet including the fee. No real trades, no wallet key.
+
+These three are **not** ranking candidates for auto_pick (and therefore not what bankroll_20 follows). auto_pick still ranks only the original 5-minute hold-to-settlement strategies.
+
+## The idea
+
+An A bot and a B bot play opposite sides, trying to pull a win off a loss. Buying both sides at the same moment always loses a little, because Up plus Down together cost a bit over $1 once you add the fee. So A bets first, and B only buys the other side later if that side gets cheap enough that the two together cost under $1 by a margin. Then one of them pays out $1 at settlement and the pair locks a small win. If the other side never gets cheap, A just rides to the official result alone.
+
+Hourly markets have more time for the other side to get cheap, which is why we run the same idea on 5-minute, 15-minute, and 1-hour Up/Down markets. 1-hour slugs are `{coin}-updown-1h-{unix}` (verified on the public Gamma API on Nov 23, 2026, PT, for BTC, ETH, SOL, and XRP). Bitcoin's bot did not previously watch the 1-hour family; that slug is now in its timeframe list so the 1-hour hedge can run.
+
+## How a pair is placed
+
+- **Leg A:** early-ish in the window, on the side the coin's price already leads (spot vs the price to beat). About $5 including the fee, at least 5 shares, usual $10 cap. The lead has to be bigger than the usual price-to-beat noise, so A does not bet when the coin is basically flat. Asks outside about 20–80¢ are skipped. The best ask must be large enough to fill the whole order (we do not walk into worse prices). Thin books, especially on SOL and XRP, will often mean a skipped bet.
+- **Leg B (lock_profit):** during the rest of the window (leaving the last seconds alone), watch the opposite side's best ask. Buy the **same number of shares as A** only if A's entry cost per share + B's ask + both taker fees (`shares × 0.07 × p × (1 − p)`) is at least **2 cents under $1/share**. That locks a guaranteed profit at settlement.
+- **Leg B (limit_loss), optional:** if a cheap lock never appears, but we are in the back half of the window, A has been held for a short minimum time, the price lead has flipped against A, and A is down about 40% (or the other side is a heavy favorite), B may still buy if the locked loss is at most about **10 cents/share**. This is a damage cap, not a guaranteed win, and it is logged separately as `limit_loss`.
+- **Otherwise** A is held to official settlement alone (`a_only`).
+
+Each pair is written to `data/week2/ab_hedge_pairs.csv` (window, A side/price, B price or none, type, P&L) once both legs have settled (or A settles with no B). `pull_results.sh` / summarize prints a short pair breakdown alongside the usual per-variant ledgers (`trades_ab_hedge_5m.csv` and the 15m/1h twins).
+
+## Other fix in this same change (Bitcoin bot errors)
+
+On the evening of Nov 23, 2026, PT, the Bitcoin 5-minute family was logging the same error over and over: `KeyError: 'min_edge'` inside `strategy.decide`, called from the meta copier. Meta was allowed to consider the $20 bankroll account (and any other variant missing a `min_edge` setting) as a leader to copy. Because that account was doing well, meta crashed every cycle and skipped later 5-minute variants in the same pass (including crowd, max_profit, and bankroll_20).
+
+The fix: `min_edge` is now read with a default of 0 so a missing setting cannot crash a cycle; meta no longer ranks or copies copiers, cash-out variants, or the excluded experimental ones (crowd, max_profit, ab_hedge, bankroll_20); and one variant throwing an error can no longer abort the rest of that timeframe's pass. No bots were cut.
+
+The start-next-slice workflow now looks for `data/week2/FINISHED` (the current test) instead of `data/week1/FINISHED`.
