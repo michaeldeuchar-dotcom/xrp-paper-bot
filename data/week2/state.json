@@ -9,16 +9,39 @@
     "a_total_cost": 4.998718080000001,
     "a_trade_id": "W000623",
     "a_ts": 1795501082.2251527,
-    "b_ask": null,
-    "b_cost_ps": null,
-    "b_side": null,
-    "b_total_cost": null,
-    "b_trade_id": null,
-    "b_type": null,
-    "logged": false,
+    "b_ask": 0.25,
+    "b_cost_ps": 0.263125,
+    "b_side": "Up",
+    "b_total_cost": 1.8918687500000002,
+    "b_trade_id": "W000630",
+    "b_type": "lock_profit",
+    "combined_cost_ps": 0.9583570000000001,
+    "locked_pnl_ps": 0.041642999999999875,
+    "logged": true,
     "slug": "xrp-updown-15m-1795500900",
     "tf": "15m",
     "window_start": 1795500900
+   },
+   "15m:1795501800": {
+    "a_ask": 0.64,
+    "a_cost_ps": 0.656128,
+    "a_shares": 7.62,
+    "a_side": "Up",
+    "a_total_cost": 4.9996953600000005,
+    "a_trade_id": "W000644",
+    "a_ts": 1795502013.6130195,
+    "b_ask": 0.23,
+    "b_cost_ps": 0.242397,
+    "b_side": "Down",
+    "b_total_cost": 1.8470651400000002,
+    "b_trade_id": "W000645",
+    "b_type": "lock_profit",
+    "combined_cost_ps": 0.898525,
+    "locked_pnl_ps": 0.10147499999999998,
+    "logged": false,
+    "slug": "xrp-updown-15m-1795501800",
+    "tf": "15m",
+    "window_start": 1795501800
    }
   },
   "ab_hedge_1h": {
@@ -122,16 +145,37 @@
     "b_total_cost": null,
     "b_trade_id": null,
     "b_type": null,
-    "logged": false,
+    "logged": true,
     "slug": "xrp-updown-5m-1795501200",
     "tf": "5m",
     "window_start": 1795501200
+   },
+   "5m:1795501500": {
+    "a_ask": 0.65,
+    "a_cost_ps": 0.665925,
+    "a_shares": 7.5,
+    "a_side": "Down",
+    "a_total_cost": 4.9944375,
+    "a_trade_id": "W000631",
+    "a_ts": 1795501561.1076682,
+    "b_ask": 0.22,
+    "b_cost_ps": 0.232012,
+    "b_side": "Up",
+    "b_total_cost": 1.74009,
+    "b_trade_id": "W000632",
+    "b_type": "lock_profit",
+    "combined_cost_ps": 0.897937,
+    "locked_pnl_ps": 0.10206300000000001,
+    "logged": true,
+    "slug": "xrp-updown-5m-1795501500",
+    "tf": "5m",
+    "window_start": 1795501500
    }
   }
  },
  "auto_pick": {
-  "cand": null,
-  "cand_n": 0,
+  "cand": "control",
+  "cand_n": 1,
   "history": [
    {
     "from": null,
@@ -1355,37 +1399,37 @@
     "why": "model_lead no longer qualifies"
    }
   ],
-  "last_check_ws": 1795501200,
+  "last_check_ws": 1795502400,
   "leader": "trend_down",
-  "scope": "since_start",
+  "scope": "6h",
   "scores": {
    "breakdown": [
-    1.57,
-    1
+    0.0,
+    0
    ],
    "control": [
-    -39.57,
-    153
+    2.99,
+    25
    ],
    "down_ride": [
-    -20.21,
-    28
+    -6.21,
+    9
    ],
    "model_lead": [
-    -7.61,
-    15
+    -1.35,
+    4
    ],
    "ride_favorite_80": [
-    -99.71,
-    195
+    -19.84,
+    29
    ],
    "trend_down": [
-    8.34,
-    15
+    1.09,
+    5
    ],
    "trend_volume": [
-    -1.41,
-    18
+    3.87,
+    4
    ]
   }
  },
@@ -1405,14 +1449,14 @@
   "variant": "bankroll_20"
  },
  "crowd_stats": {
-  "bets": 39,
-  "comments_empty": 85,
+  "bets": 44,
+  "comments_empty": 89,
   "comments_failed": 0,
   "comments_present": 0,
   "flow_failed": 0,
-  "flow_ok": 20,
-  "last": "comments in-window=0 (Up 0/Down 0, fetched 0); buy flow Up $0 vs Down $22 (2 buys); bid size Up 15 vs Down 27",
-  "windows": 85
+  "flow_ok": 24,
+  "last": "comments in-window=0 (Up 0/Down 0, fetched 0); buy flow Up $9 vs Down $38 (12 buys); bid size Up 0 vs Down 143",
+  "windows": 89
  },
  "crowd_windows": [
   1795475700,
@@ -1499,19 +1543,24 @@
   1795500000,
   1795500300,
   1795500600,
-  1795500900
+  1795500900,
+  1795501200,
+  1795501500,
+  1795501800,
+  1795502100
  ],
  "max_profit": {
-  "balance": 60.8921,
-  "equity": 60.8921,
+  "balance": 51.6952,
+  "equity": 51.6952,
   "floor": 12.0,
   "funded": true,
   "funded_at": "2026-11-23 15:17:48 PT",
-  "last_signal": "crowd",
-  "n_bets": 20,
-  "n_settled": 20,
+  "last_signal": "model_lead_15m",
+  "n_bets": 24,
+  "n_settled": 24,
   "paused": false,
   "paused_at": null,
+  "rest": {},
   "start": 100.0,
   "variant": "max_profit"
  },
@@ -1537,43 +1586,57 @@
    "window_start": 1795500000
   },
   {
-   "shares": 7.19,
-   "side": "Down",
+   "shares": 7.62,
+   "side": "Up",
    "tf": "15m",
-   "total_cost": 4.998718080000001,
-   "trade_id": "W000623",
-   "ts_fill": 1795501082.2248952,
+   "total_cost": 4.9996953600000005,
+   "trade_id": "W000644",
+   "ts_fill": 1795502013.6127207,
    "variant": "ab_hedge_15m",
-   "window_start": 1795500900
+   "window_start": 1795501800
   },
   {
-   "shares": 6.47,
+   "shares": 7.62,
+   "side": "Down",
+   "tf": "15m",
+   "total_cost": 1.8470651400000002,
+   "trade_id": "W000645",
+   "ts_fill": 1795502095.6025972,
+   "variant": "ab_hedge_15m",
+   "window_start": 1795501800
+  },
+  {
+   "shares": 5.0,
    "side": "Up",
+   "tf": "15m",
+   "total_cost": 2.68736,
+   "trade_id": "W000646",
+   "ts_fill": 1795502115.616679,
+   "variant": "model_lead_15m",
+   "window_start": 1795501800
+  },
+  {
+   "shares": 8.0,
+   "side": "Down",
    "tf": "5m",
-   "total_cost": 4.99980896,
-   "trade_id": "W000627",
-   "ts_fill": 1795501260.7302592,
-   "variant": "ab_hedge_5m",
-   "window_start": 1795501200
+   "total_cost": 2.105,
+   "trade_id": "W000648",
+   "ts_fill": 1795502466.2332811,
+   "variant": "trend_down",
+   "window_start": 1795502400
+  },
+  {
+   "shares": 11.4,
+   "side": "Down",
+   "tf": "5m",
+   "total_cost": 2.999625,
+   "trade_id": "W000649",
+   "ts_fill": 1795502466.2344556,
+   "variant": "auto_pick",
+   "window_start": 1795502400
   }
  ],
  "ptb": {
-  "1795494000": {
-   "p": 0.9512538333333335,
-   "src": "own_spot_samples_60s"
-  },
-  "1795494300": {
-   "p": 0.9512470000000001,
-   "src": "own_spot_samples_60s"
-  },
-  "1795494600": {
-   "p": 0.9536696666666666,
-   "src": "own_spot_samples_60s"
-  },
-  "1795494900": {
-   "p": 0.9544251666666667,
-   "src": "own_spot_samples_60s"
-  },
   "1795495200": {
    "p": 0.9567963333333334,
    "src": "own_spot_samples_60s"
@@ -1657,13 +1720,32 @@
   "1795501200": {
    "p": 0.9517531666666667,
    "src": "own_spot_samples_60s"
+  },
+  "1795501500": {
+   "p": 0.9493579999999999,
+   "src": "own_spot_samples_60s"
+  },
+  "1795501800": {
+   "p": 0.9488563333333333,
+   "src": "own_spot_samples_60s"
+  },
+  "1795502100": {
+   "p": 0.9497781666666666,
+   "src": "own_spot_samples_60s"
+  },
+  "1795502400": {
+   "p": 0.947197,
+   "src": "own_spot_samples_60s"
   }
  },
  "scale_pos": {},
- "seq": 627,
+ "seq": 649,
  "traded_windows": {
   "ab_hedge_15m": [
-   1795500900
+   1795500900,
+   1795500900,
+   1795501800,
+   1795501800
   ],
   "ab_hedge_1h": [
    1795500000,
@@ -1676,7 +1758,9 @@
    1795500600,
    1795500900,
    1795500900,
-   1795501200
+   1795501200,
+   1795501500,
+   1795501500
   ],
   "auto_pick": [
    1795408800,
@@ -1731,7 +1815,9 @@
    1795467300,
    1795486800,
    1795487100,
-   1795487400
+   1795487400,
+   1795501800,
+   1795502400
   ],
   "bankroll_20": [
    1795408500,
@@ -1864,7 +1950,9 @@
    1795497600,
    1795500300,
    1795500600,
-   1795500900
+   1795500900,
+   1795501200,
+   1795501500
   ],
   "down_ride": [
    1795406700,
@@ -1916,7 +2004,11 @@
    "5m:1795495500",
    "5m:1795497600",
    "5m:1795499400",
-   "5m:1795500300"
+   "5m:1795500300",
+   "5m:1795501200",
+   "5m:1795501500",
+   "5m:1795501800",
+   "15m:1795501800"
   ],
   "model_lead": [
    1795412400,
@@ -1936,7 +2028,8 @@
    1795499400
   ],
   "model_lead_15m": [
-   1795487400
+   1795487400,
+   1795501800
   ],
   "model_lead_xo": [
    1795473300,
@@ -1947,8 +2040,6 @@
    1795499400
   ],
   "ride_favorite_80": [
-   1795457400,
-   1795457700,
    1795458000,
    1795458300,
    1795458600,
@@ -2026,7 +2117,9 @@
    1795492800,
    1795500300,
    1795500600,
-   1795500900
+   1795500900,
+   1795501500,
+   1795501800
   ],
   "ride_favorite_80_xo": [
    1795472100,
@@ -2091,7 +2184,9 @@
    1795499700,
    1795500300,
    1795500600,
-   1795500900
+   1795500900,
+   1795501500,
+   1795501800
   ],
   "trend_down": [
    1795421700,
@@ -2108,7 +2203,9 @@
    1795486800,
    1795487100,
    1795487400,
-   1795488000
+   1795488000,
+   1795501800,
+   1795502400
   ],
   "trend_volume": [
    1795412400,
@@ -2128,13 +2225,15 @@
    1795476900,
    1795480800,
    1795487400,
-   1795494600
+   1795494600,
+   1795501800
   ],
   "trend_volume_xo": [
    1795476900,
    1795480800,
    1795487400,
-   1795494600
+   1795494600,
+   1795501800
   ]
  }
 }
