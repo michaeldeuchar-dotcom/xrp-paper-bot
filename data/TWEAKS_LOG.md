@@ -139,3 +139,61 @@ On the evening of Nov 23, 2026, PT, the Bitcoin 5-minute family was logging the 
 The fix: `min_edge` is now read with a default of 0 so a missing setting cannot crash a cycle; meta no longer ranks or copies copiers, cash-out variants, or the excluded experimental ones (crowd, max_profit, ab_hedge, bankroll_20); and one variant throwing an error can no longer abort the rest of that timeframe's pass. No bots were cut.
 
 The start-next-slice workflow now looks for `data/week2/FINISHED` (the current test) instead of `data/week1/FINISHED`.
+
+# 2026-11-24 — A/B hedge v2 (fake money)
+
+Overnight v1 results (as of Nov 24, 2026, 9:20 AM PT) showed the same pattern on all four fleets: lock_profit was consistently green, but every a_only ride was a full ~$5 loss, and `limit_loss` never fired. Combined, that left the book well in the red (about −$199 across BTC/ETH/SOL/XRP). This note adds `ab_hedge_v2_5m` / `_15m` / `_1h` beside the original variants so we can compare. v1 is unchanged — it was too strict, not a crash.
+
+Fake money only. No live orders, no wallet key.
+
+## Diagnosis: why `limit_loss` never triggered
+
+Not a crash. Decision logs show `limit_too_wide` and `no_hedge` on the a_only paths (for example ETH: "A is badly losing, but hedging Down at 85–98c would lock a 60–72¢/share loss (cap is 10c)").
+
+v1 only considers a damage-limit B buy in the **back half** of the window, after a minimum hold, when the lead has flipped **and** A's bid is down 40% or the other mid is ≥70¢, **and** the locked loss is ≤10¢/share. When A is actually losing, B is expensive, so the locked loss is far above 10¢/share and the hedge is skipped. The 10¢ cap and the "B is a heavy favorite" gate fight each other. On 71/71 a_only trade paths we could reconstruct from the public Data API, v1 would have fired `limit_loss` zero times and seen `limit_too_wide` on all of them.
+
+All 72 a_only pairs lost in full (about −$5 each, −$359.78 total). Lock_profit on the other 454 pairs made about +$160. 5-minute was the worst; 1-hour was roughly breakeven to slightly green on ETH/XRP (no a_only there).
+
+## What the backtest said
+
+Using paginated public trades as a fillable-book proxy (best ask must be large enough for A's share count; no walking the book):
+
+- After A filled, a fillable B ask **was** often available. The best fillable B on those a_only windows averaged about 42–45¢, and the best-possible cap averaged a −$1.17 locked loss (range about −$0.37 to −$4.94). If we had always taken that best cap, a_only would have been about −$88 and the combined book about **+$72**. So a hedge could have capped most of these, at a cost — just not inside v1's 10¢/share cap.
+- 21 of 72 a_only windows had a fillable combined cost ≤ $1.03/share at some point (a near-lock). v1 waited for a 2¢ profit (combined ≤ $0.98) and often missed it; six windows even had a theoretical 2¢ lock that we did not take (fleeting or after we had already given up).
+- Selling A into a ~40–45¢ bid, on its own, was worse than buying B (cash-out-only net about −$19 to −$61). Cash-out is the right fallback when B is thin, not the main cap.
+- Simple cap rules, leaving v1's lock_profit rows as they actually settled:
+
+  - First fillable B at ≥50¢: hits 71, average hit −$2.29, combined net about −$7.
+  - First locked loss ≤ $1.50: hits 49, misses 22 still at −$5, average hit only −$0.58, combined net about **+$17**. Best of the tight caps, but it leaves the gapped books uncapped.
+  - First locked loss ≤ $1.00: net still negative (~−$22).
+  - Soft lock at combined ≤ $1.03 only: hits 21, not enough by itself.
+
+- The rule that looked best on this sample was a **cascade**: take a 2¢ lock when it appears; otherwise a soft lock at combined ≤ $1.03; otherwise, once B has risen off its post-A low (or is already 50¢+, or the lead has flipped / A's bid is ≤40¢), buy B if the locked loss is ≤ $1.50, or ≤ $3.00 if the book has already gapped, or still buy B if that is meaningfully better than riding A's full ~$5. On the overnight a_only set that was 70/72 hits, a_only about −$122, **combined net about +$38** (BTC ~+$26, ETH ~+$18, SOL ~−$7, XRP ~−$4) if lock_profit is left unchanged. Two windows had no usable B and would still be a_only (cash-out is meant to catch those live).
+- Tightening A's max ask alone (skip 70–80¢ entries) also helps the net, but 80–90¢ actually locked most of the time and was profitable. The leak is the uncapped a_only, not expensive A by itself. v2 keeps the same A window and 80¢ max ask.
+- Risk we could not fully measure: a soft lock at $1.03, or an early $1.50 cap, might fire on a window that would have locked a 2¢ profit a few seconds later. A 2¢ lock is still preferred when it is on the book. The cap only fires after a short hold and only when the other side has moved against us, so a steadily cheapening B should still be left alone until it locks.
+
+Public trade prints are a proxy, not our live best-ask/size snapshots. Thin SOL/XRP 5-minute books were the noisiest (some first fillable B prints at 80–90¢).
+
+## Rule changes in v2
+
+v1 (`ab_hedge_5m` / `_15m` / `_1h`) is untouched.
+
+v2 keeps the same A entry (leading side, about $5 including the fee, same time windows, 20–80¢ ask band, same share count for B, best-ask must fill, still excluded from auto_pick / bankroll_20). New B / exit rules:
+
+1. **lock_profit** — still at least 2¢/share of guaranteed profit (combined cost ≤ about 98¢). Taken immediately when it is on the book.
+2. **soft_lock** — if the combined taker cost is ≤ $1.03/share, buy B anyway and accept a scratch or a few cents of locked loss. This is the "Watching Up at 26¢: combined 103.7¢… too soon to cap" case from v1.
+3. **limit_loss** — no back-half requirement. After a short hold (10s on 5m, 20s on 15m, 60s on 1h), buy B when any of these is true: the lead has flipped, A's bid is ≤40¢, B's ask has risen at least 5¢ off the best print we have seen this window and is at least 40¢, or B is already 50¢+. Cap the pair at about −$1.50 when we can, or −$3.00 if the book has gapped, or still buy B if that is at least 25¢ better than riding A to a full loss. Combined cost may be over $1.
+4. **cash_out** — if we need to cap and B is too thin or even a wide cap would be worse than selling A, sell A into the live best bid (when that bid can fill the whole size and the sale is better than a full loss). Used as a fallback, not the main hedge. These are not generic cash-out variants; auto_pick still ignores them.
+
+Pairs still go to `data/week2/ab_hedge_pairs.csv`, with `soft_lock` and `cash_out` as statuses alongside `lock_profit` / `limit_loss` / `a_only`. `summarize.py` now breaks the recap out by variant so v1 and v2 sit side by side.
+
+## Deploy
+
+Safe deploy: push `main`, wait for a fresh state save to the `data` branch, then cancel the in-progress slice so the `if: always()` chain starts a new slice on the new SHA.
+
+- BTC: (fill after deploy)
+- ETH: (fill after deploy)
+- SOL: (fill after deploy)
+- XRP: (fill after deploy)
+
+Early live v2 pairs will be added here once the new slices have settled a few windows. Until then, v1 is still running in parallel for a clean comparison. This is still week-2 paper, through Dec 7, 2026, 11:30 AM PT. Week-1 data was not touched.
