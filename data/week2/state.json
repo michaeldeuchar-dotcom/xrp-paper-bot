@@ -1112,10 +1112,47 @@
     "to": "trend_down",
     "ts_pt": "2026-11-23 12:21:01 PT",
     "why": "control no longer qualifies"
+   },
+   {
+    "from": "trend_down",
+    "scope": "6h",
+    "scores": {
+     "breakdown": [
+      0.0,
+      0
+     ],
+     "control": [
+      -18.75,
+      39
+     ],
+     "down_ride": [
+      -10.88,
+      9
+     ],
+     "model_lead": [
+      3.7,
+      4
+     ],
+     "ride_favorite_80": [
+      -41.33,
+      46
+     ],
+     "trend_down": [
+      3.47,
+      4
+     ],
+     "trend_volume": [
+      0.61,
+      5
+     ]
+    },
+    "to": "trend_volume",
+    "ts_pt": "2026-11-23 19:06:00 PT",
+    "why": "trend_down no longer qualifies"
    }
   ],
-  "last_check_ws": 1795488900,
-  "leader": "trend_down",
+  "last_check_ws": 1795490100,
+  "leader": "trend_volume",
   "scope": "6h",
   "scores": {
    "breakdown": [
@@ -1123,8 +1160,8 @@
     0
    ],
    "control": [
-    -21.84,
-    40
+    -12.61,
+    39
    ],
    "down_ride": [
     -10.88,
@@ -1135,16 +1172,16 @@
     4
    ],
    "ride_favorite_80": [
-    -41.15,
+    -47.2,
     46
    ],
    "trend_down": [
-    0.54,
-    5
+    3.47,
+    4
    ],
    "trend_volume": [
-    -2.33,
-    6
+    0.61,
+    5
    ]
   }
  },
@@ -1153,7 +1190,7 @@
   "busted": false,
   "busted_at": null,
   "equity": 0.271,
-  "following": "trend_down",
+  "following": "trend_volume",
   "funded": true,
   "goal": 1000.0,
   "goal_reached": false,
@@ -1164,14 +1201,14 @@
   "variant": "bankroll_20"
  },
  "crowd_stats": {
-  "bets": 22,
-  "comments_empty": 45,
+  "bets": 23,
+  "comments_empty": 49,
   "comments_failed": 0,
   "comments_present": 0,
   "flow_failed": 0,
-  "flow_ok": 12,
-  "last": "comments in-window=0 (Up 0/Down 0, fetched 0); buy flow Up $5 vs Down $11 (3 buys); bid size Up 5 vs Down 12",
-  "windows": 45
+  "flow_ok": 13,
+  "last": "comments in-window=0 (Up 0/Down 0, fetched 0); buy flow Up $2 vs Down $18 (7 buys); bid size Up 5 vs Down 15",
+  "windows": 49
  },
  "crowd_windows": [
   1795475700,
@@ -1218,17 +1255,21 @@
   1795488000,
   1795488300,
   1795488600,
-  1795488900
+  1795488900,
+  1795489200,
+  1795489500,
+  1795489800,
+  1795490100
  ],
  "max_profit": {
-  "balance": 54.7097,
-  "equity": 54.7097,
+  "balance": 53.6811,
+  "equity": 53.6811,
   "floor": 12.0,
   "funded": true,
   "funded_at": "2026-11-23 15:17:48 PT",
-  "last_signal": "crowd",
-  "n_bets": 13,
-  "n_settled": 13,
+  "last_signal": "model_lead",
+  "n_bets": 14,
+  "n_settled": 14,
   "paused": false,
   "paused_at": null,
   "rest": {},
@@ -1237,43 +1278,47 @@
  },
  "open": [
   {
-   "shares": 10.81,
+   "shares": 6.23,
    "side": "Down",
    "tf": "5m",
-   "total_cost": 4.17608677,
-   "trade_id": "W000548",
-   "ts_fill": 1795489021.234367,
-   "variant": "crowd",
-   "window_start": 1795488900
+   "total_cost": 4.9940489900000005,
+   "trade_id": "W000558",
+   "ts_fill": 1795490179.3710093,
+   "variant": "control",
+   "window_start": 1795490100
   },
   {
-   "shares": 5.46,
-   "side": "Up",
+   "shares": 5.0,
+   "side": "Down",
    "tf": "5m",
-   "total_cost": 4.99990218,
-   "trade_id": "W000550",
-   "ts_fill": 1795489095.4590697,
+   "total_cost": 2.8862400000000004,
+   "trade_id": "W000559",
+   "ts_fill": 1795490213.3684473,
+   "variant": "model_lead",
+   "window_start": 1795490100
+  },
+  {
+   "shares": 5.19,
+   "side": "Down",
+   "tf": "5m",
+   "total_cost": 4.06064043,
+   "trade_id": "W000561",
+   "ts_fill": 1795490221.7597988,
+   "variant": "crowd",
+   "window_start": 1795490100
+  },
+  {
+   "shares": 6.16,
+   "side": "Down",
+   "tf": "5m",
+   "total_cost": 4.9969920000000005,
+   "trade_id": "W000562",
+   "ts_fill": 1795490281.7560546,
    "variant": "ride_favorite_80",
-   "window_start": 1795488900
+   "window_start": 1795490100
   }
  ],
  "ptb": {
-  "1795481700": {
-   "p": 0.9405328333333334,
-   "src": "own_spot_samples_60s"
-  },
-  "1795482000": {
-   "p": 0.9417878333333333,
-   "src": "own_spot_samples_60s"
-  },
-  "1795482300": {
-   "p": 0.9440106666666667,
-   "src": "own_spot_samples_60s"
-  },
-  "1795482600": {
-   "p": 0.9454305000000001,
-   "src": "own_spot_samples_60s"
-  },
   "1795482900": {
    "p": 0.9478588333333333,
    "src": "own_spot_samples_60s"
@@ -1357,10 +1402,26 @@
   "1795488900": {
    "p": 0.9395471666666667,
    "src": "own_spot_samples_60s"
+  },
+  "1795489200": {
+   "p": 0.9415945,
+   "src": "own_spot_samples_60s"
+  },
+  "1795489500": {
+   "p": 0.9411651666666666,
+   "src": "own_spot_samples_60s"
+  },
+  "1795489800": {
+   "p": 0.9345874999999999,
+   "src": "own_spot_samples_60s"
+  },
+  "1795490100": {
+   "p": 0.9349546666666666,
+   "src": "own_spot_samples_60s"
   }
  },
  "scale_pos": {},
- "seq": 551,
+ "seq": 564,
  "traded_windows": {
   "auto_pick": [
    1795408800,
@@ -1525,7 +1586,10 @@
    1795487400,
    1795487700,
    1795488000,
-   1795488600
+   1795488600,
+   1795489200,
+   1795489800,
+   1795490100
   ],
   "crowd": [
    1795478700,
@@ -1537,7 +1601,8 @@
    1795485000,
    1795488000,
    1795488600,
-   1795488900
+   1795488900,
+   1795490100
   ],
   "down_ride": [
    1795406700,
@@ -1580,7 +1645,8 @@
    "5m:1795487400",
    "5m:1795488000",
    "5m:1795488600",
-   "5m:1795488900"
+   "5m:1795488900",
+   "5m:1795490100"
   ],
   "model_lead": [
    1795412400,
@@ -1595,7 +1661,8 @@
    1795473300,
    1795473900,
    1795485600,
-   1795487400
+   1795487400,
+   1795490100
   ],
   "model_lead_15m": [
    1795487400
@@ -1604,10 +1671,10 @@
    1795473300,
    1795473900,
    1795485600,
-   1795487400
+   1795487400,
+   1795490100
   ],
   "ride_favorite_80": [
-   1795453200,
    1795453800,
    1795454100,
    1795454400,
@@ -1684,7 +1751,10 @@
    1795487700,
    1795488000,
    1795488300,
-   1795488900
+   1795488900,
+   1795489200,
+   1795489800,
+   1795490100
   ],
   "ride_favorite_80_xo": [
    1795472100,
@@ -1723,7 +1793,10 @@
    1795487700,
    1795488000,
    1795488300,
-   1795488900
+   1795488900,
+   1795489200,
+   1795489800,
+   1795490100
   ],
   "trend_down": [
    1795421700,
