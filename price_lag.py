@@ -150,15 +150,27 @@ def record_spot(state: dict, now: float, spot: float, keep_sec: float = 30.0) ->
 
 
 def fresh_move(state: dict, now: float, spot: float, need: float, lookback: float) -> tuple[float, float]:
-    """Largest |spot - earlier| over the lookback window. Returns (move, seconds_ago)."""
-    best_move, best_age = 0.0, 0.0
+    """Signed spot change vs the quote closest to now-lookback. Positive = spot rose."""
+    target = now - float(lookback)
+    best = None
     for t, p in _history(state):
         age = now - t
-        if 0.2 <= age <= lookback + 1e-9:
-            mv = abs(float(spot) - float(p))
-            if mv >= best_move:
-                best_move, best_age = mv, age
-    return best_move, best_age
+        if age < 0.2 or age > lookback + 1.5:
+            continue
+        if best is None or abs(t - target) < abs(best[0] - target):
+            best = (t, p)
+    if best is None:
+        return 0.0, 0.0
+    return float(spot) - float(best[1]), now - best[0]
+
+
+def _fmt_px(x: float) -> str:
+    ax = abs(float(x))
+    if ax >= 1:
+        return f"${x:,.2f}"
+    if ax >= 0.01:
+        return f"${x:.3f}"
+    return f"${x:.5f}"
 
 
 def _stats(state: dict, name: str) -> dict:
@@ -207,8 +219,8 @@ def decide(name: str, v: dict, *, state: dict, books: dict, secs_left: float, sp
     min_edge = float(v.get("min_edge", 0.05))
     lookback = float(v.get("fresh_lookback_sec", 8))
     need = min_fresh_move(spot, v)
-    move, age = fresh_move(state, now, spot, need, lookback)
-    is_fresh = move >= need - 1e-12
+    signed, age = fresh_move(state, now, spot, need, lookback)
+    move = abs(signed)
 
     # Edge on each side vs the best ask, after the taker fee.
     cands = []
@@ -232,23 +244,34 @@ def decide(name: str, v: dict, *, state: dict, books: dict, secs_left: float, sp
     if not cands:
         return D("skip", "no_book", "No best ask on either side.")
 
-    edge, side, book, ask, fps, est = cands[0]
-    kw = dict(side=side, est_prob=est, ask=ask, ask_size=book.best_ask_size,
-              fee_ps=fps, edge=edge, market_p_up=mid_up)
-
-    if edge < min_edge - 1e-12:
+    # Prefer a side whose fresh move matches the bet (Up only after a rise, Down only after a fall).
+    edged = [c for c in cands if c[0] >= min_edge - 1e-12]
+    if not edged:
+        edge, side, book, ask, fps, est = cands[0]
+        kw = dict(side=side, est_prob=est, ask=ask, ask_size=book.best_ask_size,
+                  fee_ps=fps, edge=edge, market_p_up=mid_up)
         return D("skip", "edge_small",
                  f"{side} at {ask*100:.0f}c: model {est:.0%} minus price+fee leaves {edge*100:.1f}c "
                  f"(need {min_edge*100:.0f}c after the fee and a safety buffer).", **kw)
 
-    # Qualifying model-vs-book edge. Count it, then see if the move is still fresh.
+    def directed(side):
+        return signed if side == "Up" else -signed
+
+    fresh_cands = [c for c in edged if directed(c[1]) >= need - 1e-12]
     st["opportunities"] = int(st.get("opportunities") or 0) + 1
-    if not is_fresh:
+    if not fresh_cands:
+        edge, side, book, ask, fps, est = edged[0]
+        kw = dict(side=side, est_prob=est, ask=ask, ask_size=book.best_ask_size,
+                  fee_ps=fps, edge=edge, market_p_up=mid_up)
         log_row("stale_edge", "edge_but_move_not_fresh", side, ask, fps, edge, est)
         return D("skip", "not_fresh",
                  f"{side} is {edge*100:.1f}c cheap vs the model ({est:.0%} vs {ask*100:.0f}c + fee), "
-                 f"but spot has only moved ${move:.2f} in the last {lookback:.0f}s (need ${need:.2f} "
-                 f"for a fresh unpriced move). Logged as a stale edge, not a trade.", **kw)
+                 f"but spot has only moved {_fmt_px(signed)} in the last {lookback:.0f}s "
+                 f"(need a { _fmt_px(need)} jump the same way as this bet). Logged as a stale edge, not a trade.", **kw)
+
+    edge, side, book, ask, fps, est = fresh_cands[0]
+    kw = dict(side=side, est_prob=est, ask=ask, ask_size=book.best_ask_size,
+              fee_ps=fps, edge=edge, market_p_up=mid_up)
 
     st["fresh_opportunities"] = int(st.get("fresh_opportunities") or 0) + 1
 
@@ -279,12 +302,12 @@ def decide(name: str, v: dict, *, state: dict, books: dict, secs_left: float, sp
 
     fee = shares * fps
     total = shares * ask + fee
-    eng = (f"Price lag: spot jumped ${move:.2f} in {age:.1f}s and the book hasn't caught up. "
+    eng = (f"Price lag: spot jumped {_fmt_px(signed)} in {age:.1f}s and the book hasn't caught up. "
            f"I put {side} at {est:.0%} (strike {use_src} {use_ptb:.2f}, spot {spot:.2f}, {secs_left:.0f}s left); "
            f"{side} is still offered at {ask*100:.0f}c + {fps*100:.1f}c fee, edge {edge*100:.1f}c. "
            f"Buying {shares:.2f} sh for ${total:.2f}. Fastest feed {fastest_feed or 'n/a'} "
            f"in {fastest_ms:.0f} ms." if fastest_ms is not None else
-           f"Price lag: spot jumped ${move:.2f} in {age:.1f}s; {side} at {est:.0%} vs {ask*100:.0f}c, "
+           f"Price lag: spot jumped {_fmt_px(signed)} in {age:.1f}s; {side} at {est:.0%} vs {ask*100:.0f}c, "
            f"edge {edge*100:.1f}c. Buying {shares:.2f} sh for ${total:.2f}.")
     if note:
         eng += f" ({note})"
