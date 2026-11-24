@@ -197,3 +197,45 @@ Safe deploy: push `main`, wait for a fresh state save to the `data` branch, then
 - XRP: (fill after deploy)
 
 Early live v2 pairs will be added here once the new slices have settled a few windows. Until then, v1 is still running in parallel for a clean comparison. This is still week-2 paper, through Dec 7, 2026, 11:30 AM PT. Week-1 data was not touched.
+
+# 2026-11-24 — price_lag, sum_arb, and a daily-loss kill switch (fake money)
+
+New paper variants, run beside the existing ones, on 5-minute, 15-minute, and hourly Up/Down markets for all four fleets. They are excluded from auto_pick and bankroll_20. Per-bet cap remains $10 including the fee. Fake money only; no live orders, no wallet key.
+
+## What was built
+
+### 1. `price_lag_5m` / `_15m` / `_1h`
+
+The idea is a real lag edge: live exchange spot jumps, and the Polymarket book has not caught up yet.
+
+**How these markets resolve.** Polymarket's crypto Up/Down markets resolve on Chainlink's 60-second TWAP (for BTC, the `btc-usd-twap-60s-streams` feed; the same rule applies to ETH, SOL, and XRP). "Up" if TWAP60 at the window end is at least TWAP60 at the window start. Official Chainlink Data Streams REST/WebSocket access needs an API key we do not have, and Polymarket's `price.crypto.twap` channel also needs CLOB credentials, so we do not call those. What we *can* use:
+
+- **Strike (price to beat):** official `eventMetadata.priceToBeat` once Polymarket publishes it; otherwise the *previous* window's official `finalPrice` (that value is this window's strike, once it appears, usually a short time after the close). Until then, the bot's existing proxy: our own last-60-second spot TWAP, or a Coinbase 1-minute typical price. The usual basis-noise term stays in the probability model (Coinbase-vs-Chainlink, about $15 sd on BTC, 3–4 bps on the alts).
+- **Live spot:** the same public USD feeds the bot already polls every cycle — Coinbase Exchange, Coinbase retail, Kraken, Bitstamp — now with per-feed wall-clock latency recorded. Gemini is pinged as an extra USD print and used only when it is within 20 bps of the others. Binance.com returned HTTP 451 (geo-blocked) from this environment; Binance.US was reachable but printed a stale/off price; Bybit returned 403; OKX is a USDT book and is not mixed into a USD strike.
+
+**When it bets.** It estimates P(Up) with the existing normal-CDF / remaining-time / short-term-vol model. It bets only when the best ask on a side is below that model probability by at least 5¢ after the taker fee (`shares × 0.07 × p × (1−p)`), **and** spot has jumped by a fresh threshold in the last 8 seconds (BTC $20, ETH $1.50, SOL $0.12, XRP $0.0015 — about 1.5× the usual proxy noise). A fat model-vs-book gap with no fresh move is logged as a stale edge, not a trade. About $5 including the fee, 5-share minimum, $10 cap. Best ask must fill the whole size.
+
+These variants are allowed in the first minute of a 5-minute window (and the first three minutes of a 15-minute window), because a lag edge is most useful before the book catches up. The global first-minute skip is unchanged for every other bot.
+
+Every qualifying edge (fresh or stale) is written to `data/week2/price_lag_trades.csv` with model probability, ask, edge, strike source, size of the spot jump, and feed latency.
+
+### 2. `sum_arb_5m` / `_15m` / `_1h`
+
+Every poll, if best ask Up + best ask Down + both taker fees is at least 2¢ under $1/share and both best asks can fill, buy the same number of shares of each side (total under $10). That locks a guaranteed profit at settlement. Every combined-cost-under-$1 print is logged to `data/week2/sum_arb_ops.csv` even when the book is too thin or the edge is inside the 2¢ buffer. This is likely rare; the log is the point.
+
+### 3. Daily-loss kill switch (new variants only)
+
+Each of the new variants pauses itself for the rest of the PT calendar day if its own settled paper P&L for that day is at or past −$20 (two full $10 losses, or four typical $5 ones). Existing variants are not touched. Week-2 data so far (BTC snapshot around midday PT on Nov 24) showed `blend_wide`, `model_early`, `legacy_fixed`, `crowd`, and `main` slightly green and several others red, including `ride_favorite` and early `ab_hedge`; nothing existing was disabled in this change.
+
+`summarize.py` (and therefore `pull_results.sh`) now prints a price-lag line and a sum-arb line: how often edges appeared, how many were fresh vs stale or too thin, and settled paper P&L.
+
+## Deploy
+
+Safe deploy: push `main`, wait for a fresh state save to the `data` branch, then cancel the in-progress slice so the chain restarts on the new SHA.
+
+- BTC: (fill after deploy)
+- ETH: (fill after deploy)
+- SOL: (fill after deploy)
+- XRP: (fill after deploy)
+
+Early opportunity counts, feed latency, and paper P&L will be added here once the new slices have had a first stretch. This is still week-2 paper, through Dec 7, 2026, 11:30 AM PT. Week-1 data was not touched.
