@@ -512,7 +512,7 @@
     "desc": "DISABLED Nov 24 (no new bets; open bets still settle; history kept): 102 settled, -$23.75 fake here; losing in all four fleets (436 settled, -$74.01 combined for v2_5m; 624 settled, -$104.29 combined for v1 15m). A/B HEDGE v2 (5m, fake money): same A entry as ab_hedge_5m (leading side, about $5 including the fee, 60-120s into the window), kept beside v1 so we can compare. The change is how we cap a losing A. If the two sides together cost $1.03 or less per share, B buys immediately (a 'soft lock' \u2014 a tiny guaranteed loss or scratch instead of waiting for a 2-cent profit that often never comes). If the lead flips, A's bid drops to 40c or below, or the other side's ask rises to 40c+ off its best print (or is already 50c+), B buys even when the combined cost is over $1, as long as that caps the pair at about -$1.50, or at -$3.00 if the book has already gapped. If B is too thin or even a $3 cap would be worse than selling A, we sell A into the live bid. Not used by auto_pick or bankroll_20."
   },
   "ab_hedge_v2_15m": {
-    "enabled": true,
+    "enabled": false,
     "mode": "ab_hedge",
     "ab_hedge_v2": true,
     "timeframe": "15m",
@@ -539,7 +539,7 @@
     "cash_out_max_bid": 0.45,
     "min_edge": 0,
     "circuit_breaker": "watch",
-    "desc": "A/B HEDGE v2 (15m, fake money): same A entry as ab_hedge_15m, with the looser v2 cap rules (soft lock at a combined $1.03/share, a -$1.50 / -$3.00 damage-limit B buy when the lead flips or the other side cheapens against us, and a sell of A into the bid if B is too thin). Not used by auto_pick or bankroll_20."
+    "desc": "DISABLED Nov 25 (no new bets; open bets still settle; history kept): 53 settled pairs, -$25.62 fake here; losing in all four fleets (225 settled pairs, -$102.24 combined). A/B HEDGE v2 (15m, fake money): same A entry as ab_hedge_15m, with the looser v2 cap rules (soft lock at a combined $1.03/share, a -$1.50 / -$3.00 damage-limit B buy when the lead flips or the other side cheapens against us, and a sell of A into the bid if B is too thin). Not used by auto_pick or bankroll_20."
   },
   "ab_hedge_v2_1h": {
     "enabled": true,
