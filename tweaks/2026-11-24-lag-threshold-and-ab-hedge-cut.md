@@ -24,4 +24,7 @@ Checks before push: `python -m py_compile *.py`, a dry `load_variants()` (ab_hed
 
 Same safe method as before: push `main`, wait for the running slice's next state save to `data`, cancel that slice so the chain restarts on the new commit, confirm a fresh heartbeat.
 
-(Run IDs and restart times are added right after the restart.)
+- Pushed `1c11c52` at about 4:55 PM PT.
+- The running slice 45497608425 saved state at 5:06 PM PT and was cancelled right after; the chain restarted on `1c11c52` as run [45523300355](https://github.com/michaeldeuchar-dotcom/xrp-paper-bot/actions/runs/45523300355) at 5:06 PM PT.
+- First save from the new slice: 5:27 PM PT, heartbeat healthy (600 cycles, spot feed 100% OK, 0 errors). START log lists ab_hedge_15m/1h and all ab_hedge_v2 variants, no ab_hedge_5m. The last ab_hedge_5m bets (opened before the restart) all settled normally.
+- First 20 min with the new $0.0003 bar: 47 price_lag log rows, all stale (biggest move $0.0009 but not inside the 8-second / same-direction rule at an edge); no lag fill yet.
