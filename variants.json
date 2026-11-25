@@ -144,8 +144,8 @@
     "min_hold_sec": 20
   },
   "ride_favorite_80_xo": {
-    "enabled": true,
-    "desc": "CASH OUT (5m): same entry as ride_favorite_80, but can sell early into the live best bid (only if that bid has enough size for the full position) and pays the taker fee on the sale. Take profit if the bid reaches 95c or the sale would make about +10% after the sell fee. Stop loss if the position is down about 45% (sale proceeds at most 55% of what we paid). Also sells if the price lead flips against us with a minute or less left (and we're in the back half of the window). Holds at least 20 seconds, and leaves the last 8 seconds for the official result. If none of those happen, holds to settlement like the original.",
+    "enabled": false,
+    "desc": "DISABLED Nov 25 (no new bets; open bets still settle; history kept): 203 settled, -$142.33 (the hold-to-settlement original ride_favorite_80 is -$116.36 over 236) fake here; the favorite cash-out copy lost more than holding in all four fleets (824 settled, -$310.42 combined). CASH OUT (5m): same entry as ride_favorite_80, but can sell early into the live best bid (only if that bid has enough size for the full position) and pays the taker fee on the sale. Take profit if the bid reaches 95c or the sale would make about +10% after the sell fee. Stop loss if the position is down about 45% (sale proceeds at most 55% of what we paid). Also sells if the price lead flips against us with a minute or less left (and we're in the back half of the window). Holds at least 20 seconds, and leaves the last 8 seconds for the official result. If none of those happen, holds to settlement like the original.",
     "timeframe": "5m",
     "mode": "favorite",
     "base_stake": 5,
@@ -542,7 +542,7 @@
     "desc": "DISABLED Nov 25 (no new bets; open bets still settle; history kept): 53 settled pairs, -$25.62 fake here; losing in all four fleets (225 settled pairs, -$102.24 combined). A/B HEDGE v2 (15m, fake money): same A entry as ab_hedge_15m, with the looser v2 cap rules (soft lock at a combined $1.03/share, a -$1.50 / -$3.00 damage-limit B buy when the lead flips or the other side cheapens against us, and a sell of A into the bid if B is too thin). Not used by auto_pick or bankroll_20."
   },
   "ab_hedge_v2_1h": {
-    "enabled": true,
+    "enabled": false,
     "mode": "ab_hedge",
     "ab_hedge_v2": true,
     "timeframe": "1h",
@@ -569,7 +569,7 @@
     "cash_out_max_bid": 0.45,
     "min_edge": 0,
     "circuit_breaker": "watch",
-    "desc": "A/B HEDGE v2 (1h, fake money): same A entry as ab_hedge_1h (about 12-24 minutes into the hour), with the looser v2 cap rules. Hourly books were already the kindest to v1; v2 is here so we can compare the same cap rules on every timeframe. Not used by auto_pick or bankroll_20."
+    "desc": "DISABLED Nov 25 (no new bets; open bets still settle; history kept): 18 settled pairs, -$11.48 fake here; losing in all four fleets (72 settled pairs, -$35.34 combined; only 3 of 72 locked a profit). A/B HEDGE v2 (1h, fake money): same A entry as ab_hedge_1h (about 12-24 minutes into the hour), with the looser v2 cap rules. Hourly books were already the kindest to v1; v2 is here so we can compare the same cap rules on every timeframe. Not used by auto_pick or bankroll_20."
   },
   "price_lag_5m": {
     "enabled": true,
