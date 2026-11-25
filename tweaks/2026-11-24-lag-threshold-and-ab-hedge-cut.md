@@ -27,4 +27,4 @@ Same safe method as before: push `main`, wait for the running slice's next state
 - Pushed `1c11c52` at about 4:55 PM PT.
 - The running slice 45497608425 saved state at 5:06 PM PT and was cancelled right after; the chain restarted on `1c11c52` as run [45523300355](https://github.com/michaeldeuchar-dotcom/xrp-paper-bot/actions/runs/45523300355) at 5:06 PM PT.
 - First save from the new slice: 5:27 PM PT, heartbeat healthy (600 cycles, spot feed 100% OK, 0 errors). START log lists ab_hedge_15m/1h and all ab_hedge_v2 variants, no ab_hedge_5m. The last ab_hedge_5m bets (opened before the restart) all settled normally.
-- First 20 min with the new $0.0003 bar: 47 price_lag log rows, all stale (biggest move $0.0009 but not inside the 8-second / same-direction rule at an edge); no lag fill yet.
+- First 20 min with the new $0.0003 bar: 47 price_lag log rows, all stale. The one move past the bar ($0.0009) went the opposite way to the cheap side, so the same-direction rule skipped it; no lag fill yet.
