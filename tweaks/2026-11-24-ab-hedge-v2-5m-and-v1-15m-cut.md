@@ -9,3 +9,5 @@ Run-to-date week-2 numbers at 8:45 PM PT:
 Kept running for more data: ab_hedge_v2_15m (also negative so far, ~320 settled, about -$69, to be reviewed next), ab_hedge_1h and ab_hedge_v2_1h (small samples, about breakeven / slightly negative). price_lag changes from 5:06 PM are still too new to judge. auto_pick / bankroll_20 unchanged (originals only). $10 per-bet cap unchanged.
 
 Deploy: push main, wait for the running slice's next state save, cancel it so the chain restarts on the new commit. Paper mode only; data/week1 untouched.
+
+Deployed: commit 82aed88; the running slice saved state at ~8:47 PM PT and was cancelled right after; the chain restarted on the new commit as run 45549216438 (~8:48 PM PT, in progress).
