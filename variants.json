@@ -413,7 +413,7 @@
     "max_secs_left": 240
   },
   "ab_hedge_5m": {
-    "enabled": true,
+    "enabled": false,
     "mode": "ab_hedge",
     "timeframe": "5m",
     "exclude_from_rank": true,
@@ -433,7 +433,7 @@
     "limit_loss_min_hold_sec": 20,
     "min_edge": 0,
     "circuit_breaker": "watch",
-    "desc": "A/B HEDGE (5m): an A bot and a B bot on opposite sides, trying to pull a win off a loss. A buys early-ish (about 60-120s into the 5-minute window, after the first-minute skip) on whichever side the coin's price already leads, about $5 including the fee (5-share minimum, $10 cap). B watches the other side for the rest of the window and only buys the same number of shares if A's cost + B's ask + both taker fees is at least 2 cents under $1/share, which locks a small guaranteed profit at settlement. If that cheap hedge never appears, B may still buy in the back half when A is badly losing (price lead flipped and A is down about 40%) to cap the locked loss at about 10 cents/share (logged as limit_loss, not lock_profit). If neither happens, A just rides to the official result alone. Uses real book depth (skips if the best ask is too small). Fake money only. Not used by auto_pick or bankroll_20."
+    "desc": "DISABLED Nov 24 (no new bets; open bets still settle; history kept): 257 settled bets, net -$46.99 fake; losing in all four fleets. A/B HEDGE (5m): an A bot and a B bot on opposite sides, trying to pull a win off a loss. A buys early-ish (about 60-120s into the 5-minute window, after the first-minute skip) on whichever side the coin's price already leads, about $5 including the fee (5-share minimum, $10 cap). B watches the other side for the rest of the window and only buys the same number of shares if A's cost + B's ask + both taker fees is at least 2 cents under $1/share, which locks a small guaranteed profit at settlement. If that cheap hedge never appears, B may still buy in the back half when A is badly losing (price lead flipped and A is down about 40%) to cap the locked loss at about 10 cents/share (logged as limit_loss, not lock_profit). If neither happens, A just rides to the official result alone. Uses real book depth (skips if the best ask is too small). Fake money only. Not used by auto_pick or bankroll_20."
   },
   "ab_hedge_15m": {
     "enabled": true,
@@ -583,7 +583,7 @@
     "min_ask": 0.15,
     "max_ask": 0.85,
     "min_edge": 0.05,
-    "min_fresh_usd": 0.0015,
+    "min_fresh_usd": 0.0003,
     "fresh_lookback_sec": 8,
     "base_stake": 5,
     "max_stake": 5,
@@ -593,7 +593,7 @@
     "daily_loss_limit": 20,
     "min_edge_for_size": 0,
     "circuit_breaker": "watch",
-    "desc": "PRICE LAG (5m, fake money): compare live public USD exchange prices (Coinbase, Kraken, Bitstamp, plus Gemini when it agrees) to the window's Chainlink TWAP60 strike \u2014 official Polymarket priceToBeat / previous window's finalPrice when published, otherwise the bot's usual proxy \u2014 and bet only when the Polymarket best ask is cheaper than the model probability by at least 5c after the taker fee, AND spot has just jumped at least 0.0015 dollars in the last 8 seconds (the book hasn't caught up yet). Any time in the 5-minute window, including the first minute (a lag edge is most useful before the book catches up). About $5 including the fee, 5-share minimum, $10 cap. Pauses if this variant is down $20 on the PT day. Not used by auto_pick or bankroll_20."
+    "desc": "PRICE LAG (5m, fake money): compare live public USD exchange prices (Coinbase, Kraken, Bitstamp, plus Gemini when it agrees) to the window's Chainlink TWAP60 strike \u2014 official Polymarket priceToBeat / previous window's finalPrice when published, otherwise the bot's usual proxy \u2014 and bet only when the Polymarket best ask is cheaper than the model probability by at least 5c after the taker fee, AND spot has just jumped at least 0.0003 dollars in the last 8 seconds (the book hasn't caught up yet). Any time in the 5-minute window, including the first minute (a lag edge is most useful before the book catches up). About $5 including the fee, 5-share minimum, $10 cap. Pauses if this variant is down $20 on the PT day. Not used by auto_pick or bankroll_20."
   },
   "sum_arb_5m": {
     "enabled": true,
@@ -623,7 +623,7 @@
     "min_ask": 0.15,
     "max_ask": 0.85,
     "min_edge": 0.05,
-    "min_fresh_usd": 0.0015,
+    "min_fresh_usd": 0.0003,
     "fresh_lookback_sec": 8,
     "base_stake": 5,
     "max_stake": 5,
@@ -633,7 +633,7 @@
     "daily_loss_limit": 20,
     "min_edge_for_size": 0,
     "circuit_breaker": "watch",
-    "desc": "PRICE LAG (15m, fake money): compare live public USD exchange prices (Coinbase, Kraken, Bitstamp, plus Gemini when it agrees) to the window's Chainlink TWAP60 strike \u2014 official Polymarket priceToBeat / previous window's finalPrice when published, otherwise the bot's usual proxy \u2014 and bet only when the Polymarket best ask is cheaper than the model probability by at least 5c after the taker fee, AND spot has just jumped at least 0.0015 dollars in the last 8 seconds (the book hasn't caught up yet). Any time in the 15-minute window, including the first three minutes. About $5 including the fee, 5-share minimum, $10 cap. Pauses if this variant is down $20 on the PT day. Not used by auto_pick or bankroll_20."
+    "desc": "PRICE LAG (15m, fake money): compare live public USD exchange prices (Coinbase, Kraken, Bitstamp, plus Gemini when it agrees) to the window's Chainlink TWAP60 strike \u2014 official Polymarket priceToBeat / previous window's finalPrice when published, otherwise the bot's usual proxy \u2014 and bet only when the Polymarket best ask is cheaper than the model probability by at least 5c after the taker fee, AND spot has just jumped at least 0.0003 dollars in the last 8 seconds (the book hasn't caught up yet). Any time in the 15-minute window, including the first three minutes. About $5 including the fee, 5-share minimum, $10 cap. Pauses if this variant is down $20 on the PT day. Not used by auto_pick or bankroll_20."
   },
   "sum_arb_15m": {
     "enabled": true,
@@ -663,7 +663,7 @@
     "min_ask": 0.15,
     "max_ask": 0.85,
     "min_edge": 0.05,
-    "min_fresh_usd": 0.0015,
+    "min_fresh_usd": 0.0003,
     "fresh_lookback_sec": 8,
     "base_stake": 5,
     "max_stake": 5,
@@ -673,7 +673,7 @@
     "daily_loss_limit": 20,
     "min_edge_for_size": 0,
     "circuit_breaker": "watch",
-    "desc": "PRICE LAG (1h, fake money): compare live public USD exchange prices (Coinbase, Kraken, Bitstamp, plus Gemini when it agrees) to the window's Chainlink TWAP60 strike \u2014 official Polymarket priceToBeat / previous window's finalPrice when published, otherwise the bot's usual proxy \u2014 and bet only when the Polymarket best ask is cheaper than the model probability by at least 5c after the taker fee, AND spot has just jumped at least 0.0015 dollars in the last 8 seconds (the book hasn't caught up yet). Any time in the hourly window. About $5 including the fee, 5-share minimum, $10 cap. Pauses if this variant is down $20 on the PT day. Not used by auto_pick or bankroll_20."
+    "desc": "PRICE LAG (1h, fake money): compare live public USD exchange prices (Coinbase, Kraken, Bitstamp, plus Gemini when it agrees) to the window's Chainlink TWAP60 strike \u2014 official Polymarket priceToBeat / previous window's finalPrice when published, otherwise the bot's usual proxy \u2014 and bet only when the Polymarket best ask is cheaper than the model probability by at least 5c after the taker fee, AND spot has just jumped at least 0.0003 dollars in the last 8 seconds (the book hasn't caught up yet). Any time in the hourly window. About $5 including the fee, 5-share minimum, $10 cap. Pauses if this variant is down $20 on the PT day. Not used by auto_pick or bankroll_20."
   },
   "sum_arb_1h": {
     "enabled": true,
