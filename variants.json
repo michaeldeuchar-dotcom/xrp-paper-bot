@@ -436,7 +436,7 @@
     "desc": "DISABLED Nov 24 (no new bets; open bets still settle; history kept): 257 settled bets, net -$46.99 fake; losing in all four fleets. A/B HEDGE (5m): an A bot and a B bot on opposite sides, trying to pull a win off a loss. A buys early-ish (about 60-120s into the 5-minute window, after the first-minute skip) on whichever side the coin's price already leads, about $5 including the fee (5-share minimum, $10 cap). B watches the other side for the rest of the window and only buys the same number of shares if A's cost + B's ask + both taker fees is at least 2 cents under $1/share, which locks a small guaranteed profit at settlement. If that cheap hedge never appears, B may still buy in the back half when A is badly losing (price lead flipped and A is down about 40%) to cap the locked loss at about 10 cents/share (logged as limit_loss, not lock_profit). If neither happens, A just rides to the official result alone. Uses real book depth (skips if the best ask is too small). Fake money only. Not used by auto_pick or bankroll_20."
   },
   "ab_hedge_15m": {
-    "enabled": true,
+    "enabled": false,
     "mode": "ab_hedge",
     "timeframe": "15m",
     "exclude_from_rank": true,
@@ -456,7 +456,7 @@
     "limit_loss_min_hold_sec": 60,
     "min_edge": 0,
     "circuit_breaker": "watch",
-    "desc": "A/B HEDGE (15m): same A-then-B hedge as ab_hedge_5m, on the 15-minute Up/Down market. A enters early-ish (about 3-6 minutes into the window, after the 3-minute skip), about $5 including the fee. B only buys the other side if it locks at least 2 cents/share of guaranteed profit, or later as a damage-limit cap when A is badly losing. Otherwise A holds to settlement alone. Fake money only. Not used by auto_pick or bankroll_20."
+    "desc": "DISABLED Nov 24 (no new bets; open bets still settle; history kept): 151 settled, -$27.05 fake here; losing in all four fleets (436 settled, -$74.01 combined for v2_5m; 624 settled, -$104.29 combined for v1 15m). A/B HEDGE (15m): same A-then-B hedge as ab_hedge_5m, on the 15-minute Up/Down market. A enters early-ish (about 3-6 minutes into the window, after the 3-minute skip), about $5 including the fee. B only buys the other side if it locks at least 2 cents/share of guaranteed profit, or later as a damage-limit cap when A is badly losing. Otherwise A holds to settlement alone. Fake money only. Not used by auto_pick or bankroll_20."
   },
   "ab_hedge_1h": {
     "enabled": true,
@@ -482,7 +482,7 @@
     "desc": "A/B HEDGE (1h): same A-then-B hedge as ab_hedge_5m, on the hourly Up/Down market (this is the timeframe most likely to give B a cheap opposite-side ask). A enters early-ish (about 12-24 minutes into the hour), about $5 including the fee. B only buys the other side if it locks at least 2 cents/share of guaranteed profit, or later as a damage-limit cap when A is badly losing. Otherwise A holds to settlement alone. Fake money only. Not used by auto_pick or bankroll_20."
   },
   "ab_hedge_v2_5m": {
-    "enabled": true,
+    "enabled": false,
     "mode": "ab_hedge",
     "ab_hedge_v2": true,
     "timeframe": "5m",
@@ -509,7 +509,7 @@
     "cash_out_max_bid": 0.45,
     "min_edge": 0,
     "circuit_breaker": "watch",
-    "desc": "A/B HEDGE v2 (5m, fake money): same A entry as ab_hedge_5m (leading side, about $5 including the fee, 60-120s into the window), kept beside v1 so we can compare. The change is how we cap a losing A. If the two sides together cost $1.03 or less per share, B buys immediately (a 'soft lock' \u2014 a tiny guaranteed loss or scratch instead of waiting for a 2-cent profit that often never comes). If the lead flips, A's bid drops to 40c or below, or the other side's ask rises to 40c+ off its best print (or is already 50c+), B buys even when the combined cost is over $1, as long as that caps the pair at about -$1.50, or at -$3.00 if the book has already gapped. If B is too thin or even a $3 cap would be worse than selling A, we sell A into the live bid. Not used by auto_pick or bankroll_20."
+    "desc": "DISABLED Nov 24 (no new bets; open bets still settle; history kept): 102 settled, -$23.75 fake here; losing in all four fleets (436 settled, -$74.01 combined for v2_5m; 624 settled, -$104.29 combined for v1 15m). A/B HEDGE v2 (5m, fake money): same A entry as ab_hedge_5m (leading side, about $5 including the fee, 60-120s into the window), kept beside v1 so we can compare. The change is how we cap a losing A. If the two sides together cost $1.03 or less per share, B buys immediately (a 'soft lock' \u2014 a tiny guaranteed loss or scratch instead of waiting for a 2-cent profit that often never comes). If the lead flips, A's bid drops to 40c or below, or the other side's ask rises to 40c+ off its best print (or is already 50c+), B buys even when the combined cost is over $1, as long as that caps the pair at about -$1.50, or at -$3.00 if the book has already gapped. If B is too thin or even a $3 cap would be worse than selling A, we sell A into the live bid. Not used by auto_pick or bankroll_20."
   },
   "ab_hedge_v2_15m": {
     "enabled": true,
