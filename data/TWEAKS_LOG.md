@@ -358,3 +358,11 @@ Run-to-date week-2 numbers at 4:55 AM PT (settled bets):
 - trend_volume_xo (XRP): 76 settled, 50% win, -$25.95 (0 for 3 in the last 6 hours).
 
 max_profit reads its signals from the variant list regardless of "enabled", so it is unchanged. auto_pick / bankroll_20 still rank only the original 5-minute hold-to-settlement strategies; cut ones drop out of that pool. $10 per-bet cap unchanged. Paper mode only; data/week1 untouched.
+
+# 2026-11-26 (8:55 AM PT) — cut ab_hedge_1h (fake money)
+
+Routine tune-up. One variant disabled (no new bets; open bets still settle; history kept in data/week2). Nothing else changed.
+
+Run-to-date week-2 numbers at 8:50 AM PT (settled pairs): ab_hedge_1h is the last A/B hedge still on, and it is losing in all four fleets — BTC 107 -$0.45, SOL 108 -$22.07, ETH 109 -$12.84, XRP 105 -$1.05; 429 settled, -$36.41 combined (about -2% of money bet, i.e. it doesn't beat fees). The 5m/15m and v2 hedges were already cut for the same reason.
+
+auto_pick / bankroll_20 unchanged (ab_hedge was never in their ranking). $10 per-bet cap unchanged. Paper mode only; data/week1 untouched.
