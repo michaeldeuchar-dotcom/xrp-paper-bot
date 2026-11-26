@@ -348,3 +348,13 @@ Run-to-date week-2 numbers at 12:45 AM PT (settled bets):
 max_profit reads its source signals straight from the variant list (it doesn't check "enabled"), so max_profit's behavior is unchanged. auto_pick / bankroll_20 still rank only the original 5-minute hold-to-settlement strategies; the cut ones simply drop out of that pool. $10 per-bet cap unchanged.
 
 Deploy: push main, wait for the running slice's next state save, cancel it so the chain restarts on the new commit. Paper mode only; data/week1 untouched.
+
+# 2026-11-26 (4:55 AM PT) — routine cuts (fake money)
+
+Routine tune-up. Variants disabled (no new bets; open bets still settle; history kept in data/week2). Nothing else changed.
+
+Run-to-date week-2 numbers at 4:55 AM PT (settled bets):
+- down_ride: SOL 109 settled -$34.28, ETH 100 -$57.57, XRP 92 -$10.90 = 301 settled, -$102.75, losing in every fleet that runs it.
+- trend_volume_xo (XRP): 76 settled, 50% win, -$25.95 (0 for 3 in the last 6 hours).
+
+max_profit reads its signals from the variant list regardless of "enabled", so it is unchanged. auto_pick / bankroll_20 still rank only the original 5-minute hold-to-settlement strategies; cut ones drop out of that pool. $10 per-bet cap unchanged. Paper mode only; data/week1 untouched.
