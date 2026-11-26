@@ -572,7 +572,7 @@
     "desc": "DISABLED Nov 25 (no new bets; open bets still settle; history kept): 18 settled pairs, -$11.48 fake here; losing in all four fleets (72 settled pairs, -$35.34 combined; only 3 of 72 locked a profit). A/B HEDGE v2 (1h, fake money): same A entry as ab_hedge_1h (about 12-24 minutes into the hour), with the looser v2 cap rules. Hourly books were already the kindest to v1; v2 is here so we can compare the same cap rules on every timeframe. Not used by auto_pick or bankroll_20."
   },
   "price_lag_5m": {
-    "enabled": true,
+    "enabled": false,
     "mode": "price_lag",
     "timeframe": "5m",
     "exclude_from_rank": true,
@@ -593,7 +593,7 @@
     "daily_loss_limit": 20,
     "min_edge_for_size": 0,
     "circuit_breaker": "watch",
-    "desc": "PRICE LAG (5m, fake money): compare live public USD exchange prices (Coinbase, Kraken, Bitstamp, plus Gemini when it agrees) to the window's Chainlink TWAP60 strike \u2014 official Polymarket priceToBeat / previous window's finalPrice when published, otherwise the bot's usual proxy \u2014 and bet only when the Polymarket best ask is cheaper than the model probability by at least 5c after the taker fee, AND spot has just jumped at least 0.0003 dollars in the last 8 seconds (the book hasn't caught up yet). Any time in the 5-minute window, including the first minute (a lag edge is most useful before the book catches up). About $5 including the fee, 5-share minimum, $10 cap. Pauses if this variant is down $20 on the PT day. Not used by auto_pick or bankroll_20."
+    "desc": "DISABLED Nov 25 8:50 PM PT (no new bets; open bets still settle; history kept): 25 settled, +$14.34 fake here; losing in 3 of 4 fleets (244 settled, -$71.92 combined). PRICE LAG (5m, fake money): compare live public USD exchange prices (Coinbase, Kraken, Bitstamp, plus Gemini when it agrees) to the window's Chainlink TWAP60 strike \u2014 official Polymarket priceToBeat / previous window's finalPrice when published, otherwise the bot's usual proxy \u2014 and bet only when the Polymarket best ask is cheaper than the model probability by at least 5c after the taker fee, AND spot has just jumped at least 0.0003 dollars in the last 8 seconds (the book hasn't caught up yet). Any time in the 5-minute window, including the first minute (a lag edge is most useful before the book catches up). About $5 including the fee, 5-share minimum, $10 cap. Pauses if this variant is down $20 on the PT day. Not used by auto_pick or bankroll_20."
   },
   "sum_arb_5m": {
     "enabled": true,
