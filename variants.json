@@ -85,8 +85,8 @@
     "max_round_up_usd": 4
   },
   "trend_volume_xo": {
-    "enabled": true,
-    "desc": "CASH OUT (5m): same entry as trend_volume, but can sell early into the live best bid (only if that bid has enough size for the full position) and pays the taker fee on the sale. Take profit if the bid reaches 95c or the sale would make about +20% after the sell fee. Stop loss if the position is down about 45% (sale proceeds at most 55% of what we paid). Also sells if the price lead flips against us with a minute or less left (and we're in the back half of the window). Holds at least 20 seconds, and leaves the last 8 seconds for the official result. If none of those happen, holds to settlement like the original.",
+    "enabled": false,
+    "desc": "DISABLED Nov 26 4:55 AM PT (no new bets; open bets still settle; history kept): 76 settled, 50% win, -$25.95 fake here. CASH OUT (5m): same entry as trend_volume, but can sell early into the live best bid (only if that bid has enough size for the full position) and pays the taker fee on the sale. Take profit if the bid reaches 95c or the sale would make about +20% after the sell fee. Stop loss if the position is down about 45% (sale proceeds at most 55% of what we paid). Also sells if the price lead flips against us with a minute or less left (and we're in the back half of the window). Holds at least 20 seconds, and leaves the last 8 seconds for the official result. If none of those happen, holds to settlement like the original.",
     "timeframe": "5m",
     "min_efficiency": 0.15,
     "max_ann_vol": 2.0,
@@ -270,8 +270,8 @@
     "max_round_up_usd": 4
   },
   "down_ride": {
-    "enabled": true,
-    "desc": "DOWN RIDE (5m): bets Down only when XRP is ALREADY at least 0.055% (~0.05c) below the price-to-beat with 90-180s left (2-3.5 min into the window), a 'lead already built by 2-3 minutes in' setup.  Model+market blend, 3c edge after the ask and fee, asks 50-90c, flat-ish $2 +$1 per 2c extra edge, cap $5 incl. fee. Does NOT bet just because the last window was down.",
+    "enabled": false,
+    "desc": "DISABLED Nov 26 4:55 AM PT (no new bets; open bets still settle; history kept): 92 settled, -$10.90 fake here; down_ride losing in SOL, ETH and XRP (301 settled, -$102.75 combined). DOWN RIDE (5m): bets Down only when XRP is ALREADY at least 0.055% (~0.05c) below the price-to-beat with 90-180s left (2-3.5 min into the window), a 'lead already built by 2-3 minutes in' setup.  Model+market blend, 3c edge after the ask and fee, asks 50-90c, flat-ish $2 +$1 per 2c extra edge, cap $5 incl. fee. Does NOT bet just because the last window was down.",
     "timeframe": "5m",
     "mode": "model",
     "sides": [
