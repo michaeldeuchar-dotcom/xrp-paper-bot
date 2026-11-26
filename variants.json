@@ -459,7 +459,7 @@
     "desc": "DISABLED Nov 24 (no new bets; open bets still settle; history kept): 151 settled, -$27.05 fake here; losing in all four fleets (436 settled, -$74.01 combined for v2_5m; 624 settled, -$104.29 combined for v1 15m). A/B HEDGE (15m): same A-then-B hedge as ab_hedge_5m, on the 15-minute Up/Down market. A enters early-ish (about 3-6 minutes into the window, after the 3-minute skip), about $5 including the fee. B only buys the other side if it locks at least 2 cents/share of guaranteed profit, or later as a damage-limit cap when A is badly losing. Otherwise A holds to settlement alone. Fake money only. Not used by auto_pick or bankroll_20."
   },
   "ab_hedge_1h": {
-    "enabled": true,
+    "enabled": false,
     "mode": "ab_hedge",
     "timeframe": "1h",
     "exclude_from_rank": true,
@@ -479,7 +479,7 @@
     "limit_loss_min_hold_sec": 240,
     "min_edge": 0,
     "circuit_breaker": "watch",
-    "desc": "A/B HEDGE (1h): same A-then-B hedge as ab_hedge_5m, on the hourly Up/Down market (this is the timeframe most likely to give B a cheap opposite-side ask). A enters early-ish (about 12-24 minutes into the hour), about $5 including the fee. B only buys the other side if it locks at least 2 cents/share of guaranteed profit, or later as a damage-limit cap when A is badly losing. Otherwise A holds to settlement alone. Fake money only. Not used by auto_pick or bankroll_20."
+    "desc": "DISABLED Nov 26 8:55 AM PT (no new bets; open bets still settle; history kept): losing in all four fleets, 429 settled pairs, -$36.41 fake combined (BTC 107 -$0.45, SOL 108 -$22.07, ETH 109 -$12.84, XRP 105 -$1.05). A/B HEDGE (1h): same A-then-B hedge as ab_hedge_5m, on the hourly Up/Down market (this is the timeframe most likely to give B a cheap opposite-side ask). A enters early-ish (about 12-24 minutes into the hour), about $5 including the fee. B only buys the other side if it locks at least 2 cents/share of guaranteed profit, or later as a damage-limit cap when A is badly losing. Otherwise A holds to settlement alone. Fake money only. Not used by auto_pick or bankroll_20."
   },
   "ab_hedge_v2_5m": {
     "enabled": false,
