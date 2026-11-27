@@ -7,6 +7,7 @@ Examples:
   python3 summarize.py --since 2026-11-18   # only bets placed on/after this PT date (or "2026-11-18 09:00")
   python3 summarize.py --since 6h           # last 6 hours (also accepts 30m, 2d)
   python3 summarize.py --file data/trades.csv   # the original 2-hour run on Nov 16
+  python3 summarize.py --scorecard         # real-money scorecard only (fake money; week-2 finalists)
 """
 import argparse
 import csv
@@ -341,13 +342,209 @@ def load(args):
     return out
 
 
+# --- real-money scorecard (reporting only; never used by the trading bot) ---
+SCORECARD_MIN_SETTLED = 300
+SCORECARD_WORST_DAY_FLOOR = -20.0
+SCORECARD_SECOND_HALF_START = datetime(2026, 11, 30, 0, 0, 0, tzinfo=PT)
+
+
+def resolve_time(r):
+    """When a bet settled, in Pacific Time. Used for daily P&L and the second-half cut."""
+    raw = (r.get("ts_resolve_pt") or "").strip()
+    if raw:
+        try:
+            return datetime.strptime(raw[:19], "%Y-%m-%d %H:%M:%S").replace(tzinfo=PT)
+        except ValueError:
+            pass
+    raw = (r.get("ts_resolve_utc") or "").strip()
+    if raw:
+        try:
+            dt = datetime.fromisoformat(raw.replace("Z", "+00:00"))
+            if dt.tzinfo is None:
+                dt = dt.replace(tzinfo=ZoneInfo("UTC"))
+            return dt.astimezone(PT)
+        except ValueError:
+            pass
+    return None
+
+
+def load_scorecard_config():
+    """Finalist list from scorecard.json so it can change without code edits."""
+    path = os.path.join(ROOT, "scorecard.json")
+    if not os.path.exists(path):
+        return None
+    import json
+    with open(path) as f:
+        cfg = json.load(f)
+    raw = cfg.get("finalists") or []
+    labels = cfg.get("labels") or {}
+    out = []
+    for item in raw:
+        if isinstance(item, str):
+            out.append((item, labels.get(item) or item.replace("_", " ")))
+        elif isinstance(item, dict) and item.get("id"):
+            vid = item["id"]
+            out.append((vid, item.get("label") or labels.get(vid) or vid.replace("_", " ")))
+    return out
+
+
+def load_finalist_rows(run, name):
+    path = os.path.join(ROOT, "data", run, f"trades_{name}.csv")
+    if not os.path.exists(path):
+        return []
+    with open(path, newline="") as f:
+        return list(csv.DictReader(f))
+
+
+def grade_finalist(name, rows):
+    """Grade one finalist against the fixed week-2 bar. P&L figures already include fees."""
+    settled = []
+    for r in rows:
+        if r.get("status") != "resolved" or not r.get("pnl_usd"):
+            continue
+        try:
+            pnl = float(r["pnl_usd"])
+        except (TypeError, ValueError):
+            continue
+        settled.append((r, pnl))
+    n = len(settled)
+    wins = sum(1 for r, _ in settled if r.get("won") == "1")
+    net = sum(p for _, p in settled)
+    win_pct = (wins / n) if n else None
+
+    by_day = {}
+    for r, pnl in settled:
+        when = resolve_time(r) or fill_time(r)
+        if when is None:
+            continue
+        day = when.astimezone(PT).date()
+        by_day[day] = by_day.get(day, 0.0) + pnl
+    if by_day:
+        worst_day = min(by_day, key=lambda d: by_day[d])
+        worst_pnl = by_day[worst_day]
+    else:
+        worst_day, worst_pnl = None, None
+
+    half = []
+    half_started = datetime.now(PT) >= SCORECARD_SECOND_HALF_START
+    for r, pnl in settled:
+        when = resolve_time(r)
+        if when is not None and when >= SCORECARD_SECOND_HALF_START:
+            half.append(pnl)
+    half_n = len(half)
+    half_pnl = sum(half) if half_n else 0.0
+    half_evaluable = half_started and half_n > 0
+
+    checks = {
+        "bets": n >= SCORECARD_MIN_SETTLED,
+        "profit": net > 0,
+        "worst_day": (worst_pnl is None) or (worst_pnl >= SCORECARD_WORST_DAY_FLOOR),
+        "second_half": (half_pnl > 0) if half_evaluable else None,  # None = not yet started / no bets
+    }
+    hard_fail = (not checks["profit"]) or (not checks["worst_day"]) or (checks["second_half"] is False)
+    if not hard_fail and checks["bets"] and checks["second_half"] is True:
+        verdict = "PASS"
+    elif not hard_fail:
+        verdict = "NOT YET"
+    else:
+        verdict = "FAIL"
+    return dict(
+        name=name, n=n, wins=wins, win_pct=win_pct, net=net,
+        worst_day=worst_day, worst_pnl=worst_pnl,
+        half_n=half_n, half_pnl=half_pnl, half_evaluable=half_evaluable,
+        half_started=half_started, checks=checks, verdict=verdict,
+    )
+
+
+def _check_label(ok):
+    if ok is True:
+        return "PASS"
+    if ok is False:
+        return "FAIL"
+    return "n/a"
+
+
+def format_scorecard_table(grades):
+    """Plain-English table; numbers here are what --scorecard prints."""
+    lines = []
+    hdr = (f"  {'Finalist':<38}{'Bets':>6}{'Win%':>7}{'Net P&L':>11}  "
+           f"{'Worst day (PT)':<22}{'Second half':>18}  "
+           f"{'300 bets':>8} {'Profit':>6} {'Worst day':>9} {'Second half':>11}  Verdict")
+    lines.append(hdr)
+    lines.append("  " + "-" * (len(hdr) - 2))
+    for g in grades:
+        wr = f"{g['win_pct']:.0%}" if g["win_pct"] is not None else "-"
+        if g["worst_day"] is None:
+            worst = "n/a"
+        else:
+            worst = f"{money(g['worst_pnl'])} on {g['worst_day']:%b %d}"
+        if not g["half_started"]:
+            half = "n/a, starts Nov 30"
+        elif not g["half_evaluable"]:
+            half = "n/a, no bets yet"
+        else:
+            half = money(g["half_pnl"])
+        c = g["checks"]
+        lines.append(
+            f"  {g['label']:<38}{g['n']:>6}{wr:>7}{money(g['net']):>11}  "
+            f"{worst:<22}{half:>18}  "
+            f"{_check_label(c['bets']):>8} {_check_label(c['profit']):>6} "
+            f"{_check_label(c['worst_day']):>9} {_check_label(c['second_half']):>11}  {g['verdict']}"
+        )
+    return "\n".join(lines)
+
+
+def print_scorecard(run):
+    """Print the real-money scorecard for this run's finalists. Reporting only."""
+    cfg = load_scorecard_config()
+    print("Real-money scorecard (fake money only; no real trades)")
+    print(f"Grades the named finalists in data/{run} against a fixed pass/fail bar.")
+    print("Bar (all four must pass):")
+    print(f"  1. At least {SCORECARD_MIN_SETTLED} settled bets")
+    print("  2. Net fake P&L above $0 after fees")
+    print(f"  3. No single calendar day (Pacific Time) worse than -${abs(SCORECARD_WORST_DAY_FLOOR):.0f}")
+    print(f"  4. Net P&L above $0 in the second half (bets settled on or after "
+          f"{SCORECARD_SECOND_HALF_START:%b %d, %Y} PT)")
+    print("Verdict: PASS if all four pass; FAIL if profit, worst-day, or (once it has bets) "
+          "second-half fail; NOT YET if those have not failed but there are not yet "
+          f"{SCORECARD_MIN_SETTLED} bets, and/or the second half has not started.")
+    print("Daily and second-half P&L use the settlement time in Pacific Time.")
+    if cfg is None:
+        print("\n  No scorecard.json found in this repo, so there are no finalists to grade.")
+        return
+    if not cfg:
+        print("\n  scorecard.json lists no finalists.")
+        return
+    grades = []
+    for name, label in cfg:
+        g = grade_finalist(name, load_finalist_rows(run, name))
+        g["label"] = f"{label} ({name})"
+        grades.append(g)
+    print()
+    print(format_scorecard_table(grades))
+    passed = sum(1 for g in grades if g["verdict"] == "PASS")
+    not_yet = sum(1 for g in grades if g["verdict"] == "NOT YET")
+    failed = sum(1 for g in grades if g["verdict"] == "FAIL")
+    print(f"\n  {passed} PASS, {not_yet} NOT YET, {failed} FAIL, of {len(grades)} finalist(s). "
+          "Nothing here is a green light for real money until the verdict is PASS.")
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--since", help="PT date/time like 2026-11-18 or '2026-11-18 09:00', or 6h / 30m / 2d")
     ap.add_argument("--variant", help="only this variant")
     ap.add_argument("--run", default="week2", help="run folder under data/ (week2 is the current two-week test; use week1 for the first trial)")
     ap.add_argument("--file", help="summarize a single trades CSV instead (e.g. data/trades.csv)")
+    ap.add_argument("--scorecard", action="store_true",
+                    help="print only the real-money scorecard for the configured finalists (fake money; reporting only)")
     a = ap.parse_args()
+    if a.scorecard:
+        now = datetime.now(PT)
+        print(f"Paper (fake money) results as of {now:%a %b %d, %I:%M %p} PT")
+        print("No real money was used.")
+        print()
+        print_scorecard(a.run)
+        return
     since = parse_since(a.since)
     data = load(a)
     if not data:
@@ -424,6 +621,10 @@ def main():
         print("  Note: auto_pick and bankroll_20 still rank and follow only the original 5-minute hold-to-settlement strategies; cash-out, 15-minute, crowd, max_profit, ab_hedge, price_lag, and sum_arb variants are scored separately and are not in that ranking.")
         print(f"\n  All variants together: {money(total)} (each variant is a separate fake account"
               + (("; " + "; ".join(extras)) if extras else "") + ").")
+
+    if not a.file:
+        print()
+        print_scorecard(a.run)
 
 
 if __name__ == "__main__":
